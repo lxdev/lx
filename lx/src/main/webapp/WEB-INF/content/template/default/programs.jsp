@@ -15,28 +15,7 @@
 		<jc:plugin name="auto_complete"/>
 		<jc:plugin name="pager_css_js"/>
 		<jc:plugin name="hot_base_js" />
-		<script type="text/javascript">
-			function show_courses(type){
-				var arrowcurrent=".arrow_" + type;
-	            var univername=$(arrowcurrent).parent().parent().find(".universityname a").html();
-	            $(".courselist-1 .course").each(function (i) {
-	                if ($(this).parent().find(".universityname a").html() == univername) {
-	                    var ScrollHeight = 52 + 307 + 358 + $(".reslut-2 .title").height() + ($(".courselist-1 .courselist-li").height() * (type - 1)) + 15 * (type - 1);
-	                    var ContentHeight = $(".courselist-1 .courselist-li").height() * (type - 1);
-	                    $("body").scrollTop(ScrollHeight);
-	                }
-	            })
-	           
-	            if ($(".university_" + type).is(":visible")) {
-	                $(".arrow_" + type).addClass("close");
-	                $(".university_" + type).hide();
-	            } else {
-	                $(".morecourse li").hide();
-	                $(".arrow_" + type).removeClass("close");
-	                $(".university_" + type).show();
-	            }
-			}
-		</script>
+		
 		<style>
 .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
 z-index: 2;
@@ -433,4 +412,37 @@ border: 0;
 		
 
 	</body>
+<script type="text/javascript">
+var topareaHeight = $(".toparea").height();
+    var searchareaHeight = $(".searcharea").height();
+    var accuratesearchHeight = $(".accuratesearch").height();
+    var titleHeight = $(".reslut-2 .title").height();
+    var courselistliHeight = $(".courselist-1 .courselist-li").height();
+			function show_courses(type){
+				var arrowcurrent=".arrow_" + type;
+	            var univername=$(arrowcurrent).parent().parent().find(".universityname a").html();
+	            $(".courselist-li").each(function (i) {
+	            
+            if ($(this).find(".universityname a").html() == univername) {
+            
+                if (i == 0) {
+                    $("body").scrollTop(topareaHeight + searchareaHeight + accuratesearchHeight + 0 + titleHeight);
+                }
+                else {
+                    $("body").scrollTop(topareaHeight + searchareaHeight + accuratesearchHeight + 40 + titleHeight + courselistliHeight * i + 15 * (i - 1));
+                }
+            }
+        })
+	            
+	           
+	            if ($(".university_" + type).is(":visible")) {
+	                $(".arrow_" + type).addClass("close");
+	                $(".university_" + type).hide();
+	            } else {
+	                $(".morecourse li").hide();
+	                $(".arrow_" + type).removeClass("close");
+	                $(".university_" + type).show();
+	            }
+			}
+		</script>
 </html>
