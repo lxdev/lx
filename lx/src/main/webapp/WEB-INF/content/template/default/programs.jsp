@@ -436,11 +436,11 @@ var topareaHeight = $(".toparea").height();
 	            
 	           
 	            if ($(".university_" + type).is(":visible")) {
-	                $(".arrow_" + type).addClass("close");
+	                $(".arrow_" + type).removeClass("close");
 	                $(".university_" + type).hide();
 	            } else {
-	                $(".morecourse li").hide();
-	                $(".arrow_" + type).removeClass("close");
+	                $(".morecourse li").hide();	                
+	                $(".arrow_" + type).addClass("close");
 	                $(".university_" + type).show();
 	            }
 			}
