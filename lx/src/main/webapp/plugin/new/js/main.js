@@ -265,13 +265,13 @@ var search_data_p = function(is_not_check){
 	    			close_loading();
 	    		}
 	    		if(data.universityNum != null && data.universityNum >= 0){
-	    			set_page_result_p(data.universityNum, data.programNum);
+	    			set_page_result(data.universityNum, data.programNum);
 	    		}
 	    	},
 	 "json");
 }
 /*根据查询结果，重新设置总记录及页数*/
-var set_page_result_p = function(totalUNum, totalPNum){
+var set_page_result = function(totalUNum, totalPNum){
 	jQuery('#programNum').html(totalPNum);
 	jQuery('#universityNum').html(totalUNum);
 	jQuery('#record_total').html(totalUNum);
@@ -291,10 +291,15 @@ var PageClick = function(pageclickednumber) {
 	var pageNum = parseInt( $("#record_total").val() );
 	var pageCount = pageNum <= 0 ? 0 : pageNum % page_size == 0 ? pageNum / page_size : parseInt( pageNum / page_size ) + 1;
     $("#pager").pager({ pagenumber: parseInt( pageclickednumber ), pagecount: pageCount, buttonClickCallback: PageClick });
-    //$("#result").html("Clicked Page " + pageclickednumber);
-    $("#page").val(pageclickednumber);
     
-    search_data_p(true);
+    $("#page").val(pageclickednumber);	//暂存，当前是第几页
+    
+    if( $("#pager").attr("data-type") == "p" ){
+    	search_data_p(true);
+    }else if( $("#pager").attr("data-type") == "u" ){
+    	search_data(-1);
+    }
+    
 }
 /*翻页，每页点击*/
 //$("#programs #page_ul li a").each(function (i) {

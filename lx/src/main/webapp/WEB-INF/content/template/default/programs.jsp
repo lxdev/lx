@@ -367,7 +367,7 @@ border: 0;
 	                <li><a><span class="num">5</span> <span class="sr-only">(current)</span></a></li>
 	                <li><a>»</a></li>
 	            </ul>--%>
-	            <div class="pagination pull-right" id="pager" ></div>
+	            <div class="pagination pull-right" id="pager" data-type="p" ></div>
 	        </div>
 	    </div>
 	    <div class="bottom">

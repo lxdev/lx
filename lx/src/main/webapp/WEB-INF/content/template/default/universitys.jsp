@@ -198,7 +198,7 @@ border: 0;
 		                </li>
 					</s:iterator>
 	            </ul>
-	            <ul class="pagination pull-right" id="page_ul" data-value="1">
+	            <%--<ul class="pagination pull-right" id="page_ul" data-value="1">
 	            	<s:if test="universityNum > 10">
 		                <li class="disabled less_disable"><a href="#">«</a></li>
 		                <li class="active"><a href="#"><span class="num">1</span> <span class="sr-only">(current)</span></a></li>
@@ -217,15 +217,15 @@ border: 0;
 		                <li class="less_disable hide"><a href="#"><span class="num">5</span> <span class="sr-only">(current)</span></a></li>
 		                <li class="less_disable hide"><a href="#">»</a></li>
 	                </s:else>
-	            </ul>
+	            </ul>--%>
+	            <div class="pagination pull-right" id="pager" data-type="u" ></div>
 	        </div>
 	    </div>
 	    <div class="bottom">
 	        &copy; 2014 young Ltd All rights reserved.
 	    </div>
-
 		
-		<jc:plugin name="new_js" />
+		<jc:plugin name="main_js" />
 		<script type="text/javascript">
 			/*排序点击*/
 			var set_sort = function(obj, sort_type){
@@ -327,54 +327,13 @@ border: 0;
 				$("#page_ul li").removeClass("active");
 				$("#page_ul li:first").addClass("active");
 			}
-			/*根据查询结果，重新设置总记录及页数*/
-			var set_page_result = function(totalNum){
-    			jQuery('#universityNum').html(totalNum);
-    			jQuery('#record_total').html(totalNum);
-    			if(totalNum > 10){
-    				$(".less_disable").show();
-    			}else {
-    				$(".less_disable").hide();
-    			}
-			}
-			/*翻页，每页点击*/
-			$("#page_ul li a").each(function (i) {
-	            $(this).click(function () {
-	                $("#page_ul li").removeClass("active");
-	                $(this).parent().addClass("active");
-	                
-	                var current_ul_number = parseInt($("#page_ul").attr("data-value"))
-	                
-	                var temp = $(this).html();
-	                if(temp == "»"){
-	                	if( current_ul_number * 5 * parseInt($("#page_size").val()) >= parseInt($("#record_total").val()) )
-	                		return;
-	                	current_ul_number += 1;
-	                	$("#page_ul li a .num").each(function (i) {
-	                		var oldNum = parseInt($(this).html());
-	                		$(this).html(oldNum * current_ul_number);
-	                	})
-	                	$("#page_ul").attr("data-value", current_ul_number);
-	                }else if(temp == "«"){
-	                	if(current_ul_number <= 0)
-	                		return;
-	                	current_ul_number -= 1;
-	                	$("#page_ul li a .num").each(function (i) {
-	                		var oldNum = parseInt($(this).html());
-	                		$(this).html(oldNum * current_ul_number);
-	                	})
-	                	$("#page_ul").attr("data-value", current_ul_number);
-	                }else {
-	                	temp = $(".num", $(this)).html();
-		                var page = parseInt(temp);
-		                
-		                $("#page").val(page-1);
-		                
-		                search_data(-1);
-	                }
-	                
-	            });
-	        })
+	        
+			$(document).ready(function() {
+				var page_size = parseInt( $("#page_size").val() );
+				var pageNum = parseInt( $("#record_total").val() );
+				var pageCount = pageNum <= 0 ? 0 : pageNum % page_size == 0 ? pageNum / page_size : parseInt( pageNum / page_size ) + 1;
+	            $("#pager").pager({ pagenumber: 1, pagecount: pageCount, buttonClickCallback: PageClick });
+	        });
 		</script>
 	</body>
 </html>
