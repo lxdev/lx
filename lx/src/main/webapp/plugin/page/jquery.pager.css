@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+.pager2 { line-height:30px;
+	height:30px;
+	background: url(images/wbg.gif) repeat-x 0 -1px;
+	border-bottom: 1px solid #CFCFCF;
+	border-left: 1px solid #CFCFCF;
+	border-right: 1px solid #CFCFCF;
+	width:99.8%;margin:0px; padding:0; text-align:right;font-size:11px; font-family:Arial; }
+.pager2 a {vertical-align:middle; color:#2E6AB1; margin:2px; padding:2px; text-decoration:none;font-size:11px; font-family:Arial; }
+.pager2 a:hover {color:#000000;padding:2px;font-size:11px; font-family:Arial;}
+.pager2 span.current {background-color:#cccccc;border:1px solid #cccccc;color:#4F6E8A;margin-right:2px;padding:2px 5px 1px 5px;font-size:11px; font-family:Arial;}
+.pager2 span.disabled {margin-right:2px;margin-bottom:2px;padding:2px;vertical-align:middle;color:#4F6E8A;}
+.pager2 span.info {color:#929292;margin-right:2px;padding:2px;font-size:11px; font-family:Arial;}
+.topage{margin:3px;width:15px;line-height:16px;color: #666666;background-repeat: repeat-x;border: 1px solid #c6c6c6;}
+.btnto{margin:2px;width:40px;line-height:16px;color: #ffffff; cursor:pointer; background:url(images/blank_bg.gif) repeat-x;border: 1px solid #c6c6c6;font-size:11px; font-family:Arial;}
+.pager2 img{vertical-align:middle;}
+.pager2 span{vertical-align:middle;margin:0 5px;}
+
+
+.loading {
+				z-index: 10000;
+				width: 100%;
+				height:100%;
+				background:#EFEFEF;
+				position:fixed;
+				left:0;
+				top:0;
+				padding-top: 200px;
+				filter:alpha(opacity=50);       /* IE */
+				-moz-opacity:0.5;              /* Moz + FF */
+				opacity: 0.5;           /* 支持CSS3的浏览器（FF 1.5也支持）*/
+			}

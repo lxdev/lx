@@ -1,0 +1,36 @@
+
+tb_e_specialty   add parent_id	int	
+		添加3行：商学、法学、其他
+
+对于专业：将专业 一级、二级、三级 直接导入专业表（id parentid 层级标号（1级 2级 3级））
+对于课程表：新增一个字段：专业详情	直接将Excle中的专业字段导入（就算有多个专业也没关系）
+在通过专业查询课程时： 根据关键字，找出符合的 专业 ， 从中选择一个时 	(比如 专业id = 22)
+课程匹配专业时，只按 专业名 一项来匹配
+IF(Specialty.Level == 3)
+	SpecialtyDesc LIKE concat('%', Specialty.Name, '%')
+ELSE IF(Specialty.Level == 2)
+	Program A INNER JOIN Specialty B ON A.SpecialtyDesc LIKE concat('%', B.Name, '%') WHERE B.id = 22 AND B.ParentId = 22
+ELSE IF(Specialty.Level == 1)
+	Program A INNER JOIN Specialty B ON A.SpecialtyDesc LIKE concat('%', B.Name, '%') WHERE B.id = 22 AND B.ParentId = 22
+	UNION
+	Program A INNER JOIN (SELECT B1.* Specialty B1 INNER JOIN Specialty B2 ON B1.ParentId = B2.id WHERE B2.ParentId = 22) B ON A.SpecialtyDesc LIKE '%' + B.Name + '%' WHERE B.ParentId = 22
+
+
+
+顾问
+视频表：我的视频、上传授课视频
+
+问题：
+是问题身上有 国家、专业呢，还是根据提问人自己填写的国家、专业来划分呢？
+
+定位评估
+我得评估邀请我的评估报告
+选校管理
+生产选校名单推送给我的学生
+生产选校名单点选系统中项目，每个项目后面可添加推荐理由
+
+
+用户	
+	个人主页	老师信息	过往经历	学生评价	马上交谈	身份认证	问答信息	浏览量		学生数目
+	帐户设置： 更改密码		绑定手机	绑定邮箱
+

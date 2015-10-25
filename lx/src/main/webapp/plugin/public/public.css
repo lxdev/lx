@@ -1,0 +1,42 @@
+﻿@charset "utf-8";
+
+/* * {
+	margin: 0;
+}
+
+html {
+	overflow-x: hidden;
+}
+
+body {
+	font-family: Verdana;
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+img {
+	border: 0px;
+} */
+
+.photo {
+	background: url(../../images/default/default-male-50.png) no-repeat;
+	background-size: contain;
+	width: 50px;
+	height: 50px;
+}
+
+.photo_32 {
+	background: url(../../images/default/user.jpg_35x35.jpg) no-repeat;
+	background-size: contain;
+	width: 32px;
+	height: 32px;
+}
+.photo_25 {
+	background: url(../../images/default/user.jpg_25x25.jpg) no-repeat;
+	background-size: contain;
+	width: 25px;
+	height: 25px;
+}

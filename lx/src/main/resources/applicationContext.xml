@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+           http://www.springframework.org/schema/jee
+           http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-autowire="byName" default-lazy-init="true">
+	<!-- 配置数据源 start -->
+	<bean id="placeholderConfig" class="net.lx.common.Configurer">
+		<property name="location">
+			<value>classpath:jdbc.properties</value>
+		</property>
+	</bean>
+	<bean id="dataSource_master_mysql" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${datasource.master.driverClass}" />
+		<property name="jdbcUrl" value="${datasource.master.url}" />
+		<property name="user" value="${datasource.master.username}" />
+		<property name="password" value="${datasource.master.password}" />
+		<property name="minPoolSize" value="${datasource.master.minPoolSize}"></property>
+		<property name="maxPoolSize" value="${datasource.master.maxPoolSize}"></property>
+		<property name="maxIdleTime" value="${datasource.master.maxIdleTime}"></property>
+		<property name="acquireIncrement" value="${datasource.master.acquireIncrement}"></property>
+		<property name="maxStatements" value="${datasource.master.maxStatements}"></property>
+		<property name="initialPoolSize" value="${datasource.master.initialPoolSize}"></property>
+		<property name="idleConnectionTestPeriod" value="${datasource.master.idleConnectionTestPeriod}"></property>
+		<property name="acquireRetryAttempts" value="${datasource.master.acquireRetryAttempts}"></property>
+		<property name="breakAfterAcquireFailure" value="${datasource.master.breakAfterAcquireFailure}"></property>
+		<property name="testConnectionOnCheckout" value="${datasource.master.testConnectionOnCheckout}"></property>
+		<property name="autoCommitOnClose" value="${datasource.master.autoCommitOnClose}"></property>
+	</bean>
+	<!-- 单例 -->
+	<bean id="sessionFactory_master" name="sessionFactory_master"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource_master_mysql" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+
+
+				<!-- validate:加载hibernate时，验证创建数据库表结构;create:每次加载hibernate，重新创建数据库表结构，这就是导致数据库表数据丢失的原因;create-drop:加载hibernate时创建，退出是删除表结构;update:加载hibernate自动更新数据库结构 -->
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.jdbc.fetch_size">
+					${hibernate.jdbc.fetch_size}
+				</prop>
+				<prop key="hibernate.jdbc.batch_size">
+					${hibernate.jdbc.batch_size}
+				</prop>
+			</props>
+		</property>
+
+		<property name="packagesToScan">
+			<list>
+				<value>net.lx.entity.*</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource_master_mysql" />
+	</bean>
+	<!-- 那些类的哪些方法参与事务 -->
+	<!-- <aop:config>
+		<aop:advisor pointcut="execution(* net.lx.biz.*.*.*(..))"
+			advice-ref="txAdvice" />
+	</aop:config> -->
+	<!-- 配置事务传播特性 -->
+	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="create*" propagation="REQUIRED"
+				rollback-for="Throwable" />
+			<tx:method name="delete*" propagation="REQUIRED"
+				rollback-for="Throwable" />
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="Throwable" />
+			<tx:method name="update*" propagation="REQUIRED"
+				rollback-for="Throwable" />
+			<tx:method name="modify*" propagation="REQUIRED"
+				rollback-for="Throwable" />
+			<tx:method name="shift*" propagation="REQUIRED"
+				rollback-for="Throwable" />
+			<tx:method name="get*" propagation="REQUIRED" rollback-for="Throwable" />
+			<tx:method name="import*" propagation="REQUIRED"
+				rollback-for="Throwable" />
+			<tx:method name="find*" propagation="REQUIRED"
+				rollback-for="Throwable" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice> -->
+	<!-- 数据库实现类 -->
+	<bean id="masterMysqlDao" class="net.lx.dao.impl.MasterMysqlDao">
+		<property name="dataSource" ref="dataSource_master_mysql" />
+		<property name="sessionFactory" ref="sessionFactory_master" />
+	</bean>
+
+
+	<context:component-scan base-package="net.lx" />
+
+	<!-- memcached配置开始 -->
+	<bean id="memcachedPool" class="com.danga.MemCached.SockIOPool"
+		factory-method="getInstance" init-method="initialize" destroy-method="shutDown"
+		lazy-init="false">
+		<!-- 设置所有缓存服务器的列表,可以为多个地址 -->
+		<property name="servers">
+			<list>
+				<value>${memcached.address1}</value>
+
+			</list>
+		</property>
+		<!-- 如果设置为true，并且连接失败，将重另一个服务器返回（如果该服务器存在的话.否则，返回null -->
+		<property name="failover" value="true"></property>
+		<!-- 设置每台服务器连接的可用池的初始数量。 -->
+		<property name="initConn" value="100"></property>
+		<!-- 设置备用的最小连接数保持在我们的可用池。 -->
+		<property name="minConn" value="100"></property>
+		<!-- 设置备用的最大连接数保持在我们的可用池。 -->
+		<property name="maxConn" value="200"></property>
+		<!-- -->
+		<property name="maintSleep" value="30"></property>
+		<!-- 设置为池的Nagle ALG标志。如果为false，将关闭所有创建的套接字Nagle算法。 -->
+		<property name="nagle" value="false"></property>
+		<!-- 设置为读取套接字超时。 -->
+		<property name="socketTO" value="3000"></property>
+		<!-- -->
+		<property name="aliveCheck" value="true"></property>
+
+	</bean>
+	<!-- memcached配置结束 -->
+	<bean id="memCachedClient" class="com.danga.MemCached.MemCachedClient">
+	</bean>
+
+	<bean id="cacheClient" class="com.devsun.cache.impl.CacheClient"
+		lazy-init="false">
+	</bean>
+
+	<!-- 定义调用对象和调用对象的方法 -->
+	<!-- <bean id="quartzJob" class="net.lx.quartz.Task"></bean>
+	<bean id="jobtask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">调用的类
+		<property name="targetObject">
+			<ref bean="quartzJob" />
+		</property>调用类中的方法
+		<property name="targetMethod">
+			<value>work</value>
+		</property>
+	</bean> -->
+	<!-- 定义触发时间 -->
+		<!-- 10 seconds -->
+		<!-- cron表达式 -->
+     	<!-- repeat every 60 seconds -->
+	<!-- <bean id="doTime" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail">
+			<ref bean="jobtask" />
+		</property>
+     	<property name="startDelay">
+     		<value>10000</value>
+     	</property>
+     	<property name="repeatInterval">
+     		<value>10000</value>
+     	</property>
+	</bean> -->
+	
+	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
+	<!-- <bean id="startQuertz" lazy-init="true" autowire="no"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="doTime" />
+			</list>
+		</property>
+	</bean> -->
+</beans>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+                        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<!-- 标签库的版本 -->
+	<jsp-version>1.2</jsp-version>
+	<!-- 这个标签库要求的JSP规范版本 -->
+	<short-name>pagelugintag</short-name>
+	<uri>/net/lx/taglib/pagelugintag</uri>
+	<tag>
+		<name>plugin</name>
+		<!-- 唯一标签名 -->
+		<tag-class>net.lx.taglib.PageTaglib</tag-class>
+
+		<body-content>empty</body-content>
+		<!-- 正文内容类型 -->
+		<!-- 插件编号 -->
+		<attribute>
+			<name>pluginCode</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- 查询数量 -->
+		<attribute>
+			<name>searchCountActionpath</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 查询集合 -->
+		<attribute>
+			<name>searchListActionpath</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 列名字符串 -->
+		<attribute>
+			<name>columnsStr</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 表格样式 -->
+		<attribute>
+			<name>tableCss</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 每页行数 -->
+		<attribute>
+			<name>pageSize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 是否启用pageSize -->
+		<attribute>
+			<name>isPageSize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 总行数Action属性名称 -->
+		<attribute>
+			<name>recordCountAttribute</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 集合action属性名称 -->
+		<attribute>
+			<name>listAttribute</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- 是否分页action属性名称 -->
+		<attribute>
+			<name>pageAttribute</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+
+
+
+		<!-- 每页显示条数Action属性名称 -->
+		<attribute>
+			<name>pageSizeAttribute</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+
+		<!-- 是否显示序号 -->
+		<attribute>
+			<name>isNumber</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- 是否显示checkbox -->
+		<attribute>
+			<name>isChecked</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- checkbox 值 -->
+		<attribute>
+			<name>checkboxValue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- pageIndex Action属性名称 -->
+		<attribute>
+			<name>currentPageIndexAttribute</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- 查询参数 -->
+		<attribute>
+			<name>params</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- 操作 -->
+		<attribute>
+			<name>view</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>update</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>delete</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- 其他操作 -->
+		<attribute>
+			<name>ontherOperating</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 国际化文件 -->
+		<attribute>
+			<name>il8nName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+
+		<!-- 宽度 -->
+		<attribute>
+			<name>ontherOperatingWidth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 自定义列得值 -->
+		<attribute>
+			<name>customColumnValue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- 截取字符串 -->
+		<attribute>
+			<name>subStringLength</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 设置增删改查操作列的宽度 -->
+		<attribute>
+			<name>operatingWidth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- 设置列的宽度 -->
+		<attribute>
+			<name>columnsWidth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 是否分页，默认为分页 -->
+		<attribute>
+			<name>isPage</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- 查询数量回调函数 -->
+		<attribute>
+			<name>countCallback</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- 查询集合回调函数 -->
+		<attribute>
+			<name>listCallback</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 是否打开页面加载 -->
+		<attribute>
+			<name>isonLoad</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- 合并单元格 -->
+		<attribute>
+			<name>mergeCells</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 标题栏 -->
+		<attribute>
+			<name>titleBar</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- 查询的for表单ID -->
+		<attribute>
+			<name>searchFormId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- 是否同包 -->
+		<attribute>
+			<name>isPackage</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 是否排序默认为排序 -->
+		<attribute>
+			<name>isOrder</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 显示班马线 -->
+		<attribute>
+			<name>isZebraCrossing</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- 自定义工具类spanID -->
+		<attribute>
+			<name>customToolbarID</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>

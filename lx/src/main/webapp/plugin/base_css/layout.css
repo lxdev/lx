@@ -1,0 +1,93 @@
+﻿@charset "utf-8";
+html { overflow-x: hidden; overflow-y: auto; } 
+body 
+{ 
+	font-family:Verdana;
+	font-size:12px;	
+	margin-top:-1px !important;
+	margin-left:0px !important;  
+	padding:0px;	
+	overflow-x:hidden;
+	vertical-align:top;
+	display:block;
+	background:#4F6E8A url(images/menu_bg.gif) repeat-y top left;
+	width:180px !important; width:180px;
+}
+
+a:link,a:visited {text-decoration:none;}
+a:hover {text-decoration:underline}
+/********左侧菜单background:url(images/menu_bg.gif) repeat top left;*********************/
+#leftbar
+{ 
+	float:left; 
+	width:200px !important; width:180px;
+	margin:0px;
+	display:inline;
+	height:100%;
+}
+#leftbar_left{width:31px !important; width:31px; float:left;text-align:right;}
+.leftcss{padding:0px; margin:0px; text-align:right;}
+#leftbar_right{width:98px; float:left;height:100%;padding:0;margin-left:5px;}
+#menu {width:140px;margin:0;}
+.has_children{color:#fff;cursor:pointer;margin:2px;}
+.highlight{color:#fff;}
+div{padding;0;}
+/**大标题*/
+ a{
+	  white-space:nowrap;
+	  padding-left:12px;
+	  float:left;
+	  width:90px;
+	  color:#fff;
+	  height:20px;
+	  line-height:20px; 
+	  display:block;text-align:left;vertical-align:middle;
+	  background: url(images/arrow_01.gif) left center no-repeat;}
+/******加号***********************/
+.left_round{
+	float:left;
+	margin-left:0px;
+	line-height:20px; 
+	width:18px;
+	background: url(images/node_21.gif) left center no-repeat;
+	}
+.right_word{float:left;width:110px;line-height:20px;}
+.left_noadd{
+	float:left;
+	margin-left:0px;
+	line-height:20px; 
+	width:18px;
+	}
+	/**减号**/
+.show_node{
+		float:left;
+	       margin-left:0px;
+		   line-height:20px; 
+		   width:18px; 
+		   background: url(images/node_22.gif) left center no-repeat;}
+.show_bg{
+	       margin-left:0px;
+		   line-height:20px;  
+		   background:blue;}
+.chosea{
+	font-weight: bolder;
+	background-color: gray;
+}
+.no_node{
+	background: url(images/arrow_01.gif) left center no-repeat;
+}
+		   
+/*********右侧样式********************/
+#rightbar 
+{ 
+	 float:left;
+	 width:720px !important; width:720px;
+	 /*height:200px;*/
+	 background:#8fa0ba;
+	 margin-top:0px;
+	 margin-right:0px;
+	 margin-bottom:0px;
+	 margin-left: 0px;
+	 display:inline;
+}
+/*****************************/

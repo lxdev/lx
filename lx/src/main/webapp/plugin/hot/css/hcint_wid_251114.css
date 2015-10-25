@@ -1,0 +1,486 @@
+/* ------------------------------
+Project : HC-International
+Author	: Thiyagarajan.S
+-----------------------------------*/
+.wrapper,#wrapper,.main{
+width:980px;
+}
+.logo{
+width:240px;
+}
+.nav{
+width:740px;
+}
+.megamenu{
+width:980px;
+}
+.megamenu.two{
+width:328px;
+}
+.mg_lst .org_btn{
+width:178px;
+}
+.megamenu.four,.megamenu.five{
+width:320px;
+}
+.container{
+width:980px;
+}
+.plr_subl li .tltip_cnt,.plr_subr li .tltip_cnt{
+width:185px;
+}
+.mas_hm,.con_pad{
+width:940px;
+}
+.kf{
+width:925px;
+}
+.sub_hold h3,.lft_cnt,.col1,.col2,.col3,.col4,.col6{
+width:225px;
+}
+.rgt_cnt{
+width:700px;
+}
+.col1{
+width:190px;
+}
+.col2{
+width:320px;
+}
+.col3{
+width:450px;
+}
+.col4{
+width:160px;
+}
+.col6{
+width:555px;
+}
+.show .rgt_cnt{
+width:650px;
+}
+.sub_hold{
+width:945px;
+}
+.eve_btn .pnk_btn{
+width:200px;
+}
+.fs_rgt{
+width:415px;
+}
+.addrs_rgt{
+width:500px;
+}
+.rg_m{
+width:650px;
+}
+.lft{
+width:160px;
+}
+.rg_ft{
+width:410px;
+}
+.rvw .col1{
+width:150px;
+}
+.pr_rslt{
+width:276px;
+}
+.seo{
+width:302px;
+}
+/* filter pod start here */
+.flr_pod,.srwd{
+width:980px;
+}
+.ft_tle{
+width:960px;
+}
+/* Pagination start here */
+.pag{
+width:660px;
+}
+.bnrl{
+width:500px;
+}
+.bnrr{
+width:420px;
+}
+.tabs li{
+width:138px;
+}
+.mst_lft,.mst_rgt{
+width:480px;
+}
+.flgb_lft,.flgb_rgt,.plr_subl,.plr_subr{
+width:230px;
+}
+.nwgds_lft,.nwgds_rgt{
+width:480px;
+}
+.nwpd_lft,.scolp .flr_rgt .frght{
+width:140px;
+}
+.stftr_lft,.stftr_pod,.stftr_rgt{
+width:440px;
+}
+.srpd_rgt{
+width:340px;
+}
+.futr ul li,.frght.ev_btn{
+width:145px;
+}
+.sty_pln input[type="text"]{
+width:312px;
+}
+.flt_lbl,.slider label.flt_lbl{
+width:171px;
+}
+.abt_me .fd_st{
+width:315px;
+}
+.shw_hd{
+width:322px;
+}
+.lst_pg .art_cnt {
+width:182px;
+}
+.shdw {
+width:222px;
+}
+.art_ftr {
+width: 182px;
+}
+/* Article right pod */
+.selectdrop,.art_rgt{
+width:210px;
+}
+.ntk input[type="text"]{
+width:149px;
+}
+.ctry_srh li a {
+width:215px;
+}
+.ctry_rgt,.ctry_lft{
+width:470px;
+}
+.des .blu_btn{
+width:220px;
+}
+.who_lft {
+width:310px;
+}
+/* Article country list */
+.art_lst section{
+width:340px;
+}
+.arpd_lft{
+width:170px;
+}
+.art_brd{
+width:143px;
+}
+.ad_slot{
+width:340px;
+}
+.art_hldr{
+width:730px;
+}
+.dtl article,.dtl.aut article{
+width:630px;
+}
+.tm_dtl{
+width:200px;
+}
+.dtl section{
+width:510px;
+}
+.dtl section article{
+width:450px;
+}
+.dtl aside,.auth_rgt{
+width:270px;
+}
+.dtl aside{
+width:200px;
+}
+.art_scl{
+width:160px;
+}
+.dtl.fb{
+width:670px;
+}
+/* Country landing page */
+.ctry_res{
+width:950px;
+}
+.ctry_op_rgt{
+width:310px;
+}
+.ctry_op{
+width:430px;
+}
+.sub_lst ul{
+width:470px;
+}
+.tst_lgo{
+width:150px;
+}
+.tst_hld{
+width:150px;
+}
+.mas-bnrr{
+width:460px;
+}
+.mas-bnrr .tab_content{
+width:420px;
+}
+/* Site map */
+.ulist li {
+width:223px;
+}
+.colmn, .colmnsed, .colmntrd{
+width:231px;
+}
+.colmn li{
+width:200px;
+}
+.colmnsed li{
+width:200px;
+float:left;
+}
+.colmntrd{
+width:200px;
+}
+.mr18{
+margin-right:18px;
+}
+.abt_slct.ttfs{
+width:250px;
+}
+.slt_ctr{
+width:483px;
+}
+.scolp .slt_ctr{
+width:200px;
+}
+.slt_ctr.lent{
+width:350px;
+}
+.abt_slct.cutr,.abt_slct{
+width:146px;
+}
+.ctry .abt_slct{
+width:332px;
+}
+.wreg{
+width:300px;
+}
+.mbctl{
+width:334px;
+}
+.ctry .mbctl,.egscr .mbctl{
+width:330px;
+}
+/* Login start here */
+.frm_lft{
+width:660px;
+}
+.frm_rgt,.frm_rgt .stftr_pod{
+width:260px;
+}
+.frm_lft .fbb{
+width:230px;
+}
+.frm_rgt .srpd_rgt{
+width:190px;
+}
+.allsub_lft{
+width:140px;
+}
+.allsub_rgt{
+width:755px;
+}
+.allsub{
+width:940px;
+}
+.sub_blt li{
+width:240px;
+}
+.click .sub_shw{
+width:920px;
+}
+.click.tab .sub_shw{
+width:745px;
+}
+.fdli .res_ftr{
+width: 266px;
+}
+.rel{
+width:150px;
+}
+.slt_ctr.lent{
+width:395px;
+}
+.sgn_pst .mst_lft{
+width:330px;
+}
+.sgn_pst  .mst_rgt{
+width:630px;
+}
+.sgn_pst .plr_subr{
+width:250px;
+}
+.sgn_lpod{
+width:489px;
+}
+.schr .sgnl_ctr{
+width:450px;
+}
+.sgn_rpod{
+width:451px;
+}
+.tltip_cnt{
+width:170px;
+}
+#tickerTape {
+width:978px;
+}
+#tickerTape div {
+width:890px;
+}
+.prrev{
+width:670px;
+}
+.prr_lft,.prr_rgt{
+width:325px;
+}
+.prv_rgt{
+width:270px;
+}
+.prv_rw .ftr_rst{
+width:270px;
+}
+.cchd_rgt{
+width:790px;
+}
+.cl_rgt{
+width:193px;
+}
+.lbl_lft{
+width:210px;
+}
+.lbl_rgt{
+width:435px;
+}
+.mas_rdo span{
+width:130px;
+}
+.scps .plr_subr,.scps .plr_subl{
+width:313px;
+}
+.que1_lst{
+width:154px;
+}
+.que1_lst label{
+width:135px;
+}
+.sur_btn .org_btn{
+width:150px;
+}
+.survy{
+width:940px;
+}
+.bg_grey{
+width:442px;
+}
+.bg_ctr{
+width:412px;
+}
+.plr_subl.sgnp li,.plr_subl.sgnp li:first-child,.flgb_lft.scntry li{
+width:300px;
+}
+.plr_subl.sgnp li,.plr_subl.sgnp li:first-child{
+width:314px;
+}
+.flgb_lft.scntry li{
+width:315px;
+}
+@media only screen 
+and (min-width : 728px){
+.advert{
+display:block;
+padding:25px 0 35px;
+}
+}
+.urpr_rgt{
+width:650px;
+}
+.flud.us_prf{
+width:610px;
+}
+.con_pad.prf_in{
+width:610px;
+}
+.prf_in .kf{
+width:595px;
+}
+.rgt_usrpr{
+width:295px;
+}
+.rgt_usrpr a{
+width:253px;
+}
+.urpr_rgt .pag{
+width:650px;
+}
+.urpr_rgt .pagna{
+width:542px;
+}
+.upe_inr .org_btn{
+width:180px;
+}
+.cvrt_ctr .sr_rvw,.cvrt_ctr .lcy,.fltr .blu_btn{
+width:210px;
+}
+.dwn_rgt{
+width:495px;
+}
+.srp .ev_btn .org_btn{
+min-width:135px;
+}
+.event .lft_cnt{
+width:160px;
+}
+.event .rgt_cnt{
+width:760px;
+}
+/* SR changes */
+.frm_sub .slt_ctr{
+width:316px;
+}
+.upd_btn{
+width:140px;
+}
+#universityPanel .abt_slct .hgt_hn{
+width:332px;
+}
+/* Prospectus page */
+.dplist .pro_ht{
+width:600px;
+}
+
+
+/* common code end */
+@media only screen and (min-width: 993px){
+.mb_block{
+display:none;
+}
+}
+/* common code */
+/* Desktop version */
+@media only screen and (max-width: 1152px){
+#back-top{
+display:none !important; 
+}
+}

@@ -1,0 +1,436 @@
+<%@ page language="java"  pageEncoding="utf-8"%>
+<%@ page contentType="text/html;charset=UTF-8"%> 
+<% request.setCharacterEncoding("UTF-8"); %>
+<%@ include file="../../template/common/import.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://ogp.me/ns/fb#" class=" js svg">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>搜索课程</title>
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		
+		<jc:plugin name="new_css" />
+		<jc:plugin name="auto_complete"/>
+		<jc:plugin name="pager_css_js"/>
+		<jc:plugin name="hot_base_js" />
+		<script type="text/javascript">
+			function show_courses(type){
+				var arrowcurrent=".arrow_" + type;
+	            var univername=$(arrowcurrent).parent().parent().find(".universityname a").html();
+	            $(".courselist-1 .course").each(function (i) {
+	                if ($(this).parent().find(".universityname a").html() == univername) {
+	                    var ScrollHeight = 52 + 307 + 358 + $(".reslut-2 .title").height() + ($(".courselist-1 .courselist-li").height() * (type - 1)) + 15 * (type - 1);
+	                    var ContentHeight = $(".courselist-1 .courselist-li").height() * (type - 1);
+	                    $("body").scrollTop(ScrollHeight);
+	                }
+	            })
+	           
+	            if ($(".university_" + type).is(":visible")) {
+	                $(".arrow_" + type).addClass("close");
+	                $(".university_" + type).hide();
+	            } else {
+	                $(".morecourse li").hide();
+	                $(".arrow_" + type).removeClass("close");
+	                $(".university_" + type).show();
+	            }
+			}
+		</script>
+		<style>
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+z-index: 2;
+color: #fff;
+cursor: default;
+background-color: #428bca;
+border-color: #428bca;
+}
+.pagination>li>a, .pagination>li>span {
+position: relative;
+float: left;
+padding: 6px 12px;
+margin-left: -1px;
+line-height: 1.42857143;
+color: #428bca;
+text-decoration: none;
+background-color: #fff;
+border: 1px solid #ddd;
+}
+.sr-only {
+position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip: rect(0,0,0,0);
+border: 0;
+}
+		</style>
+	</head>
+	<body id="programs">
+		<s:action namespace="/user" name="head" executeResult="true"/>
+		
+		<div class="searcharea">
+			<div class="content">
+	            <div class="result">
+					共 <span class="ftcolffbc00" id="universityNum"><s:property value="universityNum"/></span> 所学校，提供 <span class="ftcolffbc00" id="programNum"><s:property value="programNum"/></span>个课程
+	            </div>
+	            <div class="conditions">
+	                <div class="condit-1 width-176">
+	                    <s:select list="%{countryList}" listKey="id" listValue="name" onselect="%{countryId}" headerKey="0" headerValue="--请选择国家--" theme="simple" name="countryId" id="countryId" cssClass="txt-6"/>
+	                </div>
+	                <div class="condit-1 width-157">
+	                    <s:select list="%{studyLevelList}" listKey="id" listValue="name" onselect="%{studyLevelId}" headerKey="0" headerValue="--请选择学位--" theme="simple" name="studyLevelId" id="studyLevelId" cssClass="txt-7"/>
+	                </div>
+	                <div class="condit-1">
+	                	<!--<input type="hidden" name="defaultval" value="输入专业名称* " id="defaultval" />-->
+	                    <s:if test="%{program_specialty!=null}">
+							<!--<s:textfield id="ctitle" name="courseTitle" value="%{ctitle}" cssClass="txt-1" onfocus="clearDefaultText(this,'输入专业名称* ')" onblur="setDefaultText(this,'输入专业名称* ')" onkeyup="clearErrorMessagesforHomeText('ctitle');ajax_showOptions(this,'getCountriesByLetters',event, 'null','category')" onclick="ajax_options_hide()" onchange="clearajaxtextvalue('courseTitle_hidden')"></s:textfield>-->
+							<s:textfield id="program_specialty" name="program_specialty" value="%{program_specialty}" cssClass="ui-autocomplete-input txt-1" placeholder="输入专业名称* " data-url="../template/specialty_search"></s:textfield>
+						</s:if>
+						<s:else>
+							<!--<input type="text" name="courseTitle" class="txt-1" value="输入专业名称* " id="ctitle" autocomplete="off" onfocus="clearDefaultText(this,'输入专业名称* ')" onblur="setDefaultText(this,'输入专业名称* ')" value="输入专业名称* " onkeyup="clearErrorMessagesforHomeText('ctitle');ajax_showOptions(this,'getCountriesByLetters',event, 'null','category')" onclick="ajax_options_hide()" onchange="clearajaxtextvalue('courseTitle_hidden')"/>-->
+							<input id="program_specialty" name="program_specialty" class="ui-autocomplete-input txt-1" placeholder="输入专业名称* " data-url="<s:url value="/template/specialty_search"/>"/>
+						</s:else>
+				        <input type="hidden" id="program_specialty_id" name="program_specialty_id" value="${program_specialty_id}"/>
+	                </div>
+	                <div class="condit-1">
+						<input id="university_name" name="university_name" class="ui-autocomplete-input txt-1" placeholder="请输入学校名称（选填）" data-url="<s:url value="/template/university_search"/>" value="${university_name}"/>
+				        <input type="hidden" id="university_name_id" name="university_name_id"/>
+	                </div>
+	                <div class="condit-2">
+						<input type="hidden" id="page_size" name="condition.page_size" value="10"/>
+						<input type="hidden" id="page" name="condition.page" value="${condition.page}"/>
+						<input type="hidden" id="sort_by" name="condition.orderBy" value="D.total_browse DESC"/>
+						<input type="hidden" id="record_total" value="<s:property value="universityNum"/>"/>
+						<input type="hidden" name="defaultval" value="输入专业名称* " id="defaultval" />
+	                    <input class="button-1" type="button" value="搜索" onclick="search_data_p();"/>
+	                </div>
+	            </div>
+			</div>
+		</div>
+		
+		<div class="accuratesearch">
+	        <div class="title"> 精确搜索</div>
+	        <div class="content">
+	        	
+				<s:set var="map" value="#{0:0,1:30,31:50,51:100 }"></s:set>
+				<%
+					//从服务器传来值
+					pageContext.setAttribute("ranking", "全部", PageContext.REQUEST_SCOPE);
+					pageContext.setAttribute("area", "0", PageContext.REQUEST_SCOPE);
+				%>
+				<s:set var="mapRanking" value="#{'全部','1-30','1-50','1-100','50-100'}"></s:set>
+				<s:set var="mapArea" value="#{'全部','东北部','五大湖','加州','德州'}"></s:set>
+				<s:set var="mapIsPublicSchool" value="#{-1:'全部',1:'公立',0:'私立'}"></s:set>
+				<s:set var="mapTimeOfEnrollment" value="#{'全部','秋季','春季','夏季','冬季'}"></s:set>
+				
+	            <table class="table-1 table-accuratesearch" cellpadding="0" cellspacing="0">
+	                <tr>
+	                    <td class="width-97 text-right">综合排名：</td>
+	                    <td>
+	                        <s:iterator value="#mapRanking">
+								<label class="checkbox-inline" style="padding-top:8px">
+									<s:if test="ranking==key || (ranking==null && key=='全部')">
+										<input type="radio" name="ranking" value="<s:property value="key"/>" checked onchange="search_data_p();"> <s:property value="key"/>
+									</s:if>
+									<s:else>
+										<input type="radio" name="ranking" value="<s:property value="key"/>" onchange="search_data_p();"> <s:property value="key"/>
+									</s:else>
+				   				</label>
+							</s:iterator>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td class="width-97 text-right">地区：</td>
+	                    <td>
+	                        <s:iterator value="#mapArea">
+								<label class="checkbox-inline" style="padding-top:8px">
+									<s:if test="area==key || (area==null && key=='全部')">
+										<input type="radio" name="area" value="<s:property value="key"/>" checked onchange="search_data_p();"> <s:property value="key"/>
+									</s:if>
+									<s:else>
+										<input type="radio" name="area" value="<s:property value="key"/>" onchange="search_data_p();"> <s:property value="key"/>
+									</s:else>
+								</label>
+							</s:iterator>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td class="width-97 text-right">学校属性：</td>
+	                    <td>
+	                        <s:iterator value="#mapIsPublicSchool">
+								<label class="checkbox-inline" style="padding-top:8px">
+									<s:if test="is_public_school==key || (is_public_school==null && key==-1)">
+										<input type="radio" name="is_public_school" value="<s:property value="key"/>" checked onchange="search_data_p();"> <s:property value="value"/>
+									</s:if>
+									<s:else>
+										<input type="radio" name="is_public_school" value="<s:property value="key"/>" onchange="search_data_p();"> <s:property value="value"/>
+									</s:else>
+								</label>
+							</s:iterator>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td class="width-97 text-right">入学时间：</td>
+	                    <td>
+	                        <s:iterator value="#mapTimeOfEnrollment">
+								<label class="checkbox-inline" style="padding-top:8px">
+									<s:if test="time_of_enrollment==key || (time_of_enrollment==null && key=='全部')">
+										<input type="radio" name="time_of_enrollment" value="<s:property value="key"/>" checked onchange="search_data_p();"> <s:property value="key"/>
+									</s:if>
+									<s:else>
+										<input type="radio" name="time_of_enrollment" value="<s:property value="key"/>" onchange="search_data_p();"> <s:property value="key"/>
+									</s:else>
+								</label>
+							</s:iterator>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td class="width-97 text-right">托福要求：</td>
+	                    <td>
+	                        <label class="checkbox-inline" style="padding-top:8px">
+								<input type="radio" name="totef" value="-1" <s:if test="totef==null||totef==-1"> checked</s:if> onchange="search_data_p();"> 全部
+							</label>
+							<s:iterator value="scoreList">
+								<s:if test="categoryType==1">
+									<label class="checkbox-inline" style="padding-top:8px">
+										<s:if test="totef==((scopeLowerInt == null ? -1 : scopeLowerInt)+'-'+(scopeHigherInt == null ? -1 : scopeHigherInt))">
+											<input type="radio" name="totef" value="${scope_lower_int},${scope_higher_int}" checked onchange="search_data_p();"> 
+										</s:if>
+										<s:else>
+											<input type="radio" name="totef" value="${scope_lower_int},${scope_higher_int}" onchange="search_data_p();"> 
+										</s:else>
+										<s:if test="scopeLower==-1">
+											小于<s:property value="scope_higher_int"/>
+										</s:if>
+										<s:elseif test="scopeHigher==-1">
+											大于<s:property value="scope_lower_int"/>
+										</s:elseif>
+										<s:else>
+											<s:property value="scope_lower_int"/>-<s:property value="scope_higher_int"/>
+										</s:else>
+									</label>
+								</s:if>
+							</s:iterator>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td class="width-97 text-right">雅思要求：</td>
+	                    <td>
+	                        <label class="checkbox-inline" style="padding-top:8px">
+								<input type="radio" name="ietls" value="-1" <s:if test="ietls==null||ietls==-1"> checked</s:if> onchange="search_data_p();"> 全部
+							</label>
+							<s:iterator value="scoreList">
+								<s:if test="categoryType==2">
+									<label class="checkbox-inline" style="padding-top:8px">
+										<s:if test="ietls==(scopeLower+','+scopeHigher)">
+											<input type="radio" name="ietls" value="${scopeLower},${scopeHigher}" checked onchange="search_data_p();"> 
+										</s:if>
+										<s:else>
+											<input type="radio" name="ietls" value="${scopeLower},${scopeHigher}" onchange="search_data_p();"> 
+										</s:else>
+										<s:if test="scopeLower==-1">
+											小于<s:property value="scopeHigher"/>
+										</s:if>
+										<s:elseif test="scopeHigher==-1">
+											大于<s:property value="scopeLower"/>
+										</s:elseif>
+										<s:elseif test="scopeHigher == scopeLower"><s:property value="scopeLower"/></s:elseif>
+										<s:else>
+											<s:property value="scopeLower"/>-<s:property value="scopeHigher"/>
+										</s:else>
+									</label>
+								</s:if>
+							</s:iterator>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td class="width-97 text-right">GRE要求：</td>
+	                    <td>
+	                    	<label class="checkbox-inline" style="padding-top:8px">
+								<input type="radio" name="gre" value="-1" <s:if test="gre==null||gre==-1"> checked</s:if> onchange="search_data_p();"> 全部
+							</label>
+							<s:iterator value="scoreList">
+								<s:if test="categoryType==3">
+									<label class="checkbox-inline" style="padding-top:8px">
+										<s:if test="scope_lower_int+','+scope_higher_int">
+											<input type="radio" name="gre" value="${scope_lower_int},${scope_higher_int}" checked onchange="search_data_p();"> 
+										</s:if>
+										<s:else>
+											<input type="radio" name="gre" value="${scope_lower_int},${scope_higher_int}" onchange="search_data_p();"> 
+										</s:else>
+										<s:if test="scopeLower==-1">
+											小于<s:property value="scope_higher_int"/>
+										</s:if>
+										<s:elseif test="scopeHigher==-1">
+											大于<s:property value="scope_lower_int"/>
+										</s:elseif>
+										<s:else>
+											<s:property value="scope_lower_int"/>-<s:property value="scope_higher_int"/>
+										</s:else>
+									</label>
+								</s:if>
+							</s:iterator>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td class="width-97 text-right">GMAT要求：</td>
+	                    <td>
+	                    	<label class="checkbox-inline" style="padding-top:8px">
+								<input type="radio" name="gmat" value="-1" <s:if test="gmat==null||gmat==-1"> checked</s:if> onchange="search_data_p();"> 全部
+							</label>
+							<s:iterator value="scoreList">
+								<s:if test="categoryType==4">
+									<label class="checkbox-inline" style="padding-top:8px">
+										<s:if test="gmat==(scope_lower_int+'-'+scope_higher_int)">
+											<input type="radio" name="gmat" value="${scope_lower_int},${scope_higher_int}" checked onchange="search_data_p();"> 
+										</s:if>
+										<s:else>
+											<input type="radio" name="gmat" value="${scope_lower_int},${scope_higher_int}" onchange="search_data_p();"> 
+										</s:else>
+										<s:if test="scopeLower==-1">
+											小于<s:property value="scope_higher_int"/>
+										</s:if>
+										<s:elseif test="scopeHigher==-1">
+											大于<s:property value="scope_lower_int"/>
+										</s:elseif>
+										<s:else>
+											<s:property value="scope_lower_int"/>-<s:property value="scope_higher_int"/>
+										</s:else>
+									</label>
+								</s:if>
+							</s:iterator>
+	                    </td>
+	                </tr>
+	            </table>
+	        </div>
+	    </div>
+	    
+	    <div class="reslut-2">
+	        <div class="title">
+	            <ul id="sort_ul">
+	                <li class="current" onclick="set_sort_p(this, 'hot')">热度</li>
+	                <li onclick="set_sort_p(this, 'ranking')">排名</li>
+	                <li onclick="set_sort_p(this, 'remark')">点评</li>
+	            </ul>
+	            <div class="clear">
+	            </div>
+	        </div>
+	        <div class="content">
+	            <ul id="result_ul" class="courselist-1">
+	            	<s:iterator value="resultUniversity" id="outer">
+	            		<li class="courselist-li">
+		                    <table class="table-2" cellpadding="0" cellspacing="0">
+		                        <tr>
+		                            <td class="text-left ulogo" style="width:14%">
+		                                <img src="<s:property value="logo_url"/>" />
+		                            </td>
+		                            <td valign="top">
+		                                <div class="universityname">
+		                                	<a href="university?universityId=<s:property value="id"/>"><s:property value="university_name"/>/<s:property value="english_name"/></a>
+		                                </div>
+		                                <div class="info">
+		                                    <span><s:property value="country.name"/>&nbsp;&nbsp;&nbsp;&nbsp;<s:property value="browse_number"/>浏览&nbsp;&nbsp;&nbsp;&nbsp;<s:property value="evaluate_number"/>点评</span>&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    <%--<span class="star"></span><span class="star2"></span><span class="star2"></span>--%>
+		                                </div>
+		                                <div class="course" onclick="show_courses(<s:property value="id"/>)">
+		                                    <span>共<s:property value="numProgram"/>个课程</span><span class="open arrow_<s:property value="id"/>"></span>
+		                                </div>
+		                            </td>
+		                            <td valign="top" class="text-center" style="width:19%">
+		                                <div class="ranking ftcolff6600">
+		                                    <span>综合排名 <s:property value="ranking_comprehensive"/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    <s:iterator value="resultSpecialtyRank" id="spe_rank">
+		                                    	<s:if test="#spe_rank.university_id==#outer.id">
+		                                    		<span>专业排名：<s:property value="#spe_rank.rank"/></span>
+		                                    	</s:if>
+		                                    </s:iterator>
+		                                </div>
+		                                <div class="text-center sc">
+		                                    <img src="../plugin/new/images/sc.png" onclick="common_collect('<s:property value="id"/>', '2')"/>
+		                                </div>
+		                            </td>
+		                        </tr>
+		                    </table>
+				            <div class="morecourse">
+				            	<ul>
+		                        	<s:iterator value="resultProgram" id="inner">
+										<s:if test="#inner.university_id==#outer.id">
+											<li class="university_<s:property value="#inner.university_id"/>" style="display: none;">
+				                                <div class="ctitle ftcol333333">
+				                                    <span class="sclink clicks"><a href="javascript:void(0);" onclick="common_collect(<s:property value="#inner.id"/>, '3')">收藏</a></span>
+				                                    <a href="program?programId=<s:property value="#inner.id"/>">
+				                                    	<span><s:property value="#inner.program_name"/></span>
+				                                    </a>
+				                                    <span>500浏览</span>
+				                                </div>
+				                                <div class="ccontent  ftcol333333">
+				                                    <%--<span class="dblink">对比</span>--%>
+				                                    <%--<s:property value="#inner.studyLevel.name"/>--%>
+				                                   	 学制：<s:property value="#inner.length_of_schooling"/> 学费：$<s:property value="#inner.tuition"/>(Total Program)
+				                                </div>
+				                            </li>
+										</s:if>
+									</s:iterator>
+		                        </ul>
+		                    </div>
+		                </li>
+					</s:iterator>
+	            </ul>
+	            <%--<ul class="pagination pull-right" id="page_ul" value="1">
+	                <li class="disabled"><a>«</a></li>
+	                <li class="active"><a><span class="num">1</span> <span class="sr-only">(current)</span></a></li>
+	                <li><a><span class="num">2</span> <span class="sr-only">(current)</span></a></li>
+	                <li><a><span class="num">3</span> <span class="sr-only">(current)</span></a></li>
+	                <li><a><span class="num">4</span> <span class="sr-only">(current)</span></a></li>
+	                <li><a><span class="num">5</span> <span class="sr-only">(current)</span></a></li>
+	                <li><a>»</a></li>
+	            </ul>--%>
+	            <div class="pagination pull-right" id="pager" ></div>
+	        </div>
+	    </div>
+	    <div class="bottom">
+	        &copy; 2014 young Ltd All rights reserved.
+	    </div>
+
+		
+		<jc:plugin name="main_js" />
+		
+		<script type="text/javascript">
+		
+			var collect = function(id){
+				var url = '<s:url value="/university/program_collect"/>';
+				var option = {'follow.source_id': id, 'follow.follow_type': 3};
+			
+				jQuery.post(url,option,
+				        function(data)
+				    	{
+				    		var lists="";
+				    		lists+=default_option;
+				    		if(null!=data.list)
+				    		jQuery.each(data.list, function()
+			    			{		    			
+	     		    			 if(default_id==this.id)
+	     		    			 	lists+="<option value='"+this.id+"' selected>"+this.specialty_name+"</option>";
+	     		    			 else
+	     		    			 	lists+="<option value='"+this.id+"'>"+this.specialty_name+"</option>";
+			    			});
+			    			jQuery('#specialty_id').html(lists);
+				    	},
+				 "json");
+			};
+			$(document).ready(function() {
+				var page_size = parseInt( $("#page_size").val() );
+				var pageNum = parseInt( $("#record_total").val() );
+				var pageCount = pageNum <= 0 ? 0 : pageNum % page_size == 0 ? pageNum / page_size : parseInt( pageNum / page_size ) + 1;
+	            $("#pager").pager({ pagenumber: 1, pagecount: pageCount, buttonClickCallback: PageClick });
+	        });
+
+		</script>
+
+		
+
+	</body>
+</html>

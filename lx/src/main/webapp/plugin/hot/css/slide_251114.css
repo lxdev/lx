@@ -1,0 +1,44 @@
+#slider{width:100%;float:left;}
+.ui-widget{font-family:Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;font-size:1.1em;}
+.ui-widget .ui-widget{font-size:1em;}
+.ui-widget input,.ui-widget select, .ui-widget textarea,.ui-widget button {font-family:Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;font-size:1em;}
+.ui-widget-content {background:#EAE9E5;border-radius:10px;}
+.ui-widget-header {background:#3087a4;}
+@-webkit-keyframes animate-stripes{ 0% {background-position: 0 0;} 100% {background-position: 60px 0;}}
+@-moz-keyframes animate-stripes{0% {background-position: 0 0;} 100% {background-position: 60px 0;}}
+.ui-widget-header a {color:#fff;}
+.ui-state-default,.ui-widget-content .ui-state-default,.ui-widget-header .ui-state-default{background:url(http://images5.content-hca.com/hca-cont/img/slider.png) no-repeat;}
+.ui-state-default a,.ui-state-default a:link,.ui-state-default a:visited {color:#1c94c4;text-decoration:none;}
+.ui-state-hover a,.ui-state-hover a:hover {color:#c77405;text-decoration:none;}
+.ui-state-active a,.ui-state-active a:link,.ui-state-active a:visited {color:#eb8f00;text-decoration:none;}
+.ui-widget :active {outline:none;}
+.ui-slider {position:relative;text-align:left;}
+.ui-slider .ui-slider-handle{position:absolute;z-index:1;width:25px;height:26px;cursor:default;}
+.ui-slider .ui-slider-range {position:absolute;z-index:0;font-size:.7em;display:block;border:0;background-position:0 0;border-radius:10px;}
+.ui-slider-horizontal {height:15px;}
+.ui-slider-horizontal .ui-slider-handle{top:-6px;margin-left:-1.2em;}
+.ui-slider-horizontal .ui-slider-range{top:0;height:15px;}
+.ui-slider-horizontal .ui-slider-range-min {left:0;}
+.ui-slider-horizontal .ui-slider-range-max {right:0;}
+.ui-slider-vertical {width:.8em;height:100px;}
+.ui-slider-vertical .ui-slider-handle {left:-.3em;margin-left:0;margin-bottom:-.6em;}
+.ui-slider-vertical .ui-slider-range {left:0;width:100%;}
+.ui-slider-vertical .ui-slider-range-min {bottom:0;}
+.ui-slider-vertical .ui-slider-range-max {top:0;}
+.ui-progressbar {height:2em;text-align:left;overflow:hidden;}
+.ui-progressbar .ui-progressbar-value {margin:-1px;height:100%;}
+.slider label{color:#464646;margin-right:78px;position:absolute;}
+.slr_lbl span{font-weight:bold;margin-right:60px;}
+.slr_lbl{margin-bottom:10px;float:left;position:relative;width:100%;min-height:20px;}
+.slr_lbl label:last-child{margin-right:0;}
+.slider{padding-bottom:0;}
+.extn .flr_rgt{width:100%;}
+
+
+
+/* Loading animation */
+.bg{background: #2accfa url('http://images2.content-hca.com/hca-cont/img/loading/bg_images.png') no-repeat left bottom;width:590px;box-sizing:border-box;border:solid 15px #fff;height:328px;padding:0;}
+.pls{font-size:18px;color:#fff;font-weight:bold;}
+.info{color:#333;font-weight:bold;font-size:14px;}
+.flgt{width:178px;margin:10px auto 0;}
+.clud{background: url('http://images3.content-hca.com/hca-cont/img/loading/clouds.png') repeat-x 0 100px;min-height:220px;background-size:780px;padding:15px;}

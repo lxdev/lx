@@ -1,0 +1,10 @@
+.oc_hover{
+	background-color: #B6B6B6;
+	color: White;
+}
+.oc_dt{
+	width:100px;
+	background: transparent url() no-repeat top right;
+	border-width:1px;
+	border-color:#E8E8E8;
+}
