@@ -26,7 +26,7 @@ public class ProgramDaoImpl extends BaseMDDaoImpl<Program> implements IProgramDa
 			+ " WHERE A.status = 1 ";
 		String sql_part2 = " GROUP BY B.id "
 			+ " LIMIT " + program.getPage_size() + " OFFSET " + (program.getPage() >= 1 ? (program.getPage()-1)*program.getPage_size() : 0) 
-			+ " UNION SELECT B.id, 0 program_num FROM tb_e_university B LIMIT 10 OFFSET 0 "
+			//+ " UNION SELECT B.id, 0 program_num FROM tb_e_university B LIMIT 10 OFFSET 0 "
 			+ " ) T INNER JOIN tb_e_program A ON A.university_id = T.id INNER JOIN tb_e_university B ON B.id = A.university_id LEFT JOIN tb_d_area E ON E.id = B.area_id "
 			+ " WHERE 1 = 1 ";
 		
