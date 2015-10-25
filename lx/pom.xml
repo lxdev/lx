@@ -1,0 +1,264 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>lxmango.com</groupId>
+  <artifactId>lx</artifactId>
+  <version>1.0.0</version>
+  <packaging>war</packaging>
+  <name/>
+  <description/>
+  <properties>
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<servlet.version>2.5</servlet.version>
+		<mysql.version>5.1.25</mysql.version>
+		<finalName>lx</finalName>
+	</properties>
+  <dependencies>
+        <!-- <dependency>
+	        <groupId>javax.jms</groupId>
+	        <artifactId>jms-api</artifactId>
+	        <version>1.1-rev-1</version>
+	    </dependency> -->
+    	<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<version>2.5.6</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.5</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- <dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-context</artifactId>
+    		<version>3.0.3.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-aop</artifactId>
+    		<version>3.0.3.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-beans</artifactId>
+    		<version>3.0.3.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+	  	<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-core</artifactId>
+    		<version>3.0.3.RELEASE</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+	  	<dependency>
+		  	<groupId>org.springframework</groupId>
+		  	<artifactId>spring-web</artifactId>
+		  	<version>3.0.3.RELEASE</version>
+		  	<type>jar</type>
+		  	<scope>compile</scope>
+	  	</dependency>
+	  	<dependency>
+		  	<groupId>org.springframework</groupId>
+		  	<artifactId>spring-webmvc</artifactId>
+		  	<version>3.0.3.RELEASE</version>
+		  	<type>jar</type>
+		  	<scope>compile</scope>
+	  	</dependency>
+	  	<dependency>  
+    		<groupId>org.springframework</groupId>  
+    		<artifactId>spring-tx</artifactId>  
+    		<version>3.0.3.RELEASE</version>
+		  	<type>jar</type>
+		  	<scope>compile</scope>
+		</dependency>
+	  	<dependency>  
+    		<groupId>org.springframework</groupId>  
+    		<artifactId>spring-orm</artifactId>  
+    		<version>3.0.3.RELEASE</version>
+		  	<type>jar</type>
+		  	<scope>compile</scope>
+		</dependency>
+	  	<dependency>
+		  	<groupId>org.springframework</groupId>
+		  	<artifactId>spring-expression</artifactId>
+		  	<version>3.0.3.RELEASE</version>
+		  	<type>jar</type>
+		  	<scope>compile</scope>
+	  	</dependency>
+	  	<dependency>
+		  	<groupId>org.springframework</groupId>
+		  	<artifactId>spring-asm</artifactId>
+		  	<version>3.0.3.RELEASE</version>
+		  	<type>jar</type>
+		  	<scope>compile</scope>
+	  	</dependency> -->
+	  	
+		
+		<!-- context:	Spring提供在基础IoC功能上的扩展服务，此外还提供许多企业级服务的支持，如邮件服务、任务调度、JNDI定位、EJB集成、远程访问、缓存以及各种视图层框架的封装等 
+			aop:		Spring的面向切面编程,提供AOP(面向切面编程)实现 
+			beans:		SpringIoC(依赖注入)的基础实现
+			expression:	Spring表达式语言
+			asm:		Spring独立的asm程序,Spring2.5.6的时候需要asmJar包3.0开始提供他自己独立的asmJar
+			web:		SpringWeb下的工具包
+			aspects:	Spring提供对AspectJ框架的整合
+			orm:		整合第三方的ORM框架，如hibernate,ibatis,jdo，以及 spring的JPA实现
+		-->
+	  	
+	  	
+		<!-- --><dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-hibernate3</artifactId>
+			<version>2.0.8</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-config-browser-plugin</artifactId>
+			<version>2.1.8.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-json-plugin</artifactId>
+			<version>2.1.8.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-convention-plugin</artifactId>
+			<version>2.1.8.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-spring-plugin</artifactId>
+			<version>2.1.8.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.1.2</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- <dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.6.0</version>
+			<scope>compile</scope>
+		</dependency> -->
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate</artifactId>
+			<version>3.2.5.ga</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-resources-plugin</artifactId>
+			<version>2.4.3</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20090211</version>
+		</dependency> -->
+		<dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
+		<!-- <dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.4</version>
+		</dependency> -->
+  </dependencies>
+  <build>
+	<plugins>
+      	<plugin>
+        	<artifactId>maven-war-plugin</artifactId>
+      	</plugin>
+      	<plugin>
+	      	<groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <!-- <version>2.3.2</version> -->
+	        <version>2.5.1</version>
+	        <configuration>
+	        	<source>1.6</source>
+	            <target>1.6</target>
+	            <encoding>UTF-8</encoding>
+	        	<compilerArguments>
+	        	  <!-- linux下为  /  windows下为 \ -->
+	              <!--<extdirs>src/main/webapp/WEB-INF/lib</extdirs>-->
+	              <extdirs>src\main\webapp\WEB-INF\lib</extdirs>
+	            </compilerArguments>
+	        </configuration>
+		</plugin>
+      	<!-- tomcat插件 -->
+        <plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat6-maven-plugin</artifactId>
+            <!-- <groupId>org.codehaus.mojo</groupId>
+            <artifactId>tomcat-maven-plugin</artifactId> -->
+            <configuration>  
+                <url>http://localhost:8080/manager</url>  
+                <username>admin</username>  
+                <password>admin</password>  
+                <path>/${finalName}</path>  
+            </configuration>     
+        </plugin>
+	</plugins>
+	<defaultGoal>compile</defaultGoal>
+  </build>
+</project>
