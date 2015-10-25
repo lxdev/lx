@@ -138,7 +138,7 @@ public class ProgramsAction extends BaseAction {
 			Boolean isExist = false;
 			University tempUniversity = new University();
 			for(University u : resultUniversity){
-				if(item.getUniversity_id() == u.getId()){
+				if(item.getUniversity_id().intValue() == u.getId().intValue()){
 					tempUniversity = u;
 					isExist = true;
 					break;
@@ -303,7 +303,7 @@ public class ProgramsAction extends BaseAction {
 			Boolean isExist = false;
 			University tempUniversity = new University();
 			for(University u : resultUniversity){
-				if(item.getUniversity_id() == u.getId()){
+				if(item.getUniversity_id().intValue() == u.getId().intValue()){
 					tempUniversity = u;
 					isExist = true;
 					break;
