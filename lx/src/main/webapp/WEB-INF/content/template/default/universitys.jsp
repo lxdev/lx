@@ -246,6 +246,16 @@ border: 0;
 			}
 			/*搜索数据*/
 			var search_data = function(type){
+				var universityName = ($("#university_name").val() == $("#defaultval").val() ? '' : $("#university_name").val());
+				if($.trim(universityName) == ""){
+					$("#university_name_id").val("");
+					$("#university_name_id").attr("data-id", "");
+				}
+				var universityId = $("#university_name_id").val() || $("#university_name_id").attr("data-id");
+				if(universityId != null && parseInt(universityId) > 0){
+					window.location.href="university?universityId=" + universityId;
+					return;
+				}
 				if(type == -1){
 					
 				}else {
@@ -268,8 +278,8 @@ border: 0;
 				
 				var option = {
 						'condition.country_id': $("#unicountryStyleId").val()
-						, 'condition.university_name': ($("#university_name").val() == $("#defaultval").val() ? '' : $("#university_name").val())
-						, 'condition.id': $("#university_name_id").val() || $("#university_name_id").attr("data-id")
+						, 'condition.university_name': universityName
+						, 'condition.id': universityId
 						, 'condition.page_size': $("#page_size").val()
 						, 'condition.page': $("#page").val()
 						, 'condition.rankingBegin': rankingBegin
