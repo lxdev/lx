@@ -294,7 +294,7 @@ border: 0;
 					    			lists += "</td>";
 					    			lists += "<td valign='top'>";
 						            lists += "<div class='universityname'>";
-						            lists += "<a href='university?universityId='" + this.id + "'>" + this.university_name + "/" + this.english_name + "</a>";
+						            lists += "<a href='university?universityId=" + this.id + "'>" + this.university_name + "/" + this.english_name + "</a>";
 						            lists += "</div>";
 						            lists += "<div class='info'>";
 						            lists += "<span>" + this.country.name + "&nbsp;&nbsp;&nbsp;&nbsp;" + this.browse_number + "浏览&nbsp;&nbsp;&nbsp;&nbsp;" + this.evaluate_number + "点评</span>&nbsp;&nbsp;&nbsp;&nbsp;";
