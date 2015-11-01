@@ -18,7 +18,7 @@ public class UniversityDaoImpl extends BaseMDDaoImpl<University> implements IUni
 	public EnumMap<SqlAndList, Object> getSqlAndList(University condition){
 		EnumMap<SqlAndList, Object> retMap = new EnumMap<SqlAndList, Object>(SqlAndList.class);
 		
-		String sql = "SELECT DISTINCT A.*, C.evaluate_number, D.total_browse browse_number FROM tb_e_university A LEFT JOIN tb_d_area B ON B.id = A.area_id ";
+		String sql = "SELECT DISTINCT A.*,(CASE WHEN A.ranking_comprehensive=9999 THEN '无排名' ELSE A.ranking_comprehensive END) ranking_comprehensiveNew, C.evaluate_number, D.total_browse browse_number FROM tb_e_university A LEFT JOIN tb_d_area B ON B.id = A.area_id ";
 		sql += " LEFT JOIN (SELECT university_id, count(*) evaluate_number FROM tb_e_evaluate_university GROUP BY university_id) C ON C.university_id = A.id ";
 		sql += "  LEFT JOIN tb_e_university_statistic D ON D.university_id = A.id ";
 		

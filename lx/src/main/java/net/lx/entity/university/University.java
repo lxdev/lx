@@ -44,6 +44,8 @@ public class University implements Serializable {
 	private Integer area_id;
 	@Column(name="ranking_comprehensive")
 	private Integer ranking_comprehensive;
+	@Column(name="ranking_comprehensiveNew")
+	private String ranking_comprehensiveNew;
 	@Column(name="establishing")
 	private String establishing;
 	@Column(name="is_public_school")
@@ -292,6 +294,14 @@ public class University implements Serializable {
 
 	public Integer getRanking_comprehensive(){
 		return ranking_comprehensive;
+	}
+	
+	public void setRanking_comprehensiveNew(String ranking_comprehensiveNew){
+		this.ranking_comprehensiveNew=ranking_comprehensiveNew;
+	}
+
+	public String getRanking_comprehensiveNew(){
+		return ranking_comprehensiveNew;
 	}
 
 	public void setEstablishing(String establishing){

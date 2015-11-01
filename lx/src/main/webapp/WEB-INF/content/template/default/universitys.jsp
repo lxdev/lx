@@ -103,7 +103,7 @@ border: 0;
 					pageContext.setAttribute("area", "0", PageContext.REQUEST_SCOPE);
 				%>
 				<s:set var="mapRanking" value="#{'全部','1-30','31-50','51-100'}"></s:set>
-				<s:set var="mapArea" value="#{'全部','东北部','西部','加州'}"></s:set>
+				<s:set var="mapArea" value="#{'全部','东北部','西部','五大湖地区','南部','中部','其他'}"></s:set>
 				<s:set var="mapTuition" value="#{'全部','1-10000','10001-20000','20001-30000','30001-'}"></s:set>
 				<s:set var="mapIsPublicSchool" value="#{-1:'全部', 1:'公立', 0:'私立'}"></s:set>
 				
@@ -303,7 +303,7 @@ border: 0;
 						            lists += "</td>";
 						            lists += "<td valign='top' class='text-center' style='width:15%'>";
 						            lists += "<div class='ranking ftcolff6600'>";
-						            lists += "<span>综合排名 " + this.ranking_comprehensive + "</span>";
+						            lists += "<span>综合排名 " + this.ranking_comprehensiveNew + "</span>";
 						            lists += "</div>";
 						            lists += "<div class='text-center sc'>";
 						            lists += "<img src='../plugin/new/images/sc.png' onclick='common_collect(" + this.id + ", 2)'/>";
