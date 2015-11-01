@@ -63,7 +63,7 @@ border: 0;
 		<div class="searcharea">
 			<div class="content" style="width: 849px">
 	            <div class="result">
-					搜索院校统计：共 <span class="ftcolffbc00" id="universityNum"><s:property value="universityNum"/></span> 所学校
+					共 <span class="ftcolffbc00" id="universityNum"><s:property value="universityNum"/></span> 所学校
 	            </div>
 	            <div class="conditions">
 	                <div class="condit-1">

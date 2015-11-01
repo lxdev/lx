@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        <h3 class="ftsize14 paddingtop15">成立时间</h3>
 		        <h3 class="ftcol49b2a4 ftsize25"><s:property value="university.establishing"/></h3>
 		        <h3 class="ftsize14 paddingtop15">学校属性</h3>
-		        <h3 class="ftcol49b2a4 ftsize25"><s:if test="university.is_public_school==1">是</s:if><s:else>否</s:else></h3>
+		        <h3 class="ftcol49b2a4 ftsize25"><s:if test="university.is_public_school==1">公立</s:if><s:else>私立</s:else></h3>
 	        </li>
 	        <li class="marginright0 sq">
 		        <h4>录取数据</h4>
