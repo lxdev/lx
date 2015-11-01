@@ -51,7 +51,7 @@ public class UniversityDaoImpl extends BaseMDDaoImpl<University> implements IUni
 			list.add(condition.getRankingBegin());
 		}
 		if(condition.getRankingEnd() != null && condition.getRankingEnd() != 0){
-			sql += " AND A.ranking_comprehensive < ?";
+			sql += " AND A.ranking_comprehensive <= ?";
 			list.add(condition.getRankingEnd());
 		}
 		if(condition.getAreaName() != null && !condition.getAreaName().equals("")){
