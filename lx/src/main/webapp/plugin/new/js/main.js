@@ -1,5 +1,8 @@
 /*! 自定义函数方法 */
 
+/**************/
+/***** 收藏 ****/
+/**************/
 /* collect */
 var common_collect = function(id, type){
 	/* 1 问题关注
@@ -28,14 +31,37 @@ var common_collect = function(id, type){
 	    	},
 	 "json");
 };
+var collect = function(id){
+	var url = '<s:url value="/university/program_collect"/>';
+	var option = {'follow.source_id': id, 'follow.follow_type': 3};
+
+	jQuery.post(url,option,
+	        function(data)
+	    	{
+	    		var lists="";
+	    		lists+=default_option;
+	    		if(null!=data.list)
+	    		jQuery.each(data.list, function()
+    			{		    			
+		    			 if(default_id==this.id)
+		    			 	lists+="<option value='"+this.id+"' selected>"+this.specialty_name+"</option>";
+		    			 else
+		    			 	lists+="<option value='"+this.id+"'>"+this.specialty_name+"</option>";
+    			});
+    			jQuery('#specialty_id').html(lists);
+	    	},
+	 "json");
+};
+
 
 var login_box_show = function(){
 	$(".popbg").show();
     $("#login_box").show();
 };
 
-
-
+/********************/
+/***** 加载等待动画 *****/
+/*******************/
 var open_loading = function(){
 	var height = $(window).height();
 	var width = $(window).width();
@@ -52,7 +78,9 @@ var close_loading = function(){
 	//$("body").css("overflow-y", "auto");
 	//$("body").css("height", "auto");
 };
-
+/**********************/
+/***** 下拉框 自动完成 *****/
+/**********************/
 /* 输入下拉框 自动完成 */
 function initAutoComplete(json, obj, obj_id) {
     //this.elementText = $("#program_specialty");
@@ -104,7 +132,9 @@ function initAutoComplete(json, obj, obj_id) {
                 .appendTo(ul);
     };
 };
-
+/*****************/
+/***** 课程搜索 *****/
+/*****************/
 /*排序点击*/
 var set_sort_p = function(obj, sort_type){
 	var parent = $("#programs");
@@ -264,6 +294,9 @@ var search_data_p = function(is_not_check){
 	    			});
 	    			jQuery('#result_ul').html(lists);
 	    			close_loading();
+	    			if($.trim(lists) == ""){
+	    				alert("未收录相关课程!");
+	    			}
 	    		}
 	    		if(data.universityNum != null && data.universityNum >= 0){
 	    			set_page_result(data.universityNum, data.programNum);
@@ -271,6 +304,147 @@ var search_data_p = function(is_not_check){
 	    	},
 	 "json");
 }
+/* 点击搜索出的院校，展开其下课程 */
+function show_courses(type){
+	var arrowcurrent=".arrow_" + type;
+    var univername=$(arrowcurrent).parent().parent().find(".universityname a").html();
+    $(".courselist-li").each(function (i) {
+        if ($(this).find(".universityname a").html() == univername) {
+        
+            if (i == 0) {
+                $("body").scrollTop(topareaHeight + searchareaHeight + accuratesearchHeight + 0 + titleHeight);
+            }
+            else {
+                $("body").scrollTop(topareaHeight + searchareaHeight + accuratesearchHeight + 40 + titleHeight + courselistliHeight * i + 15 * (i - 1));
+            }
+        }
+    });
+    
+    if ($(".university_" + type).is(":visible")) {
+        $(".arrow_" + type).removeClass("close");
+        $(".university_" + type).hide();
+    } else {
+        $(".morecourse li").hide();	                
+        $(".arrow_" + type).addClass("close");
+        $(".university_" + type).show();
+    }
+}
+/*****************/
+/***** 院校搜索 *****/
+/*****************/
+/*排序点击*/
+var set_sort_u = function(obj, sort_type){
+	var order;
+	if(sort_type){
+		$("#sort_ul li").removeClass("current");
+		$(obj).addClass("current");
+		if(sort_type == 'hot')	//热度
+			order = " D.total_browse DESC ";
+		else if(sort_type == 'ranking')	//排名
+			order = " A.ranking_comprehensive ASC ";
+		else if(sort_type == 'remark')	//点评
+			order = " C.evaluate_number DESC ";
+	}
+	$("#sort_by").val(order);
+	
+	search_data_u();
+}
+/*搜索数据*/
+var search_data_u = function(type){
+	var universityName = ($("#university_name").val() == $("#defaultval").val() ? '' : $("#university_name").val());
+	if($.trim(universityName) == ""){
+		$("#university_name_id").val("");
+		$("#university_name_id").attr("data-id", "");
+	}
+	var universityId = $("#university_name_id").val() || $("#university_name_id").attr("data-id");
+	if(universityId != null && parseInt(universityId) > 0){
+		window.location.href="university?universityId=" + universityId;
+		return;
+	}
+	if(type == -1){
+		
+	}else {
+		set_page_init();
+	}
+	open_loading();
+	
+	var url = '../template/json_universitys';
+	
+	var rankingBegin;
+	var rankingEnd;
+	var tempRanking = $('input[name="ranking"]:checked').val();
+	if(tempRanking != '全部'){
+		var tempRankingArray = tempRanking.split('-');
+		rankingBegin = tempRankingArray[0];
+		if(tempRankingArray.length >= 2)
+			rankingEnd = tempRankingArray[1];
+	}
+	var tempAreaName = $('input[name="area"]:checked').val();
+	var tempIsPublic = $('input[name="is_public_school"]:checked').val();
+	
+	var option = {
+			'condition.country_id': $("#unicountryStyleId").val()
+			, 'condition.university_name': universityName
+			, 'condition.id': universityId
+			, 'condition.page_size': $("#page_size").val()
+			, 'condition.page': $("#page").val()
+			, 'condition.rankingBegin': rankingBegin
+			, 'condition.rankingEnd': rankingEnd
+			, 'condition.areaName': (tempAreaName == '全部' ? '' : tempAreaName)
+			, 'condition.is_public_school': tempIsPublic
+			, 'condition.orderBy': $("#sort_by").val()
+	};
+	
+	jQuery.post(url, option,
+	        function(data)
+	    	{
+	    		var lists="";
+	    		if(null!=data.resultUniversity){
+		    		jQuery.each(data.resultUniversity, function()
+	    			{
+		    			lists += "<li>";
+		    			lists += "<table class='table-2' cellpadding='0' cellspacing='0'>";
+		    			lists += "<tr>";
+		    			lists += "<td class='text-center ulogo' style='width:20%'>";
+		    			lists += "<img src='" + this.logo_url + "'/>";
+		    			lists += "</td>";
+		    			lists += "<td valign='top'>";
+			            lists += "<div class='universityname'>";
+			            lists += "<a href='university?universityId=" + this.id + "'>" + this.university_name + "/" + this.english_name + "</a>";
+			            lists += "</div>";
+			            lists += "<div class='info'>";
+			            lists += "<span>" + this.country.name + "&nbsp;&nbsp;&nbsp;&nbsp;" + this.browse_number + "浏览&nbsp;&nbsp;&nbsp;&nbsp;" + this.evaluate_number + "点评</span>&nbsp;&nbsp;&nbsp;&nbsp;";
+			            lists += "<span class='star'></span><span class='star2'></span><span class='star2'></span>";
+			            lists += "</div>";
+			            lists += "</td>";
+			            lists += "<td valign='top' class='text-center' style='width:15%'>";
+			            lists += "<div class='ranking ftcolff6600'>";
+			            lists += "<span>综合排名 " + this.ranking_comprehensiveNew + "</span>";
+			            lists += "</div>";
+			            lists += "<div class='text-center sc'>";
+			            lists += "<img src='../plugin/new/images/sc.png' onclick='common_collect(" + this.id + ", 2)'/>";
+			            lists += "</div>";
+			            lists += "</td>";
+			            lists += "</tr>";
+			            lists += "</table>";
+			            lists += "</li>";
+	    			});
+	    			jQuery('#result_ul').html(lists);
+	    			close_loading();
+	    			if($.trim(lists) == ""){
+	    				alert("未收录相关院校!");
+	    			}
+	    		}
+	    		if(data.universityNum != null && data.universityNum >= 0){
+	    			set_page_result(data.universityNum);
+	    		}
+	    	},
+	 "json");
+}
+/**/
+/***************/
+/***** 翻页 *****/
+/***************/
 /*根据查询结果，重新设置总记录及页数*/
 var set_page_result = function(totalUNum, totalPNum){
 	jQuery('#programNum').html(totalPNum);
@@ -298,9 +472,8 @@ var PageClick = function(pageclickednumber) {
     if( $("#pager").attr("data-type") == "p" ){
     	search_data_p(true);
     }else if( $("#pager").attr("data-type") == "u" ){
-    	search_data(-1);
+    	search_data_u(-1);
     }
-    
 }
 /*翻页，每页点击*/
 //$("#programs #page_ul li a").each(function (i) {
@@ -396,29 +569,4 @@ function validateCollegeSearchForm() {
 		return false;
 	}
 	return true;
-}
-/* 点击搜索出的院校，展开其下课程 */
-function show_courses(type){
-	var arrowcurrent=".arrow_" + type;
-    var univername=$(arrowcurrent).parent().parent().find(".universityname a").html();
-    $(".courselist-li").each(function (i) {
-        if ($(this).find(".universityname a").html() == univername) {
-        
-            if (i == 0) {
-                $("body").scrollTop(topareaHeight + searchareaHeight + accuratesearchHeight + 0 + titleHeight);
-            }
-            else {
-                $("body").scrollTop(topareaHeight + searchareaHeight + accuratesearchHeight + 40 + titleHeight + courselistliHeight * i + 15 * (i - 1));
-            }
-        }
-    });
-    
-    if ($(".university_" + type).is(":visible")) {
-        $(".arrow_" + type).removeClass("close");
-        $(".university_" + type).hide();
-    } else {
-        $(".morecourse li").hide();	                
-        $(".arrow_" + type).addClass("close");
-        $(".university_" + type).show();
-    }
 }

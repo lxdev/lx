@@ -611,27 +611,7 @@ border: 0;
 		
 		<script type="text/javascript">
 		
-			var collect = function(id){
-				var url = '<s:url value="/university/program_collect"/>';
-				var option = {'follow.source_id': id, 'follow.follow_type': 3};
 			
-				jQuery.post(url,option,
-				        function(data)
-				    	{
-				    		var lists="";
-				    		lists+=default_option;
-				    		if(null!=data.list)
-				    		jQuery.each(data.list, function()
-			    			{		    			
-	     		    			 if(default_id==this.id)
-	     		    			 	lists+="<option value='"+this.id+"' selected>"+this.specialty_name+"</option>";
-	     		    			 else
-	     		    			 	lists+="<option value='"+this.id+"'>"+this.specialty_name+"</option>";
-			    			});
-			    			jQuery('#specialty_id').html(lists);
-				    	},
-				 "json");
-			};
 			$(document).ready(function() {
 				var page_size = parseInt( $("#page_size").val() );
 				var pageNum = parseInt( $("#record_total").val() );

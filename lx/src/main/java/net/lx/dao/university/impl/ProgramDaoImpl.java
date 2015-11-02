@@ -129,13 +129,17 @@ public class ProgramDaoImpl extends BaseMDDaoImpl<Program> implements IProgramDa
 		if(program.getUniversity_id() != null && program.getUniversity_id() > 0){
 			condition += " AND A.university_id = " + program.getUniversity_id();
 		}else if(program.getUniversityName() != null && !program.getUniversityName().equals("")){
-			condition += " AND (B.university_name like ? OR B.english_name like ? OR B.abbr = ?)";
-			listInner.add("%"+program.getUniversityName()+"%");
-			listInner.add("%"+program.getUniversityName()+"%");
-			listInner.add(program.getUniversityName());
-			listOuter.add("%"+program.getUniversityName()+"%");
-			listOuter.add("%"+program.getUniversityName()+"%");
-			listOuter.add(program.getUniversityName());
+			if(program.getIsSearchTotal() != null && program.getIsSearchTotal()){
+				condition += " AND (B.university_name like '%" + program.getUniversityName() + "%' OR B.english_name like '%" + program.getUniversityName() + "%' OR B.abbr = '" + program.getUniversityName() + "')";
+			}else {
+				condition += " AND (B.university_name like ? OR B.english_name like ? OR B.abbr = ?)";
+				listInner.add("%"+program.getUniversityName()+"%");
+				listInner.add("%"+program.getUniversityName()+"%");
+				listInner.add(program.getUniversityName());
+				listOuter.add("%"+program.getUniversityName()+"%");
+				listOuter.add("%"+program.getUniversityName()+"%");
+				listOuter.add(program.getUniversityName());
+			}
 		}
 		if(program.getIsSearchTotal() != null && program.getIsSearchTotal()){
 			sql += condition;
@@ -173,7 +177,7 @@ public class ProgramDaoImpl extends BaseMDDaoImpl<Program> implements IProgramDa
 		List list = (List)retMap.get(IProgramDao.SqlAndList.LIST);
 		
 		//return jt.queryForInt(sql, list.toArray());
-		return (String)jt.queryForObject(sql,new Object[]{}, java.lang.String.class);
+		return (String)jt.queryForObject(sql, new Object[]{}, java.lang.String.class);
 	}
 	
 }
