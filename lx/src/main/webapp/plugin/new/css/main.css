@@ -2,7 +2,7 @@ body,p,td,div,span,h1,h2,h3,h4,ul,li,span
 {
     padding:0px;
     margin:0px;
-    font-family:΢���ź�
+    font-family:微软雅黑
 }
 body{background:#f5f5f5}
 ul,li{list-style:none}
@@ -12,7 +12,7 @@ h1{font-size:20px;font-weight:normal}
 h2{font-size:18px;font-weight:normal}
 h3{font-size:16px;font-weight:normal}
 h4{font-size:14px;font-weight:normal}
-/** �������� start **/
+/** 顶部导航 start **/
 .toparea{width:100%;height:52px;background:#2c3135;}
 .toparea .content{width:1160px;margin:0px auto;}
 .toparea .content .logo{width:129px;float:left;display:inline;margin-top:10px;}
@@ -22,9 +22,9 @@ h4{font-size:14px;font-weight:normal}
 .toparea .content .rarea{width:160px;float:right;color:#fff;}
 .toparea .content .rarea li{float:left;margin-top:15px;cursor:pointer;}
 .toparea .content .rarea .login{margin-right:20px;padding-left:25px;background:url(../images/icon-29.png) 2px 3px no-repeat;}
-/** �������� end **/
+/** 顶部导航 end **/
 
-/** �������� start **/
+/** 顶部搜索 start **/
 .searcharea{width:100%;height:307px;background:url(../images/searchbg.jpg) center top}
 .searcharea .content{width:965px;margin:0px auto;}
 .searcharea .content .result{width:100%;text-align:center;font-size:26px;color:#fff;padding-top:80px;}
@@ -33,9 +33,9 @@ h4{font-size:14px;font-weight:normal}
 .searcharea .width-176{width:176px}
 .searcharea .width-157{width:157px}
 .searcharea .condit-2{width:90px;float:left;display:inline;padding-top:30px;}
-/** �������� end **/
+/** 顶部搜索 end **/
 
-/** ��ȷ���� start **/
+/** 精确搜索 start **/
 .accuratesearch{width:1160px;margin:0px auto;background:#fff;border:1px solid #e6e6e6;padding:0;margin-top:10px;}
 .accuratesearch .title{width:95%;margin:0px auto;font-size:20px;border-bottom:1px solid #ddd;color:#0083ce;padding:16px 0}
 .accuratesearch .content{font-size:12px;}
@@ -71,15 +71,15 @@ h4{font-size:14px;font-weight:normal}
 .pagination{  height: 53px;
   margin-left: 25px;
   margin-top: 25px;}
-/** ��ȷ���� end **/
+/** 精确搜索 end **/
 
-/** ������ start **/
+/** 导航条 start **/
 .daohang{width:1160px;line-height:30px;margin:0px auto;margin-top:10px;}
 .daohang a{color:#484848;font-size:14px;}
 .daohang a,.daohang span{display:inline-block;float:left;margin-right:5px;}
-/** ������ end **/
+/** 导航条 end **/
 
-/** �γ����� start **/
+/** 课程内容 start **/
 .reslut-2{width:1160px;margin:0px auto;background:#fff;border:1px solid #e6e6e6;padding:0;margin-top:10px;}
 .reslut-2 .title-2{width:100%;margin:0px auto;font-size:20px;border-bottom:1px solid #ddd;color:#7b7b7b;padding:0}
 .reslut-2 .title-2 li{width:100px;float:left;padding:17px 20px;text-align:center;cursor:pointer;border-right:1px solid #ddd;}
@@ -94,9 +94,9 @@ h4{font-size:14px;font-weight:normal}
 .icon-10{background:url(../images/icon-10.png) 40px 0px no-repeat;padding-left: 77px;height: 39px;line-height: 29px;}
 .ulogo-2{width:190px}
 .ulogo-2 img{width:147px;height:159px}
-/** �γ����� end **/
+/** 课程内容 end **/
 
-/** ��ѧ���� start **/
+/** 留学顾问 start **/
 .conditions-2{color:#fff;font-size:14px;}
 .conditions-2 span{display:inline-block;float:left;margin-right:10px;padding:3px 5px;cursor:pointer;}
 .conditions-2 span.current{background:#5e5e5e;color:White}
@@ -107,8 +107,8 @@ h4{font-size:14px;font-weight:normal}
 .table-5 .personallabel span,.table-13 .personallabel span{color:#4c7b9b}
 .table-5 .personallabel,.table-13 .personallabel{font-size:12px;}
 .conditions-2 .links img{float:left;margin-right:3px;}
-/** ��ѧ���� end **/
-/** �������� start **/
+/** 留学顾问 end **/
+/** 顾问详情 start **/
 .consultant{background:url(../images/gwbg-1.jpg)  center top repeat-y}
 .consultant .wrap {background:url(../images/gwbg.jpg) center top no-repeat;min-height:422px;padding-top:30px;}
 .consultant .wrap  .reslut-2{margin-top:0px;}
@@ -129,11 +129,11 @@ h4{font-size:14px;font-weight:normal}
 .consultant .detailinfo .tabs{width:100%;height:50px;line-height:50px;background:#f3f3f3;border-top:1px solid #f3f3f3;color:#5d5d5d;margin-top:10px;}
 .consultant .detailinfo .tabs li{width:126px;float:left;display:inline;text-align:center;cursor:pointer}
 .consultant .detailinfo .tabs li.current{background:#fff;}
-/** �������� end **/
+/** 顾问详情 end **/
 
 
 
-/** ԺУ���� start **/
+/** 院校详情 start **/
 .undetail{background:url(../images/img-4.jpg)  no-repeat  center top  #f7f7f7;}
 .undetail .daohang{margin-top:0px;}
 .undetail .daohang,.undetail .daohang a{color:#fff;}
@@ -158,9 +158,9 @@ h4{font-size:14px;font-weight:normal}
 .searchcourse .condit-2{width:90px;float:left;display:inline;padding-top:30px;}
 .undetail .comment{width:1160px;margin:20px auto;min-height:300px;background:#fff;border:1px solid #e8e8e8;}
 .undetail .comment .content{color:#000} 
-/** ԺУ���� end **/
+/** 院校详情 end **/
 
-/** ��ҳ start **/
+/** 首页 start **/
 .searchbody{background:url(../images/mainbg.jpg) no-repeat center}
 .searchbody .mainwrap{width:560px;min-height:500px;margin:0px auto;}
 .searchbody .mainarea{width:560px;background:url(../images/bg-2.png) no-repeat;float:left;margin-top:100px;}
@@ -174,10 +174,10 @@ h4{font-size:14px;font-weight:normal}
 .searchbody .mainarea .current .strategy{background:url(../images/icon-35.png) no-repeat 45px 13px;width:120px;padding-left:48px;text-align:center;height:59px;line-height:59px;display:inline-block}
 .searchbody .mainarea .title li .linebg{display:inline-block;width:1px;height:59px;float:right;background:url(../images/linebg.jpg) no-repeat right top}
 .searchbody .mainarea .title li.current{background:none;color:#fff;}
-/** ��ҳ end **/
+/** 首页 end **/
 
 
-/** ���� start **/
+/** 攻略 start **/
 .strategytotal{width:1160px;margin:0px auto;text-align:center;font-size:25px;color:#49b2a4;padding:20px 0 10px;}
 .strategycontent{margin-bottom:20px;}
 .strategycontent .title{padding:20px 0px}
@@ -208,11 +208,11 @@ h4{font-size:14px;font-weight:normal}
 .strategydetail .con-1 .r p{padding:10px 40px;line-height:25px;font-size:15px;color:#747474;text-indent:28px;}
 .strategydetail .con-1 .r pre{padding:10px 40px;line-height:25px;font-size:15px;color:#747474}
 .strategydetail .con-1 .r .ordernumber{padding:1px 13px;background:#4190bc;color:#fff;float:left;display:inline-block;margin-right:10px}
-/** ���� end **/
+/** 攻略  end **/
 
 .clicks{color: #727272;font-size: 16px;}
 
-/** �������� start **/
+/** 弹出窗口 start **/
 .popbg{width:100%;height:100%;background:#000; opacity:0.5;filter:alpha(opacity=50);position:absolute;left:0;top:0;}
 .popbox{width:440px;height:491px;background:#fff;position:fixed;top:100px;left:200px;z-index:10}
 .popbox .header{margin:0px auto;height:30px;}
@@ -221,7 +221,7 @@ h4{font-size:14px;font-weight:normal}
 .popbox .tabs{width:341px;margin:0px auto;}
 .popbox .tabs li{float:left;margin-right:30px;padding:10px 14px;cursor:pointer;font-size:22px;color:#333;}
 .popbox .tabs li.current{color: #fff;background: #57a0dd;}
-/** �������� end **/
+/** 弹出窗口 end **/
 
 .bottom{width:100%;height:71px;background:#262626;line-height:71px;color:#6a6a6a;text-align:center}
 .bottom-2{width:100%;height:71px;line-height:71px;color:#fff;text-align:center}
@@ -232,7 +232,7 @@ h4{font-size:14px;font-weight:normal}
 .clear{clear:both;}
 
 
-/** ������ɫͨ�� start **/
+/** 字体颜色通用 start **/
 .ftcolfff{color:#fff;}
 .ftcolffbc00{color:#ffbc00;}
 .ftcolff6600{color:#ff6600;}
@@ -249,8 +249,8 @@ h4{font-size:14px;font-weight:normal}
 .ftcol292929{color:#292929;}
 .ftcolac9daa{color:#ac9daa;}
 .ftcolff9941{color:#ff9941;}
-/** ������ɫͨ�� end **/
-/** �����Сͨ�� start **/
+/** 字体颜色通用 end **/
+/** 字体大小通用 start **/
 .ftsize12{font-size:12px;}
 .ftsize14{font-size:14px;}
 .ftsize16{font-size:16px;}
@@ -259,10 +259,10 @@ h4{font-size:14px;font-weight:normal}
 .ftsize25{font-size:25px;}
 .ftsize30{font-size:30px;}
 .ftsize33{font-size:33px;}
-/** �����Сͨ�� end **/
+/** 字体大小通用 end **/
 .fontweight{font-weight:bolder}
 
-/** �����ͨ�� start **/
+/** 输入框通用 start **/
 .txt-1{width:230px;padding:8px 5px;font-size:16px;color:#6e6e6e}
 .txt-2{width:446px;padding:8px 5px;font-size:16px;color:#6e6e6e}
 .txt-3{width:459px;padding:8px 5px;font-size:16px;color:#6e6e6e}
@@ -271,18 +271,18 @@ h4{font-size:14px;font-weight:normal}
 .txt-6{width:176px;padding:8px 5px;font-size:16px;color:#6e6e6e}
 .txt-7{width:157px;padding:8px 5px;font-size:16px;color:#6e6e6e}
 .txt-8{width:200px;padding:8px 5px;font-size:16px;color:#6e6e6e;border:1px solid #dae2e5}
-/** �����ͨ�� end **/
+/** 输入框通用 end **/
 
-/** ��ťͨ�� start **/
+/** 按钮通用 start **/
 .button-1{width:80px;padding:8px 5px;font-size:18px;text-align:center;background:#ffbc00;color:#261900;cursor:pointer;border:0;font-weight:bolder}
 .button-2{width:110px;padding:5px 0px;font-size:23px;text-align:center;background:#70ca10;color:#fff;cursor:pointer;border:0;font-weight:bolder}
 .button-3{width:160px;height:40px;font-size:23px;text-align:center;background:url(../images/wbdl.jpg) no-repeat;color:#fff;cursor:pointer;border:0;font-weight:bolder}
 .button-4{width:160px;height:40px;font-size:23px;text-align:center;background:url(../images/qqdl.jpg) no-repeat;color:#fff;cursor:pointer;border:0;font-weight:bolder}
 .button-5{padding:8px 5px;font-size:12px;text-align:center;background:#ffbc00;color:#261900;cursor:pointer;border:0;font-weight:bolder}
 .write{background:#4190bc;color:#fff;font-size:14px;padding:5px 8px;}
-/** ��ťͨ�� end **/
+/** 按钮通用 end **/
 
-/** ���ͨ�� start **/
+/** 宽度通用 start **/
 .width-64{width:64px;}
 .width-73{width:73px;}
 .width-97{width:97px}
@@ -291,7 +291,7 @@ h4{font-size:14px;font-weight:normal}
 .width-150{width:150px;}
 .width-776{width:766px;}
 .width-210{width:210px;}
-/** ���ͨ�� end **/
+/** 宽度通用 end **/
 
 .marginleft25{margin-left:25px;}
 .margintop10{margin-top:10px;}
@@ -312,9 +312,9 @@ h4{font-size:14px;font-weight:normal}
 .line-2{border-bottom:1px solid #ddd;width:95%;font-size:0px;margin:10px auto;}
 .line-3{border-bottom:1px solid #ecf2f5;font-size:0px;margin:20px 0;}
 
-/** ������ʽͨ�� start **/
+/** 字体样式通用 start **/
 .ftsty-1{background:#fff;color:#665c5c;padding:2px 9px;}
-/** ������ʽͨ�� end **/
+/** 字体样式通用 end **/
 
 
 .text-right{text-align:right;}
@@ -389,26 +389,26 @@ h4{font-size:14px;font-weight:normal}
     display: inline-block;
     width: 20px;
     height: 20px;
-    background: url(images/search-i.png) no-repeat 4px 7px;
+    background: url(../images/search-i.png) no-repeat 4px 7px;
     float: right;
     margin-top: 4px;
 }
 
 .moresearch .smore:hover i {
-    background: url(images/search-i.png) no-repeat 4px -10px;
+    background: url(../images/search-i.png) no-repeat 4px -10px;
 }
 
 .moresearch .close i {
     display: inline-block;
     width: 20px;
     height: 20px;
-    background: url(images/search-i.png) no-repeat 4px -29px;
+    background: url(../images/search-i.png) no-repeat 4px -29px;
     float: right;
     margin-top: 4px;
 }
 
 .moresearch .close:hover i {
-    background: url(images/search-i.png) no-repeat 4px -46px;
+    background: url(../images/search-i.png) no-repeat 4px -46px;
 }
 
 .table-accuratesearch .ss-item {
@@ -434,10 +434,10 @@ h4{font-size:14px;font-weight:normal}
     height: 22px;
     right: 0;
     top: 0;
-    background: url(images/search-i.png) no-repeat 7px -140px;
+    background: url(../images/search-i.png) no-repeat 7px -140px;
 }
 .table-accuratesearch .ss-item:hover i {
-    background: url(images/search-i.png) #e4393c no-repeat 7px -158px;
+    background: url(../images/search-i.png) #e4393c no-repeat 7px -158px;
 }
 .table-accuratesearch .ss-item em {
     color: #e4393c;

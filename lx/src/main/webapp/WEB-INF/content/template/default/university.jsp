@@ -10,7 +10,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<head>
     	<title>院校</title>
 		<jc:plugin name="new_css" />
-		<jc:plugin name="new_js" />
+		<jc:plugin name="auto_complete"/>
+		<jc:plugin name="pager_css_js"/>
+		<%--<jc:plugin name="new_js" />--%>
 		<jc:plugin name="hot_base_js" />
   	</head>
   	<body class="undetail">
@@ -107,13 +109,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        <table cellpadding="0" cellspacing="0" class="table-8">
 		        <tr>
 		        <td align="center">
-		        <h3 class="ftsize14 ftcolfff paddingtop15">学生比例</h3>
-		        <h3 class="ftcol49b2a4 ftsize25"><s:property value="university.rate_student"/></h3>
-		        </td>
-		        <td align="center">
-		        <h3 class="ftsize14 ftcolfff paddingtop15">教授比例</h3>
-		        <h3 class="ftcol49b2a4 ftsize25"><s:property value="university.rate_professor"/></h3>
-		        </td>
+		        <h3 class="ftsize14 ftcolfff paddingtop15">学生和教授比例</h3>
+		        <h3 class="ftcol49b2a4 ftsize25"><s:property value="university.rate_student"/>：<s:property value="university.rate_professor"/></h3>
 		        </tr>
 		        </table>
 	        </li>
@@ -160,8 +157,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    </div>
 	    
 	    <div class="clear"></div>
-	    <div class="searchcourse">
-	    	<div class="conditions">
+	    <div class="reslut-2" id="programs">
+	    	<%--<div class="conditions">
 	    		<div class="title"><h1 class="">查找课程</h1></div>
                 <div class="condit-1">
                     <s:select list="%{countryList}" listKey="id" listValue="name" onselect="%{countryId}" headerKey="0" headerValue="--请选择国家--" theme="simple" name="nationId" id="nationId" cssClass="txt-1" onchange="setValue_AMW(this,'locationList_sr1');"/>		
@@ -174,11 +171,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <div class="condit-2">
                     <input class="button-1" type="button" value="搜索" onclick="loadRefineResult(&#39;search&#39;,&#39;Next&#39;);" /></div>
+            </div>--%>
+            <div class="conditions searchcourse">
+            	<div class="condit-1"><h1>查找课程</h1></div>
+                <div class="condit-1 width-176">
+                    <s:select list="%{countryList}" listKey="id" listValue="name" onselect="%{countryId}" headerKey="0" headerValue="--请选择国家--" theme="simple" name="countryId" id="countryId" cssClass="txt-6"/>
+                </div>
+                <div class="condit-1 width-157">
+                    <s:select list="%{studyLevelList}" listKey="id" listValue="name" onselect="%{studyLevelId}" headerKey="0" headerValue="--请选择学位--" theme="simple" name="studyLevelId" id="studyLevelId" cssClass="txt-7"/>
+                </div>
+                <div class="condit-1">
+                    <s:if test="%{program_specialty!=null}">
+						<s:textfield id="program_specialty" name="program_specialty" value="%{program_specialty}" cssClass="ui-autocomplete-input txt-1" placeholder="输入专业名称* " data-url="../template/specialty_search"></s:textfield>
+					</s:if>
+					<s:else>
+						<input id="program_specialty" name="program_specialty" class="ui-autocomplete-input txt-1" placeholder="输入专业名称* " data-url="<s:url value="/template/specialty_search"/>"/>
+					</s:else>
+			        <input type="hidden" id="program_specialty_id" name="program_specialty_id"/>
+                </div>
+                <div class="condit-2">
+                	<input type="hidden" id="university_name_id" name="university_name_id" value="${university.id}"/>
+					<input type="hidden" id="page_size" name="condition.page_size" value="10"/>
+					<input type="hidden" id="page" name="condition.page" value="${condition.page}"/>
+					<input type="hidden" id="sort_by" name="condition.orderBy" value="D.total_browse DESC"/>
+					<input type="hidden" id="record_total" value="1"/>
+					<input type="hidden" name="defaultval" value="输入专业名称* " id="defaultval" />
+                    <input class="button-1" type="button" value="搜索" onclick="search_data_p();"/>
+                </div>
             </div>
-            <div class="row ui-sortable" id="programs_result">
-            </div>
+            <div class="content">
+	            <ul id="result_ul" class="courselist-1">
+	            </ul>
+	            <div class="pagination pull-right" id="pager" data-type="p" ></div>
+	        </div>
+            
+            <%--<div class="row ui-sortable" id="programs_result"></div>--%>
 	    </div>
-	    <div class="reslut-2 comment">
+	    <div class="reslut-2 comment" style="display:none;">
 	        <div class="title">
 	            <ul>
 	                <li class="marginleft25 current">校友评论</li>
@@ -216,6 +245,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</s:iterator>
 	        </div>
 	    </div>
+	    </div>
 	    <div class="bottom">
 	        &copy; 2014 young Ltd All rights reserved.
 	    </div>
@@ -229,6 +259,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                $(".reslut-2 .table-3").eq(i).show();
 	            });
 	        });
+	        
+
+			var topareaHeight = $(".toparea").height();
+		    var searchareaHeight = $(".searcharea").height();
+		    var accuratesearchHeight = $(".accuratesearch").height();
+		    var titleHeight = $(".reslut-2 .title").height();
+		    var courselistliHeight = $(".courselist-1 .courselist-li").height();
 	        
 	        $(function(){
 				var obj = $("#btnSearchCourse");

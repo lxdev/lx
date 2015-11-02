@@ -148,13 +148,13 @@ var search_data_p = function(is_not_check){
 	
 	open_loading();
 	
-	var tempAreaName = $('input[name="area"]:checked').val();
-	var tempIsPublicSchool = $('input[name="is_public_school"]:checked').val();
+	var tempAreaName = $('input[name="area"]:checked').val() || "";
+	var tempIsPublicSchool = $('input[name="is_public_school"]:checked').val() || -1;
 	
 	var rankingBegin;
 	var rankingEnd;
 	var tempRanking = $('input[name="ranking"]:checked').val();
-	if(tempRanking != '全部'){
+	if(tempRanking && tempRanking != '全部'){
 		var tempRankingArray = tempRanking.split('-');
 		rankingBegin = tempRankingArray[0];
 		if(tempRankingArray.length >= 2)
@@ -163,7 +163,7 @@ var search_data_p = function(is_not_check){
 	var score_totef = -1;
 	var totefEnd;
 	var tempTotef = $('input[name="totef"]:checked').val();
-	if(tempTotef != '-1'){
+	if(tempTotef && tempTotef != '-1'){
 		var tempTotefArray = tempTotef.split(',');
 		score_totef = tempRankingArray[0];
 		if(tempTotefArray.length >= 2)
@@ -176,6 +176,7 @@ var search_data_p = function(is_not_check){
 			, 'condition.specialtyName': $("#program_specialty", parent).val()
 			, 'condition.specialtyId': specialty_id
 			, 'condition.universityName': $("#university_name", parent).val()
+			, 'condition.university_id': $("#university_name_id", parent).val() || 0
 			, 'condition.page_size': $("#page_size", parent).val()
 			, 'condition.page': $("#page", parent).val()
 			, 'condition.rankingBegin': rankingBegin
@@ -395,4 +396,29 @@ function validateCollegeSearchForm() {
 		return false;
 	}
 	return true;
+}
+/* 点击搜索出的院校，展开其下课程 */
+function show_courses(type){
+	var arrowcurrent=".arrow_" + type;
+    var univername=$(arrowcurrent).parent().parent().find(".universityname a").html();
+    $(".courselist-li").each(function (i) {
+        if ($(this).find(".universityname a").html() == univername) {
+        
+            if (i == 0) {
+                $("body").scrollTop(topareaHeight + searchareaHeight + accuratesearchHeight + 0 + titleHeight);
+            }
+            else {
+                $("body").scrollTop(topareaHeight + searchareaHeight + accuratesearchHeight + 40 + titleHeight + courselistliHeight * i + 15 * (i - 1));
+            }
+        }
+    });
+    
+    if ($(".university_" + type).is(":visible")) {
+        $(".arrow_" + type).removeClass("close");
+        $(".university_" + type).hide();
+    } else {
+        $(".morecourse li").hide();	                
+        $(".arrow_" + type).addClass("close");
+        $(".university_" + type).show();
+    }
 }
