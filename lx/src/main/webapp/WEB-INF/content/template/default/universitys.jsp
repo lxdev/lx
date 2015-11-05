@@ -183,8 +183,16 @@ border: 0;
 		                                	<a href="university?universityId=<s:property value="id"/>"><s:property value="university_name"/>/<s:property value="english_name"/></a>
 		                                </div>
 		                                <div class="info">
-		                                    <span><s:property value="country.name"/>&nbsp;&nbsp;&nbsp;&nbsp;<s:property value="browse_number"/>浏览&nbsp;&nbsp;&nbsp;&nbsp;<s:property value="evaluate_number"/>点评</span>&nbsp;&nbsp;&nbsp;&nbsp;<span
-		                                        class="star"></span><span class="star2"></span><span class="star2"></span>
+		                                    <span>
+		                                    	<s:property value="country.name"/>&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    	<s:if test="is_public_school==1">公立</s:if><s:else>私立</s:else>&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    	<s:property value="area.city"/>&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    	<s:property value="scale"/>&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    	<br/>
+		                                    	<s:property value="browse_number"/>浏览&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    	<s:property value="evaluate_number"/>点评
+		                                    </span>&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    <!-- <span class="star"></span><span class="star2"></span><span class="star2"></span> -->
 										</div>
 		                            </td>
 		                            <td valign="top" class="text-center" style="width:19%">

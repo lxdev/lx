@@ -306,86 +306,86 @@ border: 0;
 	                    <tr>
 	                        <td class="width-97 text-right">已选条件：
 	                        </td>
-	                        <td>
-	                            <a href="" class="ss-item"><b>地区：</b><em>东北部</em><i></i></a>
+	                        <td id="choose_td">
+	                            <!-- <a onclick="choose_cancel(this)" data-type="area" class="ss-item"><b>地区：</b><em>东北部</em><i></i></a>
 	                            <i class="crumbs-arrow">&gt;</i>
-	                            <a href="" class="ss-item"><b>学校属性：</b><em>公立</em><i></i></a>
+	                            <a onclick="choose_cancel(this)" data-type="is_public_school" class="ss-item"><b>学校属性：</b><em>公立</em><i></i></a> -->
 	                        </td>
 	                    </tr>
-	                    <tr>
+	                    <tr id="search_tr_ranking">
 		                    <td class="width-97 text-right">综合排名：</td>
 		                    <td>
 		                        <s:iterator value="#mapRanking">
 									<label class="checkbox-inline" style="padding-top:8px">
 										<s:if test="ranking==key || (ranking==null && key=='全部')">
-											<input type="radio" name="ranking" value="<s:property value="key"/>" checked onchange="search_data_p();"> <s:property value="key"/>
+											<input type="radio" name="ranking" value="<s:property value="key"/>" checked onchange="choose_submit('ranking', this);"> <s:property value="key"/>
 										</s:if>
 										<s:else>
-											<input type="radio" name="ranking" value="<s:property value="key"/>" onchange="search_data_p();"> <s:property value="key"/>
+											<input type="radio" name="ranking" value="<s:property value="key"/>" onchange="choose_submit('ranking', this);"> <s:property value="key"/>
 										</s:else>
 					   				</label>
 								</s:iterator>
 		                    </td>
 		                </tr>
-	                    <tr>
+	                    <tr id="search_tr_area">
 	                    	<td class="width-97 text-right">地区：</td>
 		                    <td>
 		                        <s:iterator value="#mapArea">
 									<label class="checkbox-inline" style="padding-top:8px">
 										<s:if test="area==key || (area==null && key=='全部')">
-											<input type="radio" name="area" value="<s:property value="key"/>" checked onchange="search_data_p();"> <s:property value="key"/>
+											<input type="radio" name="area" value="<s:property value="key"/>" checked onchange="choose_submit('area', this);"> <s:property value="key"/>
 										</s:if>
 										<s:else>
-											<input type="radio" name="area" value="<s:property value="key"/>" onchange="search_data_p();"> <s:property value="key"/>
+											<input type="radio" name="area" value="<s:property value="key"/>" onchange="choose_submit('area', this);"> <s:property value="key"/>
 										</s:else>
 									</label>
 								</s:iterator>
 		                    </td>
 	                    </tr>
-	                    <tr>
+	                    <tr id="search_tr_is_public_school">
 		                    <td class="width-97 text-right">学校属性：</td>
 		                    <td>
 		                        <s:iterator value="#mapIsPublicSchool">
 									<label class="checkbox-inline" style="padding-top:8px">
 										<s:if test="is_public_school==key || (is_public_school==null && key==-1)">
-											<input type="radio" name="is_public_school" value="<s:property value="key"/>" checked onchange="search_data_p();"> <s:property value="value"/>
+											<input type="radio" name="is_public_school" value="<s:property value="key"/>" checked onchange="choose_submit('is_public_school', this);"> <s:property value="value"/>
 										</s:if>
 										<s:else>
-											<input type="radio" name="is_public_school" value="<s:property value="key"/>" onchange="search_data_p();"> <s:property value="value"/>
+											<input type="radio" name="is_public_school" value="<s:property value="key"/>" onchange="choose_submit('is_public_school', this);"> <s:property value="value"/>
 										</s:else>
 									</label>
 								</s:iterator>
 		                    </td>
 		                </tr>
-	                    <tr style="display:none">
+	                    <tr id="search_tr_time_of_enrollment" style="display:none">
 	                    	<td class="width-97 text-right">入学时间：</td>
 		                    <td>
 		                        <s:iterator value="#mapTimeOfEnrollment">
 									<label class="checkbox-inline" style="padding-top:8px">
 										<s:if test="time_of_enrollment==key || (time_of_enrollment==null && key=='全部')">
-											<input type="radio" name="time_of_enrollment" value="<s:property value="key"/>" checked onchange="search_data_p();"> <s:property value="key"/>
+											<input type="radio" name="time_of_enrollment" value="<s:property value="key"/>" checked onchange="choose_submit('time_of_enrollment', this);"> <s:property value="key"/>
 										</s:if>
 										<s:else>
-											<input type="radio" name="time_of_enrollment" value="<s:property value="key"/>" onchange="search_data_p();"> <s:property value="key"/>
+											<input type="radio" name="time_of_enrollment" value="<s:property value="key"/>" onchange="choose_submit('time_of_enrollment', this);"> <s:property value="key"/>
 										</s:else>
 									</label>
 								</s:iterator>
 		                    </td>
 	                    </tr>
-	                    <tr style="display:none">
+	                    <tr id="search_tr_totef" style="display:none">
 	                    	<td class="width-97 text-right">托福要求：</td>
 		                    <td>
 		                        <label class="checkbox-inline" style="padding-top:8px">
-									<input type="radio" name="totef" value="-1" <s:if test="totef==null||totef==-1"> checked</s:if> onchange="search_data_p();"> 全部
+									<input type="radio" name="totef" value="-1" <s:if test="totef==null||totef==-1"> checked</s:if> onchange="choose_submit('totef', this);"> 全部
 								</label>
 								<s:iterator value="scoreList">
 									<s:if test="categoryType==1">
 										<label class="checkbox-inline" style="padding-top:8px">
 											<s:if test="totef==((scopeLowerInt == null ? -1 : scopeLowerInt)+'-'+(scopeHigherInt == null ? -1 : scopeHigherInt))">
-												<input type="radio" name="totef" value="${scope_lower_int},${scope_higher_int}" checked onchange="search_data_p();"> 
+												<input type="radio" name="totef" value="${scope_lower_int},${scope_higher_int}" checked onchange="choose_submit('totef', this);"> 
 											</s:if>
 											<s:else>
-												<input type="radio" name="totef" value="${scope_lower_int},${scope_higher_int}" onchange="search_data_p();"> 
+												<input type="radio" name="totef" value="${scope_lower_int},${scope_higher_int}" onchange="choose_submit('totef', this);"> 
 											</s:else>
 											<s:if test="scopeLower==-1">
 												小于<s:property value="scope_higher_int"/>
@@ -401,20 +401,20 @@ border: 0;
 								</s:iterator>
 		                    </td>
 	                    </tr>
-	                    <tr style="display:none">
+	                    <tr id="search_tr_ietls" style="display:none">
 	                    	<td class="width-97 text-right">雅思要求：</td>
 		                    <td>
 		                        <label class="checkbox-inline" style="padding-top:8px">
-									<input type="radio" name="ietls" value="-1" <s:if test="ietls==null||ietls==-1"> checked</s:if> onchange="search_data_p();"> 全部
+									<input type="radio" name="ietls" value="-1" <s:if test="ietls==null||ietls==-1"> checked</s:if> onchange="choose_submit('ietls', this);"> 全部
 								</label>
 								<s:iterator value="scoreList">
 									<s:if test="categoryType==2">
 										<label class="checkbox-inline" style="padding-top:8px">
 											<s:if test="ietls==(scopeLower+','+scopeHigher)">
-												<input type="radio" name="ietls" value="${scopeLower},${scopeHigher}" checked onchange="search_data_p();"> 
+												<input type="radio" name="ietls" value="${scopeLower},${scopeHigher}" checked onchange="choose_submit('ietls', this);"> 
 											</s:if>
 											<s:else>
-												<input type="radio" name="ietls" value="${scopeLower},${scopeHigher}" onchange="search_data_p();"> 
+												<input type="radio" name="ietls" value="${scopeLower},${scopeHigher}" onchange="choose_submit('ietls', this);"> 
 											</s:else>
 											<s:if test="scopeLower==-1">
 												小于<s:property value="scopeHigher"/>
@@ -431,20 +431,20 @@ border: 0;
 								</s:iterator>
 		                    </td>
 	                    </tr>
-	                    <tr style="display:none">	
+	                    <tr id="search_tr_gre" style="display:none">	
 	                        <td class="width-97 text-right">GRE要求：</td>
 		                    <td>
 		                    	<label class="checkbox-inline" style="padding-top:8px">
-									<input type="radio" name="gre" value="-1" <s:if test="gre==null||gre==-1"> checked</s:if> onchange="search_data_p();"> 全部
+									<input type="radio" name="gre" value="-1" <s:if test="gre==null||gre==-1"> checked</s:if> onchange="choose_submit('gre', this);"> 全部
 								</label>
 								<s:iterator value="scoreList">
 									<s:if test="categoryType==3">
 										<label class="checkbox-inline" style="padding-top:8px">
 											<s:if test="scope_lower_int+','+scope_higher_int">
-												<input type="radio" name="gre" value="${scope_lower_int},${scope_higher_int}" checked onchange="search_data_p();"> 
+												<input type="radio" name="gre" value="${scope_lower_int},${scope_higher_int}" checked onchange="choose_submit('gre', this);"> 
 											</s:if>
 											<s:else>
-												<input type="radio" name="gre" value="${scope_lower_int},${scope_higher_int}" onchange="search_data_p();"> 
+												<input type="radio" name="gre" value="${scope_lower_int},${scope_higher_int}" onchange="choose_submit('gre', this);"> 
 											</s:else>
 											<s:if test="scopeLower==-1">
 												小于<s:property value="scope_higher_int"/>
@@ -460,20 +460,20 @@ border: 0;
 								</s:iterator>
 		                    </td>
 	                    </tr>
-	                    <tr style="display:none">
+	                    <tr id="search_tr_gmat" style="display:none">
 	                        <td class="width-97 text-right">GMAT要求：</td>
 		                    <td>
 		                    	<label class="checkbox-inline" style="padding-top:8px">
-									<input type="radio" name="gmat" value="-1" <s:if test="gmat==null||gmat==-1"> checked</s:if> onchange="search_data_p();"> 全部
+									<input type="radio" name="gmat" value="-1" <s:if test="gmat==null||gmat==-1"> checked</s:if> onchange="choose_submit('gmat', this);"> 全部
 								</label>
 								<s:iterator value="scoreList">
 									<s:if test="categoryType==4">
 										<label class="checkbox-inline" style="padding-top:8px">
 											<s:if test="gmat==(scope_lower_int+'-'+scope_higher_int)">
-												<input type="radio" name="gmat" value="${scope_lower_int},${scope_higher_int}" checked onchange="search_data_p();"> 
+												<input type="radio" name="gmat" value="${scope_lower_int},${scope_higher_int}" checked onchange="choose_submit('gmat', this);"> 
 											</s:if>
 											<s:else>
-												<input type="radio" name="gmat" value="${scope_lower_int},${scope_higher_int}" onchange="search_data_p();"> 
+												<input type="radio" name="gmat" value="${scope_lower_int},${scope_higher_int}" onchange="choose_submit('gmat', this);"> 
 											</s:else>
 											<s:if test="scopeLower==-1">
 												小于<s:property value="scope_higher_int"/>
@@ -494,27 +494,6 @@ border: 0;
 	            <div class="moresearch">
 	                <span class="smore">更多搜索条件<i></i></span>
 	            </div>
-	            <script type="text/javascript">
-	
-	                $(".moresearch").click(function(){
-	                    if($(".moresearch .smore").hasClass("close")){
-	                        $(".moresearch .smore").removeClass("close");
-	                        $(".table-accuratesearch tr").each(function(i){
-	                            if(i>3){
-	                                $(this).hide();
-	                            }
-	                        });
-	                    }
-	                    else{
-	                        $(".moresearch .smore").addClass("close");
-	                        $(".table-accuratesearch tr").each(function(i){
-	                            if(i>2){
-	                                $(this).show();
-	                            }
-	                        });
-	                    }
-	                })
-	            </script>
         	</div>
     	</div>
     	
@@ -543,8 +522,16 @@ border: 0;
 		                                	<a href="university?universityId=<s:property value="id"/>"><s:property value="university_name"/>/<s:property value="english_name"/></a>
 		                                </div>
 		                                <div class="info">
-		                                    <span><s:property value="country.name"/>&nbsp;&nbsp;&nbsp;&nbsp;<s:property value="browse_number"/>浏览&nbsp;&nbsp;&nbsp;&nbsp;<s:property value="evaluate_number"/>点评</span>&nbsp;&nbsp;&nbsp;&nbsp;
-		                                    <%--<span class="star"></span><span class="star2"></span><span class="star2"></span>--%>
+		                                    <span>
+		                                    	<s:property value="country.name"/>&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    	<s:if test="is_public_school==1">公立</s:if><s:else>私立</s:else>&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    	<s:property value="area.city"/>&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    	<s:property value="scale"/>&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    	<br/>
+		                                    	<s:property value="browse_number"/>浏览&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    	<s:property value="evaluate_number"/>点评&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    	<%--<span class="star"></span><span class="star2"></span><span class="star2"></span>--%>
+		                                    </span>
 		                                </div>
 		                                <div class="course" onclick="show_courses(<s:property value="id"/>)">
 		                                    <span>共<s:property value="numProgram"/>个课程</span><span class="open arrow_<s:property value="id"/>"></span>
@@ -575,7 +562,7 @@ border: 0;
 				                                    <a href="program?programId=<s:property value="#inner.id"/>">
 				                                    	<span><s:property value="#inner.program_name"/></span>
 				                                    </a>
-				                                    <span>500浏览</span>
+				                                    <span>0浏览</span>
 				                                </div>
 				                                <div class="ccontent  ftcol333333">
 				                                    <%--<span class="dblink">对比</span>--%>

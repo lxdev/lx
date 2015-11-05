@@ -240,8 +240,10 @@ var search_data_p = function(is_not_check){
 			            lists += "					<a href='university?universityId=" + this.id + "'>" + this.university_name + "/" + this.english_name + "</a>";
 			            lists += "				</div>";
 			            lists += "				<div class='info'>";
-			            lists += "					<span>" + this.country.name + "&nbsp;&nbsp;&nbsp;&nbsp;" + this.browse_number + "浏览&nbsp;&nbsp;&nbsp;&nbsp;" + this.evaluate_number + "点评</span>&nbsp;&nbsp;&nbsp;&nbsp;";
+			            lists += "					<span>" + this.country.name + "&nbsp;&nbsp;&nbsp;&nbsp;" + (this.is_public_school == "1" ? "公立" : "私立") + "&nbsp;&nbsp;&nbsp;&nbsp;" + this.area.city + "&nbsp;&nbsp;&nbsp;&nbsp;"+ this.scale + "&nbsp;&nbsp;&nbsp;&nbsp;"
+			            lists += "						<br/>" + this.browse_number + "浏览&nbsp;&nbsp;&nbsp;&nbsp;" + this.evaluate_number + "点评&nbsp;&nbsp;&nbsp;&nbsp;";
 			            //lists += "					<span class='star'></span><span class='star2'></span><span class='star2'></span>";
+			            lists += "					</span>"
 			            lists += "				</div>";
 			            lists += "				<div class='course' onclick='show_courses(" + this.id + ")'>";
 			            lists += "					<span>共" + this.numProgram + "个课程</span><span class='open'></span>";
@@ -329,6 +331,62 @@ function show_courses(type){
         $(".university_" + type).show();
     }
 }
+
+//更多选项
+$(".moresearch").click(function(){
+    if($(".moresearch .smore").hasClass("close")){
+        $(".moresearch .smore").removeClass("close");
+        $(".table-accuratesearch tr").each(function(i){
+            if(i>3){
+                $(this).hide();
+            }
+        });
+    }
+    else{
+        $(".moresearch .smore").addClass("close");
+        $(".table-accuratesearch tr").each(function(i){
+            if(i>2){
+                $(this).show();
+            }
+        });
+    }
+})
+
+//选项选中效果
+var choose_cancel = function(obj){
+	var dataType = $(obj).attr("data-type");
+	//var dataId = $(obj).attr("data-id");
+	
+	$("input[name='" + dataType + "']").each(function(e, i){
+		if(i.value == '全部'){
+			i.checked = true;
+		}
+	});
+	$("#search_tr_" + dataType).show();
+	
+	$(obj).prev().remove();
+	$(obj).remove();
+	search_data_p();
+}
+var choose_submit = function(type, obj){
+	var chooseParent = $("#choose_td");
+	var option = "";
+	switch(type){
+	case "ranking":
+		option =  "<i class='crumbs-arrow'>&gt;</i>";
+		option += "<a onclick='choose_cancel(this)' data-type='ranking' class='ss-item'><b>综合排名：</b><em>" + $(obj).val() + "</em><i></i></a>";
+		break;
+	case "area":
+		option =  "<i class='crumbs-arrow'>&gt;</i>";
+		option += "<a onclick='choose_cancel(this)' data-type='area' class='ss-item'><b>地区：</b><em>" + $(obj).val() + "</em><i></i></a>";
+		break;
+	}
+	chooseParent.append(option);
+	$(obj).parent().parent().parent().hide();
+	
+	search_data_p();
+}
+
 /*****************/
 /***** 院校搜索 *****/
 /*****************/
@@ -413,8 +471,10 @@ var search_data_u = function(type){
 			            lists += "<a href='university?universityId=" + this.id + "'>" + this.university_name + "/" + this.english_name + "</a>";
 			            lists += "</div>";
 			            lists += "<div class='info'>";
-			            lists += "<span>" + this.country.name + "&nbsp;&nbsp;&nbsp;&nbsp;" + this.browse_number + "浏览&nbsp;&nbsp;&nbsp;&nbsp;" + this.evaluate_number + "点评</span>&nbsp;&nbsp;&nbsp;&nbsp;";
-			            lists += "<span class='star'></span><span class='star2'></span><span class='star2'></span>";
+			            lists += "					<span>" + this.country.name + "&nbsp;&nbsp;&nbsp;&nbsp;" + (this.is_public_school == "1" ? "公立" : "私立") + "&nbsp;&nbsp;&nbsp;&nbsp;" + this.area.city + "&nbsp;&nbsp;&nbsp;&nbsp;"+ this.scale + "&nbsp;&nbsp;&nbsp;&nbsp;"
+			            lists += "						<br/>" + this.browse_number + "浏览&nbsp;&nbsp;&nbsp;&nbsp;" + this.evaluate_number + "点评&nbsp;&nbsp;&nbsp;&nbsp;";
+			            //lists += "					<span class='star'></span><span class='star2'></span><span class='star2'></span>";
+			            lists += "					</span>"
 			            lists += "</div>";
 			            lists += "</td>";
 			            lists += "<td valign='top' class='text-center' style='width:15%'>";
