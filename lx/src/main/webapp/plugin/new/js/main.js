@@ -337,7 +337,7 @@ $(".moresearch").click(function(){
     if($(".moresearch .smore").hasClass("close")){
         $(".moresearch .smore").removeClass("close");
         $(".table-accuratesearch tr").each(function(i){
-            if(i>3){
+            if(i>3 && $(this).attr("data-choosed") != "true"){
                 $(this).hide();
             }
         });
@@ -345,7 +345,7 @@ $(".moresearch").click(function(){
     else{
         $(".moresearch .smore").addClass("close");
         $(".table-accuratesearch tr").each(function(i){
-            if(i>2){
+            if(i>2 && $(this).attr("data-choosed") != "true"){
                 $(this).show();
             }
         });
@@ -357,12 +357,14 @@ var choose_cancel = function(obj){
 	var dataType = $(obj).attr("data-type");
 	//var dataId = $(obj).attr("data-id");
 	
-	$("input[name='" + dataType + "']").each(function(e, i){
-		if(i.value == '全部'){
-			i.checked = true;
+	//$("input[name='" + dataType + "']").each(function(e, i){
+	$("input[name='" + dataType + "']").each(function(i){
+		if(i == 0){
+			this.checked = true;
 		}
 	});
 	$("#search_tr_" + dataType).show();
+	$("#search_tr_" + dataType).attr("data-choosed", "false");
 	
 	$(obj).prev().remove();
 	$(obj).remove();
@@ -370,19 +372,13 @@ var choose_cancel = function(obj){
 }
 var choose_submit = function(type, obj){
 	var chooseParent = $("#choose_td");
-	var option = "";
-	switch(type){
-	case "ranking":
-		option =  "<i class='crumbs-arrow'>&gt;</i>";
-		option += "<a onclick='choose_cancel(this)' data-type='ranking' class='ss-item'><b>综合排名：</b><em>" + $(obj).val() + "</em><i></i></a>";
-		break;
-	case "area":
-		option =  "<i class='crumbs-arrow'>&gt;</i>";
-		option += "<a onclick='choose_cancel(this)' data-type='area' class='ss-item'><b>地区：</b><em>" + $(obj).val() + "</em><i></i></a>";
-		break;
-	}
+	var optionParent = $(obj).parent().parent().parent();
+	var option =  "<i class='crumbs-arrow'>&gt;</i>";
+	var option_value = $(obj)[0].nextSibling.nodeValue;
+	option += "<a onclick='choose_cancel(this)' data-type='" + type + "' class='ss-item'><b>" + optionParent.attr("data-name") + "</b><em>" + option_value + "</em><i></i></a>";
 	chooseParent.append(option);
-	$(obj).parent().parent().parent().hide();
+	optionParent.hide();
+	optionParent.attr("data-choosed", "true");
 	
 	search_data_p();
 }

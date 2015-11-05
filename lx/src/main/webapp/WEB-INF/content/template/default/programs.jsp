@@ -312,67 +312,71 @@ border: 0;
 	                            <a onclick="choose_cancel(this)" data-type="is_public_school" class="ss-item"><b>学校属性：</b><em>公立</em><i></i></a> -->
 	                        </td>
 	                    </tr>
-	                    <tr id="search_tr_ranking">
+	                    <tr id="search_tr_ranking" data-name="综合排名：">
 		                    <td class="width-97 text-right">综合排名：</td>
 		                    <td>
 		                        <s:iterator value="#mapRanking">
 									<label class="checkbox-inline" style="padding-top:8px">
 										<s:if test="ranking==key || (ranking==null && key=='全部')">
-											<input type="radio" name="ranking" value="<s:property value="key"/>" checked onchange="choose_submit('ranking', this);"> <s:property value="key"/>
+											<input type="radio" name="ranking" value="<s:property value="key"/>" checked onchange="choose_submit('ranking', this);"> 
 										</s:if>
 										<s:else>
-											<input type="radio" name="ranking" value="<s:property value="key"/>" onchange="choose_submit('ranking', this);"> <s:property value="key"/>
+											<input type="radio" name="ranking" value="<s:property value="key"/>" onchange="choose_submit('ranking', this);">
 										</s:else>
+										<s:property value="key"/>
 					   				</label>
 								</s:iterator>
 		                    </td>
 		                </tr>
-	                    <tr id="search_tr_area">
+	                    <tr id="search_tr_area" data-name="地区：">
 	                    	<td class="width-97 text-right">地区：</td>
 		                    <td>
 		                        <s:iterator value="#mapArea">
 									<label class="checkbox-inline" style="padding-top:8px">
 										<s:if test="area==key || (area==null && key=='全部')">
-											<input type="radio" name="area" value="<s:property value="key"/>" checked onchange="choose_submit('area', this);"> <s:property value="key"/>
+											<input type="radio" name="area" value="<s:property value="key"/>" checked onchange="choose_submit('area', this);">
 										</s:if>
 										<s:else>
-											<input type="radio" name="area" value="<s:property value="key"/>" onchange="choose_submit('area', this);"> <s:property value="key"/>
+											<input type="radio" name="area" value="<s:property value="key"/>" onchange="choose_submit('area', this);">
 										</s:else>
+										<s:property value="key"/>
 									</label>
 								</s:iterator>
 		                    </td>
 	                    </tr>
-	                    <tr id="search_tr_is_public_school">
+	                    <tr id="search_tr_is_public_school" data-name="学校属性：">
 		                    <td class="width-97 text-right">学校属性：</td>
 		                    <td>
 		                        <s:iterator value="#mapIsPublicSchool">
 									<label class="checkbox-inline" style="padding-top:8px">
 										<s:if test="is_public_school==key || (is_public_school==null && key==-1)">
-											<input type="radio" name="is_public_school" value="<s:property value="key"/>" checked onchange="choose_submit('is_public_school', this);"> <s:property value="value"/>
+											<input type="radio" name="is_public_school" value="<s:property value="key"/>" checked onchange="choose_submit('is_public_school', this);">
 										</s:if>
 										<s:else>
-											<input type="radio" name="is_public_school" value="<s:property value="key"/>" onchange="choose_submit('is_public_school', this);"> <s:property value="value"/>
+											<input type="radio" name="is_public_school" value="<s:property value="key"/>" onchange="choose_submit('is_public_school', this);">
 										</s:else>
+										<s:property value="value"/>
 									</label>
 								</s:iterator>
 		                    </td>
 		                </tr>
-	                    <tr id="search_tr_time_of_enrollment" style="display:none">
+	                    <tr id="search_tr_time_of_enrollment" data-name="入学时间：" style="display:none">
 	                    	<td class="width-97 text-right">入学时间：</td>
 		                    <td>
 		                        <s:iterator value="#mapTimeOfEnrollment">
 									<label class="checkbox-inline" style="padding-top:8px">
 										<s:if test="time_of_enrollment==key || (time_of_enrollment==null && key=='全部')">
-											<input type="radio" name="time_of_enrollment" value="<s:property value="key"/>" checked onchange="choose_submit('time_of_enrollment', this);"> <s:property value="key"/>
+											<input type="radio" name="time_of_enrollment" value="<s:property value="key"/>" checked onchange="choose_submit('time_of_enrollment', this);">
 										</s:if>
 										<s:else>
-											<input type="radio" name="time_of_enrollment" value="<s:property value="key"/>" onchange="choose_submit('time_of_enrollment', this);"> <s:property value="key"/>
+											<input type="radio" name="time_of_enrollment" value="<s:property value="key"/>" onchange="choose_submit('time_of_enrollment', this);"> 
 										</s:else>
+										<s:property value="key"/>
 									</label>
 								</s:iterator>
 		                    </td>
 	                    </tr>
-	                    <tr id="search_tr_totef" style="display:none">
+	                    <tr id="search_tr_totef" data-name="托福要求：" style="display:none">
 	                    	<td class="width-97 text-right">托福要求：</td>
 		                    <td>
 		                        <label class="checkbox-inline" style="padding-top:8px">
@@ -401,7 +405,7 @@ border: 0;
 								</s:iterator>
 		                    </td>
 	                    </tr>
-	                    <tr id="search_tr_ietls" style="display:none">
+	                    <tr id="search_tr_ietls" data-name="雅思要求：" style="display:none">
 	                    	<td class="width-97 text-right">雅思要求：</td>
 		                    <td>
 		                        <label class="checkbox-inline" style="padding-top:8px">
@@ -431,7 +435,7 @@ border: 0;
 								</s:iterator>
 		                    </td>
 	                    </tr>
-	                    <tr id="search_tr_gre" style="display:none">	
+	                    <tr id="search_tr_gre" data-name="GRE要求：" style="display:none">	
 	                        <td class="width-97 text-right">GRE要求：</td>
 		                    <td>
 		                    	<label class="checkbox-inline" style="padding-top:8px">
@@ -460,7 +464,7 @@ border: 0;
 								</s:iterator>
 		                    </td>
 	                    </tr>
-	                    <tr id="search_tr_gmat" style="display:none">
+	                    <tr id="search_tr_gmat" data-name="GMAT要求：" style="display:none">
 	                        <td class="width-97 text-right">GMAT要求：</td>
 		                    <td>
 		                    	<label class="checkbox-inline" style="padding-top:8px">
