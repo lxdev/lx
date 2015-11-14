@@ -19,4 +19,6 @@ public interface IUniversityDao extends BaseDao<University>
 	public Integer searchUniversitysRecordByCondition(University uni);
 
 	public EnumMap<SqlAndList, Object> getSqlAndList(University uni);
+
+	public int searchUniversityIdByName(String name);
 }

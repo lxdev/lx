@@ -96,8 +96,6 @@ public class UniversityDaoImpl extends BaseMDDaoImpl<University> implements IUni
 		List list = (List)retMap.get(IUniversityDao.SqlAndList.LIST);
 		
 		return jt.queryForList(sql, list.toArray());
-		
-		
 	}
 	
 	public Integer searchUniversitysRecordByCondition(University condition){
@@ -107,6 +105,17 @@ public class UniversityDaoImpl extends BaseMDDaoImpl<University> implements IUni
 		
 		String sql = (String) retMap.get(IUniversityDao.SqlAndList.SQL);
 		List list = (List)retMap.get(IUniversityDao.SqlAndList.LIST);
+		
+		return jt.queryForInt(sql, list.toArray());
+	}
+	
+	public int searchUniversityIdByName(String name){
+		
+		JdbcTemplate jt = this.getJdbcTemplate();
+		List list = new ArrayList();
+		
+		String sql = "SELECT id FROM tb_e_university WHERE english_name = ? ";
+		list.add(name);
 		
 		return jt.queryForInt(sql, list.toArray());
 	}

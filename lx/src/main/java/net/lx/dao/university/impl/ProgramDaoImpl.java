@@ -122,9 +122,12 @@ public class ProgramDaoImpl extends BaseMDDaoImpl<Program> implements IProgramDa
 			condition += " AND A.work_experience_require = " + program.getWork_experience_require();
 		}
 		if(program.getProgram_name() != null && !program.getProgram_name().equals("")){
-			condition += " AND A.program_name LIKE ? ";
-			listInner.add("%"+program.getProgram_name()+"%");
-			listOuter.add("%"+program.getProgram_name()+"%");
+//			condition += " AND A.program_name LIKE ? ";
+//			listInner.add("%"+program.getProgram_name()+"%");
+//			listOuter.add("%"+program.getProgram_name()+"%");
+			condition += " AND A.program_name = ? ";
+			listInner.add(program.getProgram_name());
+			listOuter.add(program.getProgram_name());
 		}
 		if(program.getUniversity_id() != null && program.getUniversity_id() > 0){
 			condition += " AND A.university_id = " + program.getUniversity_id();

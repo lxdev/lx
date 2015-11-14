@@ -76,7 +76,7 @@
 						</div>
 						
 						<input type="hidden" id="specialty_id" name="program.specialtyId" value="0"/>
-						<input type="hidden" id="page_size" name="program.page_size" value="20"/>
+						<input type="hidden" id="page_size" name="program.page_size" value="10"/>
 						<input type="hidden" id="page" name="program.page" value="${program.page}"/>
 						<input type="hidden" id="total_record" name="total_record" value="${total_record}"/>
 						

@@ -78,7 +78,7 @@ public class ProgramAction extends BaseAction {
 		setCountryList(this.countryBiz.findAll());
 		setStudyLevelList(this.studyLevelBiz.findAll());
 		if(super.isGetRequest()){
-			program.setPage(0);
+			program.setPage(1);
 			return SUCCESS;
 		}
 		Program cProgram = new Program();
@@ -296,11 +296,13 @@ public class ProgramAction extends BaseAction {
 					}
 				}
 				if(item.getUniversityName() != null && !item.getUniversityName().equals("")){
-					University uCon = new University();
-					uCon.setUniversity_name(item.getUniversityName());
-					List<University> uList = universityBiz.searchUniversitysByCondition(uCon);
-					if(uList.size() >= 1)
-						item.setUniversity_id(uList.get(0).getId());
+//					University uCon = new University();
+//					uCon.setUniversity_name(item.getUniversityName());
+//					List<University> uList = universityBiz.searchUniversitysByCondition(uCon);
+//					if(uList.size() >= 1)
+//						item.setUniversity_id(uList.get(0).getId());
+					int uniId = universityBiz.searchUniversityIdByName(item.getUniversityName());
+					item.setUniversity_id(uniId);
 				}
 				if(item.getUniversity_id() == null || item.getUniversity_id() == 0){
 					message = String.format("Excel导入成功：【新增%1$d个】【修改%2$d】Program.", import_number_insert, import_number_update);

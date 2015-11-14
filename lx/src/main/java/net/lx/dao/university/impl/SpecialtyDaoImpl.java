@@ -25,16 +25,16 @@ public class SpecialtyDaoImpl extends BaseMDDaoImpl<Specialty> implements ISpeci
 		List list = new ArrayList();
 //		sql += " AND A.country_id = ?";
 //		list.add(spe.getCountry_id());
-		if(spe.getSpecialty_name() != null && !spe.getSpecialty_name().equals("")){
+		if(spe.getSpecialty_english_name() != null && !spe.getSpecialty_english_name().equals("")){
+			sql += " AND specialty_english_name = ? ";
+			list.add(spe.getSpecialty_english_name());
+		}else if(spe.getSpecialty_name() != null && !spe.getSpecialty_name().equals("")){
 			sql += " AND (A.specialty_name like ?";
 			list.add("%"+spe.getSpecialty_name()+"%");
 			sql += " OR A.specialty_english_name like ?";
 			list.add("%"+spe.getSpecialty_name()+"%");
 			sql += " OR A.specialty_attr like ? )";
 			list.add("%"+spe.getSpecialty_name()+"%");
-		}else if(spe.getSpecialty_english_name() != null && !spe.getSpecialty_english_name().equals("")){
-			sql += " AND specialty_english_name = ? ";
-			list.add(spe.getSpecialty_english_name());
 		}
 		if(spe.getParent_id() != null){
 			sql += " AND A.parent_id = ?";

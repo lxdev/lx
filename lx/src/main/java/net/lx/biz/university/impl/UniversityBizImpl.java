@@ -136,4 +136,8 @@ public class UniversityBizImpl implements IUniversityBiz {
 	public Integer searchUniversitysRecordByCondition(University condition){
 		return universityDao.searchUniversitysRecordByCondition(condition);
 	}
+	
+	public int searchUniversityIdByName(String name) throws Exception {
+		return universityDao.searchUniversityIdByName(name);
+	}
 }

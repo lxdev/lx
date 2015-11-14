@@ -26,6 +26,7 @@ public interface IUniversityBiz
 	public List<University> findAll() throws Exception;
 	
 	public List<University> searchUniversitysByCondition(University university) throws Exception;
+	public int searchUniversityIdByName(String name) throws Exception;
 
 	public Integer searchUniversitysRecordByCondition(University condition);
 }
