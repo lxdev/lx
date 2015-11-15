@@ -101,7 +101,7 @@ border: 0;
 					pageContext.setAttribute("area", "0", PageContext.REQUEST_SCOPE);
 				%>
 				<s:set var="mapRanking" value="#{'全部','1-30','1-50','1-100','50-100'}"></s:set>
-				<s:set var="mapArea" value="#{'全部','东北部','五大湖','加州','德州'}"></s:set>
+				<s:set var="mapArea" value="#{'全部','东北部','西部','五大湖地区','南部','中部','其他'}"></s:set>
 				<s:set var="mapIsPublicSchool" value="#{-1:'全部',1:'公立',0:'私立'}"></s:set>
 				<s:set var="mapTimeOfEnrollment" value="#{'全部','秋季','春季','夏季','冬季'}"></s:set>
 				
@@ -298,7 +298,7 @@ border: 0;
 					pageContext.setAttribute("area", "0", PageContext.REQUEST_SCOPE);
 				%>
 				<s:set var="mapRanking" value="#{'全部','1-30','1-50','1-100','50-100'}"></s:set>
-				<s:set var="mapArea" value="#{'全部','东北部','五大湖','加州','德州'}"></s:set>
+				<s:set var="mapArea" value="#{'全部','东北部','西部','五大湖地区','南部','中部','其他'}"></s:set>
 				<s:set var="mapIsPublicSchool" value="#{-1:'全部',1:'公立',0:'私立'}"></s:set>
 				<s:set var="mapTimeOfEnrollment" value="#{'全部','秋季','春季','夏季','冬季'}"></s:set>
 	            <table class="table-1 table-accuratesearch" cellpadding="0" cellspacing="0">
