@@ -91,32 +91,28 @@ public class ProgramDaoImpl extends BaseMDDaoImpl<Program> implements IProgramDa
 			condition += " AND A.time_of_enrollment LIKE '%" + program.getTime_of_enrollment() + "%'";
 		}
 		if(program.getScore_totef() != -1){
-			condition += " AND (A.score_totef = 0 OR (A.score_totef >= " + program.getScore_totef();
+			condition += " AND A.score_totef >= " + program.getScore_totef();
 			if(program.getTotefEnd() != -1){
-				condition += " AND A.score_totef < " + program.getTotefEnd();
+				condition += " AND A.score_totef <= " + program.getTotefEnd();
 			}
-			condition += "))";
 		}
 		if(program.getScore_ietls() != -1){
-			condition += " AND (A.score_ietls = 0 OR (A.score_ietls >= " + program.getScore_ietls();
+			condition += " AND A.score_ietls >= " + program.getScore_ietls();
 			if(program.getIetlsEnd() != -1){
-				condition += " AND A.score_ietls < " + program.getIetlsEnd();
+				condition += " AND A.score_ietls <= " + program.getIetlsEnd();
 			}
-			condition += "))";
 		}
 		if(program.getScore_gre() != -1){
-			condition += " AND (A.score_gre = 0 OR (A.score_gre >= " + program.getScore_gre();
+			condition += " AND A.score_gre >= " + program.getScore_gre();
 			if(program.getGreEnd() != -1){
-				condition += " AND A.score_gre < " + program.getGreEnd();
+				condition += " AND A.score_gre <= " + program.getGreEnd();
 			}
-			condition += "))";
 		}
 		if(program.getScore_gmat() != -1){
-			condition += " AND (A.score_gmat = 0 OR (A.score_gmat >= " + program.getScore_totef();
+			condition += " AND A.score_gmat >= " + program.getScore_totef();
 			if(program.getTotefEnd() != -1){
-				condition += " AND A.score_gmat < " + program.getGmatEnd();
+				condition += " AND A.score_gmat <= " + program.getGmatEnd();
 			}
-			condition += "))";
 		}
 		if(program.getIs_language_score() != null && program.getIs_language_score() != -1){
 			condition += " AND A.is_language_score = " + program.getIs_language_score();
