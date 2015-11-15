@@ -84,6 +84,12 @@ public class ProgramDaoImpl extends BaseMDDaoImpl<Program> implements IProgramDa
 		if(program.getAreaName() != null && !program.getAreaName().equals("")){
 			condition += " AND E.name = '" + program.getAreaName() + "'";
 		}
+		if(program.getIs_public_school() != null && program.getIs_public_school() != -1){
+			condition += " AND B.is_public_school = " + program.getIs_public_school();
+		}
+		if(program.getTime_of_enrollment() != null && !program.getTime_of_enrollment().equals("")){
+			condition += " AND A.time_of_enrollment LIKE '%" + program.getTime_of_enrollment() + "%'";
+		}
 		if(program.getScore_totef() != -1){
 			condition += " AND (A.score_totef = 0 OR (A.score_totef >= " + program.getScore_totef();
 			if(program.getTotefEnd() != -1){

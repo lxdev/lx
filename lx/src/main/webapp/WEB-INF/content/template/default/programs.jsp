@@ -84,7 +84,7 @@ border: 0;
 						<input type="hidden" id="sort_by" name="condition.orderBy" value="D.total_browse DESC"/>
 						<input type="hidden" id="record_total" value="<s:property value="universityNum"/>"/>
 						<input type="hidden" name="defaultval" value="输入专业名称* " id="defaultval" />
-	                    <input class="button-1" type="button" value="搜索" onclick="search_data_p();"/>
+	                    <input class="button-1" type="button" value="搜索" onclick="search_data_p_init();"/>
 	                </div>
 	            </div>
 			</div>
@@ -297,7 +297,7 @@ border: 0;
 					pageContext.setAttribute("ranking", "全部", PageContext.REQUEST_SCOPE);
 					pageContext.setAttribute("area", "0", PageContext.REQUEST_SCOPE);
 				%>
-				<s:set var="mapRanking" value="#{'全部','1-30','1-50','1-100','50-100'}"></s:set>
+				<s:set var="mapRanking" value="#{'全部','1-30','1-50','1-100','50-100','101-200','200以后'}"></s:set>
 				<s:set var="mapArea" value="#{'全部','东北部','西部','五大湖地区','南部','中部','其他'}"></s:set>
 				<s:set var="mapIsPublicSchool" value="#{-1:'全部',1:'公立',0:'私立'}"></s:set>
 				<s:set var="mapTimeOfEnrollment" value="#{'全部','秋季','春季','夏季','冬季'}"></s:set>
@@ -306,7 +306,7 @@ border: 0;
 	                    <tr>
 	                        <td class="width-97 text-right">已选条件：
 	                        </td>
-	                        <td id="choose_td">
+	                        <td id="choose_td" data-type="program">
 	                            <!-- <a onclick="choose_cancel(this)" data-type="area" class="ss-item"><b>地区：</b><em>东北部</em><i></i></a>
 	                            <i class="crumbs-arrow">&gt;</i>
 	                            <a onclick="choose_cancel(this)" data-type="is_public_school" class="ss-item"><b>学校属性：</b><em>公立</em><i></i></a> -->
@@ -529,7 +529,7 @@ border: 0;
 		                                    <span>
 		                                    	<s:property value="country.name"/>&nbsp;&nbsp;&nbsp;&nbsp;
 		                                    	<s:if test="is_public_school==1">公立</s:if><s:else>私立</s:else>&nbsp;&nbsp;&nbsp;&nbsp;
-		                                    	<s:property value="area.city"/>&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    	<s:property value="area.city"/>,<s:property value="area.state"/>&nbsp;&nbsp;&nbsp;&nbsp;
 		                                    	<s:property value="scale"/>&nbsp;&nbsp;&nbsp;&nbsp;
 		                                    	<br/>
 		                                    	<s:property value="browse_number"/>浏览&nbsp;&nbsp;&nbsp;&nbsp;

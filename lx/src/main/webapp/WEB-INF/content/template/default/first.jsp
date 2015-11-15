@@ -58,7 +58,7 @@
 							    	</td>
 							    </tr>
 							    <tr>
-							    	<td align="right"><input class="button-1" type="submit" value="搜索" onclick="return validateCourseSearchForm()" /></td>
+							    	<td align="right"><input class="button-1" type="submit" value="搜索" onclick="return validateCourseSearchForm('homecoursesearch')" /></td>
 							    </tr>
 						    </table>
 						</form>
@@ -84,7 +84,7 @@
 							    	<td></td>
 							    </tr>
 							    <tr>
-							    	<td align="right"><input class="button-1" type="submit" value="搜索" onclick="return validateCollegeSearchForm()" /></td>
+							    	<td align="right"><input class="button-1" type="submit" value="搜索" onclick="return validateCollegeSearchForm('homecollegesearch')" /></td>
 							    </tr>
 							</table>
 						</form>

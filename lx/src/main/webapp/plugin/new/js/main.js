@@ -107,17 +107,19 @@ function initAutoComplete(json, obj, obj_id) {
         }//.context(this),
         .context,
         select: function (event, ui) {
-        	_this.elementId.val(ui.item.id).trigger('change');
-            //if ($('#' + this.options.name + "-text", this.elementId.prev()).val() == "") //This is prevent 2 or more ' this.elementId '
-            //    this.element.next().val(ui.item.id).trigger('change');
-        	_this.elementText.val(ui.item.name);
-        	_this.elementId.attr("data-id", ui.item.id);
-			//window.setTimeout(function(){
-			//	if(_this.elementId.val() == undefined || _this.elementId.val() == "") {
-			//		//_this.elementId.val(ui.item.id);
-			//		$("#" + this.elementId.attr("name")).val(ui.item.id);
-			//	}
-			//}, 500);
+			if(ui.item.id) {
+				_this.elementId.val(ui.item.id).trigger('change');
+				//if ($('#' + this.options.name + "-text", this.elementId.prev()).val() == "") //This is prevent 2 or more ' this.elementId '
+				//    this.element.next().val(ui.item.id).trigger('change');
+				_this.elementText.val(ui.item.name);
+				_this.elementId.attr("data-id", ui.item.id);
+				//window.setTimeout(function(){
+				//	if(_this.elementId.val() == undefined || _this.elementId.val() == "") {
+				//		//_this.elementId.val(ui.item.id);
+				//		$("#" + this.elementId.attr("name")).val(ui.item.id);
+				//	}
+				//}, 500);
+			}
             return false;
         }//.context(this)
         //.context
@@ -153,6 +155,52 @@ var set_sort_p = function(obj, sort_type){
 	
 	search_data_p(true);
 }
+/* programs page option search init */
+var reset_program_search_options = function(){
+	var options = ["ranking", "area", "is_public_school", "time_of_enrollment", "totef", "ietls", "gre", "gmat"];
+
+	for(var i = 0; i < options.length; i++) {
+		//$("input[name='" + options[i] + "']:eq(0)").click();
+		$("input[name='" + options[i] + "']").each(function(i){
+			if(i == 0){
+				this.checked = true;
+			}
+		});
+		if(i <= 2) {
+			$("#search_tr_" + options[i]).show();
+		}
+		$("#search_tr_" + options[i]).attr("data-choosed", "false");
+	}
+	$("#choose_td").html("");
+	$("#page").val(0);
+}
+/* programs page search click */
+var search_data_p_init = function(){
+	reset_program_search_options();
+	search_data_p();
+}
+
+
+/* programs page option search init */
+var reset_university_search_options = function(){
+	var options = ["ranking", "area", "is_public_school"];
+	for(var i = 0; i < options.length; i++) {
+		$("input[name='" + options[i] + "']").each(function(i){
+			if(i == 0){
+				this.checked = true;
+			}
+		});
+		$("#search_tr_" + options[i]).show();
+		$("#search_tr_" + options[i]).attr("data-choosed", "false");
+	}
+	$("#choose_td").html("");
+	$("#page").val(0);
+}
+var search_data_u_init = function(){
+	reset_university_search_options();
+	search_data_u();
+}
+
 /*搜索数据*/
 var search_data_p = function(is_not_check){
 	var url = '../template/json_programs';
@@ -180,25 +228,36 @@ var search_data_p = function(is_not_check){
 	
 	var tempAreaName = $('input[name="area"]:checked').val() || "";
 	var tempIsPublicSchool = $('input[name="is_public_school"]:checked').val() || -1;
+	var tempTimeOfEnrollment = $('input[name="time_of_enrollment"]:checked').val() || ""
 	
 	var rankingBegin;
 	var rankingEnd;
 	var tempRanking = $('input[name="ranking"]:checked').val();
 	if(tempRanking && tempRanking != '全部'){
-		var tempRankingArray = tempRanking.split('-');
-		rankingBegin = tempRankingArray[0];
-		if(tempRankingArray.length >= 2)
-			rankingEnd = tempRankingArray[1];
+		if(tempRanking == "200以后"){
+			rankingBegin = 201;
+			rankingEnd = 0;
+		}else {
+			var tempRankingArray = tempRanking.split('-');
+			rankingBegin = tempRankingArray[0];
+			if (tempRankingArray.length >= 2)
+				rankingEnd = tempRankingArray[1];
+		}
 	}
-	var score_totef = -1;
-	var totefEnd;
-	var tempTotef = $('input[name="totef"]:checked').val();
-	if(tempTotef && tempTotef != '-1'){
-		var tempTotefArray = tempTotef.split(',');
-		score_totef = tempRankingArray[0];
-		if(tempTotefArray.length >= 2)
-			totefEnd = tempTotefArray[1];
+	var scoreValueArray = [ { low: -1, high: null }, { low: -1, high: null }, { low: -1, high: null }, { low: -1, high: null } ];
+	//var score_totef = -1, score_ietls = -1, score_gre = -1, score_gmat = -1;
+	//var totefEnd, ietlsEnd, greEnd, gmatEnd;
+	var scoreArray = [ "totef", "ietls", "gre", "gmat" ];
+	for(var s = 0; s < scoreArray.length; s++){
+		var tempValue = $("input[name='" + scoreArray[s] + "']:checked").val();
+		if(tempValue && tempValue != '-1'){
+			var tempArray = tempValue.split(',');
+			scoreValueArray[s].low = tempArray[0];
+			if(tempArray.length >= 2)
+				scoreValueArray[s].high = tempArray[1];
+		}
 	}
+
 	
 	var option = {
 			'condition.countryId': country_id
@@ -213,11 +272,15 @@ var search_data_p = function(is_not_check){
 			, 'condition.rankingEnd': rankingEnd
 			, 'condition.areaName': (tempAreaName == '全部' ? '' : tempAreaName)
 			, 'condition.is_public_school': (tempIsPublicSchool == '全部' ? -1 : tempIsPublicSchool)
-			, 'condition.score_totef': score_totef
-			, 'condition.score_ietls': -1
-			, 'condition.score_gre': -1
-			, 'condition.score_gmat': -1
-			, 'condition.totefEnd': totefEnd
+			, 'condition.score_totef': scoreValueArray[0].low
+			, 'condition.score_ietls': scoreValueArray[1].low
+			, 'condition.score_gre': scoreValueArray[2].low
+			, 'condition.score_gmat': scoreValueArray[3].low
+			, 'condition.totefEnd': scoreValueArray[0].high
+            , 'condition.ietlsEnd': scoreValueArray[1].high
+            , 'condition.greEnd': scoreValueArray[2].high
+            , 'condition.gmatEnd': scoreValueArray[3].high
+			, 'condition.time_of_enrollment': tempTimeOfEnrollment == '全部' ? '' : tempTimeOfEnrollment
 			, 'condition.orderBy': $("#sort_by", parent).val()
 	};
 	
@@ -240,7 +303,7 @@ var search_data_p = function(is_not_check){
 			            lists += "					<a href='university?universityId=" + this.id + "'>" + this.university_name + "/" + this.english_name + "</a>";
 			            lists += "				</div>";
 			            lists += "				<div class='info'>";
-			            lists += "					<span>" + this.country.name + "&nbsp;&nbsp;&nbsp;&nbsp;" + (this.is_public_school == "1" ? "公立" : "私立") + "&nbsp;&nbsp;&nbsp;&nbsp;" + this.area.city + "&nbsp;&nbsp;&nbsp;&nbsp;"+ this.scale + "&nbsp;&nbsp;&nbsp;&nbsp;"
+			            lists += "					<span>" + this.country.name + "&nbsp;&nbsp;&nbsp;&nbsp;" + (this.is_public_school == "1" ? "公立" : "私立") + "&nbsp;&nbsp;&nbsp;&nbsp;" + this.area.city + "," + this.area.state + "&nbsp;&nbsp;&nbsp;&nbsp;"+ this.scale + "&nbsp;&nbsp;&nbsp;&nbsp;"
 			            lists += "						<br/>" + this.browse_number + "浏览&nbsp;&nbsp;&nbsp;&nbsp;" + this.evaluate_number + "点评&nbsp;&nbsp;&nbsp;&nbsp;";
 			            //lists += "					<span class='star'></span><span class='star2'></span><span class='star2'></span>";
 			            lists += "					</span>"
@@ -251,8 +314,10 @@ var search_data_p = function(is_not_check){
 			            lists += "			</td>";
 			            lists += "			<td valign='top' class='text-center' style='width:15%'>";
 			            lists += "				<div class='ranking ftcolff6600'>";
-			            lists += "					<span>综合排名 " + this.ranking_comprehensive + "</span>";
-			            jQuery.each(data.resultSpecialtyRank, function()
+			            //lists += "					<span>综合排名 " + this.ranking_comprehensive + "</span>";
+						lists += "					<span>综合排名 " + (this.ranking_comprehensive == 9999 ? '无排名' : this.ranking_comprehensive) + "</span>";
+
+						jQuery.each(data.resultSpecialtyRank, function()
 				    			{
 					            	if(_u.id == this.university_id){
 					            		//lists += "<span>" + $("#program_specialty", parent).val() + "排名：" + this.rank + "</span>";
@@ -368,7 +433,12 @@ var choose_cancel = function(obj){
 	
 	$(obj).prev().remove();
 	$(obj).remove();
-	search_data_p();
+
+	var chooseParent = $("#choose_td");
+	if(chooseParent.attr("data-type") == "program")
+		search_data_p();
+	else if(chooseParent.attr("data-type") == "university")
+		search_data_u();
 }
 var choose_submit = function(type, obj){
 	var chooseParent = $("#choose_td");
@@ -379,8 +449,11 @@ var choose_submit = function(type, obj){
 	chooseParent.append(option);
 	optionParent.hide();
 	optionParent.attr("data-choosed", "true");
-	
-	search_data_p();
+
+	if(chooseParent.attr("data-type") == "program")
+		search_data_p();
+	else if(chooseParent.attr("data-type") == "university")
+		search_data_u();
 }
 
 /*****************/
@@ -412,7 +485,9 @@ var search_data_u = function(type){
 	}
 	var universityId = $("#university_name_id").val() || $("#university_name_id").attr("data-id");
 	if(universityId != null && parseInt(universityId) > 0){
-		window.location.href="university?universityId=" + universityId;
+		clear_university();
+		//window.location.href="university?universityId=" + universityId;
+		window.open("university?universityId=" + universityId);
 		return;
 	}
 	if(type == -1){
@@ -428,10 +503,15 @@ var search_data_u = function(type){
 	var rankingEnd;
 	var tempRanking = $('input[name="ranking"]:checked').val();
 	if(tempRanking != '全部'){
-		var tempRankingArray = tempRanking.split('-');
-		rankingBegin = tempRankingArray[0];
-		if(tempRankingArray.length >= 2)
-			rankingEnd = tempRankingArray[1];
+		if(tempRanking == "200以后"){
+			rankingBegin = 201;
+			rankingEnd = 0;
+		}else {
+			var tempRankingArray = tempRanking.split('-');
+			rankingBegin = tempRankingArray[0];
+			if (tempRankingArray.length >= 2)
+				rankingEnd = tempRankingArray[1];
+		}
 	}
 	var tempAreaName = $('input[name="area"]:checked').val();
 	var tempIsPublic = $('input[name="is_public_school"]:checked').val();
@@ -467,7 +547,7 @@ var search_data_u = function(type){
 			            lists += "<a href='university?universityId=" + this.id + "'>" + this.university_name + "/" + this.english_name + "</a>";
 			            lists += "</div>";
 			            lists += "<div class='info'>";
-			            lists += "					<span>" + this.country.name + "&nbsp;&nbsp;&nbsp;&nbsp;" + (this.is_public_school == "1" ? "公立" : "私立") + "&nbsp;&nbsp;&nbsp;&nbsp;" + this.area.city + "&nbsp;&nbsp;&nbsp;&nbsp;"+ this.scale + "&nbsp;&nbsp;&nbsp;&nbsp;"
+			            lists += "					<span>" + this.country.name + "&nbsp;&nbsp;&nbsp;&nbsp;" + (this.is_public_school == "1" ? "公立" : "私立") + "&nbsp;&nbsp;&nbsp;&nbsp;" + this.area.city + "," + this.area.state + "&nbsp;&nbsp;&nbsp;&nbsp;"+ this.scale + "&nbsp;&nbsp;&nbsp;&nbsp;"
 			            lists += "						<br/>" + this.browse_number + "浏览&nbsp;&nbsp;&nbsp;&nbsp;" + this.evaluate_number + "点评&nbsp;&nbsp;&nbsp;&nbsp;";
 			            //lists += "					<span class='star'></span><span class='star2'></span><span class='star2'></span>";
 			            lists += "					</span>"
@@ -475,7 +555,8 @@ var search_data_u = function(type){
 			            lists += "</td>";
 			            lists += "<td valign='top' class='text-center' style='width:15%'>";
 			            lists += "<div class='ranking ftcolff6600'>";
-			            lists += "<span>综合排名 " + this.ranking_comprehensiveNew + "</span>";
+			            //lists += "<span>综合排名 " + this.ranking_comprehensiveNew + "</span>";
+						lists += "<span>综合排名 " + (this.ranking_comprehensive == 9999 ? '无排名' : this.ranking_comprehensive) + "</span>";
 			            lists += "</div>";
 			            lists += "<div class='text-center sc'>";
 			            lists += "<img src='../plugin/new/images/sc.png' onclick='common_collect(" + this.id + ", 2)'/>";
@@ -494,8 +575,17 @@ var search_data_u = function(type){
 	    		if(data.universityNum != null && data.universityNum >= 0){
 	    			set_page_result(data.universityNum);
 	    		}
+
+				clear_university();
 	    	},
 	 "json");
+}
+var clear_university = function(){
+	if($.trim($("#university_name").val()) != ""){
+		$("#university_name").val("");
+		$("#university_name_id").val("");
+		$("#university_name_id").attr("data-id", "");
+	}
 }
 /**/
 /***************/
@@ -599,28 +689,28 @@ function validateCourseSearchForm() {
 	return true;
 }
 /* 验证 首页 攻略 输入 */
-function validateSpecialtyForm() {
-
-	if($("#studynat").val() == "" || $("#studynat").val() == "0"){
+function validateSpecialtyForm(formName) {
+	var form = $("#" + formName);
+	if($("#studynat", form).val() == "" || $("#studynat", form).val() == "0"){
 		alert("请选择一个国家");
 		return false;
 	}
-	$("#guide_specialty_id").val( $("#guide_specialty_id").val() || $("#guide_specialty_id").attr("data-id") );
-	if($("#guide_specialty_id").val() == "" || $("#guide_specialty_id").val() == "0"){
+	$("#guide_specialty_id", form).val( $("#guide_specialty_id", form).val() || $("#guide_specialty_id", form).attr("data-id") );
+	if($("#guide_specialty_id", form).val() == "" || $("#guide_specialty_id", form).val() == "0"){
 		alert("请选择一个专业");
 		return false;
 	}
 	return true;
 }
 /* 验证 首页 院校 输入 */
-function validateCollegeSearchForm() {
-
-	if($("#unicountryStyleId").val() == "" || $("#unicountryStyleId").val() == "0"){
+function validateCollegeSearchForm(formName) {
+	var form = $("#" + formName);
+	if($("#unicountryStyleId", form).val() == "" || $("#unicountryStyleId", form).val() == "0"){
 		alert("请选择一个国家");
 		return false;
 	}
-	$("#university_name_id").val( $("#university_name_id").val() || $("#university_name_id").attr("data-id") );
-	if($("#university_name_id").val() == "" || $("#university_name_id").val() == "0"){
+	$("#university_name_id", form).val( $("#university_name_id", form).val() || $("#university_name_id", form).attr("data-id") );
+	if($("#university_name_id", form).val() == "" || $("#university_name_id", form).val() == "0"){
 		alert("请选择一个院校");
 		return false;
 	}

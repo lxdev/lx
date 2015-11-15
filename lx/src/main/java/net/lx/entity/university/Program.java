@@ -335,7 +335,13 @@ public class Program implements Serializable {
 	public void setAreaName(String areaName){
 		this.areaName = areaName;
 	}
-	
+	@Transient
+	private Integer is_public_school;
+	public Integer getIs_public_school(){
+		return is_public_school;
+	}
+	public void setIs_public_school(Integer is_public_school){ this.is_public_school = is_public_school; }
+
 	@Transient
 	private float totefEnd;
 	public void setTotefEnd(float totefEnd){

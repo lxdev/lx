@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <li class="gaik">
 		        <h4>概况</h4>
 		        <h3 class="ftsize14 paddingtop15">成立时间</h3>
-		        <h3 class="ftcol49b2a4 ftsize25"><s:property value="university.establishing"/></h3>
+		        <h3 class="ftcol49b2a4 ftsize25"><s:property value="university.establishing"/>年</h3>
 		        <h3 class="ftsize14 paddingtop15">学校属性</h3>
 		        <h3 class="ftcol49b2a4 ftsize25"><s:if test="university.is_public_school==1">公立</s:if><s:else>私立</s:else></h3>
 	        </li>
@@ -175,7 +175,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="conditions searchcourse">
             	<div class="condit-1"><h1>查找课程</h1></div>
                 <div class="condit-1 width-176">
-                    <s:select list="%{countryList}" listKey="id" listValue="name" onselect="%{countryId}" headerKey="0" headerValue="--请选择国家--" theme="simple" name="countryId" id="countryId" cssClass="txt-6"/>
+                    <%--<s:select list="%{countryList}" listKey="id" listValue="name" onselect="%{university.country.id}" headerKey="0" headerValue="--请选择国家--" theme="simple" name="countryId" id="countryId" cssClass="txt-6"/>--%>
+					<span class="txt-6"><s:property value="university.country.name"/></span>
                 </div>
                 <div class="condit-1 width-157">
                     <s:select list="%{studyLevelList}" listKey="id" listValue="name" onselect="%{studyLevelId}" headerKey="0" headerValue="--请选择学位--" theme="simple" name="studyLevelId" id="studyLevelId" cssClass="txt-7"/>

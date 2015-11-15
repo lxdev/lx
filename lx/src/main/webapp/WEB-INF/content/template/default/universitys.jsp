@@ -87,7 +87,7 @@ border: 0;
 						<input type="hidden" id="record_total" value="<s:property value="universityNum"/>"/>
 						<input type="hidden" name="defaultval" value="输入院校名称* " id="defaultval" />
 	                    <!--<input class="button-1" type="button" value="搜索" onclick="loadRefineResult(&#39;search&#39;,&#39;Next&#39;);"/>-->
-	                    <input class="button-1" type="button" value="搜索" onclick="search_data_u();"/>
+	                    <input class="button-1" type="button" value="搜索" onclick="search_data_u_init();"/>
 	                </div>
 	            </div>
 			</div>
@@ -102,54 +102,62 @@ border: 0;
 					pageContext.setAttribute("ranking", "全部", PageContext.REQUEST_SCOPE);
 					pageContext.setAttribute("area", "0", PageContext.REQUEST_SCOPE);
 				%>
-				<s:set var="mapRanking" value="#{'全部','1-30','31-50','51-100'}"></s:set>
+				<s:set var="mapRanking" value="#{'全部','1-30','31-50','51-100','101-200','200以后'}"></s:set>
 				<s:set var="mapArea" value="#{'全部','东北部','西部','五大湖地区','南部','中部','其他'}"></s:set>
 				<s:set var="mapTuition" value="#{'全部','1-10000','10001-20000','20001-30000','30001-'}"></s:set>
 				<s:set var="mapIsPublicSchool" value="#{-1:'全部', 1:'公立', 0:'私立'}"></s:set>
 				
 	            <table class="table-1 table-accuratesearch" cellpadding="0" cellspacing="0">
-	                <tr>
+					<tr>
+						<td class="width-97 text-right">已选条件：
+						</td>
+						<td id="choose_td" data-type="university"></td>
+					</tr>
+	                <tr id="search_tr_ranking" data-name="综合排名：">
 	                    <td class="width-97 text-right">综合排名：</td>
 	                    <td>
 							<s:iterator value="#mapRanking">
 								<label class="checkbox-inline" style="padding-top:8px">
 									<s:if test="ranking==key || (ranking==null && key=='全部')">
-										<input type="radio" name="ranking" value="<s:property value="key"/>" checked onchange="search_data_u();"> <s:property value="key"/>
+										<input type="radio" name="ranking" value="<s:property value="key"/>" checked onchange="choose_submit('ranking', this);">
 									</s:if>
 									<s:else>
-										<input type="radio" name="ranking" value="<s:property value="key"/>" onchange="search_data_u();"> <s:property value="key"/>
+										<input type="radio" name="ranking" value="<s:property value="key"/>" onchange="choose_submit('ranking', this);">
 									</s:else>
+									<s:property value="key"/>
 				   				</label>
 							</s:iterator>
 	                    </td>
 	                </tr>
-	                <tr>
+	                <tr id="search_tr_area" data-name="地区：">
 	                    <td class="width-64 text-right">地区：</td>
 	                    <td>
 	                        <s:iterator value="#mapArea">
 								<label class="checkbox-inline" style="padding-top:8px">
 									<s:if test="area==key || (area==null && key=='全部')">
-										<input type="radio" name="area" value="<s:property value="key"/>" checked onchange="search_data_u();"> <s:property value="key"/>
+										<input type="radio" name="area" value="<s:property value="key"/>" checked onchange="choose_submit('area', this);">
 									</s:if>
 									<s:else>
-										<input type="radio" name="area" value="<s:property value="key"/>" onchange="search_data_u();"> <s:property value="key"/>
+										<input type="radio" name="area" value="<s:property value="key"/>" onchange="choose_submit('area', this);">
 									</s:else>
+									<s:property value="key"/>
 								</label>
 							</s:iterator>
 			
 	                    </td>
 	                </tr>
-	                <tr>
-	                    <td class="width-64 text-right">公私立：</td>
+	                <tr id="search_tr_is_public_school" data-name="学校属性：">
+	                    <td class="width-64 text-right">学校属性：</td>
 	                    <td>
 	                        <s:iterator value="#mapIsPublicSchool">
 								<label class="checkbox-inline" style="padding-top:8px">
 									<s:if test="is_public_school==key || (is_public_school==null && key=='-1')">
-										<input type="radio" name="is_public_school" value="<s:property value="key"/>" checked onchange="search_data_u();"> <s:property value="value"/>
+										<input type="radio" name="is_public_school" value="<s:property value="key"/>" checked onchange="choose_submit('is_public_school', this);">
 									</s:if>
 									<s:else>
-										<input type="radio" name="is_public_school" value="<s:property value="key"/>" onchange="search_data_u();"> <s:property value="value"/>
+										<input type="radio" name="is_public_school" value="<s:property value="key"/>" onchange="choose_submit('is_public_school', this);">
 									</s:else>
+									<s:property value="value"/>
 								</label>
 							</s:iterator>
 	                    </td>
@@ -186,7 +194,7 @@ border: 0;
 		                                    <span>
 		                                    	<s:property value="country.name"/>&nbsp;&nbsp;&nbsp;&nbsp;
 		                                    	<s:if test="is_public_school==1">公立</s:if><s:else>私立</s:else>&nbsp;&nbsp;&nbsp;&nbsp;
-		                                    	<s:property value="area.city"/>&nbsp;&nbsp;&nbsp;&nbsp;
+		                                    	<s:property value="area.city"/>,<s:property value="area.state"/>&nbsp;&nbsp;&nbsp;&nbsp;
 		                                    	<s:property value="scale"/>&nbsp;&nbsp;&nbsp;&nbsp;
 		                                    	<br/>
 		                                    	<s:property value="browse_number"/>浏览&nbsp;&nbsp;&nbsp;&nbsp;

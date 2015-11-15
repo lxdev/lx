@@ -433,10 +433,18 @@ $.widget( "ui.autocomplete", {
 	/* 2015-08-20 updated for json not a format list but dom object */
 	__response: function( content ) {
 		if ( content ) {
-			if(content.specialtyList)
-				content = this._normalize( content.specialtyList );
-			else if(content.universityList)
-				content = this._normalize( content.universityList );
+			if(content.specialtyList) {
+				content = this._normalize(content.specialtyList);
+				if(content.length == 0){
+					content.push({ id: 0, name: "没有搜索到专业" });
+				}
+			}
+			else if(content.universityList) {
+				content = this._normalize(content.universityList);
+				if(content.length == 0){
+					content.push({ id: 0, name: "没有搜索到院校" });
+				}
+			}
 			else
 				content = this._normalize( content );
 		}
