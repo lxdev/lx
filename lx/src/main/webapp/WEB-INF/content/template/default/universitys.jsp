@@ -57,17 +57,27 @@ border: 0;
 }
 		</style>
 	</head>
-	<body>
+	<form>
 		<s:action namespace="/user" name="head" executeResult="true"/>
-		
+
+		<form id="form_universitys_search" action="universitys">
+			<input type="hidden" name="country_id" id="country_id" value="%{unicountryStyleId}"/>
+			<input type="hidden" name="areaName" value="areaName"/>
+
 		<div class="searcharea">
 			<div class="content" style="width: 849px">
+
 	            <div class="result">
 					共 <span class="ftcolffbc00" id="universityNum"><s:property value="universityNum"/></span> 所学校
 	            </div>
 	            <div class="conditions">
 	                <div class="condit-1">
-	                    <s:select list="%{countryList}" listKey="id" listValue="name" onselect="%{unicountryStyleId}" headerKey="0" headerValue="--请选择国家--" theme="simple" name="unicountryStyleId" id="unicountryStyleId" cssClass="txt-1"/>
+						<s:if test="%{unicountryStyleId!=null && unicountryStyleId != 0}">
+	                    	<s:select list="%{countryList}" listKey="id" listValue="name" onselect="%{unicountryStyleId}" headerKey="0" headerValue="--请选择国家--" theme="simple" name="unicountryStyleId" id="unicountryStyleId" cssClass="txt-1"/>
+						</s:if>
+						<s:else>
+							<s:select list="%{countryList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择国家--" theme="simple" name="unicountryStyleId" id="unicountryStyleId" cssClass="txt-1"/>
+						</s:else>
 	                </div>
 	                <div class="condit-1" style="width:495px">
 	                    <s:if test="%{university_name!=null}">
@@ -81,9 +91,12 @@ border: 0;
 				        <input type="hidden" id="university_name_id" name="university_name_id" value="${university_name_id}"/>
 	                </div>
 	                <div class="condit-2">
-						<input type="hidden" id="page_size" name="condition.page_size" value="10"/>
+						<!-- <input type="hidden" id="page_size" name="condition.page_size" value="10"/>
 						<input type="hidden" id="page" name="condition.page" value="${condition.page}"/>
-						<input type="hidden" id="sort_by" name="condition.orderBy" value="D.total_browse DESC"/>
+						<input type="hidden" id="sort_by" name="condition.orderBy" value="D.total_browse DESC"/> -->
+						<input type="hidden" id="page_size" name="page_size" value="10"/>
+						<input type="hidden" id="page" name="page" value="${page}"/>
+						<input type="hidden" id="orderBy" name="orderBy" value="${orderBy}"/>
 						<input type="hidden" id="record_total" value="<s:property value="universityNum"/>"/>
 						<input type="hidden" name="defaultval" value="输入院校名称* " id="defaultval" />
 	                    <!--<input class="button-1" type="button" value="搜索" onclick="loadRefineResult(&#39;search&#39;,&#39;Next&#39;);"/>-->
@@ -165,8 +178,8 @@ border: 0;
 	            </table>
 	        </div>
 	    </div>
-	    
-	    
+
+		</form>
 
 		<div class="reslut-2">
 	        <div class="title">
@@ -247,16 +260,19 @@ border: 0;
 		<script type="text/javascript">
 			
 			var set_page_init = function(){
-				$("#page").val(0);
+				//$("#page").val(0);
 				$("#page_ul li").removeClass("active");
 				$("#page_ul li:first").addClass("active");
+
+				var tempRanking = $('input[name="ranking"]:checked').val();
 			}
 	        
 			$(document).ready(function() {
+				var page = parseInt( $("#page").val() );
 				var page_size = parseInt( $("#page_size").val() );
 				var pageNum = parseInt( $("#record_total").val() );
 				var pageCount = pageNum <= 0 ? 0 : pageNum % page_size == 0 ? pageNum / page_size : parseInt( pageNum / page_size ) + 1;
-	            $("#pager").pager({ pagenumber: 1, pagecount: pageCount, buttonClickCallback: PageClick });
+	            $("#pager").pager({ pagenumber: page, pagecount: pageCount, buttonClickCallback: PageClick });
 	        });
 		</script>
 	</body>

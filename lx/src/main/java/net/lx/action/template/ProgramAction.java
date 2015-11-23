@@ -3,6 +3,10 @@ package net.lx.action.template;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.lx.biz.university.IUniversityStatisticBiz;
+import net.lx.entity.university.UniversityStatistic;
+import net.lx.biz.university.IProgramStatisticBiz;
+import net.lx.entity.university.ProgramStatistic;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +33,13 @@ public class ProgramAction extends BaseAction {
 	
 	private List<Program> similarPrograms = new ArrayList<Program>();
 
+	@Autowired
+	private IProgramStatisticBiz programStatisticBiz;
+	private ProgramStatistic programStatistic = new ProgramStatistic();
+	@Autowired
+	private IUniversityStatisticBiz universityStatisticBiz;
+	private UniversityStatistic universityStatistic = new UniversityStatistic();
+
 	@Action(value = "program", results = {
 			@Result(name = "success", type = "dispatcher", params = {
 					"contentType", "text/json",
@@ -42,7 +53,15 @@ public class ProgramAction extends BaseAction {
 		if(this.getProgramId() != 0){
 
 			resultProgram = programBiz.findProgramById(this.getProgramId());
-			
+
+			programStatistic.setProgram_id(this.getProgramId());
+			programStatistic.setIncr_or_decr(1);
+			programStatisticBiz.createOrUpdate(programStatistic);
+
+			universityStatistic.setUniversity_id(resultProgram.getUniversity_id());
+			universityStatistic.setIncr_or_decr(1);
+			universityStatisticBiz.createOrUpdate(universityStatistic);
+
 			similarPrograms.add(resultProgram);
 			
 			return SUCCESS;
@@ -71,5 +90,19 @@ public class ProgramAction extends BaseAction {
 	public void setSimilarPrograms(List<Program> similarPrograms){
 		this.similarPrograms = similarPrograms;
 	}
-	
+
+
+	public ProgramStatistic getProgramStatistic() { return programStatistic; }
+
+	public void setProgramStatistic(ProgramStatistic programStatistic) {
+		this.programStatistic = programStatistic;
+	}
+
+	public UniversityStatistic getUniversityStatistic() {
+		return universityStatistic;
+	}
+
+	public void setUniversityStatistic(UniversityStatistic universityStatistic) {
+		this.universityStatistic = universityStatistic;
+	}
 }

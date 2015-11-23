@@ -46,15 +46,18 @@ public class UniversitysAction extends BaseAction {
 	// 查询条件
 	private String university_name;		//院校名称
 	private Integer university_name_id;	//院校id
+
+	private int country_id;		//国家id
+
 	private int unicountryStyleId;		//国家id
 	private String countryName;
-	private int studyLevelId;
-	private String studyLevelName;
 	private String ranking;
 	private String area;
 	private String tuition;
 	private String is_public_school;
 	private String orderBy;
+	private int page;
+	private int page_size;
 	
 	private University condition = new University();
 	
@@ -85,7 +88,7 @@ public class UniversitysAction extends BaseAction {
 			@Result(name = "success", type = "dispatcher", params = {
 					"contentType", "text/json",
 					"includeProperties",
-					"result.*, unicountryStyleId, university_name, university_name_id, ranking, area, is_public_school, orderBy, isFromFirst"
+					"result.*, university_name, university_name_id, ranking, area, is_public_school, orderBy, isFromFirst, page, page_size, country_id"
 				}, location="/WEB-INF/content/template/default/universitys.jsp"
 			),
 			@Result(name = "success_one", type="redirect", location = "university?universityId=${university_name_id}")
@@ -98,18 +101,23 @@ public class UniversitysAction extends BaseAction {
 			return "success_one";
 		
 		University u = new University();
-//		if(unicountryStyleId == 0)
-//			unicountryStyleId = 1;	//默认 美国
-//		if(college == null)
-//			setCollege("");
-		
-		u.setCountry_id(getUnicountryStyleId());
+
+		if(unicountryStyleId > 0)
+			u.setCountry_id(unicountryStyleId);
+		else if(country_id > 0)
+			u.setCountry_id(getCountry_id());
 		if(university_name != null){
-			university_name = StringEncode.ToUTF8(university_name, true);
+			//ajax request
+			//university_name = StringEncode.ToUTF8(university_name, true);
+			//form request
+			university_name = new String(university_name.getBytes("iso8859-1"),"utf-8");
 		}
 		u.setUniversity_name(getUniversity_name());
 		if(ranking != null){
-			ranking = StringEncode.ToUTF8(ranking, true);
+			//ajax request
+			//ranking = StringEncode.ToUTF8(ranking, true);
+			//form request
+			ranking = new String(ranking.getBytes("iso8859-1"),"utf-8");
 			if(!ranking.equalsIgnoreCase("全部")){
 				String[] rankings = ranking.split("-");
 				u.setRankingBegin(Integer.parseInt(rankings[0]));
@@ -118,7 +126,10 @@ public class UniversitysAction extends BaseAction {
 			}
 		}
 		if(area != null){
-			area = StringEncode.ToUTF8(area, true);
+			//ajax request
+			//area = StringEncode.ToUTF8(area, true);
+			//form request
+			area = new String(area.getBytes("iso8859-1"),"utf-8");
 			if(!area.equalsIgnoreCase("全部")){
 				u.setAreaName(area);
 			}
@@ -128,23 +139,18 @@ public class UniversitysAction extends BaseAction {
 				u.setIs_public_school(Integer.parseInt(is_public_school));
 			}
 		}
-		
-		System.out.println(unicountryStyleId + "---------" + university_name);
-		
+
 		countryList = this.countryBiz.findAll();
-//		areaList = this.areaBiz.findAll();
-//		Area area0 = new Area();
-//		area0.setId(0);
-//		area0.setCountryId(1);
-//		area0.setName("全部");
-//		areaList.add(0, area0);
+
+		if(getCountry_id() >= 1)
+			setCountryName(this.countryBiz.findCountryById(getCountry_id()).getName());
 		
-		if(getUnicountryStyleId() >= 1)
-			setCountryName(this.countryBiz.findCountryById(getUnicountryStyleId()).getName());
-		
-		u.setPage_size(condition.getPage_size() <= 0 ? 10 : condition.getPage_size());
-		u.setPage(condition.getPage() <= 0 ? 1 : condition.getPage());
-		u.setOrderBy(" D.total_browse DESC ");
+		//u.setPage_size(condition.getPage_size() <= 0 ? 10 : condition.getPage_size());
+		//u.setPage(condition.getPage() <= 0 ? 1 : condition.getPage());
+		//u.setOrderBy(" D.total_browse DESC ");
+		u.setPage(page);
+		u.setPage_size(getPage_size() == 0 ? 10 : getPage_size());
+		u.setOrderBy(getOrderBy() == null || getOrderBy() == "" ? " D.total_browse DESC " : getOrderBy());
 		
 		resultUniversity = this.universityBiz.searchUniversitysByCondition(u);
 		u.setIsSearchTotal(true);
@@ -175,12 +181,6 @@ public class UniversitysAction extends BaseAction {
 		this.resultUniversity = resultUniversity;
 	}
 	
-	public int getUnicountryStyleId(){
-		return unicountryStyleId;
-	}
-	public void setUnicountryStyleId(int unicountryStyleId){
-		this.unicountryStyleId = unicountryStyleId;
-	}
 	public String getCountryName(){
 		return countryName;
 	}
@@ -325,6 +325,35 @@ public class UniversitysAction extends BaseAction {
 	public void setUniversity_name_id(Integer university_name_id) {
 		this.university_name_id = university_name_id;
 	}
-	
+
+
+	public int getCountry_id() {
+		return country_id;
+	}
+	public void setCountry_id(int country_id) {
+		this.country_id = country_id;
+	}
+
+	public int getPage_size() {
+		return page_size;
+	}
+	public void setPage_size(int page_size) {
+		this.page_size = page_size;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getUnicountryStyleId() {
+		return unicountryStyleId;
+	}
+	public void setUnicountryStyleId(int unicountryStyleId) {
+		this.unicountryStyleId = unicountryStyleId;
+	}
+
+
 	//------------------------------------------------------------------------
 }

@@ -64,7 +64,7 @@
 						</form>
 					</div>
 					<div id="search_university">
-						<form id="homecollegesearch" name="collegeSearchPanel" action="universitys" method="post" accept-charset="UTF-8">
+						<form id="homecollegesearch" name="collegeSearchPanel" action="universitys" method="get" accept-charset="UTF-8">
 							<input type="hidden" name="defaultunival" value="请输入学校名称，如：哈佛大学" id="defaultunival" />
 							<input type="hidden" name="isFromFirst" value="true" id="isFromFirst" />
 							<table cellpadding="0" cellspacing="0" class="table-11">
@@ -90,7 +90,7 @@
 						</form>
 					</div>
 					<div id="search_guide">
-						<form id="scholarShipFormBean" name="scholar" action="guides" method="post" onsubmit="return validateSpecialtyForm();">
+						<form id="scholarShipFormBean" name="scholar" action="guides" method="post" onsubmit="return validateSpecialtyForm('search_guide');">
 							<input type="hidden" name="isFromFirst" value="true" id="isFromFirst" />
 							<table cellpadding="0" cellspacing="0" class="table-11">
 							    <tr>

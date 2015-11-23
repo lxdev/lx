@@ -317,13 +317,18 @@ var search_data_p = function(is_not_check){
 			            //lists += "					<span>综合排名 " + this.ranking_comprehensive + "</span>";
 						lists += "					<span>综合排名 " + (this.ranking_comprehensive == 9999 ? '无排名' : this.ranking_comprehensive) + "</span>";
 
+						var tempIsExistRank = false;
 						jQuery.each(data.resultSpecialtyRank, function()
 				    			{
 					            	if(_u.id == this.university_id){
+					            		tempIsExistRank = true;
 					            		//lists += "<span>" + $("#program_specialty", parent).val() + "排名：" + this.rank + "</span>";
 					            		lists += "<span>专业排名：" + this.rank + "</span>";
 					            	}
 				    			});
+						if(!tempIsExistRank){
+							lists += "<span>专业排名：无排名</span>"
+						}
 			            lists += "				</div>";
 			            lists += "				<div class='text-center sc'>";
 			            lists += "					<img src='../plugin/new/images/sc.png' onclick='common_collect(" + this.id + ", 2)'/>";
@@ -495,7 +500,7 @@ var search_data_u = function(type){
 	}else {
 		set_page_init();
 	}
-	open_loading();
+	//open_loading();
 	
 	var url = '../template/json_universitys';
 	
@@ -528,7 +533,24 @@ var search_data_u = function(type){
 			, 'condition.is_public_school': tempIsPublic
 			, 'condition.orderBy': $("#sort_by").val()
 	};
-	
+
+	//2015-11-22 将查询提交方式改为页面刷新
+	$("#country_id").val($("#unicountryStyleId").val());
+	$("#university_name").val(universityName);
+	$("#rankingBegin").val(rankingBegin);
+	$("#rankingEnd").val(rankingEnd);
+	$("#areaName").val(tempAreaName == '全部' ? '' : tempAreaName);
+	$("#is_public_school").val(tempIsPublic);
+
+	//var hash = "#search";
+	//for(var a in option){
+	//	hash += "&" + a + "=" + option[a];
+	//}
+	//window.location.href = window.location.origin + window.location.pathname + hash;
+	//window.location.reload();
+	$("#form_universitys_search").submit();
+	return ;
+
 	jQuery.post(url, option,
 	        function(data)
 	    	{
@@ -695,9 +717,11 @@ function validateSpecialtyForm(formName) {
 		alert("请选择一个国家");
 		return false;
 	}
-	$("#guide_specialty_id", form).val( $("#guide_specialty_id", form).val() || $("#guide_specialty_id", form).attr("data-id") );
-	if($("#guide_specialty_id", form).val() == "" || $("#guide_specialty_id", form).val() == "0"){
-		alert("请选择一个专业");
+	//$("#guide_specialty_id", form).val( $("#guide_specialty_id", form).val() || $("#guide_specialty_id", form).attr("data-id") );
+	var guideId = $("#guide_specialty_id", form).val() || $("#guide_specialty_id", form).attr("data-id");
+	if(guideId != "" && guideId != "0" && guideId != 0){
+		//alert("请选择一个专业");
+		window.open("guide?guide_id=" + guideId);
 		return false;
 	}
 	return true;
@@ -709,9 +733,10 @@ function validateCollegeSearchForm(formName) {
 		alert("请选择一个国家");
 		return false;
 	}
-	$("#university_name_id", form).val( $("#university_name_id", form).val() || $("#university_name_id", form).attr("data-id") );
-	if($("#university_name_id", form).val() == "" || $("#university_name_id", form).val() == "0"){
-		alert("请选择一个院校");
+	//$("#university_name_id", form).val( $("#university_name_id", form).val() || $("#university_name_id", form).attr("data-id") );
+	var universityId = $("#university_name_id", form).val() || $("#university_name_id", form).attr("data-id");
+	if(universityId != "" && universityId != "0" && universityId != 0){
+		window.open("university?universityId=" + universityId);
 		return false;
 	}
 	return true;

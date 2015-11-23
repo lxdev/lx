@@ -523,7 +523,7 @@ border: 0;
 		                            </td>
 		                            <td valign="top">
 		                                <div class="universityname">
-		                                	<a href="university?universityId=<s:property value="id"/>"><s:property value="university_name"/>/<s:property value="english_name"/></a>
+		                                	<a href="university?universityId=<s:property value="id"/>" target="_blank"><s:property value="university_name"/>/<s:property value="english_name"/></a>
 		                                </div>
 		                                <div class="info">
 		                                    <span>
@@ -544,11 +544,16 @@ border: 0;
 		                            <td valign="top" class="text-center" style="width:19%">
 		                                <div class="ranking ftcolff6600">
 		                                    <span>综合排名 <s:property value="ranking_comprehensive"/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                    <s:iterator value="resultSpecialtyRank" id="spe_rank">
-		                                    	<s:if test="#spe_rank.university_id==#outer.id">
-		                                    		<span>专业排名：<s:property value="#spe_rank.rank"/></span>
-		                                    	</s:if>
-		                                    </s:iterator>
+											<s:if test="resultSpecialtyRank.contains(#outer.id)">
+                                                <s:iterator value="resultSpecialtyRank" id="spe_rank">
+                                                    <s:if test="#spe_rank.university_id==#outer.id">
+                                                        <span>专业排名：<s:property value="#spe_rank.rank"/></span>
+                                                    </s:if>
+                                                </s:iterator>
+											</s:if>
+											<s:else>
+												<span>专业排名：无排名</span>
+											</s:else>
 		                                </div>
 		                                <div class="text-center sc">
 		                                    <img src="../plugin/new/images/sc.png" onclick="common_collect('<s:property value="id"/>', '2')"/>
@@ -563,7 +568,7 @@ border: 0;
 											<li class="university_<s:property value="#inner.university_id"/>" style="display: none;">
 				                                <div class="ctitle ftcol333333">
 				                                    <span class="sclink clicks"><a href="javascript:void(0);" onclick="common_collect(<s:property value="#inner.id"/>, '3')">收藏</a></span>
-				                                    <a href="program?programId=<s:property value="#inner.id"/>">
+				                                    <a href="program?programId=<s:property value="#inner.id"/>" target="_blank">
 				                                    	<span><s:property value="#inner.program_name"/></span>
 				                                    </a>
 				                                    <span>0浏览</span>

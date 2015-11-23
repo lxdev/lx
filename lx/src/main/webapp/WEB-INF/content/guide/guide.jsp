@@ -45,14 +45,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			            	<s:iterator value="options" id="outer">
 								<s:if test="#outer.parent_id==0">
 									<li class="current">
-									<a href="#content_${outer.id }">
-										<h2 class="ranking">${outer.option_name }</h2>
+                                        <a href="#content_${outer.id }">
+                                            <h2 class="ranking">${outer.option_name }</h2>
+                                        </a>
 										<s:iterator value="options" id="inner">
 											<s:if test="#inner.parent_id==#outer.id">
-												<div class="sublink">${inner.option_name }</div>
+													<a href="#content_${outer.id}_${inner.id}">
+														<div class="sublink">${inner.option_name }</div>
+													</a>
 											</s:if>
 										</s:iterator>
-									</a>
 									</li>
 								</s:if>
 							</s:iterator>
@@ -104,8 +106,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<s:if test="#inner2.parent_id==#outer2.id">
 												<s:iterator value="guideResult.optionContents" id="oc">
 													<s:if test="#oc.option_id==#inner2.id">
-														<span>${ inner2.option_name }</span>
-														<p>${oc.option_content }</p>
+														<div id="content_${outer2.id}_${inner2.id}">
+															<span>${ inner2.option_name }</span>
+															<s:if test="#oc.option_content != ''">
+                                                                <p>${oc.option_content }</p>
+															</s:if>
+															<s:else>
+																<p>暂无内容</p>
+															</s:else>
+														</div>
 													</s:if>
 												</s:iterator>
 											</s:if>

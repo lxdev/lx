@@ -31,32 +31,59 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <table class="table-2" cellpadding="0" cellspacing="0">
 	                        <tr>
 	                            <td class="ulogo-2">
-	                                <img src="../plugin/new/images/img-2.jpg" />
+	                                <!-- <img src="../plugin/new/images/img-2.jpg" /> -->
+	                                <img src="<s:property value="resultProgram.university.logo_url"/>"/>
 	                            </td>
 	                            <td valign="top">
 	                                <h1 class="paddingbottom15"><s:property value="resultProgram.program_name"/></h1>
 	                                <div class="info">
-	                                	<span><s:property value="resultProgram.university.university_name"/></span>
+	                                	<span>
+	                                		<a href="university?universityId=<s:property value="resultProgram.university.id"/>" target="_blank">
+	                                			<s:property value="resultProgram.university.university_name"/>
+	                                		</a>
+	                                	</span>
+	                                </div>
+	                                <div class="info">
+	                                    <span>
+	                                    	<s:property value="resultProgram.university.country.name"/>
+	                                    </span>
 	                                	<span>
 	                                		<s:if test="resultProgram.university.is_public_school==1">公立</s:if><s:else>私立</s:else>
 	                                	</span>
-	                                	<span>专业排名</span>
-	                                </div>
+	                                	&nbsp;&nbsp;
+	                                	<s:property value="resultProgram.university.area.city"/>,<s:property value="resultProgram.university.area.state"/>
+	                               	</div>
 	                                <div class="info">
-	                                    <span><s:property value="resultProgram.university.country.name"/>&nbsp;&nbsp;&nbsp;&nbsp;0浏览&nbsp;&nbsp;&nbsp;&nbsp;0点评</span>&nbsp;&nbsp;&nbsp;&nbsp;
-	                                    <span class="star"></span>
+										<s:property value="programStatistic.total_browse"/>浏览&nbsp;&nbsp;&nbsp;&nbsp;
+										<s:property value="universityStatistic.total_evaluate"/>点评
+	                                    <!-- <span class="star"></span>
 	                                    <span class="star2"></span>
-	                                    <span class="star2"></span>
+	                                    <span class="star2"></span> -->
 	                                </div>
-	                               
+	                                <div>
+	                                	<s:property value="resultProgram.time_of_enrollment"/>
+	                                </div>
 	                            </td>
 	                            <td valign="top" class="text-center">
 	                                <div class="ranking ftcolff6600">
 	                                    <span>综合排名 <s:property value="resultProgram.university.ranking_comprehensive"/></span>  </div>
 	                                <div class="text-center sc">
 	                                    <img src="../plugin/new/images/sc2.png" onclick="common_collect('<s:property value="resultProgram.id"/>', '3')"/>&nbsp;&nbsp;
-	                                    <a href="<s:property value="resultProgram.apply_link"/>"><img src="../plugin/new/images/gwkc.png" /></a>
+	                                    <a href="<s:property value="resultProgram.specialty_link"/>" target="_blank"><img src="../plugin/new/images/gwkc.png" /></a>
 	                                </div>
+                                	<s:if test="resultProgram.course_setting != null">
+                                		<div>
+								            <table cellpadding="0" cellspacing="0">
+								            	<tr>
+								            		<td valign="top">
+								            			<s:if test="resultProgram.course_setting.contains('http://')">
+								            				<a href="<s:property value="resultProgram.course_setting"/>" target="_blank">课程设置</a>
+								            			</s:if>
+								            		</td>
+								            	</tr>
+								            </table>
+							            </div>
+						            </s:if>
 	                            </td>
 	                        </tr>
 	                    </table>
@@ -72,9 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            	<s:if test="resultProgram.student_profile != null">
 	            		<li>录取统计</li>
 	            	</s:if>
-	            	<s:if test="resultProgram.course_setting != null">
-	            		<li>课程设置</li>
-	            	</s:if>
+	            	
 	            </ul>
 	            <div class="clear">
 	            </div>
@@ -83,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        	<table class="table-3" cellpadding="0" cellspacing="0">
 					<tr>
 						<td valign="top" class="width-150">
-		                   <h2 class="icon-3">授课方式</h2>
+		                   <h2 class="icon-3">学制</h2>
 		                </td> 
 						<td valign="top">
 							<s:property value="resultProgram.teach_way"/><br>
@@ -96,20 +121,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                    <h2 class="icon-4">学费</h2>
 		                </td>
 						<td valign="top">
-		            	$<s:property value="resultProgram.tuition"/>
-						<s:if test="resultProgram.tuition_top==0 || resultProgram.tuition_top==null"></s:if>
-						<s:else>--$
-							<s:property value="resultProgram.tuition_top"/>
-						</s:else>
-		            </td>
-					</tr>
-					<tr>
-						<td valign="top" class="width-150">
-		                	<h2 class="icon-5">学制</h2>
-		                </td>
-						<td valign="top">
-		            	<s:property value="resultProgram.time_of_enrollment"/>
-		            </td>
+                            $<s:property value="resultProgram.tuition"/>
+                            <s:if test="resultProgram.tuition_top==0 || resultProgram.tuition_top==null"></s:if>
+                            <s:else>--$
+                                <s:property value="resultProgram.tuition_top"/>
+                            </s:else>
+                            <br/>(Total Program，只包括整个项目所需学费，不含生活费)
+                        </td>
 					</tr>
 		            <tr>
 		                <td valign="top" class="width-150">
@@ -128,10 +146,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                   <h2 class="icon-7">截止日期</h2>
 		                </td> 
 						<td valign="top">
-							<s:property value="resultProgram.time_of_spring_end"/>
-							<s:property value="resultProgram.time_of_summer_end"/>
-							<s:property value="resultProgram.time_of_autumn_end"/>
-							<s:property value="resultProgram.time_of_winter_end"/>
+							<s:if test="resultProgram.time_of_spring_end != ''">
+								春季入学：<s:property value="resultProgram.time_of_spring_end"/><br/>
+							</s:if>
+							<s:if test="resultProgram.time_of_summer_end != ''">
+								夏季入学：<s:property value="resultProgram.time_of_summer_end"/><br />
+							</s:if>
+							<s:if test="resultProgram.time_of_autumn_end != ''">
+								秋季入学：<s:property value="resultProgram.time_of_autumn_end"/><br />
+							</s:if>
+							<s:if test="resultProgram.time_of_winter_end != ''">
+								冬季入学：<s:property value="resultProgram.time_of_winter_end"/>
+							</s:if>
+						</td>
+					</tr>
+					<tr>
+						<td class="width-150">
+		                	<h2 class="icon-10">专业背景</h2>
+		                </td>
+						<td valign="top">
+							<s:if test="resultProgram.specialty_require==1">
+								<s:property value="resultProgram.specialty_require_desc"/>
+							</s:if>
+	   						<s:else>无专业背景要求
+								<br/><s:property value="resultProgram.specialty_require_desc"/>
+							</s:else>
+						</td>
+					</tr>
+					<tr>
+						<td class="width-150">
+		                <h2 class="icon-9">工作经验</h2>
+		                </td>
+						<td valign="top">
+							<s:if test="resultProgram.work_experience_require==1">
+								<s:property value="resultProgram.work_experience_desc"/>
+							</s:if>
+	   						<s:else>无工作经验要求
+								<br/><s:property value="resultProgram.work_experience_desc"/>
+							</s:else>
 						</td>
 					</tr>
 					<tr>
@@ -139,102 +191,121 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                    <h2 class="icon-8">成绩要求</h2>
 		                </td>
 						<td valign="top">
-	   						<s:if test="resultProgram.score_totef==0">托福总分：无最低分数要求</s:if>
-	   							<s:elseif test="resultProgram.score_totef==-1">此项目不接收托福成绩</s:elseif>
-	   							<s:elseif test="resultProgram.score_totef==-2"></s:elseif>
-	   							<s:else>托福总分：最低分数要求为<s:property value="resultProgram.score_totef"/></s:else>
-	   						<s:if test="resultProgram.totef_single != null && resultProgram.totef_single != ''">
-	   							<br><s:if test="resultProgram.totef_single == '0'">
-	   								托福单项：无最低分数要求
-	   							</s:if>
-	   							<s:else>
-	   								托福单项：最低分数要求<s:property value="resultProgram.totef_single"/>
-	   							</s:else>
-	   						</s:if>
-	   						<s:if test="resultProgram.totef_desc != null && resultProgram.totef_desc != ''">
-	   							<br><s:property value="resultProgram.totef_desc"/>
-	   						</s:if>
-	   						<br><s:if test="resultProgram.score_ietls==0">雅思总分：无最低分数要求</s:if>
-	  							<s:elseif test="resultProgram.score_ietls==-1">此项目不接收雅思成绩</s:elseif>
-	  							<s:elseif test="resultProgram.score_itels==-2"></s:elseif>
-	  							<s:else>雅思总分：最低分数要求为<s:property value="resultProgram.score_ietls"/></s:else>
-	  						<s:if test="resultProgram.ietls_single != null && resultProgram.ietls_single != ''">
-	  							<br><s:if test="resultProgram.ietls_single == '0'">
-	   								雅思单项：无最低分数要求
-	   							</s:if>
-	   							<s:else>
-	   								雅思单项：最低分数要求<s:property value="resultProgram.ietls_single"/>
-	   							</s:else>
-	  						</s:if>
-	  						<s:if test="resultProgram.ietls_single != null && resultProgram.ietls_single != ''">
-	  							<br>描述：<s:property value="resultProgram.itels_desc"/></s:if>
-	  						<br><s:if test="resultProgram.score_gre==0">GRE总分：无最低分数要求</s:if>
-	   							<s:elseif test="resultProgram.score_re==-1">此项目不接收GRE成绩</s:elseif>
-	   							<s:elseif test="resultProgram.score_gre==-2"></s:elseif>
-	   							<s:else>GRE总分：最低要求<s:property value="resultProgram.score_gre"/></s:else>
-	   						<s:if test="resultProgram.gre_single != null && resultProgram.gre_single != ''">
-	   							<br><s:if test="resultProgram.gre_single == '0'">
-	   								GRE单项：无最低分数要求
-	   							</s:if>
-	   							<s:else>
-	   								GRE单项：最低分数要求<s:property value="resultProgram.gre_single"/>
-	   							</s:else>
-	   						</s:if>
-	   						<s:if test="resultProgram.is_language_score == 1">
-	   							<s:property value="resultProgram.is_language_score_desc"/>
-	   						</s:if>
-	   						<s:if test="resultProgram.gre_desc != null && resultProgram.gre_desc != ''">
-	   							<br><s:property value="resultProgram.gre_desc"/></s:if>
-	   						<br><s:if test="resultProgram.score_gmat==0">GMAT总分：无最低分数要求</s:if>
-	   							<s:elseif test="resultProgram.score_gmat==-1">>此项目不接收GMAT成绩</s:elseif>
-	   							<s:elseif test="resultProgram.score_gmat==-2"></s:elseif>
-	   							<s:else>GMAT总分：最低要求<s:property value="resultProgram.score_gmat"/></s:else>
-	   						<s:if test="resultProgram.gmat_single != null && resultProgram.gmat_single != ''">
-	   							<br><s:if test="resultProgram.gmat_single == '0'">
-	   								GMAT单项：无最低分数要求
-	   							</s:if>
-	   							<s:else>
-	   								GMAT单项：最低分数要求<s:property value="resultProgram.gmat_single"/>
-	   							</s:else>
-	   						</s:if>
-	   						<s:if test="resultProgram.gmat_desc != null && resultProgram.gmat_desc != ''">
-	   							<br><s:property value="resultProgram.gmat_desc"/>
-	   						</s:if>
-	   						<br><s:if test="resultProgram.score_gpa==0">改项目没有最低GPA要求</s:if>
-	   							<s:else>
-	   								GPA最低要求为<s:property value="resultProgram.score_totef"/>
-	   							</s:else>
-	   							<s:if test="resultProgram.gpa_desc != null && resultProgram.gpa_desc != ''">
-	   								<br/>描述：<s:property value="resultProgram.gpa_desc"/>
-	   							</s:if>
-	   						<br><s:if test="resultProgram.lsat != null && resultProgram.lsat != ''">
-	   							<s:property value="resultProgram.lsat"/>
-	   						</s:if>
-	   						<br><s:if test="resultProgram.gre_sub_desc != null && resultProgram.gre_sub_desc != ''">
-	   							<s:property value="resultProgram.gre_sub_desc"/>
-	   						</s:if>
-						</td>
-					</tr>
-					<tr>
-						<td class="width-150">
-		                <h2 class="icon-9">工作经验要求</h2>
-		                </td>
-						<td valign="top">
-							<s:if test="resultProgram.work_experience_require==1 || resultProgram.work_experience_require==2">
-								<s:property value="resultProgram.work_experience_desc"/>
-							</s:if>
-	   						<s:else>此项目不需要工作经验要求</s:else>
-						</td>
-					</tr>
-					<tr>
-						<td class="width-150">
-		                	<h2 class="icon-10">专业背景要求</h2>
-		                </td>
-						<td valign="top">
-							<s:if test="resultProgram.specialty_require==1">
-								<s:property value="resultProgram.specialty_require_desc"/>
-							</s:if>
-	   						<s:else>此项目没有专业背景要求，任何专业都可以申请</s:else>
+							<table>
+								<tr>
+									<th>GPA</th>
+									<td>
+										<s:if test="resultProgram.score_gpa==0">无最低要求</s:if>
+                                            <s:else>
+                                                <s:property value="resultProgram.score_totef"/>
+                                            </s:else>
+                                            <s:if test="resultProgram.gpa_desc != null && resultProgram.gpa_desc != ''">
+                                                <br/><s:property value="resultProgram.gpa_desc"/>
+                                            </s:if>
+                                            <br><s:if test="resultProgram.lsat != null && resultProgram.lsat != ''">
+                                            <s:property value="resultProgram.lsat"/>
+                                        </s:if>
+									</td>
+								</tr>
+								<tr>
+									<th>托福</th>
+									<td>
+                                    	<s:if test="resultProgram.score_totef==0">托福总分：无最低要求</s:if>
+                                            <s:elseif test="resultProgram.score_totef==-1">不接受托福成绩</s:elseif>
+                                            <s:elseif test="resultProgram.score_totef==-2">无需提供托福成绩</s:elseif>
+                                            <s:else>托福总分：<s:property value="resultProgram.score_totef"/></s:else>
+                                        <s:if test="resultProgram.totef_single != null && resultProgram.totef_single != '' && resultProgram.score_totef!=-1">
+                                            <br><s:if test="resultProgram.totef_single == 0">
+                                                托福单项：无最低要求
+                                            </s:if>
+                                            <s:else>
+                                                托福单项：<s:property value="resultProgram.totef_single"/>
+                                            </s:else>
+                                        </s:if>
+										<s:if test="resultProgram.totef_desc != null && resultProgram.totef_desc != ''">
+											<br><s:property value="resultProgram.totef_desc"/>
+										</s:if>
+									</td>
+								</tr>
+								<tr>
+									<th>雅思</th>
+									<td>
+                                        <br><s:if test="resultProgram.score_ietls==0">雅思总分：无最低要求</s:if>
+                                            <s:elseif test="resultProgram.score_ietls==-1">不接受雅思成绩</s:elseif>
+                                            <s:elseif test="resultProgram.score_itels==-2">无需提供雅思成绩</s:elseif>
+                                            <s:else>雅思总分：<s:property value="resultProgram.score_ietls"/></s:else>
+                                        <s:if test="resultProgram.ietls_single != null && resultProgram.ietls_single != '' && resultProgram.score_ietls != -1">
+                                            <br><s:if test="resultProgram.ietls_single == 0">
+                                                雅思单项：无最低要求
+                                            </s:if>
+                                            <s:else>
+                                                雅思单项：<s:property value="resultProgram.ietls_single"/>
+                                            </s:else>
+                                        </s:if>
+										<s:if test="resultProgram.ietls_desc != null && resultProgram.ietls_desc != ''">
+											<br><s:property value="resultProgram.ietls_desc"/>
+										</s:if>
+									</td>
+								</tr>
+								<tr>
+									<th>有条件录取</th>
+									<td>
+										<s:if test="resultProgram.is_language_score == 1">
+											提供有条件录取
+                                        </s:if>
+										<s:else>不提供有条件录取</s:else>
+										<br/><s:property value="resultProgram.is_language_score_desc"/>
+									</td>
+								</tr>
+								<tr>
+									<th>GRE</th>
+									<td>
+                                        <br><s:if test="resultProgram.score_gre==0">GRE总分：无最低要求</s:if>
+                                            <s:elseif test="resultProgram.score_re==-1">不接受GRE成绩</s:elseif>
+                                            <s:elseif test="resultProgram.score_gre==-2">无需提供GRE成绩</s:elseif>
+                                            <s:else>GRE总分：<s:property value="resultProgram.score_gre"/></s:else>
+                                        <s:if test="resultProgram.gre_single != null && resultProgram.gre_single != '' && resultProgram.score_gre != -1">
+                                            <br><s:if test="resultProgram.gre_single == 0">
+                                                GRE单项：无最低要求
+                                            </s:if>
+                                            <s:else>
+                                                GRE单项：<s:property value="resultProgram.gre_single"/>
+                                            </s:else>
+                                        </s:if>
+										<s:if test="resultProgram.gre_desc != null && resultProgram.gre_desc != ''">
+											<br><s:property value="resultProgram.gre_desc"/>
+										</s:if>
+									</td>
+								</tr>
+								<s:if test="resultProgram.gre_sub_desc != null && resultProgram.gre_sub_desc != ''">
+								<tr>
+									<th>GRE Sub</th>
+									<td>
+										<s:property value="resultProgram.gre_sub_desc"/>
+									</td>
+								</tr>
+								</s:if>
+								<tr>
+									<th>GMAT</th>
+									<td>
+										<s:if test="resultProgram.score_gmat==0">GMAT总分：无最低要求</s:if>
+                                            <s:elseif test="resultProgram.score_gmat==-1">不接受GMAT成绩</s:elseif>
+                                            <s:elseif test="resultProgram.score_gmat==-2">无需提供GMAT成绩</s:elseif>
+                                            <s:else>GMAT总分：<s:property value="resultProgram.score_gmat"/></s:else>
+                                        <s:if test="resultProgram.gmat_single != null && resultProgram.gmat_single != '' && resultProgram.score_gmat != -1">
+                                            <br><s:if test="resultProgram.gmat_single == 0">
+                                                GMAT单项：无最低要求
+                                            </s:if>
+                                            <s:else>
+                                                GMAT单项：<s:property value="resultProgram.gmat_single"/>
+                                            </s:else>
+                                        </s:if>
+                                        <s:if test="resultProgram.gmat_desc != null && resultProgram.gmat_desc != ''">
+                                            <br><s:property value="resultProgram.gmat_desc"/>
+                                        </s:if>
+									</td>
+								</tr>
+							</table>
 						</td>
 					</tr>
 				</table>
@@ -247,20 +318,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        		</tr>
 		        	</table>
 	        	</s:if>
-	        	<s:if test="resultProgram.course_setting != null">
-		            <table class="table-3" cellpadding="0" cellspacing="0" style="display:none">
-		            	<tr>
-		            		<td valign="top">
-		            			<s:if test="resultProgram.course_setting.contains('http://')">
-		            				<a href="<s:property value="resultProgram.course_setting"/>" target="_blank">链接</a>
-		            			</s:if>
-		            			<s:else>
-		            				<s:property value="resultProgram.course_setting"/>
-		            			</s:else>
-		            		</td>
-		            	</tr>
-		            </table>
-	            </s:if>
 			</div>
 		</div>
 	    <div class="bottom">

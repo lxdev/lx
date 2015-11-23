@@ -35,7 +35,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                                	<s:property value="university.university_name" />/<s:property value="university.english_name" />
 	                                </h1>
 	                                <div class="info">
-	                                    <span><s:property value="university.country.name" />&nbsp;&nbsp;&nbsp;&nbsp;<s:property value="universityStatistic.total_browse"/>浏览&nbsp;&nbsp;&nbsp;&nbsp;<s:property value="universityStatistic.total_evaluate"/>点评</span></div>
+	                                    <span>
+											<s:property value="university.country.name" />&nbsp;&nbsp;&nbsp;&nbsp;
+											<s:property value="universityStatistic.total_browse"/>浏览&nbsp;&nbsp;&nbsp;&nbsp;
+											<s:property value="universityStatistic.total_evaluate"/>点评
+										</span>
+									</div>
 	                               
 	                            </td>
 	                            <td valign="top" class="text-center">

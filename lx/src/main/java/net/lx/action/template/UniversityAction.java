@@ -107,7 +107,6 @@ public class UniversityAction extends BaseAction {
 		return universityStatistic;
 	}
 
-
 	public void setUniversityStatistic(UniversityStatistic universityStatistic) {
 		this.universityStatistic = universityStatistic;
 	}

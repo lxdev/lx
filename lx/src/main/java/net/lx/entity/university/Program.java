@@ -383,7 +383,27 @@ public class Program implements Serializable {
 	public void setOrderBy(String orderBy){
 		this.orderBy = orderBy;
 	}
-	
+
+
+	@Transient
+	private int evaluate_number;		//评价数
+	public int getEvaluate_number(){
+		return evaluate_number;
+	}
+	public void setEvaluate_number(int evaluate_number){
+		this.evaluate_number = evaluate_number;
+	}
+
+	@Transient
+	private int browse_number;		//浏览数
+	public int getBrowse_number(){
+		return browse_number;
+	}
+	public void setBrowse_number(int browse_number){
+		this.browse_number = browse_number;
+	}
+
+
 	@Transient
 	private int page;
 	public int getPage(){
