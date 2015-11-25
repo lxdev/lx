@@ -48,6 +48,7 @@ public class InitFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
 		HttpSession session = request.getSession(true);
 		SingletonSession.init(session);
+		
 		// TODO:登录校验
 		// TODO:权限校验
 		// 获取地址

@@ -180,13 +180,26 @@ var search_data_p_init = function(){
 	search_data_p();
 }
 
-
+var set_university_search_options = function(){
+	var options = ["ranking", "area", "is_public_school"];
+	for(var i = 0; i < options.length; i++) {
+		$("input[name='" + options[i] + "']").each(function(j, e){
+			if(j > 0 && this.checked){
+				choose_submit(options[i], this, true);
+			}
+		});
+		//$("#search_tr_" + options[i]).show();
+		//$("#search_tr_" + options[i]).attr("data-choosed", "false");
+	}
+	//$("#choose_td").html("");
+	//$("#page").val(0);
+}
 /* programs page option search init */
 var reset_university_search_options = function(){
 	var options = ["ranking", "area", "is_public_school"];
 	for(var i = 0; i < options.length; i++) {
-		$("input[name='" + options[i] + "']").each(function(i){
-			if(i == 0){
+		$("input[name='" + options[i] + "']").each(function(j){
+			if(j == 0){
 				this.checked = true;
 			}
 		});
@@ -445,7 +458,14 @@ var choose_cancel = function(obj){
 	else if(chooseParent.attr("data-type") == "university")
 		search_data_u();
 }
-var choose_submit = function(type, obj){
+/**
+ * 精确查找
+ * @param type	如 ranking, area 等
+ * @param obj	点击或设置的对象 如 checkbox
+ * @param is_not_search		true则不执行查找
+ * @returns
+ */
+var choose_submit = function(type, obj, is_not_search){
 	var chooseParent = $("#choose_td");
 	var optionParent = $(obj).parent().parent().parent();
 	var option =  "<i class='crumbs-arrow'>&gt;</i>";
@@ -455,10 +475,12 @@ var choose_submit = function(type, obj){
 	optionParent.hide();
 	optionParent.attr("data-choosed", "true");
 
-	if(chooseParent.attr("data-type") == "program")
-		search_data_p();
-	else if(chooseParent.attr("data-type") == "university")
-		search_data_u();
+	if(!is_not_search){
+		if(chooseParent.attr("data-type") == "program")
+			search_data_p();
+		else if(chooseParent.attr("data-type") == "university")
+			search_data_u();
+	}
 }
 
 /*****************/
@@ -518,7 +540,7 @@ var search_data_u = function(type){
 				rankingEnd = tempRankingArray[1];
 		}
 	}
-	var tempAreaName = $('input[name="area"]:checked').val();
+	//var tempAreaName = $('input[name="area"]:checked').val();
 	var tempIsPublic = $('input[name="is_public_school"]:checked').val();
 	
 	var option = {
@@ -529,7 +551,7 @@ var search_data_u = function(type){
 			, 'condition.page': $("#page").val()
 			, 'condition.rankingBegin': rankingBegin
 			, 'condition.rankingEnd': rankingEnd
-			, 'condition.areaName': (tempAreaName == '全部' ? '' : tempAreaName)
+			//, 'condition.areaName': (tempAreaName == '全部' ? '' : tempAreaName)
 			, 'condition.is_public_school': tempIsPublic
 			, 'condition.orderBy': $("#sort_by").val()
 	};
@@ -539,7 +561,7 @@ var search_data_u = function(type){
 	$("#university_name").val(universityName);
 	$("#rankingBegin").val(rankingBegin);
 	$("#rankingEnd").val(rankingEnd);
-	$("#areaName").val(tempAreaName == '全部' ? '' : tempAreaName);
+	//$("#areaName").val(tempAreaName == '全部' ? '' : tempAreaName);
 	$("#is_public_school").val(tempIsPublic);
 
 	//var hash = "#search";

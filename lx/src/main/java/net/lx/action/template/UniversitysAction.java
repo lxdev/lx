@@ -108,16 +108,16 @@ public class UniversitysAction extends BaseAction {
 			u.setCountry_id(getCountry_id());
 		if(university_name != null){
 			//ajax request
-			//university_name = StringEncode.ToUTF8(university_name, true);
+			university_name = StringEncode.ToUTF8(university_name, true);
 			//form request
-			university_name = new String(university_name.getBytes("iso8859-1"),"utf-8");
+			//university_name = new String(university_name.getBytes("iso8859-1"),"utf-8");
 		}
 		u.setUniversity_name(getUniversity_name());
 		if(ranking != null){
 			//ajax request
-			//ranking = StringEncode.ToUTF8(ranking, true);
+			ranking = StringEncode.ToUTF8(ranking, true);
 			//form request
-			ranking = new String(ranking.getBytes("iso8859-1"),"utf-8");
+			//ranking = new String(ranking.getBytes("iso8859-1"),"utf-8");
 			if(!ranking.equalsIgnoreCase("全部")){
 				String[] rankings = ranking.split("-");
 				u.setRankingBegin(Integer.parseInt(rankings[0]));
@@ -127,9 +127,9 @@ public class UniversitysAction extends BaseAction {
 		}
 		if(area != null){
 			//ajax request
-			//area = StringEncode.ToUTF8(area, true);
+			area = StringEncode.ToUTF8(area, true);
 			//form request
-			area = new String(area.getBytes("iso8859-1"),"utf-8");
+			//area = new String(area.getBytes("iso8859-1"),"utf-8");
 			if(!area.equalsIgnoreCase("全部")){
 				u.setAreaName(area);
 			}
