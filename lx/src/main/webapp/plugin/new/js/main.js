@@ -155,6 +155,17 @@ var set_sort_p = function(obj, sort_type){
 	
 	search_data_p(true);
 }
+
+var set_program_search_options = function(){
+	var options = ["ranking", "area", "is_public_school", "time_of_enrollment", "totef", "ietls", "gre", "gmat"];
+	for(var i = 0; i < options.length; i++) {
+		$("input[name='" + options[i] + "']").each(function(j, e){
+			if(j > 0 && this.checked){
+				choose_submit(options[i], this, true);
+			}
+		});
+	}
+}
 /* programs page option search init */
 var reset_program_search_options = function(){
 	var options = ["ranking", "area", "is_public_school", "time_of_enrollment", "totef", "ietls", "gre", "gmat"];
@@ -296,7 +307,12 @@ var search_data_p = function(is_not_check){
 			, 'condition.time_of_enrollment': tempTimeOfEnrollment == '全部' ? '' : tempTimeOfEnrollment
 			, 'condition.orderBy': $("#sort_by", parent).val()
 	};
-	
+
+	//2015-11-22 将查询提交方式改为页面刷新
+
+	$("#form_programs_search").submit();
+	return ;
+
 	jQuery.post(url, option,
 	        function(data)
 	    	{

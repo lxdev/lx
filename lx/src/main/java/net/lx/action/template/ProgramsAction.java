@@ -213,9 +213,9 @@ public class ProgramsAction extends BaseAction {
 			}
 		}
 		if(is_public_school != null){
-//			if(!is_public_school.equalsIgnoreCase("-1")){
-//				cProgram.setIs.setIs_language_score(Integer.parseInt(is_public_school));
-//			}
+			if(!is_public_school.equalsIgnoreCase("-1")){
+				cProgram.setIs_language_score(Integer.parseInt(is_public_school));
+			}
 		}
 		cProgram.setScore_totef(-1);
 		if(totef != null){

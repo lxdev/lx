@@ -45,7 +45,7 @@
                 </div>
                 <div class="tab-content content">
                   <div class='tab-pane <s:if test="step==0">active</s:if>' id="tab1">
-                    <form id="form_user_info" class="form-horizontal" action="../university/evaluate_wizard" method="POST">
+                    <form id="form_user_info" class="form-horizontal" action="../university/evaluate_wizard" method="post">
                     	<input type="hidden" name="step" value="0"/>
                     	<input type="hidden" name="userExtend.id" value="<s:property value="userExtend.id"/>"/>
                     	<input type="hidden" name="userExtend.user_id" value="<s:property value="userExtend.user_id"/>"/>
@@ -84,7 +84,7 @@
                     </form>
                   </div>
                   <div class='tab-pane <s:if test="step==1">active</s:if>' id="tab2">
-                    <form id="form_evaluate_score" class="form-horizontal" action="../university/evaluate_wizard" method="POST" onsubmit="return submit_evaluate()">
+                    <form id="form_evaluate_score" class="form-horizontal" action="../university/evaluate_wizard" method="post" onsubmit="return submit_evaluate()">
                     	<input type="hidden" name="step" value="1"/>
                     	<input type="hidden" name="evaluate.id" value="<s:property value="evaluate.id"/>"/>
                     	<input type="hidden" name="evaluateUniversity.university_id" value="<s:property value="evaluateUniversity.university_id"/>"/>
@@ -140,7 +140,7 @@
                     </form>
                   </div>
                   <div class="tab-pane <s:if test="step==2">active</s:if>" id="tab3">
-                    <form class="form-horizontal" action="../university/evaluate_wizard" method="POST">
+                    <form class="form-horizontal" action="../university/evaluate_wizard" method="post">
                     	<input type="hidden" name="step" value="2"/>
                     	<input type="hidden" name="evaluate.id" value="<s:property value="evaluate.id"/>"/>
                         <div class="form-group">

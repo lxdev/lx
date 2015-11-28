@@ -6,10 +6,10 @@
 
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://ogp.me/ns/fb#" class=" js svg">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<title>搜索课程</title>
-		<meta name="description" content="">
-		<meta name="keywords" content="">
+		<meta name="description" content=""/>
+		<meta name="keywords" content=""/>
 		
 		<jc:plugin name="new_css" />
 		<jc:plugin name="auto_complete"/>
@@ -49,7 +49,10 @@ border: 0;
 	</head>
 	<body id="programs">
 		<s:action namespace="/user" name="head" executeResult="true"/>
-		
+
+		<form id="form_programs_search" action="programs">
+			<input type="hidden" name="country_id" id="country_id" value="%{countryId}"/>
+
 		<div class="searcharea">
 			<div class="content">
 	            <div class="result">
@@ -63,13 +66,10 @@ border: 0;
 	                    <s:select list="%{studyLevelList}" listKey="id" listValue="name" onselect="%{studyLevelId}" headerKey="0" headerValue="--请选择学位--" theme="simple" name="studyLevelId" id="studyLevelId" cssClass="txt-7"/>
 	                </div>
 	                <div class="condit-1">
-	                	<!--<input type="hidden" name="defaultval" value="输入专业名称* " id="defaultval" />-->
 	                    <s:if test="%{program_specialty!=null}">
-							<!--<s:textfield id="ctitle" name="courseTitle" value="%{ctitle}" cssClass="txt-1" onfocus="clearDefaultText(this,'输入专业名称* ')" onblur="setDefaultText(this,'输入专业名称* ')" onkeyup="clearErrorMessagesforHomeText('ctitle');ajax_showOptions(this,'getCountriesByLetters',event, 'null','category')" onclick="ajax_options_hide()" onchange="clearajaxtextvalue('courseTitle_hidden')"></s:textfield>-->
 							<s:textfield id="program_specialty" name="program_specialty" value="%{program_specialty}" cssClass="ui-autocomplete-input txt-1" placeholder="输入专业名称* " data-url="../template/specialty_search"></s:textfield>
 						</s:if>
 						<s:else>
-							<!--<input type="text" name="courseTitle" class="txt-1" value="输入专业名称* " id="ctitle" autocomplete="off" onfocus="clearDefaultText(this,'输入专业名称* ')" onblur="setDefaultText(this,'输入专业名称* ')" value="输入专业名称* " onkeyup="clearErrorMessagesforHomeText('ctitle');ajax_showOptions(this,'getCountriesByLetters',event, 'null','category')" onclick="ajax_options_hide()" onchange="clearajaxtextvalue('courseTitle_hidden')"/>-->
 							<input id="program_specialty" name="program_specialty" class="ui-autocomplete-input txt-1" placeholder="输入专业名称* " data-url="<s:url value="/template/specialty_search"/>"/>
 						</s:else>
 				        <input type="hidden" id="program_specialty_id" name="program_specialty_id" value="${program_specialty_id}"/>
@@ -79,9 +79,12 @@ border: 0;
 				        <input type="hidden" id="university_name_id" name="university_name_id"/>
 	                </div>
 	                <div class="condit-2">
-						<input type="hidden" id="page_size" name="condition.page_size" value="10"/>
+						<!-- <input type="hidden" id="page_size" name="condition.page_size" value="10"/>
 						<input type="hidden" id="page" name="condition.page" value="${condition.page}"/>
-						<input type="hidden" id="sort_by" name="condition.orderBy" value="D.total_browse DESC"/>
+						<input type="hidden" id="sort_by" name="condition.orderBy" value="D.total_browse DESC"/> -->
+						<input type="hidden" id="page_size" name="page_size" value="10"/>
+						<input type="hidden" id="page" name="page" value="${page}"/>
+						<input type="hidden" id="orderBy" name="orderBy" value="${orderBy}"/>
 						<input type="hidden" id="record_total" value="<s:property value="universityNum"/>"/>
 						<input type="hidden" name="defaultval" value="输入专业名称* " id="defaultval" />
 	                    <input class="button-1" type="button" value="搜索" onclick="search_data_p_init();"/>
@@ -89,7 +92,6 @@ border: 0;
 	            </div>
 			</div>
 		</div>
-		
 		
 	    <div class="accuratesearch">
         	<div class="title">精确搜索</div>
@@ -110,9 +112,6 @@ border: 0;
 	                        <td class="width-97 text-right">已选条件：
 	                        </td>
 	                        <td id="choose_td" data-type="program">
-	                            <!-- <a onclick="choose_cancel(this)" data-type="area" class="ss-item"><b>地区：</b><em>东北部</em><i></i></a>
-	                            <i class="crumbs-arrow">&gt;</i>
-	                            <a onclick="choose_cancel(this)" data-type="is_public_school" class="ss-item"><b>学校属性：</b><em>公立</em><i></i></a> -->
 	                        </td>
 	                    </tr>
 	                    <tr id="search_tr_ranking" data-name="综合排名：">
@@ -121,10 +120,10 @@ border: 0;
 		                        <s:iterator value="#mapRanking">
 									<label class="checkbox-inline" style="padding-top:8px">
 										<s:if test="ranking==key || (ranking==null && key=='全部')">
-											<input type="radio" name="ranking" value="<s:property value="key"/>" checked onchange="choose_submit('ranking', this);"> 
+											<input type="radio" name="ranking" value="<s:property value="key"/>" checked onchange="choose_submit('ranking', this);"/> 
 										</s:if>
 										<s:else>
-											<input type="radio" name="ranking" value="<s:property value="key"/>" onchange="choose_submit('ranking', this);">
+											<input type="radio" name="ranking" value="<s:property value="key"/>" onchange="choose_submit('ranking', this);"/>
 										</s:else>
 										<s:property value="key"/>
 					   				</label>
@@ -137,10 +136,10 @@ border: 0;
 		                        <s:iterator value="#mapArea">
 									<label class="checkbox-inline" style="padding-top:8px">
 										<s:if test="area==key || (area==null && key=='全部')">
-											<input type="radio" name="area" value="<s:property value="key"/>" checked onchange="choose_submit('area', this);">
+											<input type="radio" name="area" value="<s:property value="key"/>" checked onchange="choose_submit('area', this);"/>
 										</s:if>
 										<s:else>
-											<input type="radio" name="area" value="<s:property value="key"/>" onchange="choose_submit('area', this);">
+											<input type="radio" name="area" value="<s:property value="key"/>" onchange="choose_submit('area', this);"/>
 										</s:else>
 										<s:property value="key"/>
 									</label>
@@ -153,10 +152,10 @@ border: 0;
 		                        <s:iterator value="#mapIsPublicSchool">
 									<label class="checkbox-inline" style="padding-top:8px">
 										<s:if test="is_public_school==key || (is_public_school==null && key==-1)">
-											<input type="radio" name="is_public_school" value="<s:property value="key"/>" checked onchange="choose_submit('is_public_school', this);">
+											<input type="radio" name="is_public_school" value="<s:property value="key"/>" checked onchange="choose_submit('is_public_school', this);"/>
 										</s:if>
 										<s:else>
-											<input type="radio" name="is_public_school" value="<s:property value="key"/>" onchange="choose_submit('is_public_school', this);">
+											<input type="radio" name="is_public_school" value="<s:property value="key"/>" onchange="choose_submit('is_public_school', this);"/>
 										</s:else>
 										<s:property value="value"/>
 									</label>
@@ -169,10 +168,10 @@ border: 0;
 		                        <s:iterator value="#mapTimeOfEnrollment">
 									<label class="checkbox-inline" style="padding-top:8px">
 										<s:if test="time_of_enrollment==key || (time_of_enrollment==null && key=='全部')">
-											<input type="radio" name="time_of_enrollment" value="<s:property value="key"/>" checked onchange="choose_submit('time_of_enrollment', this);">
+											<input type="radio" name="time_of_enrollment" value="<s:property value="key"/>" checked onchange="choose_submit('time_of_enrollment', this);"/>
 										</s:if>
 										<s:else>
-											<input type="radio" name="time_of_enrollment" value="<s:property value="key"/>" onchange="choose_submit('time_of_enrollment', this);"> 
+											<input type="radio" name="time_of_enrollment" value="<s:property value="key"/>" onchange="choose_submit('time_of_enrollment', this);"/> 
 										</s:else>
 										<s:property value="key"/>
 									</label>
@@ -183,16 +182,16 @@ border: 0;
 	                    	<td class="width-97 text-right">托福要求：</td>
 		                    <td>
 		                        <label class="checkbox-inline" style="padding-top:8px">
-									<input type="radio" name="totef" value="-1" <s:if test="totef==null||totef==-1"> checked</s:if> onchange="choose_submit('totef', this);"> 全部
+									<input type="radio" name="totef" value="-1" <s:if test="totef==null||totef==-1"> checked</s:if> onchange="choose_submit('totef', this);"/> 全部
 								</label>
 								<s:iterator value="scoreList">
 									<s:if test="categoryType==1">
 										<label class="checkbox-inline" style="padding-top:8px">
 											<s:if test="totef==((scopeLowerInt == null ? -1 : scopeLowerInt)+'-'+(scopeHigherInt == null ? -1 : scopeHigherInt))">
-												<input type="radio" name="totef" value="${scope_lower_int},${scope_higher_int}" checked onchange="choose_submit('totef', this);"> 
+												<input type="radio" name="totef" value="${scope_lower_int},${scope_higher_int}" checked onchange="choose_submit('totef', this);"/> 
 											</s:if>
 											<s:else>
-												<input type="radio" name="totef" value="${scope_lower_int},${scope_higher_int}" onchange="choose_submit('totef', this);"> 
+												<input type="radio" name="totef" value="${scope_lower_int},${scope_higher_int}" onchange="choose_submit('totef', this);"/> 
 											</s:else>
 											<s:if test="scopeLower==-1">
 												小于<s:property value="scope_higher_int"/>
@@ -212,16 +211,16 @@ border: 0;
 	                    	<td class="width-97 text-right">雅思要求：</td>
 		                    <td>
 		                        <label class="checkbox-inline" style="padding-top:8px">
-									<input type="radio" name="ietls" value="-1" <s:if test="ietls==null||ietls==-1"> checked</s:if> onchange="choose_submit('ietls', this);"> 全部
+									<input type="radio" name="ietls" value="-1" <s:if test="ietls==null||ietls==-1"> checked</s:if> onchange="choose_submit('ietls', this);"/> 全部
 								</label>
 								<s:iterator value="scoreList">
 									<s:if test="categoryType==2">
 										<label class="checkbox-inline" style="padding-top:8px">
 											<s:if test="ietls==(scopeLower+','+scopeHigher)">
-												<input type="radio" name="ietls" value="${scopeLower},${scopeHigher}" checked onchange="choose_submit('ietls', this);"> 
+												<input type="radio" name="ietls" value="${scopeLower},${scopeHigher}" checked onchange="choose_submit('ietls', this);"/> 
 											</s:if>
 											<s:else>
-												<input type="radio" name="ietls" value="${scopeLower},${scopeHigher}" onchange="choose_submit('ietls', this);"> 
+												<input type="radio" name="ietls" value="${scopeLower},${scopeHigher}" onchange="choose_submit('ietls', this);"/> 
 											</s:else>
 											<s:if test="scopeLower==-1">
 												小于<s:property value="scopeHigher"/>
@@ -242,16 +241,16 @@ border: 0;
 	                        <td class="width-97 text-right">GRE要求：</td>
 		                    <td>
 		                    	<label class="checkbox-inline" style="padding-top:8px">
-									<input type="radio" name="gre" value="-1" <s:if test="gre==null||gre==-1"> checked</s:if> onchange="choose_submit('gre', this);"> 全部
+									<input type="radio" name="gre" value="-1" <s:if test="gre==null||gre==-1"> checked</s:if> onchange="choose_submit('gre', this);"/> 全部
 								</label>
 								<s:iterator value="scoreList">
 									<s:if test="categoryType==3">
 										<label class="checkbox-inline" style="padding-top:8px">
 											<s:if test="scope_lower_int+','+scope_higher_int">
-												<input type="radio" name="gre" value="${scope_lower_int},${scope_higher_int}" checked onchange="choose_submit('gre', this);"> 
+												<input type="radio" name="gre" value="${scope_lower_int},${scope_higher_int}" checked onchange="choose_submit('gre', this);"/> 
 											</s:if>
 											<s:else>
-												<input type="radio" name="gre" value="${scope_lower_int},${scope_higher_int}" onchange="choose_submit('gre', this);"> 
+												<input type="radio" name="gre" value="${scope_lower_int},${scope_higher_int}" onchange="choose_submit('gre', this);"/> 
 											</s:else>
 											<s:if test="scopeLower==-1">
 												小于<s:property value="scope_higher_int"/>
@@ -271,16 +270,16 @@ border: 0;
 	                        <td class="width-97 text-right">GMAT要求：</td>
 		                    <td>
 		                    	<label class="checkbox-inline" style="padding-top:8px">
-									<input type="radio" name="gmat" value="-1" <s:if test="gmat==null||gmat==-1"> checked</s:if> onchange="choose_submit('gmat', this);"> 全部
+									<input type="radio" name="gmat" value="-1" <s:if test="gmat==null||gmat==-1"> checked</s:if> onchange="choose_submit('gmat', this);"/> 全部
 								</label>
 								<s:iterator value="scoreList">
 									<s:if test="categoryType==4">
 										<label class="checkbox-inline" style="padding-top:8px">
 											<s:if test="gmat==(scope_lower_int+'-'+scope_higher_int)">
-												<input type="radio" name="gmat" value="${scope_lower_int},${scope_higher_int}" checked onchange="choose_submit('gmat', this);"> 
+												<input type="radio" name="gmat" value="${scope_lower_int},${scope_higher_int}" checked onchange="choose_submit('gmat', this);"/> 
 											</s:if>
 											<s:else>
-												<input type="radio" name="gmat" value="${scope_lower_int},${scope_higher_int}" onchange="choose_submit('gmat', this);"> 
+												<input type="radio" name="gmat" value="${scope_lower_int},${scope_higher_int}" onchange="choose_submit('gmat', this);"/> 
 											</s:else>
 											<s:if test="scopeLower==-1">
 												小于<s:property value="scope_higher_int"/>
@@ -303,7 +302,8 @@ border: 0;
 	            </div>
         	</div>
     	</div>
-    	
+
+		</form>
 	    
 	    <div class="reslut-2">
 	        <div class="title">
@@ -409,13 +409,19 @@ border: 0;
 		<jc:plugin name="main_js" />
 		
 		<script type="text/javascript">
-		
+			var set_page_init = function(){
+				//$("#page").val(0);
+				$("#page_ul li").removeClass("active");
+				$("#page_ul li:first").addClass("active");
+			}
 			
 			$(document).ready(function() {
 				var page_size = parseInt( $("#page_size").val() );
 				var pageNum = parseInt( $("#record_total").val() );
 				var pageCount = pageNum <= 0 ? 0 : pageNum % page_size == 0 ? pageNum / page_size : parseInt( pageNum / page_size ) + 1;
 	            $("#pager").pager({ pagenumber: 1, pagecount: pageCount, buttonClickCallback: PageClick });
+	            
+				set_program_search_options();
 	        });
 			
 			var topareaHeight = $(".toparea").height();

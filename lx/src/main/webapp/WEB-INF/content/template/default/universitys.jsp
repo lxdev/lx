@@ -61,7 +61,6 @@ border: 0;
 		<s:action namespace="/user" name="head" executeResult="true"/>
 
 		<form id="form_universitys_search" action="universitys">
-			<input type="hidden" name="country_id" id="country_id" value="%{unicountryStyleId}"/>
 
 		<div class="searcharea">
 			<div class="content" style="width: 849px">
@@ -98,7 +97,6 @@ border: 0;
 						<input type="hidden" id="orderBy" name="orderBy" value="${orderBy}"/>
 						<input type="hidden" id="record_total" value="<s:property value="universityNum"/>"/>
 						<!-- <input type="hidden" name="defaultval" value="输入院校名称* " id="defaultval" /> -->
-	                    <!--<input class="button-1" type="button" value="搜索" onclick="loadRefineResult(&#39;search&#39;,&#39;Next&#39;);"/>-->
 	                    <input class="button-1" type="button" value="搜索" onclick="search_data_u_init();"/>
 	                </div>
 	            </div>
@@ -131,10 +129,10 @@ border: 0;
 							<s:iterator value="#mapRanking">
 								<label class="checkbox-inline" style="padding-top:8px">
 									<s:if test="ranking==key || (ranking==null && key=='全部')">
-										<input type="radio" name="ranking" value="<s:property value="key"/>" checked onchange="choose_submit('ranking', this);">
+										<input type="radio" name="ranking" value="<s:property value="key"/>" checked onchange="choose_submit('ranking', this);"/>
 									</s:if>
 									<s:else>
-										<input type="radio" name="ranking" value="<s:property value="key"/>" onchange="choose_submit('ranking', this);">
+										<input type="radio" name="ranking" value="<s:property value="key"/>" onchange="choose_submit('ranking', this);"/>
 									</s:else>
 									<s:property value="key"/>
 				   				</label>
@@ -227,7 +225,8 @@ border: 0;
 		                    </table>
 		                </li>
 					</s:iterator>
-	            <div class="pagination pull-right" id="pager" data-type="u" ></div>
+				</ul>
+	            <div class="pagination pull-right" id="pager" data-type="u"></div>
 	        </div>
 	    </div>
 	    <div class="bottom">
