@@ -188,9 +188,9 @@ border: 0;
 	            <div class="clear"></div>
 	        </div>
 	        <div class="content">
-	            <ul id="result_ul">
+	            <ul id="result_ul" class="courselist-1">
 	            	<s:iterator value="resultUniversity">
-	            		<li>
+	            		<li class="courselist-li">
 		                    <table class="table-2" cellpadding="0" cellspacing="0">
 		                        <tr>
 		                            <td class="text-left ulogo" style="width:14%">
