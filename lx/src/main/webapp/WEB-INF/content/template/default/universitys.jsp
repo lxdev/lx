@@ -243,13 +243,6 @@ border: 0;
 			}
 	        
 			$(document).ready(function() {
-				var page = parseInt( $("#page").val() );
-				var page_size = parseInt( $("#page_size").val() );
-				var pageNum = parseInt( $("#record_total").val() );
-				var pageCount = pageNum <= 0 ? 0 : pageNum % page_size == 0 ? pageNum / page_size : parseInt( pageNum / page_size ) + 1;
-	            $("#pager").pager({ pagenumber: page, pagecount: pageCount, buttonClickCallback: PageClick });
-
-				set_university_search_options();
 	        });
 		</script>
 	</body>

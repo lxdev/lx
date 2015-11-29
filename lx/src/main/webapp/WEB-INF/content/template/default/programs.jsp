@@ -51,7 +51,7 @@ border: 0;
 		<s:action namespace="/user" name="head" executeResult="true"/>
 
 		<form id="form_programs_search" action="programs">
-			<input type="hidden" name="country_id" id="country_id" value="%{countryId}"/>
+			<!-- <input type="hidden" name="country_id" id="country_id" value="<s:property value="countryId"/>"/> -->
 
 		<div class="searcharea">
 			<div class="content">
@@ -354,6 +354,9 @@ border: 0;
                                                     </s:if>
                                                 </s:iterator>
 											</s:if>
+											<s:if test="program_specialty == null">
+
+											</s:if>
 											<s:else>
 												<span>专业排名：无排名</span>
 											</s:else>
@@ -374,7 +377,9 @@ border: 0;
 				                                    <a href="program?programId=<s:property value="#inner.id"/>" target="_blank">
 				                                    	<span><s:property value="#inner.program_name"/></span>
 				                                    </a>
-				                                    <span>0浏览</span>
+				                                    <span>
+														<s:property value="programStatistic.total_browse"/>浏览
+													</span>
 				                                </div>
 				                                <div class="ccontent  ftcol333333">
 				                                    <%--<span class="dblink">对比</span>--%>
@@ -416,12 +421,6 @@ border: 0;
 			}
 			
 			$(document).ready(function() {
-				var page_size = parseInt( $("#page_size").val() );
-				var pageNum = parseInt( $("#record_total").val() );
-				var pageCount = pageNum <= 0 ? 0 : pageNum % page_size == 0 ? pageNum / page_size : parseInt( pageNum / page_size ) + 1;
-	            $("#pager").pager({ pagenumber: 1, pagecount: pageCount, buttonClickCallback: PageClick });
-	            
-				set_program_search_options();
 	        });
 			
 			var topareaHeight = $(".toparea").height();

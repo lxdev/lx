@@ -113,7 +113,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td valign="top">
 							<s:property value="resultProgram.teach_way"/><br>
 		            		<s:property value="resultProgram.length_of_schooling"/><br>
-	      					<s:property value="resultProgram.length_of_schooling_desc"/>
+	      					<s:property value="resultProgram.length_of_schooling_desc" escape="false"/>
 						</td>
 					</tr>
 					<tr>
@@ -134,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                	<h2 class="icon-6">联系方式</h2>
 		                </td>
 						<td valign="top">
-		            		<s:property value="resultProgram.address"/><br/>
+		            		<s:property value="resultProgram.address" escapeHtml="0"/><br/>
 	      					<s:property value="resultProgram.phone"/><br/>
 	      					<s:property value="resultProgram.email"/>
 						</td>
@@ -166,10 +166,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                </td>
 						<td valign="top">
 							<s:if test="resultProgram.specialty_require==1">
-								<s:property value="resultProgram.specialty_require_desc"/>
+								<s:property value="resultProgram.specialty_require_desc" escape="false"/>
 							</s:if>
 	   						<s:else>无专业背景要求
-								<br/><s:property value="resultProgram.specialty_require_desc"/>
+								<br/><s:property value="resultProgram.specialty_require_desc" escape="false"/>
 							</s:else>
 						</td>
 					</tr>
@@ -179,10 +179,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                </td>
 						<td valign="top">
 							<s:if test="resultProgram.work_experience_require==1">
-								<s:property value="resultProgram.work_experience_desc"/>
+								<s:property value="resultProgram.work_experience_desc" escape="false"/>
 							</s:if>
 	   						<s:else>无工作经验要求
-								<br/><s:property value="resultProgram.work_experience_desc"/>
+								<br/><s:property value="resultProgram.work_experience_desc" escape="false"/>
 							</s:else>
 						</td>
 					</tr>
@@ -200,7 +200,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <s:property value="resultProgram.score_totef"/>
                                             </s:else>
                                             <s:if test="resultProgram.gpa_desc != null && resultProgram.gpa_desc != ''">
-                                                <br/><s:property value="resultProgram.gpa_desc"/>
+                                                <br/><s:property value="resultProgram.gpa_desc" escape="false"/>
                                             </s:if>
                                             <br><s:if test="resultProgram.lsat != null && resultProgram.lsat != ''">
                                             <s:property value="resultProgram.lsat"/>
@@ -219,11 +219,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 托福单项：无最低要求
                                             </s:if>
                                             <s:else>
-                                                托福单项：<s:property value="resultProgram.totef_single"/>
+                                                托福单项：<s:property value="resultProgram.totef_single" escape="false"/>
                                             </s:else>
                                         </s:if>
 										<s:if test="resultProgram.totef_desc != null && resultProgram.totef_desc != ''">
-											<br><s:property value="resultProgram.totef_desc"/>
+											<br><s:property value="resultProgram.totef_desc" escape="false"/>
 										</s:if>
 									</td>
 								</tr>
@@ -239,7 +239,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 雅思单项：无最低要求
                                             </s:if>
                                             <s:else>
-                                                雅思单项：<s:property value="resultProgram.ietls_single"/>
+                                                雅思单项：<s:property value="resultProgram.ietls_single" escape="false"/>
                                             </s:else>
                                         </s:if>
 										<s:if test="resultProgram.ietls_desc != null && resultProgram.ietls_desc != ''">
@@ -254,7 +254,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											提供有条件录取
                                         </s:if>
 										<s:else>不提供有条件录取</s:else>
-										<br/><s:property value="resultProgram.is_language_score_desc"/>
+										<br/><s:property value="resultProgram.is_language_score_desc" escape="false"/>
 									</td>
 								</tr>
 								<tr>
@@ -269,7 +269,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 GRE单项：无最低要求
                                             </s:if>
                                             <s:else>
-                                                GRE单项：<s:property value="resultProgram.gre_single"/>
+                                                GRE单项：<s:property value="resultProgram.gre_single" escape="false"/>
                                             </s:else>
                                         </s:if>
 										<s:if test="resultProgram.gre_desc != null && resultProgram.gre_desc != ''">
@@ -281,7 +281,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<tr>
 									<th>GRE Sub</th>
 									<td>
-										<s:property value="resultProgram.gre_sub_desc"/>
+										<s:property value="resultProgram.gre_sub_desc" escape="false"/>
 									</td>
 								</tr>
 								</s:if>
@@ -297,11 +297,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 GMAT单项：无最低要求
                                             </s:if>
                                             <s:else>
-                                                GMAT单项：<s:property value="resultProgram.gmat_single"/>
+                                                GMAT单项：<s:property value="resultProgram.gmat_single" escape="false"/>
                                             </s:else>
                                         </s:if>
                                         <s:if test="resultProgram.gmat_desc != null && resultProgram.gmat_desc != ''">
-                                            <br><s:property value="resultProgram.gmat_desc"/>
+                                            <br><s:property value="resultProgram.gmat_desc" escape="false"/>
                                         </s:if>
 									</td>
 								</tr>
@@ -313,7 +313,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<table class="table-3" cellpadding="0" cellspacing="0" style="display:none">
 		        		<tr>
 		        			<td valign="top">
-		        				<s:property value="resultProgram.student_profile"/>
+		        				<s:property value="resultProgram.student_profile" escape="false"/>
 		        			</td>
 		        		</tr>
 		        	</table>
