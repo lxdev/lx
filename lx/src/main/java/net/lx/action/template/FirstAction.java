@@ -64,6 +64,8 @@ public class FirstAction extends BaseAction {
 	private int countryId2;
 	private int countryId3;
 	private int studyLevelId;
+
+	private int show_login;
 	
 	@Action(value = "first")
 	public String first() throws Exception{
@@ -294,6 +296,14 @@ public class FirstAction extends BaseAction {
 
 	public void setCountryId3(int countryId3) {
 		this.countryId3 = countryId3;
+	}
+
+	public int getShow_login() {
+		return show_login;
+	}
+
+	public void setShow_login(int show_login) {
+		this.show_login = show_login;
 	}
 
 //	public String getJsonResult() {

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script src="jquery-1.9.1.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="bootbox.js"></script>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <input type="button" class="btn" style="border:1px solid #ddd;width:90px;height:35px;" value="确定" />
+    <script type="text/javascript">
+        $(".btn").click(function () {
+            bootbox.dialog({
+                message: "内容",
+                title: "弹出框",
+                buttons: {
+                    Cancel: {
+                        label: "取消",
+                        className: "btn-default",
+                        callback: function () {
+                            //alert("Cancel");
+                        }
+                    }
+                    , OK: {
+                        label: "确定",
+                        className: "btn-primary",
+                        callback: function () {
+                            //alert("OK");
+                        }
+                    }
+                }
+            });
+        })
+        
+    </script>
+</body>
+</html>

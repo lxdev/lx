@@ -1,6 +1,29 @@
 ﻿<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="../template/common/import.jsp"%>
 
+<div class="smenu">
+  <%--<h1 class="l1 gjs1">我的订单</h1>--%>
+  <%--<h2 class="l2"><a href="myles.html" target="lanrentuku">待支付</a></h2>--%>
+  <%--<h2 class="l2"><a href="Receive.html" target="lanrentuku">进行中</a></h2>--%>
+  <%--<h2 class="l2"><a href="hide.html" target="lanrentuku">待评价</a></h2>--%>
+  <%--<h1 class="l1 gjs2">我的选校</h1>--%>
+  <%--<h2 class="l2"><a href="javascript:function()">我收到的选校报告</a></h2>--%>
+  <%--<h2 class="l2"><a href="orders.html" target="lanrentuku">我的选校名单</a></h2>--%>
+  <%--<h1 class="l1 gjs3">我的顾问</h1>--%>
+  <%--<h2 class="l2"><a href="javascript:function()">当期顾问</a></h2>--%>
+  <%--<h2 class="l2"><a href="javascript:function()">往期顾问</a></h2>--%>
+  <h1 class="l1 gjs4">我的收藏</h1>
+  <h2 class="l2"><a href="../collect/index.asp">课程收藏</a></h2>
+  <h2 class="l2"><a href="../collect/index.asp">院校收藏</a></h2>
+  <h2 class="l2"><a href="../collect/index.asp">攻略收藏</a></h2>
+  <h2 class="l2"><a href="../collect/index.asp">顾问收藏</a></h2>
+  <h1 class="l1 gjs5">我的点评</h1>
+  <h2 class="l2"><a href="../university/evaluate">院校点评</a></h2>
+  <h2 class="l2"><a href="javascript:function();">顾问点评</a></h2>
+  <h2 class="l2"><a href="javascript:function();" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>注销</a></h2>
+</div>
+
+<!--
 <div class="navbar-collapse collapse templatemo-sidebar">
   <ul class="templatemo-sidebar-menu">
     <li class="active"><a href="#"><i class="fa fa-home"></i>首页</a></li>
@@ -53,6 +76,8 @@
     <li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>注销</a></li>
   </ul>
 </div>
+-->
+
 <script type="text/javascript">
 	$(document).ready( function() {
 		// sidebar menu click

@@ -10,6 +10,7 @@
 
 
 <div class="toparea">
+	<input type="hidden" id="show_login" value="<s:property value="show_login"/>"/>
     <div class="content">
         <div class="logo">
         	<a class="navbar-brand" href="../template/first">
@@ -277,6 +278,10 @@
 			$("#div_login_teacher").hide();
 			$("#div_register_student").show();
 			$("#div_register_teacher").hide();
+
+		   if($("#show_login").val() == "1"){		//session超时后，点击“重新登录”，则触发此
+			   $(".rarea .login").click();
+		   }
 	   });
 	   
 	   var createCode = function(userType){

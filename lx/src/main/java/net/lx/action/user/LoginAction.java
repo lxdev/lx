@@ -35,9 +35,10 @@ public class LoginAction extends BaseAction
 	
 	private String checkrand,password,username;
 	private Integer userType = 1;
-	
+
 	@Action(results = {
-			@Result(name = "input", location = "/WEB-INF/content/user/login.jsp", type = "dispatcher"),
+			//@Result(name = "input", location = "/WEB-INF/content/template/default/first.jsp", type = "dispatcher"),
+			@Result(name = "input", location = "/template/first?show_login=1", type = "redirect"),
 			@Result(name = "success", location = "/user/home", type = "redirect")})
 	@Override
 	public String execute() throws Exception 
@@ -134,4 +135,5 @@ public class LoginAction extends BaseAction
 	public void setUserType(Integer userType) {
 		this.userType = userType;
 	}
+
 }

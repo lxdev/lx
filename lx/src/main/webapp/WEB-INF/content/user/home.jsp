@@ -1,23 +1,30 @@
 <%@ page language="java" pageEncoding="utf-8"%>
 <%@ include file="../template/common/import.jsp"%>
-<%	
+<%
+  ///////////////////
+  //用户自己维护和管理的个人页面
+  ///////////////////
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+(request.getServerPort() == 80 ? "": ":"+ request.getServerPort())+path; 
 	String actionUrl = basePath + "/user/home";
 	Object user_type = request.getAttribute("users.user_type");
+
+    String user_name = request.getAttribute("users.full_name") == null ? request.getAttribute("users.user_name").toString() : request.getAttribute("users.full_name").toString();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>留学芒果</title>
-		<jc:plugin name="jquery_new"/>
+		<title>留学芒果-个人中心</title>
+		<!--<jc:plugin name="jquery_new"/>
 		<jc:plugin name="jquery_ui"/>
 		<jc:plugin name="bootstrap3"/>
 		<jc:plugin name="bootstrap_main"/>
 
         <jc:plugin name="new_css" />
-        <jc:plugin name="new_js" />
+        <jc:plugin name="new_js" />-->
+
+        <jc:plugin name="new_manage"/>
 	</head>
 	<body>
 		<div class="container-fluid">

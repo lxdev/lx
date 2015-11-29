@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<body>
 	    <s:action namespace="/user" name="head" executeResult="true"/>
 	    
-	    <div class="daohang"><a href="">首页</a><span>></span><a href="">院校库</a><span>></span><a href=""><s:property value="resultProgram.university.country.name"/></a></div>
+	    <div class="daohang"><a href="../template/first">首页</a><span>></span><a href="../template/programs">课程库</a><span>></span><a href=""><s:property value="resultProgram.university.country.name"/></a></div>
 	    <div class="clear"></div>
 	    
 	    <div class="reslut-2">
@@ -129,12 +129,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <br/>(Total Program，只包括整个项目所需学费，不含生活费)
                         </td>
 					</tr>
+					<s:if test="resultProgram.scholarship_desc != null && resultProgram.scholarship_desc != ''">
+					<tr>
+						<td valign="top" class="width-150">
+							<h2 class="icon-4">奖学金</h2>
+						</td>
+						<td valign="top">
+							<s:property value="resultProgram.scholarship_desc" escape="false"/>
+						</td>
+					</tr>
+					</s:if>
 		            <tr>
 		                <td valign="top" class="width-150">
 		                	<h2 class="icon-6">联系方式</h2>
 		                </td>
 						<td valign="top">
-		            		<s:property value="resultProgram.address" escapeHtml="0"/><br/>
+		            		<s:property value="resultProgram.address" escape="false"/><br/>
 	      					<s:property value="resultProgram.phone"/><br/>
 	      					<s:property value="resultProgram.email"/>
 						</td>
@@ -146,33 +156,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                   <h2 class="icon-7">截止日期</h2>
 		                </td> 
 						<td valign="top">
-							<s:if test="resultProgram.time_of_spring_end != '' && resultProgram.time_of_spring_end != null">
-								春季入学
-								<span>
-									<s:property value="resultProgram.time_of_spring_end"/>
-								</span>
-								<br/>
-							</s:if>
-							<s:if test="resultProgram.time_of_summer_end != '' && resultProgram.time_of_summer_end != null">
-								夏季入学
-								<span>
-								<s:property value="resultProgram.time_of_summer_end"/>
-								</span>
-								<br />
-							</s:if>
-							<s:if test="resultProgram.time_of_autumn_end != '' && resultProgram.time_of_autumn_end != null">
-								秋季入学
-								<span>
-									<s:property value="resultProgram.time_of_autumn_end"/>
-								</span>
-								<br />
-							</s:if>
-							<s:if test="resultProgram.time_of_winter_end != '' && resultProgram.time_of_winter_end != null">
-								冬季入学
-								<span>
-									<s:property value="resultProgram.time_of_winter_end"/>
-								</span>
-							</s:if>
+							<table>
+								<s:if test="resultProgram.time_of_spring_end != '' && resultProgram.time_of_spring_end != null">
+								<tr>
+									<th>春季入学</th>
+									<td>
+										<s:property value="resultProgram.time_of_spring_end" escape="false"/>
+									</td>
+                                </tr>
+								</s:if>
+                                <s:if test="resultProgram.time_of_summer_end != '' && resultProgram.time_of_summer_end != null">
+								<tr>
+									<th>夏季入学</th>
+                                    <td>
+                                    <s:property value="resultProgram.time_of_summer_end" escape="false"/>
+                                    </td>
+                                </s:if>
+                                <s:if test="resultProgram.time_of_autumn_end != '' && resultProgram.time_of_autumn_end != null">
+								<tr>
+									<th>秋季入学</th>
+                                    <td>
+                                        <s:property value="resultProgram.time_of_autumn_end" escape="false"/>
+                                    </td>
+								</tr>
+                                </s:if>
+                                <s:if test="resultProgram.time_of_winter_end != '' && resultProgram.time_of_winter_end != null">
+									<tr>
+										<th>冬季入学</th>
+                                    <td>
+                                        <s:property value="resultProgram.time_of_winter_end" escape="false"/>
+                                    </td>
+									</tr>
+                                </s:if>
+							</table>
 						</td>
 					</tr>
 					<tr>
@@ -323,16 +339,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</table>
 						</td>
 					</tr>
+					<s:if test="resultProgram.student_profile != null">
+					<tr>
+						<td class="width-150">
+							<h2 class="icon-10">录取统计</h2>
+						</td>
+						<td valign="top">
+							<s:property value="resultProgram.student_profile" escape="false"/>
+						</td>
+					</tr>
+					</s:if>
 				</table>
-				<s:if test="resultProgram.student_profile != null">
-					<table class="table-3" cellpadding="0" cellspacing="0" style="display:none">
-		        		<tr>
-		        			<td valign="top">
-		        				<s:property value="resultProgram.student_profile" escape="false"/>
-		        			</td>
-		        		</tr>
-		        	</table>
-	        	</s:if>
 			</div>
 		</div>
 	    <div class="bottom">
