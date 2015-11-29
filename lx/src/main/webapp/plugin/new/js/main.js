@@ -681,44 +681,22 @@ var PageClick = function(pageclickednumber) {
     	search_data_u(-1);
     }
 }
-/*翻页，每页点击*/
-//$("#programs #page_ul li a").each(function (i) {
-//    $(this).click(function () {
-//        $("#page_ul li").removeClass("active");
-//        $(this).parent().addClass("active");
-//        
-//        var current_ul_number = parseInt($("#page_ul").attr("data-value"))
-//        
-//        var temp = $(this).html();
-//        if(temp == "»"){
-//        	if( current_ul_number * 5 * parseInt($("#page_size").val()) >= parseInt($("#record_total").val()) )
-//        		return;
-//        	current_ul_number += 1;
-//        	$("#page_ul li a .num").each(function (i) {
-//        		var oldNum = parseInt($(this).html());
-//        		$(this).html(oldNum * current_ul_number);
-//        	})
-//        	$("#page_ul").attr("data-value", current_ul_number);
-//        }else if(temp == "«"){
-//        	if(current_ul_number <= 0)
-//        		return;
-//        	current_ul_number -= 1;
-//        	$("#page_ul li a .num").each(function (i) {
-//        		var oldNum = parseInt($(this).html());
-//        		$(this).html(oldNum * current_ul_number);
-//        	})
-//        	$("#page_ul").attr("data-value", current_ul_number);
-//        }else {
-//        	temp = $(".num", $(this)).html();
-//            var page = parseInt(temp);
-//            
-//            $("#page").val(page-1);
-//            
-//            search_data_p(-1);
-//        }
-//        
-//    });
-//});
+
+function setCookie(name,value)
+{
+	var Days = 30;
+	var exp = new Date();
+	exp.setTime(exp.getTime() + Days*24*60*60*1000);
+	document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+function getCookie(name)
+{
+	var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+	if(arr=document.cookie.match(reg))
+		return unescape(arr[2]);
+	else
+		return null;
+}
 
 $(document).ready(function () {
     $(".ui-autocomplete-input").keyup(function () {
@@ -728,6 +706,41 @@ $(document).ready(function () {
         var url = auto_obj.attr("data-url");// + '?term=' + _term;
         initAutoComplete(url, auto_obj, auto_obj_id);
     });
+
+	//var page = parseInt( $("#page").val() );
+	//var page_size = parseInt( $("#page_size").val() );
+	//var pageNum = parseInt( $("#record_total").val() );
+	//var pageCount = pageNum <= 0 ? 0 : pageNum % page_size == 0 ? pageNum / page_size : parseInt( pageNum / page_size ) + 1;
+	//$("#pager").pager({ pagenumber: 1, pagecount: pageCount, buttonClickCallback: PageClick });
+
+	if($("#pager").length >= 1) {
+		var page = parseInt($("#page").val());
+		var page_size = parseInt($("#page_size").val());
+		var pageNum = parseInt($("#record_total").val());
+		var pageCount = pageNum <= 0 ? 0 : pageNum % page_size == 0 ? pageNum / page_size : parseInt(pageNum / page_size) + 1;
+		$("#pager").pager({pagenumber: page, pagecount: pageCount, buttonClickCallback: PageClick});
+	}
+
+	var cookie_name = "";
+	var chooseParent = $("#choose_td");
+	if(chooseParent.attr("data-type") == "program") {
+		set_program_search_options();
+		cookie_name = "programs";
+	} else if(chooseParent.attr("data-type") == "university") {
+		set_university_search_options();
+		cookie_name = "universitys";
+	}
+
+	var url = window.location.href;
+	if(url.indexOf("template/" + cookie_name + "?") >= 0){
+		var num = getCookie(cookie_name) || 0;
+		var current = window.history.length;
+		if(current < parseInt(num)) {
+			setCookie(cookie_name, current);
+			window.location.href = window.location.href;
+		}
+	}else{
+	}
 });
 
 /* 验证 首页 课程 输入 */
