@@ -208,13 +208,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<td valign="top">
 							<table>
 								<tr>
-									<th>GPA</th>
-									<td>
+									<th valign="top">GPA</th>
+									<td valign="top">
 										<s:if test="resultProgram.score_gpa==0">无最低要求</s:if>
                                             <s:else>
                                                 <s:property value="resultProgram.score_gpa"/>
                                             </s:else>
-                                            <s:if test="resultProgram.gpa_desc != null && resultProgram.gpa_desc != ''">
+                                           <br><s:if test="resultProgram.gpa_desc != null && resultProgram.gpa_desc != ''">
                                                 <br/><s:property value="resultProgram.gpa_desc" escape="false"/>
                                             </s:if>
                                             <br><s:if test="resultProgram.lsat != null && resultProgram.lsat != ''">
@@ -223,100 +223,100 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</td>
 								</tr>
 								<tr>
-									<th>托福</th>
-									<td>
+									<th valign="top">托福</th>
+									<td valign="top">
                                     	<s:if test="resultProgram.score_totef==0">托福总分：无最低要求</s:if>
                                             <s:elseif test="resultProgram.score_totef==-1">不接受托福成绩</s:elseif>
                                             <s:elseif test="resultProgram.score_totef==-2">无需提供托福成绩</s:elseif>
                                             <s:else>托福总分：<s:property value="resultProgram.score_totef"/></s:else>
-                                        <s:if test="resultProgram.totef_single != null && resultProgram.totef_single != '' && resultProgram.score_totef!=-1">
-                                            <br><s:if test="resultProgram.totef_single == 0">
-                                                托福单项：无最低要求
+                                        <br><s:if test="resultProgram.totef_single != null && resultProgram.totef_single != '' && resultProgram.score_totef!=-1">
+                                             <s:if test="resultProgram.totef_single == 0">
+                                               托福单项：无最低要求
                                             </s:if>
                                             <s:else>
                                                 托福单项：<s:property value="resultProgram.totef_single" escape="false"/>
                                             </s:else>
                                         </s:if>
-										<s:if test="resultProgram.totef_desc != null && resultProgram.totef_desc != ''">
-											<br><s:property value="resultProgram.totef_desc" escape="false"/>
+										<br><s:if test="resultProgram.totef_desc != null && resultProgram.totef_desc != ''">
+											<s:property value="resultProgram.totef_desc" escape="false"/>
 										</s:if>
 									</td>
 								</tr>
 								<tr>
-									<th>雅思</th>
-									<td>
-                                        <br><s:if test="resultProgram.score_ietls==0">雅思总分：无最低要求</s:if>
+									<th valign="top">雅思</th>
+									<td valign="top">
+                                        <s:if test="resultProgram.score_ietls==0">雅思总分：无最低要求</s:if>
                                             <s:elseif test="resultProgram.score_ietls==-1">不接受雅思成绩</s:elseif>
                                             <s:elseif test="resultProgram.score_itels==-2">无需提供雅思成绩</s:elseif>
                                             <s:else>雅思总分：<s:property value="resultProgram.score_ietls"/></s:else>
-                                        <s:if test="resultProgram.ietls_single != null && resultProgram.ietls_single != '' && resultProgram.score_ietls != -1">
-                                            <br><s:if test="resultProgram.ietls_single == 0">
+                                        <br><s:if test="resultProgram.ietls_single != null && resultProgram.ietls_single != '' && resultProgram.score_ietls != -1">
+                                           <s:if test="resultProgram.ietls_single == 0">
                                                 雅思单项：无最低要求
                                             </s:if>
                                             <s:else>
                                                 雅思单项：<s:property value="resultProgram.ietls_single" escape="false"/>
                                             </s:else>
                                         </s:if>
-										<s:if test="resultProgram.ietls_desc != null && resultProgram.ietls_desc != ''">
+										<br><s:if test="resultProgram.ietls_desc != null && resultProgram.ietls_desc != ''">
 											<br><s:property value="resultProgram.ietls_desc"/>
 										</s:if>
 									</td>
 								</tr>
 								<tr>
-									<th>有条件录取</th>
-									<td>
+									<th valign="top">有条件录取</th>
+									<td valign="top">
 										<s:if test="resultProgram.is_language_score == 1">
 											提供有条件录取
                                         </s:if>
 										<s:else>不提供有条件录取</s:else>
-										<br/><s:property value="resultProgram.is_language_score_desc" escape="false"/>
+										<br><s:property value="resultProgram.is_language_score_desc" escape="false"/>
 									</td>
 								</tr>
 								<tr>
-									<th>GRE</th>
-									<td>
-                                        <br><s:if test="resultProgram.score_gre==0">GRE总分：无最低要求</s:if>
+									<th valign="top">GRE</th>
+									<td valign="top">
+                                        <s:if test="resultProgram.score_gre==0">GRE总分：无最低要求</s:if>
                                             <s:elseif test="resultProgram.score_re==-1">不接受GRE成绩</s:elseif>
                                             <s:elseif test="resultProgram.score_gre==-2">无需提供GRE成绩</s:elseif>
                                             <s:else>GRE总分：<s:property value="resultProgram.score_gre"/></s:else>
-                                        <s:if test="resultProgram.gre_single != null && resultProgram.gre_single != '' && resultProgram.score_gre != -1">
-                                            <br><s:if test="resultProgram.gre_single == 0">
+                                        <br><s:if test="resultProgram.gre_single != null && resultProgram.gre_single != '' && resultProgram.score_gre != -1">
+                                            <s:if test="resultProgram.gre_single == 0">
                                                 GRE单项：无最低要求
                                             </s:if>
                                             <s:else>
                                                 GRE单项：<s:property value="resultProgram.gre_single" escape="false"/>
                                             </s:else>
                                         </s:if>
-										<s:if test="resultProgram.gre_desc != null && resultProgram.gre_desc != ''">
-											<br><s:property value="resultProgram.gre_desc"/>
+										<br><s:if test="resultProgram.gre_desc != null && resultProgram.gre_desc != ''">
+											<s:property value="resultProgram.gre_desc"/>
 										</s:if>
 									</td>
 								</tr>
 								<s:if test="resultProgram.gre_sub_desc != null && resultProgram.gre_sub_desc != ''">
 								<tr>
-									<th>GRE Sub</th>
-									<td>
+									<th valign="top">GRE Sub</th>
+									<td valign="top">
 										<s:property value="resultProgram.gre_sub_desc" escape="false"/>
 									</td>
 								</tr>
 								</s:if>
 								<tr>
-									<th>GMAT</th>
-									<td>
+									<th valign="top">GMAT</th>
+									<td valign="top">
 										<s:if test="resultProgram.score_gmat==0">GMAT总分：无最低要求</s:if>
                                             <s:elseif test="resultProgram.score_gmat==-1">不接受GMAT成绩</s:elseif>
                                             <s:elseif test="resultProgram.score_gmat==-2">无需提供GMAT成绩</s:elseif>
                                             <s:else>GMAT总分：<s:property value="resultProgram.score_gmat"/></s:else>
-                                        <s:if test="resultProgram.gmat_single != null && resultProgram.gmat_single != '' && resultProgram.score_gmat != -1">
-                                            <br><s:if test="resultProgram.gmat_single == 0">
+                                       <br><s:if test="resultProgram.gmat_single != null && resultProgram.gmat_single != '' && resultProgram.score_gmat != -1">
+                                           <s:if test="resultProgram.gmat_single == 0">
                                                 GMAT单项：无最低要求
                                             </s:if>
                                             <s:else>
                                                 GMAT单项：<s:property value="resultProgram.gmat_single" escape="false"/>
                                             </s:else>
                                         </s:if>
-                                        <s:if test="resultProgram.gmat_desc != null && resultProgram.gmat_desc != ''">
-                                            <br><s:property value="resultProgram.gmat_desc" escape="false"/>
+                                        <br><s:if test="resultProgram.gmat_desc != null && resultProgram.gmat_desc != ''">
+                                            <s:property value="resultProgram.gmat_desc" escape="false"/>
                                         </s:if>
 									</td>
 								</tr>

@@ -1605,7 +1605,7 @@ h4 {
     margin: 15px auto;
 }
 
-    .table-3 td {
+    .table-3 td,.table-3 th {
         font-size: 15px;
         color: #494949;
         padding: 10px 23px;
