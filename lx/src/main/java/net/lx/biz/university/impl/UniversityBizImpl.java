@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import net.lx.biz.university.IUniversityStatisticBiz;
+import net.lx.entity.university.UniversityStatistic;
 import net.lx.model.page.PageParame;
 import net.lx.biz.evaluate.IEvaluateBiz;
 import net.lx.biz.university.IUniversityBiz;
@@ -35,7 +37,8 @@ public class UniversityBizImpl implements IUniversityBiz {
 	private IAreaDao areaDao;
 	@Autowired
 	private IEvaluateBiz evaluateBiz;
-	
+	@Autowired
+	private IUniversityStatisticBiz statisticBiz;
 
 	private University setUniversityAttribute(University entity) throws Exception{
 
@@ -49,6 +52,9 @@ public class UniversityBizImpl implements IUniversityBiz {
 		entity.setName(entity.getUniversity_name() + "/" + entity.getEnglish_name());
 		if(entity.getLogo_url() != null && !entity.getLogo_url().equals(""))
 			entity.setLogo_url(Constants.WEB_ATTACHMENT + entity.getLogo_url());
+		UniversityStatistic statistic = statisticBiz.findByUniversityId(entity.getId());
+		if(statistic != null)
+			entity.setBrowse_number(statistic.getTotal_browse());
 		
 		return entity;
 	}
