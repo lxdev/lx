@@ -106,6 +106,11 @@ public class UniversitysAction extends BaseAction {
 			u.setCountry_id(unicountryStyleId);
 		else if(country_id > 0)
 			u.setCountry_id(getCountry_id());
+		else {
+			//默认美国
+			unicountryStyleId = 1;
+			u.setCountry_id(1);
+		}
 		if(university_name != null){
 			//ajax request
 			university_name = StringEncode.ToUTF8(university_name, true);
@@ -120,6 +125,9 @@ public class UniversitysAction extends BaseAction {
 			//ranking = new String(ranking.getBytes("iso8859-1"),"utf-8");
 			if(!ranking.equalsIgnoreCase("全部")){
 				String[] rankings = ranking.split("-");
+				if(rankings.length == 1){
+					rankings[0] = rankings[0].replace("以后", "");
+				}
 				u.setRankingBegin(Integer.parseInt(rankings[0]));
 				if(rankings.length >= 2)
 					u.setRankingEnd(Integer.parseInt(rankings[1]));
@@ -148,9 +156,14 @@ public class UniversitysAction extends BaseAction {
 		//u.setPage_size(condition.getPage_size() <= 0 ? 10 : condition.getPage_size());
 		//u.setPage(condition.getPage() <= 0 ? 1 : condition.getPage());
 		//u.setOrderBy(" D.total_browse DESC ");
+		if(page == 0)
+			page = 1;
 		u.setPage(page);
+		if(getOrderBy() == null || getOrderBy().equals("")){
+			setOrderBy(" D.total_browse DESC ");
+		}
 		u.setPage_size(getPage_size() == 0 ? 10 : getPage_size());
-		u.setOrderBy(getOrderBy() == null || getOrderBy() == "" ? " D.total_browse DESC " : getOrderBy());
+		u.setOrderBy(getOrderBy());
 		
 		resultUniversity = this.universityBiz.searchUniversitysByCondition(u);
 		u.setIsSearchTotal(true);

@@ -61,6 +61,9 @@ border: 0;
 		<s:action namespace="/user" name="head" executeResult="true"/>
 
 		<form id="form_universitys_search" action="universitys">
+			<input type="hidden" id="ranking_value" value="<s:property value="ranking"/>"/>
+			<input type="hidden" id="area_value" value="<s:property value="area"/>"/>
+			<input type="hidden" id="is_public_school_value" value="<s:property value="is_public_school"/>"/>
 
 		<div class="searcharea">
 			<div class="content" style="width: 849px">

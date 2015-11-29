@@ -91,7 +91,7 @@ public class Program implements Serializable {
 
 	@Column(name="score_totef")
 	@ExcelAnnotation(exportName = "托福总分")
-	private float score_totef;
+	private int score_totef;
 	
 	@Column(name="score_ietls")
 	@ExcelAnnotation(exportName = "雅思总分")
@@ -99,11 +99,11 @@ public class Program implements Serializable {
 	
 	@Column(name="score_gre")
 	@ExcelAnnotation(exportName = "GRE总分")
-	private float score_gre;
+	private int score_gre;
 	
 	@Column(name="score_gmat")
 	@ExcelAnnotation(exportName = "GMAT总分")
-	private float score_gmat;
+	private int score_gmat;
 	
 	@Column(name="score_gpa")
 	@ExcelAnnotation(exportName = "GPA要求")
@@ -587,11 +587,11 @@ public class Program implements Serializable {
 		return email;
 	}
 
-	public void setScore_totef(float score_totef){
+	public void setScore_totef(int score_totef){
 		this.score_totef=score_totef;
 	}
 
-	public float getScore_totef(){
+	public int getScore_totef(){
 		return score_totef;
 	}
 
@@ -619,19 +619,19 @@ public class Program implements Serializable {
 		return is_language_score_desc;
 	}
 
-	public void setScore_gre(float score_gre){
+	public void setScore_gre(int score_gre){
 		this.score_gre=score_gre;
 	}
 
-	public float getScore_gre(){
+	public int getScore_gre(){
 		return score_gre;
 	}
 
-	public void setScore_gmat(float score_gmat){
+	public void setScore_gmat(int score_gmat){
 		this.score_gmat=score_gmat;
 	}
 
-	public float getScore_gmat(){
+	public int getScore_gmat(){
 		return score_gmat;
 	}
 

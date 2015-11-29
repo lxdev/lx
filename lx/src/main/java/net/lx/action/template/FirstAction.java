@@ -59,12 +59,22 @@ public class FirstAction extends BaseAction {
 	private String term = "";
 	//private String q = "";
 	//private String jsonResult;
+
+	private int countryId;
+	private int countryId2;
+	private int countryId3;
+	private int studyLevelId;
 	
 	@Action(value = "first")
 	public String first() throws Exception{
 		setCurrentUsers();
 		if(super.isGetRequest())
 		{
+			countryId = countryId == 0 ? 1 : countryId;
+			countryId2 = countryId2 == 0 ? 1 : countryId2;
+			countryId3 = countryId3 == 0 ? 1 : countryId3;
+			studyLevelId = studyLevelId == 0 ? 1 : studyLevelId;
+
 			countryList = this.countryBiz.findAll();
 //			Collections.sort(countryList, new Comparator<Object>(){
 //				public int compare(Object arg0, Object arg1) {
@@ -252,6 +262,38 @@ public class FirstAction extends BaseAction {
 
 	public void setUniversityList(List<University> universityList) {
 		this.universityList = universityList;
+	}
+
+	public int getCountryId() {
+		return countryId;
+	}
+
+	public void setCountryId(int countryId) {
+		this.countryId = countryId;
+	}
+
+	public int getStudyLevelId() {
+		return studyLevelId;
+	}
+
+	public void setStudyLevelId(int studyLevelId) {
+		this.studyLevelId = studyLevelId;
+	}
+
+	public int getCountryId2() {
+		return countryId2;
+	}
+
+	public void setCountryId2(int countryId2) {
+		this.countryId2 = countryId2;
+	}
+
+	public int getCountryId3() {
+		return countryId3;
+	}
+
+	public void setCountryId3(int countryId3) {
+		this.countryId3 = countryId3;
 	}
 
 //	public String getJsonResult() {

@@ -35,10 +35,10 @@
 							<input type="hidden" name="isFromFirst" value="true" id="isFromFirst" />
 						    <table cellpadding="0" cellspacing="0" class="table-11">
 							    <tr>
-							    	<td><s:select list="%{countryList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择国家--" theme="simple" name="countryId" id="countryId" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h1')"/></td>
+							    	<td><s:select list="%{countryList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择国家--" onselect="%{countryId}" theme="simple" name="countryId" id="countryId" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h1')"/></td>
 							    </tr>
 							    <tr>
-							    	<td><s:select list="%{studyLevelList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择学历--" theme="simple" name="studyLevelId" id="studyLevelId" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h2');defaultMessages('ctitle','defaultval');clearErrorMessagesforHomeDrop('locationList_h2');"/></td>
+							    	<td><s:select list="%{studyLevelList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择学历--" onselect="%{studyLevelId}" theme="simple" name="studyLevelId" id="studyLevelId" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h2');defaultMessages('ctitle','defaultval');clearErrorMessagesforHomeDrop('locationList_h2');"/></td>
 							    </tr>
 							    <tr>
 							    	<td>
@@ -70,7 +70,7 @@
 							<table cellpadding="0" cellspacing="0" class="table-11">
 							    <tr>
 							    	<td>
-							    		<s:select list="%{countryList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择国家--" theme="simple" id="unicountryStyleId" name="unicountryStyleId" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h3');defaultMessages('searchpodcollege','defaultunival');makeDisableCollege('searchpodcollege','unicountryStyleId');clearErrorMessagesforHomeDrop('locationList_h3');"/>
+							    		<s:select list="%{countryList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择国家--" onselect="%{countryId2}" theme="simple" id="unicountryStyleId" name="unicountryStyleId" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h3');defaultMessages('searchpodcollege','defaultunival');makeDisableCollege('searchpodcollege','unicountryStyleId');clearErrorMessagesforHomeDrop('locationList_h3');"/>
 									</td>
 							    </tr>
 								<tr>
@@ -95,7 +95,7 @@
 							<table cellpadding="0" cellspacing="0" class="table-11">
 							    <tr>
 							    	<td>
-							    		<s:select list="%{countryList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择国家--" theme="simple" id="studynat" name="scholarCountryName" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h8');defaultMessages('searchpodcollege','defaultunival');makeDisableCollege('searchpodcollege','stdlvid');clearErrorMessagesforHomeDrop('locationList_h8');"/>
+							    		<s:select list="%{countryList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择国家--" onselect="%{countryId3}" theme="simple" id="studynat" name="scholarCountryName" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h8');defaultMessages('searchpodcollege','defaultunival');makeDisableCollege('searchpodcollege','stdlvid');clearErrorMessagesforHomeDrop('locationList_h8');"/>
 									</td>
 							    </tr>
 							    <tr>
@@ -198,11 +198,11 @@
 			if( $(".select2-selection--single").length >= 1 ){
 				$(".select2-selection--single").addClass("selBx");
 				$(".select2-selection--single").removeClass("select2-selection--single");
-				
+
 				$(".select2-selection__rendered").addClass("hgt_hn");
 
 				$(".select2-selection__arrow").addClass("arw");
-				
+
 				$(".select2-container--default").css("width", "420px");
 			}
 			*/
@@ -228,7 +228,7 @@
 				break;
 			}
 		}
-			
+
 			/*var elementText = $("#ctitle");
 			var elementId = $("#specialtyId");
 			function initAutoComplete(json) {
@@ -263,7 +263,7 @@
 		      };*/
 
 		      $(document).ready(function () {
-		    	  /*jQuery.post('<s:url value="/template/specialty_search"/>', {'term': ''}, 
+		    	  /*jQuery.post('<s:url value="/template/specialty_search"/>', {'term': ''},
 					function(data)
 					    	{
 					    		if(null!=data.specialtyList){
