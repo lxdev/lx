@@ -178,12 +178,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <input class="button-1" type="button" value="搜索" onclick="loadRefineResult(&#39;search&#39;,&#39;Next&#39;);" /></div>
             </div>--%>
             <div class="conditions searchcourse">
-            	<div class="condit-1"><h1>查找课程</h1></div>
-                <div class="condit-1 width-176">
-                    <%--<s:select list="%{countryList}" listKey="id" listValue="name" onselect="%{university.country.id}" headerKey="0" headerValue="--请选择国家--" theme="simple" name="countryId" id="countryId" cssClass="txt-6"/>--%>
+            	<div class="condit-1" style="width: 100px;text-align:center;line-height: 36px;"><h1 style="color:#000">查找课程</h1></div>
+                <%-- <div class="condit-1 width-176">
+                    <s:select list="%{countryList}" listKey="id" listValue="name" onselect="%{university.country.id}" headerKey="0" headerValue="--请选择国家--" theme="simple" name="countryId" id="countryId" cssClass="txt-6"/>
 					<span class="txt-6"><s:property value="university.country.name"/></span>
-                </div>
-                <div class="condit-1 width-157">
+                </div> --%>
+                <div class="condit-1 width-157" style="width:163px">
                     <s:select list="%{studyLevelList}" listKey="id" listValue="name" onselect="%{studyLevelId}" headerKey="0" headerValue="--请选择学位--" theme="simple" name="studyLevelId" id="studyLevelId" cssClass="txt-7"/>
                 </div>
                 <div class="condit-1">
@@ -208,7 +208,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="content">
 	            <ul id="result_ul" class="courselist-1">
 	            </ul>
-	            <div class="pagination pull-right" id="pager" data-type="p" ></div>
+	            <!-- <div class="pagination pull-right" id="pager" data-type="p" ></div> -->
 	        </div>
             
             <%--<div class="row ui-sortable" id="programs_result"></div>--%>

@@ -76,7 +76,7 @@
 								<tr>
 									<td>
 										<%--<select class="form-control margin-bottom-15 select" id="universityId" name="universityId" value=""></select>--%>
-										<input id="university_name" name="university_name" class="ui-autocomplete-input txt-5" placeholder="院校" data-url="<s:url value="/template/university_search"/>"/>
+										<input id="university_name" name="university_name" class="ui-autocomplete-input txt-5" placeholder="请输入学校名称" data-url="<s:url value="/template/university_search"/>"/>
 				                        <input type="hidden" id="university_name_id" name="university_name_id"/>
 									</td>
 								</tr>
@@ -101,7 +101,7 @@
 							    <tr>
 							    	<td>
 							    		<%--<select class="form-control margin-bottom-15 select" id="selectedCat" name="selectedCat" value=""></select>
-							    		--%><input id="guide_specialty" name="guide_specialty" class="ui-autocomplete-input txt-5" placeholder="专业" data-url="<s:url value="/template/guide_specialty_search"/>"/>
+							    		--%><input id="guide_specialty" name="guide_specialty" class="ui-autocomplete-input txt-5" placeholder="请输入专业名称" data-url="<s:url value="/template/guide_specialty_search"/>"/>
 				                        <input type="hidden" id="guide_specialty_id" name="guide_specialty_id"/>
 							    	</td>
 							    </tr>
