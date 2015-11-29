@@ -37,22 +37,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                            <td valign="top">
 	                                <h1 class="paddingbottom15"><s:property value="resultProgram.program_name"/></h1>
 	                                <div class="info">
-	                                	<span>
+	                                	<span style="font-size:20px;">
 	                                		<a href="university?universityId=<s:property value="resultProgram.university.id"/>" target="_blank">
 	                                			<s:property value="resultProgram.university.university_name"/>
 	                                		</a>
 	                                	</span>
-	                                </div>
-	                                <div class="info">
-	                                    <span>
+	                                	<span style="font-size:14px">
+	                                	<span>
 	                                    	<s:property value="resultProgram.university.country.name"/>
 	                                    </span>
 	                                	<span>
 	                                		<s:if test="resultProgram.university.is_public_school==1">公立</s:if><s:else>私立</s:else>
 	                                	</span>
-	                                	&nbsp;&nbsp;
+	                                	
 	                                	<s:property value="resultProgram.university.area.city"/>,<s:property value="resultProgram.university.area.state"/>
-	                               	</div>
+	                                	</span>
+	                                </div>
+	                                
 	                                <div class="info">
 										<s:property value="programStatistic.total_browse"/>浏览&nbsp;&nbsp;&nbsp;&nbsp;
 										<s:property value="universityStatistic.total_evaluate"/>点评
@@ -64,26 +65,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                                	<s:property value="resultProgram.time_of_enrollment"/>
 	                                </div>
 	                            </td>
-	                            <td valign="top" class="text-center">
-	                                <div class="ranking ftcolff6600">
+	                            <td valign="top" class="text-center" style="width:217px">
+	                                <div class="ranking ftcolff6600" style="padding-bottom:0px;font-size:20px">
 	                                    <span>综合排名 <s:property value="resultProgram.university.ranking_comprehensive"/></span>  </div>
-	                                <div class="text-center sc">
-	                                    <img src="../plugin/new/images/sc2.png" onclick="common_collect('<s:property value="resultProgram.id"/>', '3')"/>&nbsp;&nbsp;
-	                                    <a href="<s:property value="resultProgram.specialty_link"/>" target="_blank"><img src="../plugin/new/images/gwkc.png" /></a>
-	                                </div>
-                                	<s:if test="resultProgram.course_setting != null">
-                                		<div>
-								            <table cellpadding="0" cellspacing="0">
-								            	<tr>
-								            		<td valign="top">
+	                                <div class="text-center sc" style="margin-top:24px;text-align:left">
+	                                <a style="float:left;margin-right:17px" href="<s:property value="resultProgram.specialty_link"/>" target="_blank"><img src="../plugin/new/images/gwkc.png" /></a>
+	                                <s:if test="resultProgram.course_setting != null">
+                                		
 								            			<s:if test="resultProgram.course_setting.contains('http://')">
-								            				<a href="<s:property value="resultProgram.course_setting"/>" target="_blank">课程设置</a>
+								            				<a style="width: 93px;height: 34px;background: #ffcc00;text-align: center;display: inline-block;line-height: 34px;color: #fff;" href="<s:property value="resultProgram.course_setting"/>" target="_blank">课程设置</a>
 								            			</s:if>
-								            		</td>
-								            	</tr>
-								            </table>
-							            </div>
+								            		
 						            </s:if>
+	                                    
+	                                    
+	                                    <div style="margin-top:12px;">
+	                                    <img src="../plugin/new/images/sc2.png" onclick="common_collect('<s:property value="resultProgram.id"/>', '3')"/>&nbsp;&nbsp;
+						            </div>
+	                                </div>
+                                	
 	                            </td>
 	                        </tr>
 	                    </table>
@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	<div class="title-2">
 	            <ul class="selres">
 	            	<li class="current">项目简介</li>
-	            	<li>录取要求</li>
+	            	<li onclick="javascript:document.getElementById('admissiorequirements').scrollIntoView()">录取要求</li>
 	            	<s:if test="resultProgram.student_profile != null">
 	            		<li>录取统计</li>
 	            	</s:if>
@@ -134,13 +134,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                	<h2 class="icon-6">联系方式</h2>
 		                </td>
 						<td valign="top">
-		            		<s:property value="resultProgram.address" escapeHtml="0"/><br/>
+		            		<s:property value="resultProgram.address" escape="falses"/><br/>
 	      					<s:property value="resultProgram.phone"/><br/>
 	      					<s:property value="resultProgram.email"/>
 						</td>
 		            </tr>
 	            </table>
-	        	<table class="table-3" cellpadding="0" cellspacing="0" style="display:none">
+	        	<table class="table-3" id="admissiorequirements" cellpadding="0" cellspacing="0" >
 					<tr>
 						<td valign="top" class="width-150">
 		                   <h2 class="icon-7">截止日期</h2>
@@ -368,14 +368,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       	
 		<jc:plugin name="main_js" />
       	<script type="text/javascript">
-	        $(".selres li").each(function (i) {
+	       /*  $(".selres li").each(function (i) {
 	            $(this).click(function () {
 	                $(".selres li").removeClass("current");
 	                $(this).addClass("current");
 	                $(".reslut-2 .table-3").hide();
 	                $(".reslut-2 .table-3").eq(i).show();
 	            });
-	        });
+	        }); */
         </script>
       	
 	</body>
