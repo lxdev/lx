@@ -414,6 +414,25 @@ border: 0;
 		<jc:plugin name="main_js" />
 		
 		<script type="text/javascript">
+		$(window).scroll(function(){
+			if($(window).scrollTop()>350){
+				$(".searcharea .conditions").css({"width":"1000px","margin":"0px auto"});
+				$(".searcharea .conditions").addClass("fixedcon");
+				$(".searcharea .result").hide();
+				$(".searcharea .content").css({"width":"100%","height":"81px","position":"fixed","top":"0px","z-index":"1000"});
+				$(".searcharea .content").addClass("fixedcontent");
+			}
+			else{
+			$(".searcharea .conditions").css({"width":"100%","margin":"0px auto"});
+				$(".searcharea .conditions").removeClass("fixedcon");
+				$(".searcharea .result").show();
+				$(".searcharea .content").css({"width":"965px","height":"auto","position":"inherit","top":"inherit","z-index":"inherit"});
+				$(".searcharea .content").removeClass("fixedcontent");
+			}
+		})
+		</script>
+		
+		<script type="text/javascript">
 			var set_page_init = function(){
 				//$("#page").val(0);
 				$("#page_ul li").removeClass("active");
@@ -429,7 +448,7 @@ border: 0;
 		    var titleHeight = $(".reslut-2 .title").height();
 		    var courselistliHeight = $(".courselist-1 .courselist-li").height();
 			
-		</script>
+		
 		
 	</body>
 </html>

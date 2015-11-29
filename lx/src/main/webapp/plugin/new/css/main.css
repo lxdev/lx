@@ -102,7 +102,9 @@ h4 {
         width: 965px;
         margin: 0px auto;
     }
-
+	.searcharea .fixedcontent{
+	background:url(../images/bgtm.png) repeat;
+	}
         .searcharea .content .result {
             width: 100%;
             text-align: center;
@@ -122,6 +124,11 @@ h4 {
         padding-top: 30px;
         margin-right: 6px;
     }
+    
+    .searcharea .fixedcon .condit-1, .searcharea .fixedcon .condit-2{
+    padding-top:17px
+    }
+    
 
     .searcharea .width-176 {
         width: 176px;
