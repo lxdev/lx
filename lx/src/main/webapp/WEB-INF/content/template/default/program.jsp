@@ -146,17 +146,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                   <h2 class="icon-7">截止日期</h2>
 		                </td> 
 						<td valign="top">
-							<s:if test="resultProgram.time_of_spring_end != ''">
-								春季入学：<s:property value="resultProgram.time_of_spring_end"/><br/>
+							<s:if test="resultProgram.time_of_spring_end != '' && resultProgram.time_of_spring_end != null">
+								春季入学
+								<span>
+									<s:property value="resultProgram.time_of_spring_end"/>
+								</span>
+								<br/>
 							</s:if>
-							<s:if test="resultProgram.time_of_summer_end != ''">
-								夏季入学：<s:property value="resultProgram.time_of_summer_end"/><br />
+							<s:if test="resultProgram.time_of_summer_end != '' && resultProgram.time_of_summer_end != null">
+								夏季入学
+								<span>
+								<s:property value="resultProgram.time_of_summer_end"/>
+								</span>
+								<br />
 							</s:if>
-							<s:if test="resultProgram.time_of_autumn_end != ''">
-								秋季入学：<s:property value="resultProgram.time_of_autumn_end"/><br />
+							<s:if test="resultProgram.time_of_autumn_end != '' && resultProgram.time_of_autumn_end != null">
+								秋季入学
+								<span>
+									<s:property value="resultProgram.time_of_autumn_end"/>
+								</span>
+								<br />
 							</s:if>
-							<s:if test="resultProgram.time_of_winter_end != ''">
-								冬季入学：<s:property value="resultProgram.time_of_winter_end"/>
+							<s:if test="resultProgram.time_of_winter_end != '' && resultProgram.time_of_winter_end != null">
+								冬季入学
+								<span>
+									<s:property value="resultProgram.time_of_winter_end"/>
+								</span>
 							</s:if>
 						</td>
 					</tr>
@@ -197,7 +212,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td>
 										<s:if test="resultProgram.score_gpa==0">无最低要求</s:if>
                                             <s:else>
-                                                <s:property value="resultProgram.score_totef"/>
+                                                <s:property value="resultProgram.score_gpa"/>
                                             </s:else>
                                             <s:if test="resultProgram.gpa_desc != null && resultProgram.gpa_desc != ''">
                                                 <br/><s:property value="resultProgram.gpa_desc" escape="false"/>

@@ -62,6 +62,9 @@ public class ProgramsAction extends BaseAction {
 	private String time_of_enrollment;
 	private String work_experience_require;
 	private String is_public_school;
+	private String orderBy;
+	private int page;
+	private int page_size;
 	
 	
 	private int universityNum;
@@ -179,6 +182,12 @@ public class ProgramsAction extends BaseAction {
 	
 	private String searchAndReturn() throws Exception{
 		Program cProgram = new Program();
+		if(countryId == 0){
+			countryId = 1;
+		}
+		if(studyLevelId == 0){
+			studyLevelId = 1;
+		}
 		cProgram.setCountryId(getCountryId());
 		cProgram.setStudy_level_id(getStudyLevelId());
 		if(program_specialty != null)
@@ -221,9 +230,9 @@ public class ProgramsAction extends BaseAction {
 		if(totef != null){
 			if(!totef.equalsIgnoreCase("-1")){
 				String[] totefs = totef.split("~");
-				cProgram.setScore_totef(Float.parseFloat(totefs[0]));
+				cProgram.setScore_totef(Integer.parseInt(totefs[0]));
 				if(totefs.length >= 2)
-					cProgram.setTotefEnd(Float.parseFloat(totefs[1]));
+					cProgram.setTotefEnd(Integer.parseInt(totefs[1]));
 			}
 		}
 		cProgram.setScore_ietls(-1);
@@ -239,18 +248,18 @@ public class ProgramsAction extends BaseAction {
 		if(gre != null){
 			if(!gre.equalsIgnoreCase("-1")){
 				String[] gres = gre.split("~");
-				cProgram.setScore_gre(Float.parseFloat(gres[0]));
+				cProgram.setScore_gre(Integer.parseInt(gres[0]));
 				if(gres.length >= 2)
-					cProgram.setGreEnd(Float.parseFloat(gres[1]));
+					cProgram.setGreEnd(Integer.parseInt(gres[1]));
 			}
 		}
 		cProgram.setScore_gmat(-1);
 		if(gmat != null){
 			if(!gmat.equalsIgnoreCase("-1")){
 				String[] gmats = gmat.split("~");
-				cProgram.setScore_gmat(Float.parseFloat(gmats[0]));
+				cProgram.setScore_gmat(Integer.parseInt(gmats[0]));
 				if(gmats.length >= 2)
-					cProgram.setGmatEnd(Float.parseFloat(gmats[1]));
+					cProgram.setGmatEnd(Integer.parseInt(gmats[1]));
 			}
 		}
 		if(is_language_score != null){
@@ -289,9 +298,15 @@ public class ProgramsAction extends BaseAction {
 			setNationId(getCountryId());
 			setCountryName(this.countryBiz.findCountryById(getCountryId()).getName());
 		}
-		
-		cProgram.setPage_size(condition.getPage_size() <= 0 ? 10 : condition.getPage_size());
-		cProgram.setPage(condition.getPage() == 0 ? 1 : condition.getPage());
+
+		if(page == 0)
+			page = 1;
+		cProgram.setPage(page);
+		cProgram.setPage_size(getPage_size() == 0 ? 10 : getPage_size());
+		cProgram.setOrderBy(getOrderBy() == null || getOrderBy() == "" ? " D.total_browse DESC " : getOrderBy());
+
+		//cProgram.setPage_size(condition.getPage_size() <= 0 ? 10 : condition.getPage_size());
+		//cProgram.setPage(condition.getPage() == 0 ? 1 : condition.getPage());
 		
 		resultProgram = this.programBiz.searchProgramsByCondition(cProgram);
 		cProgram.setIsSearchTotal(true);
@@ -582,6 +597,24 @@ public class ProgramsAction extends BaseAction {
 	public void setIs_public_school(String is_public_school) {
 		this.is_public_school = is_public_school;
 	}
-	
+
+	public String getOrderBy(){
+		return orderBy;
+	}
+	public void setOrderBy(String orderBy){
+		this.orderBy = orderBy;
+	}
+	public int getPage_size() {
+		return page_size;
+	}
+	public void setPage_size(int page_size) {
+		this.page_size = page_size;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
 	//------------------------------------------------------------------------
 }

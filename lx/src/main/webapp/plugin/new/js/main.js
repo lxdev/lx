@@ -183,7 +183,7 @@ var reset_program_search_options = function(){
 		$("#search_tr_" + options[i]).attr("data-choosed", "false");
 	}
 	$("#choose_td").html("");
-	$("#page").val(0);
+	$("#page").val(1);
 }
 /* programs page search click */
 var search_data_p_init = function(){
@@ -194,16 +194,15 @@ var search_data_p_init = function(){
 var set_university_search_options = function(){
 	var options = ["ranking", "area", "is_public_school"];
 	for(var i = 0; i < options.length; i++) {
+		var getValue = $("#" + options[i] + "_value").val();
 		$("input[name='" + options[i] + "']").each(function(j, e){
-			if(j > 0 && this.checked){
+			if(j == 0 && (getValue == '' || getValue == '全部' || getValue == '-1')){
+				this.checked = true;
+			}else if(j > 0 && this.checked){
 				choose_submit(options[i], this, true);
 			}
 		});
-		//$("#search_tr_" + options[i]).show();
-		//$("#search_tr_" + options[i]).attr("data-choosed", "false");
 	}
-	//$("#choose_td").html("");
-	//$("#page").val(0);
 }
 /* programs page option search init */
 var reset_university_search_options = function(){
@@ -218,7 +217,7 @@ var reset_university_search_options = function(){
 		$("#search_tr_" + options[i]).attr("data-choosed", "false");
 	}
 	$("#choose_td").html("");
-	$("#page").val(0);
+	$("#page").val(1);
 }
 var search_data_u_init = function(){
 	reset_university_search_options();
@@ -714,7 +713,9 @@ $(document).ready(function () {
 	//$("#pager").pager({ pagenumber: 1, pagecount: pageCount, buttonClickCallback: PageClick });
 
 	if($("#pager").length >= 1) {
-		var page = parseInt($("#page").val());
+		//var page = parseInt($("#page").val());
+		var page = getQueryString("page") || 1;
+		$("#page").val(page);
 		var page_size = parseInt($("#page_size").val());
 		var pageNum = parseInt($("#record_total").val());
 		var pageCount = pageNum <= 0 ? 0 : pageNum % page_size == 0 ? pageNum / page_size : parseInt(pageNum / page_size) + 1;
@@ -731,16 +732,18 @@ $(document).ready(function () {
 		cookie_name = "universitys";
 	}
 
-	var url = window.location.href;
-	if(url.indexOf("template/" + cookie_name + "?") >= 0){
-		var num = getCookie(cookie_name) || 0;
-		var current = window.history.length;
-		if(current < parseInt(num)) {
-			setCookie(cookie_name, current);
-			window.location.href = window.location.href;
-		}
-	}else{
-	}
+
+
+	//var url = window.location.href;
+	//if(url.indexOf("template/" + cookie_name + "?") >= 0){
+	//	var num = getCookie(cookie_name) || 0;
+	//	var current = window.history.length;
+	//	if(current < parseInt(num)) {
+	//		setCookie(cookie_name, current);
+	//		window.location.href = window.location.href;
+	//	}
+	//}else{
+	//}
 });
 
 /* 验证 首页 课程 输入 */
@@ -791,4 +794,13 @@ function validateCollegeSearchForm(formName) {
 		return false;
 	}
 	return true;
+}
+
+function getQueryString(name)
+{
+	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	var r = window.location.search.substr(1).match(reg);
+	if(r!=null)
+		return  unescape(r[2]);
+	return null;
 }
