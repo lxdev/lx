@@ -327,6 +327,21 @@ border: 0;
 		                            <td valign="top">
 		                                <div class="universityname">
 		                                	<a href="university?universityId=<s:property value="id"/>" target="_blank"><s:property value="university_name"/>/<s:property value="english_name"/></a>
+		                                	<span class="ranking"><span>综合排名 <s:property value="ranking_comprehensive"/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<s:if test="resultSpecialtyRank.contains(#outer.id)">
+                                                <s:iterator value="resultSpecialtyRank" id="spe_rank">
+                                                    <s:if test="#spe_rank.university_id==#outer.id">
+                                                        <span>专业排名：<s:property value="#spe_rank.rank"/></span>
+                                                    </s:if>
+                                                </s:iterator>
+											</s:if>
+											<s:if test="program_specialty == null">
+
+											</s:if>
+											<s:else>
+												<span>专业排名：无排名</span>
+											</s:else>
+		                                	</span>
 		                                </div>
 		                                <div class="info">
 		                                    <span>
@@ -345,22 +360,7 @@ border: 0;
 		                                </div>
 		                            </td>
 		                            <td valign="top" class="text-center" style="width:19%">
-		                                <div class="ranking ftcolff6600">
-		                                    <span>综合排名 <s:property value="ranking_comprehensive"/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											<s:if test="resultSpecialtyRank.contains(#outer.id)">
-                                                <s:iterator value="resultSpecialtyRank" id="spe_rank">
-                                                    <s:if test="#spe_rank.university_id==#outer.id">
-                                                        <span>专业排名：<s:property value="#spe_rank.rank"/></span>
-                                                    </s:if>
-                                                </s:iterator>
-											</s:if>
-											<s:if test="program_specialty == null">
-
-											</s:if>
-											<s:else>
-												<span>专业排名：无排名</span>
-											</s:else>
-		                                </div>
+		                                
 		                                <div class="text-center sc">
 		                                    <img src="../plugin/new/images/sc.png" onclick="common_collect('<s:property value="id"/>', '2')"/>
 		                                </div>
@@ -414,6 +414,25 @@ border: 0;
 		<jc:plugin name="main_js" />
 		
 		<script type="text/javascript">
+		$(window).scroll(function(){
+			if($(window).scrollTop()>350){
+				$(".searcharea .conditions").css({"width":"1000px","margin":"0px auto"});
+				$(".searcharea .conditions").addClass("fixedcon");
+				$(".searcharea .result").hide();
+				$(".searcharea .content").css({"width":"100%","height":"81px","position":"fixed","top":"0px","z-index":"1000"});
+				$(".searcharea .content").addClass("fixedcontent");
+			}
+			else{
+			$(".searcharea .conditions").css({"width":"100%","margin":"0px auto"});
+				$(".searcharea .conditions").removeClass("fixedcon");
+				$(".searcharea .result").show();
+				$(".searcharea .content").css({"width":"965px","height":"auto","position":"inherit","top":"inherit","z-index":"inherit"});
+				$(".searcharea .content").removeClass("fixedcontent");
+			}
+		})
+		</script>
+		
+		<script type="text/javascript">
 			var set_page_init = function(){
 				//$("#page").val(0);
 				$("#page_ul li").removeClass("active");
@@ -429,7 +448,7 @@ border: 0;
 		    var titleHeight = $(".reslut-2 .title").height();
 		    var courselistliHeight = $(".courselist-1 .courselist-li").height();
 			
-		</script>
+		
 		
 	</body>
 </html>

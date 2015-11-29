@@ -202,6 +202,7 @@ border: 0;
 		                            <td valign="top">
 		                                <div class="universityname">
 		                                	<a href="university?universityId=<s:property value="id"/>"><s:property value="university_name"/>/<s:property value="english_name"/></a>
+		                                	<span class="ranking"><span>综合排名 <s:property value="ranking_comprehensive"/></span></span>
 		                                </div>
 		                                <div class="info">
 		                                    <span>
@@ -217,9 +218,7 @@ border: 0;
 										</div>
 		                            </td>
 		                            <td valign="top" class="text-center" style="width:19%">
-		                                <div class="ranking ftcolff6600">
-		                                    <span>综合排名 <s:property value="ranking_comprehensive"/></span>
-		                                </div>
+		                                
 		                                <div class="text-center sc">
 		                                    <img src="../plugin/new/images/sc.png" onclick="common_collect('<s:property value="id"/>', '2')"/>
 		                                </div>
