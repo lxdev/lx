@@ -35,7 +35,7 @@ h4 {
     font-size: 14px;
     font-weight: normal;
 }
-/** 椤堕儴瀵艰埅 start **/
+/** 顶部导航 start **/
 .toparea {
     width: 100%;
     height: 52px;
@@ -89,9 +89,9 @@ h4 {
                 padding-left: 25px;
                 background: url(../images/icon-29.png) 2px 3px no-repeat;
             }
-/** 椤堕儴瀵艰埅 end **/
+/** 顶部导航 end **/
 
-/** 椤堕儴鎼滅储 start **/
+/** 顶部搜索 start **/
 .searcharea {
     width: 100%;
     height: 307px;
@@ -144,9 +144,9 @@ h4 {
         display: inline;
         padding-top: 30px;
     }
-/** 椤堕儴鎼滅储 end **/
+/** 顶部搜索 end **/
 
-/** 绮剧‘鎼滅储 start **/
+/** 精确搜索 start **/
 .accuratesearch {
     width: 1160px;
     margin: 0px auto;
@@ -364,9 +364,9 @@ h4 {
     margin-left: 25px;
     margin-top: 19px;
 }
-/** 绮剧‘鎼滅储 end **/
+/** 精确搜索 end **/
 
-/** 瀵艰埅鏉�start **/
+/** 导航条 start **/
 .daohang {
     width: 1160px;
     line-height: 30px;
@@ -384,9 +384,9 @@ h4 {
         float: left;
         margin-right: 5px;
     }
-/** 瀵艰埅鏉�end **/
+/** 导航条 end **/
 
-/** 璇剧▼鍐呭 start **/
+/** 课程内容 start **/
 .reslut-2 {
     width: 1160px;
     margin: 0px auto;
@@ -483,9 +483,9 @@ h4 {
         width: 147px;
         height: 159px;
     }
-/** 璇剧▼鍐呭 end **/
+/** 课程内容 end **/
 
-/** 鐣欏椤鹃棶 start **/
+/** 留学顾问 start **/
 .conditions-2 {
     color: #fff;
     font-size: 14px;
@@ -538,8 +538,8 @@ h4 {
     float: left;
     margin-right: 3px;
 }
-/** 鐣欏椤鹃棶 end **/
-/** 椤鹃棶璇︽儏 start **/
+/** 留学顾问 end **/
+/** 顾问详情 start **/
 .consultant {
     background: url(../images/gwbg-1.jpg) center top repeat-y;
 }
@@ -702,11 +702,11 @@ h4 {
                 .consultant .detailinfo .tabs li.current {
                     background: #fff;
                 }
-/** 椤鹃棶璇︽儏 end **/
+/** 顾问详情 end **/
 
 
 
-/** 闄㈡牎璇︽儏 start **/
+/** 院校详情 start **/
 .undetail {
     background: url(../images/img-4.jpg) no-repeat center top #f7f7f7;
 }
@@ -843,9 +843,9 @@ h4 {
     .undetail .comment .content {
         color: #000;
     }
-/** 闄㈡牎璇︽儏 end **/
+/** 院校详情 end **/
 
-/** 棣栭〉 start **/
+/** 首页 start **/
 .searchbody {
     background: url(../images/mainbg.jpg) no-repeat center;
 }
@@ -948,10 +948,10 @@ h4 {
             background: none;
             color: #fff;
         }
-/** 棣栭〉 end **/
+/** 首页 end **/
 
 
-/** 鏀荤暐 start **/
+/** 攻略 start **/
 .strategytotal {
     width: 1160px;
     margin: 0px auto;
@@ -1127,14 +1127,14 @@ h4 {
                 display: inline-block;
                 margin-right: 10px;
             }
-/** 鏀荤暐  end **/
+/** 攻略  end **/
 
 .clicks {
     color: #727272;
     font-size: 16px;
 }
 
-/** 寮瑰嚭绐楀彛 start **/
+/** 弹出窗口 start **/
 .popbg {
     width: 100%;
     height: 100%;
@@ -1193,7 +1193,7 @@ h4 {
                 color: #fff;
                 background: #57a0dd;
             }
-/** 寮瑰嚭绐楀彛 end **/
+/** 弹出窗口 end **/
 
 .bottom {
     width: 100%;
@@ -1241,7 +1241,7 @@ h4 {
 }
 
 
-/** 瀛椾綋棰滆壊閫氱敤 start **/
+/** 字体颜色通用 start **/
 .ftcolfff {
     color: #fff;
 }
@@ -1305,8 +1305,8 @@ h4 {
 .ftcolff9941 {
     color: #ff9941;
 }
-/** 瀛椾綋棰滆壊閫氱敤 end **/
-/** 瀛椾綋澶у皬閫氱敤 start **/
+/** 字体颜色通用 end **/
+/** 字体大小通用 start **/
 .ftsize12 {
     font-size: 12px;
 }
@@ -1338,12 +1338,12 @@ h4 {
 .ftsize33 {
     font-size: 33px;
 }
-/** 瀛椾綋澶у皬閫氱敤 end **/
+/** 字体大小通用 end **/
 .fontweight {
     font-weight: bolder;
 }
 
-/** 杈撳叆妗嗛�鐢�start **/
+/** 输入框通用 start **/
 .txt-1 {
     width: 230px;
     padding: 8px 5px;
@@ -1401,9 +1401,9 @@ h4 {
     color: #6e6e6e;
     border: 1px solid #dae2e5;
 }
-/** 杈撳叆妗嗛�鐢�end **/
+/** 输入框通用 end **/
 
-/** 鎸夐挳閫氱敤 start **/
+/** 按钮通用 start **/
 .button-1 {
     width: 80px;
     padding: 8px 5px;
@@ -1469,9 +1469,9 @@ h4 {
     font-size: 14px;
     padding: 5px 8px;
 }
-/** 鎸夐挳閫氱敤 end **/
+/** 按钮通用 end **/
 
-/** 瀹藉害閫氱敤 start **/
+/** 宽度通用 start **/
 .width-64 {
     width: 64px;
 }
@@ -1503,7 +1503,7 @@ h4 {
 .width-210 {
     width: 210px;
 }
-/** 瀹藉害閫氱敤 end **/
+/** 宽度通用 end **/
 
 .marginleft25 {
     margin-left: 25px;
@@ -1576,13 +1576,13 @@ h4 {
     margin: 20px 0;
 }
 
-/** 瀛椾綋鏍峰紡閫氱敤 start **/
+/** 字体样式通用 start **/
 .ftsty-1 {
     background: #fff;
     color: #665c5c;
     padding: 2px 9px;
 }
-/** 瀛椾綋鏍峰紡閫氱敤 end **/
+/** 字体样式通用 end **/
 
 
 .text-right {
@@ -1719,7 +1719,7 @@ h4 {
         padding: 3px 0;
     }
 
-/* start 璇剧▼鎼滅储锛岀被浼间簬浜笢閭ｆ牱鐨勬晥鏋�*/
+/* start 课程搜索，类似于京东那样的效果 */
 .moresearch {
     border-top: 1px solid #ddd;
     height: 30px;
@@ -1837,4 +1837,4 @@ i, cite, em, var, address, dfn {
     font-family: simsun;
     font-style: normal;
 }
-/* end 璇剧▼鎼滅储锛岀被浼间簬浜笢閭ｆ牱鐨勬晥鏋�*/
+/* end 课程搜索，类似于京东那样的效果 */
