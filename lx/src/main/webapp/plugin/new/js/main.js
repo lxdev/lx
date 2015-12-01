@@ -156,11 +156,35 @@ var set_sort_p = function(obj, sort_type){
 	search_data_p(true);
 }
 
+/*****************/
+/***** 院校搜索 *****/
+/*****************/
+/*排序点击*/
+var set_sort_u = function(obj, sort_type){
+	var order;
+	if(sort_type){
+		$("#sort_ul li").removeClass("current");
+		$(obj).addClass("current");
+		if(sort_type == 'hot')	//热度
+			order = " D.total_browse DESC ";
+		else if(sort_type == 'ranking')	//排名
+			order = " A.ranking_comprehensive ASC ";
+		else if(sort_type == 'remark')	//点评
+			order = " C.evaluate_number DESC ";
+	}
+	$("#sort_by").val(order);
+	
+	search_data_u();
+}
+
 var set_program_search_options = function(){
 	var options = ["ranking", "area", "is_public_school", "time_of_enrollment", "totef", "ietls", "gre", "gmat"];
 	for(var i = 0; i < options.length; i++) {
+		var getValue = $("#" + options[i] + "_value").val();
 		$("input[name='" + options[i] + "']").each(function(j, e){
-			if(j > 0 && this.checked){
+			if(j == 0 && (getValue == '' || getValue == '全部' || getValue == '-1')){
+				this.checked = true;
+			}else if(j > 0 && this.checked){
 				choose_submit(options[i], this, true);
 			}
 		});
@@ -505,26 +529,6 @@ var choose_submit = function(type, obj, is_not_search){
 	}
 }
 
-/*****************/
-/***** 院校搜索 *****/
-/*****************/
-/*排序点击*/
-var set_sort_u = function(obj, sort_type){
-	var order;
-	if(sort_type){
-		$("#sort_ul li").removeClass("current");
-		$(obj).addClass("current");
-		if(sort_type == 'hot')	//热度
-			order = " D.total_browse DESC ";
-		else if(sort_type == 'ranking')	//排名
-			order = " A.ranking_comprehensive ASC ";
-		else if(sort_type == 'remark')	//点评
-			order = " C.evaluate_number DESC ";
-	}
-	$("#sort_by").val(order);
-	
-	search_data_u();
-}
 /*搜索数据*/
 var search_data_u = function(type){
 	var universityName = ($("#university_name").val() == $("#defaultval").val() ? '' : $("#university_name").val());
@@ -579,12 +583,11 @@ var search_data_u = function(type){
 	};
 
 	//2015-11-22 将查询提交方式改为页面刷新
-	$("#country_id").val($("#unicountryStyleId").val());
-	$("#university_name").val(universityName);
-	$("#rankingBegin").val(rankingBegin);
-	$("#rankingEnd").val(rankingEnd);
-	//$("#areaName").val(tempAreaName == '全部' ? '' : tempAreaName);
-	$("#is_public_school").val(tempIsPublic);
+//	$("#country_id").val($("#unicountryStyleId").val());
+//	$("#university_name").val(universityName);
+//	$("#rankingBegin").val(rankingBegin);
+//	$("#rankingEnd").val(rankingEnd);
+//	$("#is_public_school").val(tempIsPublic);
 
 	//var hash = "#search";
 	//for(var a in option){
@@ -653,6 +656,78 @@ var clear_university = function(){
 		$("#university_name_id").attr("data-id", "");
 	}
 }
+
+//更多选项
+$(".moresearch").click(function(){
+    if($(".moresearch .smore").hasClass("close")){
+        $(".moresearch .smore").removeClass("close");
+        $(".table-accuratesearch tr").each(function(i){
+            if(i>3 && $(this).attr("data-choosed") != "true"){
+                $(this).hide();
+            }
+        });
+    }
+    else{
+        $(".moresearch .smore").addClass("close");
+        $(".table-accuratesearch tr").each(function(i){
+            if(i>2 && $(this).attr("data-choosed") != "true"){
+                $(this).show();
+            }
+        });
+    }
+})
+
+//选项选中效果
+var choose_cancel = function(obj){
+	var dataType = $(obj).attr("data-type");
+	//var dataId = $(obj).attr("data-id");
+	
+	//$("input[name='" + dataType + "']").each(function(e, i){
+	$("input[name='" + dataType + "']").each(function(i){
+		if(i == 0){
+			this.checked = true;
+		}
+	});
+	$("#search_tr_" + dataType).show();
+	$("#search_tr_" + dataType).attr("data-choosed", "false");
+	
+	$(obj).prev().remove();
+	$(obj).remove();
+
+	var chooseParent = $("#choose_td");
+	if(chooseParent.attr("data-type") == "program")
+		search_data_p();
+	else if(chooseParent.attr("data-type") == "university")
+		search_data_u();
+}
+/**
+ * 精确查找
+ * @param type	如 ranking, area 等
+ * @param obj	点击或设置的对象 如 checkbox
+ * @param is_not_search		true则不执行查找
+ * @returns
+ */
+var choose_submit = function(type, obj, is_not_search){
+	var chooseParent = $("#choose_td");
+	var optionParent = $(obj).parent().parent().parent();
+	var option =  "<i class='crumbs-arrow'>&gt;</i>";
+	var option_value = $(obj)[0].nextSibling.nodeValue;
+	option += "<a onclick='choose_cancel(this)' data-type='" + type + "' class='ss-item'><b>" + optionParent.attr("data-name") + "</b><em>" + option_value + "</em><i></i></a>";
+	chooseParent.append(option);
+	optionParent.hide();
+	optionParent.attr("data-choosed", "true");
+
+	//从第一页开始
+	$("#page").val(1);
+	if(!is_not_search){
+		if(chooseParent.attr("data-type") == "program")
+			search_data_p();
+		else if(chooseParent.attr("data-type") == "university")
+			search_data_u();
+	}
+}
+
+
 /**/
 /***************/
 /***** 翻页 *****/

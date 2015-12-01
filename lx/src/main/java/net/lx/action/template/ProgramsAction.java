@@ -210,6 +210,9 @@ public class ProgramsAction extends BaseAction {
 			ranking = StringEncode.ToUTF8(ranking, true);
 			if(!ranking.equalsIgnoreCase("全部")){
 				String[] rankings = ranking.split("-");
+				if(rankings.length == 1){
+					rankings[0] = rankings[0].replace("以后", "");
+				}
 				cProgram.setRankingBegin(Integer.parseInt(rankings[0]));
 				if(rankings.length >= 2)
 					cProgram.setRankingEnd(Integer.parseInt(rankings[1]));

@@ -35,7 +35,10 @@
 							<input type="hidden" name="isFromFirst" value="true" id="isFromFirst" />
 						    <table cellpadding="0" cellspacing="0" class="table-11">
 							    <tr>
-							    	<td><s:select list="%{countryList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择国家--" onselect="%{countryId}" theme="simple" name="countryId" id="countryId" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h1')"/></td>
+							    	<td>
+							    		<!-- 控件name 必须和 获取到的变量完全一样，才能 使用 onselect -->
+							    		<s:select list="%{countryList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择国家--" onselect="%{countryId}" theme="simple" name="countryId" id="countryId" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h1')"/>
+							    	</td>
 							    </tr>
 							    <tr>
 							    	<td><s:select list="%{studyLevelList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择学历--" onselect="%{studyLevelId}" theme="simple" name="studyLevelId" id="studyLevelId" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h2');defaultMessages('ctitle','defaultval');clearErrorMessagesforHomeDrop('locationList_h2');"/></td>
@@ -46,11 +49,6 @@
 				                        <input type="hidden" id="program_specialty_id" name="program_specialty_id"/>
 							    	</td>
 							    </tr>
-							    <%--<tr>
-							    	<td>
-							    		<select class="form-control margin-bottom-15 select" id="specialtyId" name="specialtyId" value=""></select>
-									</td>
-							    </tr>--%>
 							    <tr>
 							    	<td>
 							    		<input id="university_name" name="university_name" class="ui-autocomplete-input txt-5" placeholder="请输入学校名称（选填）" data-url="<s:url value="/template/university_search"/>"/>
@@ -70,12 +68,12 @@
 							<table cellpadding="0" cellspacing="0" class="table-11">
 							    <tr>
 							    	<td>
-							    		<s:select list="%{countryList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择国家--" onselect="%{countryId2}" theme="simple" id="unicountryStyleId" name="unicountryStyleId" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h3');defaultMessages('searchpodcollege','defaultunival');makeDisableCollege('searchpodcollege','unicountryStyleId');clearErrorMessagesforHomeDrop('locationList_h3');"/>
+							    		<!-- 控件name 必须和 获取到的变量完全一样，才能 使用 onselect -->
+							    		<s:select list="%{countryList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择国家--" onselect="%{unicountryStyleId}" theme="simple" id="unicountryStyleId" name="unicountryStyleId" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h3');defaultMessages('searchpodcollege','defaultunival');makeDisableCollege('searchpodcollege','unicountryStyleId');clearErrorMessagesforHomeDrop('locationList_h3');"/>
 									</td>
 							    </tr>
 								<tr>
 									<td>
-										<%--<select class="form-control margin-bottom-15 select" id="universityId" name="universityId" value=""></select>--%>
 										<input id="university_name" name="university_name" class="ui-autocomplete-input txt-5" placeholder="请输入学校名称" data-url="<s:url value="/template/university_search"/>"/>
 				                        <input type="hidden" id="university_name_id" name="university_name_id"/>
 									</td>
@@ -95,13 +93,13 @@
 							<table cellpadding="0" cellspacing="0" class="table-11">
 							    <tr>
 							    	<td>
-							    		<s:select list="%{countryList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择国家--" onselect="%{countryId3}" theme="simple" id="studynat" name="scholarCountryName" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h8');defaultMessages('searchpodcollege','defaultunival');makeDisableCollege('searchpodcollege','stdlvid');clearErrorMessagesforHomeDrop('locationList_h8');"/>
+							    		<!-- 控件name 必须和 获取到的变量完全一样，才能 使用 onselect -->
+							    		<s:select list="%{countryList}" listKey="id" listValue="name" headerKey="0" headerValue="--请选择国家--" onselect="%{studynat}" theme="simple" id="studynat" name="studynat" cssClass="txt-3" onchange="setValue_AMW(this,'locationList_h8');defaultMessages('searchpodcollege','defaultunival');makeDisableCollege('searchpodcollege','stdlvid');clearErrorMessagesforHomeDrop('locationList_h8');"/>
 									</td>
 							    </tr>
 							    <tr>
 							    	<td>
-							    		<%--<select class="form-control margin-bottom-15 select" id="selectedCat" name="selectedCat" value=""></select>
-							    		--%><input id="guide_specialty" name="guide_specialty" class="ui-autocomplete-input txt-5" placeholder="请输入专业名称" data-url="<s:url value="/template/guide_specialty_search"/>"/>
+							    		<input id="guide_specialty" name="guide_specialty" class="ui-autocomplete-input txt-5" placeholder="请输入专业名称" data-url="<s:url value="/template/guide_specialty_search"/>"/>
 				                        <input type="hidden" id="guide_specialty_id" name="guide_specialty_id"/>
 							    	</td>
 							    </tr>
@@ -121,91 +119,9 @@
 			<a href="#top"></a>
 		</p>
 		
-		<%--<jc:plugin name="hot_base_js"/>--%>
 		<jc:plugin name="main_js" />
 		<script type="text/javascript">
 		$(function($){
-			/*var user_data = [{ id: -1, text: '请选择专业' }];
-			$("#specialtyId").select2({
-				language: 'zh-CN',
-				placeholder: '请选择一个专业*',
-				  ajax: {
-				    url: '<s:url value="/template/specialty_search"/>',
-				    cache: "true",
-				    processResults: function (data, page) {
-				        // parse the results into the format expected by Select2.
-				        // since we are using custom formatting functions we do not need to
-				        // alter the remote JSON data
-				        var user_data = [];
-				        if(null!=data.specialtyList)
-				    		jQuery.each(data.specialtyList, function()
-			    			{
-				    			user_data.push({ id: this.id, text: this.specialty_name });
-			    			});
-				        return {
-				          results: user_data
-				        };
-				      }
-				  }
-			});
-
-			$("#selectedCat").select2({
-				language: 'zh-CN',
-				placeholder: '请选择一个专业*',
-				  ajax: {
-				    url: '<s:url value="/template/guide_specialty_search"/>',
-				    cache: "true",
-				    processResults: function (data, page) {
-				        // parse the results into the format expected by Select2.
-				        // since we are using custom formatting functions we do not need to
-				        // alter the remote JSON data
-				        var user_data = [];
-				        if(null!=data.guideList)
-				    		jQuery.each(data.guideList, function()
-			    			{
-				    			user_data.push({ id: this.guide_id, text: this.guide_name });
-			    			});
-				        return {
-				          results: user_data
-				        };
-				      }
-				  }
-			});
-
-			$("#universityId").select2({
-				language: 'zh-CN',
-				placeholder: '请选择一个学校*',
-				  ajax: {
-				    url: '<s:url value="/template/university_search"/>',
-				    cache: "true",
-				    processResults: function (data, page) {
-				        // parse the results into the format expected by Select2.
-				        // since we are using custom formatting functions we do not need to
-				        // alter the remote JSON data
-				        var user_data = [];
-				        if(null!=data.universityList)
-				    		jQuery.each(data.universityList, function()
-			    			{
-				    			user_data.push({ id: this.id, text: this.university_name });
-			    			});
-				        return {
-				          results: user_data
-				        };
-				      }
-				  }
-			});
-
-			if( $(".select2-selection--single").length >= 1 ){
-				$(".select2-selection--single").addClass("selBx");
-				$(".select2-selection--single").removeClass("select2-selection--single");
-
-				$(".select2-selection__rendered").addClass("hgt_hn");
-
-				$(".select2-selection__arrow").addClass("arw");
-
-				$(".select2-container--default").css("width", "420px");
-			}
-			*/
 			show_tab(1);
 		});
 		
@@ -228,60 +144,6 @@
 				break;
 			}
 		}
-
-			/*var elementText = $("#ctitle");
-			var elementId = $("#specialtyId");
-			function initAutoComplete(json) {
-		          elementText.autocomplete({
-		              autoFocus: true,
-		              source: json,
-		              position: {
-		                  my: "left top",
-		                  at: "left bottom",
-		                  of: elementText,
-		                  offset: "5 10"
-		              },
-		              minLength: 1,
-		              focus: function () {
-		                  return false;
-		              },
-		              open: function (event, ui) {
-		                  var b = 22;
-		              }.context,
-		              select: function (event, ui) {
-		            	  elementId.val(ui.item.value).trigger('change');
-		                  elementText.val(ui.item.label);
-		                  return false;
-		              }
-		          }).data("autocomplete")._renderItem = function (ul, item) {
-		              var str1 = "<li class='item-" + item.value + "'></li>";
-		              return $(str1)
-		                      .data("item.autocomplete", item)
-		                      .append("<a href='javascript:void(0)' >" + '<span >' + item.label + '</span>' + "</a>")
-		                      .appendTo(ul);
-		          };
-		      };*/
-
-		      $(document).ready(function () {
-		    	  /*jQuery.post('<s:url value="/template/specialty_search"/>', {'term': ''},
-					function(data)
-					    	{
-					    		if(null!=data.specialtyList){
-					    			var dataList = [];
-					    			for(var i = 0; i < data.specialtyList.length; i++){
-					    				dataList.push({ value: data.specialtyList[i].id, label: data.specialtyList[i].specialty_name });
-					    			}
-					    			initAutoComplete(dataList);
-					    		}
-					    	},
-					 "json");*/
-		    	  //elementText.keyup(function () {
-		          //    var _term = elementText.val();
-		          //    var url = '<s:url value="/template/specialty_search"/>';
-		          //    initAutoComplete(url);
-		          //});
-		      });
-
 			
 		</script>
 	</body>

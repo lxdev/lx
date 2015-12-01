@@ -51,8 +51,14 @@ border: 0;
 		<s:action namespace="/user" name="head" executeResult="true"/>
 
 		<form id="form_programs_search" action="programs">
-			<!-- <input type="hidden" name="country_id" id="country_id" value="<s:property value="countryId"/>"/> -->
-
+			<input type="hidden" id="ranking_value" value="<s:property value="ranking"/>"/>
+			<input type="hidden" id="area_value" value="<s:property value="area"/>"/>
+			<input type="hidden" id="is_public_school_value" value="<s:property value="is_public_school"/>"/>
+			<input type="hidden" id="time_of_enrollment_value" value="<s:property value="time_of_enrollment"/>"/>
+			<input type="hidden" id="totef_value" value="<s:property value="totef"/>"/>
+			<input type="hidden" id="ietls_value" value="<s:property value="ietls"/>"/>
+			<input type="hidden" id="gre_value" value="<s:property value="gre"/>"/>
+			<input type="hidden" id="gmat_value" value="<s:property value="gmat"/>"/>
 		<div class="searcharea">
 			<div class="content">
 	            <div class="result">
@@ -394,15 +400,6 @@ border: 0;
 		                </li>
 					</s:iterator>
 	            </ul>
-	            <%--<ul class="pagination pull-right" id="page_ul" value="1">
-	                <li class="disabled"><a>«</a></li>
-	                <li class="active"><a><span class="num">1</span> <span class="sr-only">(current)</span></a></li>
-	                <li><a><span class="num">2</span> <span class="sr-only">(current)</span></a></li>
-	                <li><a><span class="num">3</span> <span class="sr-only">(current)</span></a></li>
-	                <li><a><span class="num">4</span> <span class="sr-only">(current)</span></a></li>
-	                <li><a><span class="num">5</span> <span class="sr-only">(current)</span></a></li>
-	                <li><a>»</a></li>
-	            </ul>--%>
 	            <div class="pagination pull-right" id="pager" data-type="p" ></div>
 	        </div>
 	    </div>

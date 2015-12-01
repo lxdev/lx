@@ -13,10 +13,10 @@
   <%--<h2 class="l2"><a href="javascript:function()">当期顾问</a></h2>--%>
   <%--<h2 class="l2"><a href="javascript:function()">往期顾问</a></h2>--%>
   <h1 class="l1 gjs4">我的收藏</h1>
-  <h2 class="l2"><a href="../collect/index.asp">课程收藏</a></h2>
-  <h2 class="l2"><a href="../collect/index.asp">院校收藏</a></h2>
-  <h2 class="l2"><a href="../collect/index.asp">攻略收藏</a></h2>
-  <h2 class="l2"><a href="../collect/index.asp">顾问收藏</a></h2>
+  <h2 class="l2"><a href="../follow/course">课程收藏</a></h2>
+  <h2 class="l2"><a href="../follow/university">院校收藏</a></h2>
+  <h2 class="l2"><a href="../follow/guide">攻略收藏</a></h2>
+  <h2 class="l2"><a href="../follow/consultant">顾问收藏</a></h2>
   <h1 class="l1 gjs5">我的点评</h1>
   <h2 class="l2"><a href="../university/evaluate">院校点评</a></h2>
   <h2 class="l2"><a href="javascript:function();">顾问点评</a></h2>

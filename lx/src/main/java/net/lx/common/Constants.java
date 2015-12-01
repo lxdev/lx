@@ -138,11 +138,12 @@ public class Constants {
 	public static final int USER_STUDENT_4 = 4;
 	public static final int USER_STUDENT_5 = 5;
 	public static final int USER_STUDENT_6 = 6;
-	//1 关注问题；2 收藏院校；3 收藏项目；4 收藏攻略
+	//1 关注问题；2 收藏院校；3 收藏项目；4 收藏攻略; 5 顾问
 	public static final int FOLLOW_ASK = 1;
 	public static final int FOLLOW_UNIVERSITY = 2;
 	public static final int FOLLOW_PROGRAM = 3;
 	public static final int FOLLOW_GUIDE = 4;
+	public static final int FOLLOW_CONSULTANT = 5;
 	//问问题 类型
 	public static final int ASK_ASSIGN = 1;
 	public static final int ASK_EVERY = 2;
