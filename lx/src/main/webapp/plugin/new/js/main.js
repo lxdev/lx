@@ -156,11 +156,35 @@ var set_sort_p = function(obj, sort_type){
 	search_data_p(true);
 }
 
+/*****************/
+/***** 院校搜索 *****/
+/*****************/
+/*排序点击*/
+var set_sort_u = function(obj, sort_type){
+	var order;
+	if(sort_type){
+		$("#sort_ul li").removeClass("current");
+		$(obj).addClass("current");
+		if(sort_type == 'hot')	//热度
+			order = " D.total_browse DESC ";
+		else if(sort_type == 'ranking')	//排名
+			order = " A.ranking_comprehensive ASC ";
+		else if(sort_type == 'remark')	//点评
+			order = " C.evaluate_number DESC ";
+	}
+	$("#sort_by").val(order);
+	
+	search_data_u();
+}
+
 var set_program_search_options = function(){
 	var options = ["ranking", "area", "is_public_school", "time_of_enrollment", "totef", "ietls", "gre", "gmat"];
 	for(var i = 0; i < options.length; i++) {
+		var getValue = $("#" + options[i] + "_value").val();
 		$("input[name='" + options[i] + "']").each(function(j, e){
-			if(j > 0 && this.checked){
+			if(j == 0 && (getValue == '' || getValue == '全部' || getValue == '-1')){
+				this.checked = true;
+			}else if(j > 0 && this.checked){
 				choose_submit(options[i], this, true);
 			}
 		});
@@ -404,6 +428,134 @@ var search_data_p = function(is_not_check){
 	    	},
 	 "json");
 }
+
+/*搜索数据*/
+var search_data_u = function(type){
+	var universityName = ($("#university_name").val() == $("#defaultval").val() ? '' : $("#university_name").val());
+	if($.trim(universityName) == ""){
+		$("#university_name_id").val("");
+		$("#university_name_id").attr("data-id", "");
+	}
+	var universityId = $("#university_name_id").val() || $("#university_name_id").attr("data-id");
+	if(universityId != null && parseInt(universityId) > 0){
+		clear_university();
+		//window.location.href="university?universityId=" + universityId;
+		window.open("university?universityId=" + universityId);
+		return;
+	}
+	if(type == -1){
+		
+	}else {
+		set_page_init();
+	}
+	//open_loading();
+	
+	var url = '../template/json_universitys';
+	
+	var rankingBegin;
+	var rankingEnd;
+	var tempRanking = $('input[name="ranking"]:checked').val();
+	if(tempRanking != '全部'){
+		if(tempRanking == "200以后"){
+			rankingBegin = 201;
+			rankingEnd = 0;
+		}else {
+			var tempRankingArray = tempRanking.split('-');
+			rankingBegin = tempRankingArray[0];
+			if (tempRankingArray.length >= 2)
+				rankingEnd = tempRankingArray[1];
+		}
+	}
+	//var tempAreaName = $('input[name="area"]:checked').val();
+	var tempIsPublic = $('input[name="is_public_school"]:checked').val();
+	
+	var option = {
+			'condition.country_id': $("#unicountryStyleId").val()
+			, 'condition.university_name': universityName
+			, 'condition.id': universityId
+			, 'condition.page_size': $("#page_size").val()
+			, 'condition.page': $("#page").val()
+			, 'condition.rankingBegin': rankingBegin
+			, 'condition.rankingEnd': rankingEnd
+			//, 'condition.areaName': (tempAreaName == '全部' ? '' : tempAreaName)
+			, 'condition.is_public_school': tempIsPublic
+			, 'condition.orderBy': $("#sort_by").val()
+	};
+
+	//2015-11-22 将查询提交方式改为页面刷新
+//	$("#country_id").val($("#unicountryStyleId").val());
+//	$("#university_name").val(universityName);
+//	$("#rankingBegin").val(rankingBegin);
+//	$("#rankingEnd").val(rankingEnd);
+//	$("#is_public_school").val(tempIsPublic);
+
+	//var hash = "#search";
+	//for(var a in option){
+	//	hash += "&" + a + "=" + option[a];
+	//}
+	//window.location.href = window.location.origin + window.location.pathname + hash;
+	//window.location.reload();
+	$("#form_universitys_search").submit();
+	return ;
+
+	jQuery.post(url, option,
+	        function(data)
+	    	{
+	    		var lists="";
+	    		if(null!=data.resultUniversity){
+		    		jQuery.each(data.resultUniversity, function()
+	    			{
+		    			lists += "<li>";
+		    			lists += "<table class='table-2' cellpadding='0' cellspacing='0'>";
+		    			lists += "<tr>";
+		    			lists += "<td class='text-center ulogo' style='width:20%'>";
+		    			lists += "<img src='" + this.logo_url + "'/>";
+		    			lists += "</td>";
+		    			lists += "<td valign='top'>";
+			            lists += "<div class='universityname'>";
+			            lists += "<a href='university?universityId=" + this.id + "'>" + this.university_name + "/" + this.english_name + "</a>";
+			            lists += "</div>";
+			            lists += "<div class='info'>";
+			            lists += "					<span>" + this.country.name + "&nbsp;&nbsp;&nbsp;&nbsp;" + (this.is_public_school == "1" ? "公立" : "私立") + "&nbsp;&nbsp;&nbsp;&nbsp;" + this.area.city + "," + this.area.state + "&nbsp;&nbsp;&nbsp;&nbsp;"+ this.scale + "&nbsp;&nbsp;&nbsp;&nbsp;"
+			            lists += "						<br/>" + this.browse_number + "浏览&nbsp;&nbsp;&nbsp;&nbsp;" + this.evaluate_number + "点评&nbsp;&nbsp;&nbsp;&nbsp;";
+			            //lists += "					<span class='star'></span><span class='star2'></span><span class='star2'></span>";
+			            lists += "					</span>"
+			            lists += "</div>";
+			            lists += "</td>";
+			            lists += "<td valign='top' class='text-center' style='width:15%'>";
+			            lists += "<div class='ranking ftcolff6600'>";
+			            //lists += "<span>综合排名 " + this.ranking_comprehensiveNew + "</span>";
+						lists += "<span>综合排名 " + (this.ranking_comprehensive == 9999 ? '无排名' : this.ranking_comprehensive) + "</span>";
+			            lists += "</div>";
+			            lists += "<div class='text-center sc'>";
+			            lists += "<img src='../plugin/new/images/sc.png' onclick='common_collect(" + this.id + ", 2)'/>";
+			            lists += "</div>";
+			            lists += "</td>";
+			            lists += "</tr>";
+			            lists += "</table>";
+			            lists += "</li>";
+	    			});
+	    			jQuery('#result_ul').html(lists);
+	    			close_loading();
+	    			if($.trim(lists) == ""){
+	    				alert("未收录相关院校!");
+	    			}
+	    		}
+	    		if(data.universityNum != null && data.universityNum >= 0){
+	    			set_page_result(data.universityNum);
+	    		}
+
+				clear_university();
+	    	},
+	 "json");
+}
+var clear_university = function(){
+	if($.trim($("#university_name").val()) != ""){
+		$("#university_name").val("");
+		$("#university_name_id").val("");
+		$("#university_name_id").attr("data-id", "");
+	}
+}
 /* 点击搜索出的院校，展开其下课程 */
 function show_courses(type){
 	var arrowcurrent=".arrow_" + type;
@@ -490,6 +642,8 @@ var choose_submit = function(type, obj, is_not_search){
 	optionParent.hide();
 	optionParent.attr("data-choosed", "true");
 
+	//从第一页开始
+	$("#page").val(1);
 	if(!is_not_search){
 		if(chooseParent.attr("data-type") == "program")
 			search_data_p();
@@ -498,154 +652,7 @@ var choose_submit = function(type, obj, is_not_search){
 	}
 }
 
-/*****************/
-/***** 院校搜索 *****/
-/*****************/
-/*排序点击*/
-var set_sort_u = function(obj, sort_type){
-	var order;
-	if(sort_type){
-		$("#sort_ul li").removeClass("current");
-		$(obj).addClass("current");
-		if(sort_type == 'hot')	//热度
-			order = " D.total_browse DESC ";
-		else if(sort_type == 'ranking')	//排名
-			order = " A.ranking_comprehensive ASC ";
-		else if(sort_type == 'remark')	//点评
-			order = " C.evaluate_number DESC ";
-	}
-	$("#sort_by").val(order);
-	
-	search_data_u();
-}
-/*搜索数据*/
-var search_data_u = function(type){
-	var universityName = ($("#university_name").val() == $("#defaultval").val() ? '' : $("#university_name").val());
-	if($.trim(universityName) == ""){
-		$("#university_name_id").val("");
-		$("#university_name_id").attr("data-id", "");
-	}
-	var universityId = $("#university_name_id").val() || $("#university_name_id").attr("data-id");
-	if(universityId != null && parseInt(universityId) > 0){
-		clear_university();
-		//window.location.href="university?universityId=" + universityId;
-		window.open("university?universityId=" + universityId);
-		return;
-	}
-	if(type == -1){
-		
-	}else {
-		set_page_init();
-	}
-	//open_loading();
-	
-	var url = '../template/json_universitys';
-	
-	var rankingBegin;
-	var rankingEnd;
-	var tempRanking = $('input[name="ranking"]:checked').val();
-	if(tempRanking != '全部'){
-		if(tempRanking == "200以后"){
-			rankingBegin = 201;
-			rankingEnd = 0;
-		}else {
-			var tempRankingArray = tempRanking.split('-');
-			rankingBegin = tempRankingArray[0];
-			if (tempRankingArray.length >= 2)
-				rankingEnd = tempRankingArray[1];
-		}
-	}
-	//var tempAreaName = $('input[name="area"]:checked').val();
-	var tempIsPublic = $('input[name="is_public_school"]:checked').val();
-	
-	var option = {
-			'condition.country_id': $("#unicountryStyleId").val()
-			, 'condition.university_name': universityName
-			, 'condition.id': universityId
-			, 'condition.page_size': $("#page_size").val()
-			, 'condition.page': $("#page").val()
-			, 'condition.rankingBegin': rankingBegin
-			, 'condition.rankingEnd': rankingEnd
-			//, 'condition.areaName': (tempAreaName == '全部' ? '' : tempAreaName)
-			, 'condition.is_public_school': tempIsPublic
-			, 'condition.orderBy': $("#sort_by").val()
-	};
 
-	//2015-11-22 将查询提交方式改为页面刷新
-	$("#country_id").val($("#unicountryStyleId").val());
-	$("#university_name").val(universityName);
-	$("#rankingBegin").val(rankingBegin);
-	$("#rankingEnd").val(rankingEnd);
-	//$("#areaName").val(tempAreaName == '全部' ? '' : tempAreaName);
-	$("#is_public_school").val(tempIsPublic);
-
-	//var hash = "#search";
-	//for(var a in option){
-	//	hash += "&" + a + "=" + option[a];
-	//}
-	//window.location.href = window.location.origin + window.location.pathname + hash;
-	//window.location.reload();
-	$("#form_universitys_search").submit();
-	return ;
-
-	jQuery.post(url, option,
-	        function(data)
-	    	{
-	    		var lists="";
-	    		if(null!=data.resultUniversity){
-		    		jQuery.each(data.resultUniversity, function()
-	    			{
-		    			lists += "<li>";
-		    			lists += "<table class='table-2' cellpadding='0' cellspacing='0'>";
-		    			lists += "<tr>";
-		    			lists += "<td class='text-center ulogo' style='width:20%'>";
-		    			lists += "<img src='" + this.logo_url + "'/>";
-		    			lists += "</td>";
-		    			lists += "<td valign='top'>";
-			            lists += "<div class='universityname'>";
-			            lists += "<a href='university?universityId=" + this.id + "'>" + this.university_name + "/" + this.english_name + "</a>";
-			            lists += "</div>";
-			            lists += "<div class='info'>";
-			            lists += "					<span>" + this.country.name + "&nbsp;&nbsp;&nbsp;&nbsp;" + (this.is_public_school == "1" ? "公立" : "私立") + "&nbsp;&nbsp;&nbsp;&nbsp;" + this.area.city + "," + this.area.state + "&nbsp;&nbsp;&nbsp;&nbsp;"+ this.scale + "&nbsp;&nbsp;&nbsp;&nbsp;"
-			            lists += "						<br/>" + this.browse_number + "浏览&nbsp;&nbsp;&nbsp;&nbsp;" + this.evaluate_number + "点评&nbsp;&nbsp;&nbsp;&nbsp;";
-			            //lists += "					<span class='star'></span><span class='star2'></span><span class='star2'></span>";
-			            lists += "					</span>"
-			            lists += "</div>";
-			            lists += "</td>";
-			            lists += "<td valign='top' class='text-center' style='width:15%'>";
-			            lists += "<div class='ranking ftcolff6600'>";
-			            //lists += "<span>综合排名 " + this.ranking_comprehensiveNew + "</span>";
-						lists += "<span>综合排名 " + (this.ranking_comprehensive == 9999 ? '无排名' : this.ranking_comprehensive) + "</span>";
-			            lists += "</div>";
-			            lists += "<div class='text-center sc'>";
-			            lists += "<img src='../plugin/new/images/sc.png' onclick='common_collect(" + this.id + ", 2)'/>";
-			            lists += "</div>";
-			            lists += "</td>";
-			            lists += "</tr>";
-			            lists += "</table>";
-			            lists += "</li>";
-	    			});
-	    			jQuery('#result_ul').html(lists);
-	    			close_loading();
-	    			if($.trim(lists) == ""){
-	    				alert("未收录相关院校!");
-	    			}
-	    		}
-	    		if(data.universityNum != null && data.universityNum >= 0){
-	    			set_page_result(data.universityNum);
-	    		}
-
-				clear_university();
-	    	},
-	 "json");
-}
-var clear_university = function(){
-	if($.trim($("#university_name").val()) != ""){
-		$("#university_name").val("");
-		$("#university_name_id").val("");
-		$("#university_name_id").attr("data-id", "");
-	}
-}
 /**/
 /***************/
 /***** 翻页 *****/

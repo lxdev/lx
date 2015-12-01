@@ -244,8 +244,6 @@ border: 0;
 				$("#page_ul li:first").addClass("active");
 			}
 	        
-			$(document).ready(function() {
-	        });
 		</script>
 	</body>
 </html>

@@ -61,8 +61,8 @@ public class FirstAction extends BaseAction {
 	//private String jsonResult;
 
 	private int countryId;
-	private int countryId2;
-	private int countryId3;
+	private int unicountryStyleId;
+	private int studynat;
 	private int studyLevelId;
 
 	private int show_login;
@@ -73,8 +73,8 @@ public class FirstAction extends BaseAction {
 		if(super.isGetRequest())
 		{
 			countryId = countryId == 0 ? 1 : countryId;
-			countryId2 = countryId2 == 0 ? 1 : countryId2;
-			countryId3 = countryId3 == 0 ? 1 : countryId3;
+			unicountryStyleId = unicountryStyleId == 0 ? 1 : unicountryStyleId;
+			studynat = studynat == 0 ? 1 : studynat;
 			studyLevelId = studyLevelId == 0 ? 1 : studyLevelId;
 
 			countryList = this.countryBiz.findAll();
@@ -282,20 +282,20 @@ public class FirstAction extends BaseAction {
 		this.studyLevelId = studyLevelId;
 	}
 
-	public int getCountryId2() {
-		return countryId2;
+	public int getUnicountryStyleId() {
+		return unicountryStyleId;
 	}
 
-	public void setCountryId2(int countryId2) {
-		this.countryId2 = countryId2;
+	public void setUnicountryStyleId(int unicountryStyleId) {
+		this.unicountryStyleId = unicountryStyleId;
 	}
 
-	public int getCountryId3() {
-		return countryId3;
+	public int getStudynat() {
+		return studynat;
 	}
 
-	public void setCountryId3(int countryId3) {
-		this.countryId3 = countryId3;
+	public void setStudynat(int studynat) {
+		this.studynat = studynat;
 	}
 
 	public int getShow_login() {
