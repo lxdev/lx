@@ -20,6 +20,8 @@ String actionUrl = basePath + "/university/evaluate";
 	<jc:plugin name="jquery_ui"/>
 	<jc:plugin name="bootstrap3"/>
 	<jc:plugin name="bootstrap_main"/>
+	
+        <jc:plugin name="new_manage"/>
   </head>
   
   <body>

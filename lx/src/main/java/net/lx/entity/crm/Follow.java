@@ -33,11 +33,11 @@ public class Follow implements Serializable {
 	@Column(name = "id")
 	private Integer id;
 	@Column(name="follow_type")
-	private Integer follow_type;
+	private Integer follow_type;	//'1 关注问题；2 收藏院校；3 收藏项目；4 收藏攻略',
 	@Column(name="source_id")
-	private Integer source_id;
+	private Integer source_id;		//'问题id、院校id、项目id、攻略id',
 	@Column(name="follow_user_id")
-	private Integer follow_user_id;
+	private Integer follow_user_id;	//'注人关id',
 	@Column(name="remark")
 	private String remark;
 	@Column(name="created_date")
