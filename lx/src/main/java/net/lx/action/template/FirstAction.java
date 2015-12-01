@@ -111,7 +111,7 @@ public class FirstAction extends BaseAction {
 //		specialtyList = specialtyBiz.searchSpecialtysByCondition(specialty);
 			
 		if(!getTerm().equals("")){
-			setTerm(new String(getTerm().getBytes("iso8859-1"),"utf-8"));
+			//setTerm(new String(getTerm().getBytes("iso8859-1"),"utf-8"));
 			specialty.setSpecialty_name(getTerm());
 			specialtyList = specialtyBiz.searchSpecialtysByCondition(specialty);
 			
@@ -131,7 +131,7 @@ public class FirstAction extends BaseAction {
 //		specialtyList = specialtyBiz.searchSpecialtysByCondition(specialty);
 			
 		if(!getTerm().equals("")){
-			setTerm(new String(getTerm().getBytes("iso8859-1"),"utf-8"));
+			//setTerm(new String(getTerm().getBytes("iso8859-1"),"utf-8"));
 			University condition = new University();
 			condition.setUniversity_name(getTerm());
 			universityList = universityBiz.searchUniversitysByCondition(condition);
@@ -148,7 +148,7 @@ public class FirstAction extends BaseAction {
 	public String guide_specialty_search() throws Exception
 	{
 		if(!getTerm().equals("")){
-			setTerm(new String(getTerm().getBytes("iso8859-1"),"utf-8"));
+			//setTerm(new String(getTerm().getBytes("iso8859-1"),"utf-8"));
 			specialty.setSpecialty_name(getTerm());
 
 			guideList = guideBiz.findAll();

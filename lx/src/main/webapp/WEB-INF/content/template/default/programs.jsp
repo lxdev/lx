@@ -438,17 +438,6 @@ border: 0;
 				$("#page_ul li").removeClass("active");
 				$("#page_ul li:first").addClass("active");
 			}
-			
-			$(document).ready(function() {
-	        });
-			
-			var topareaHeight = $(".toparea").height();
-		    var searchareaHeight = $(".searcharea").height();
-		    var accuratesearchHeight = $(".accuratesearch").height();
-		    var titleHeight = $(".reslut-2 .title").height();
-		    var courselistliHeight = $(".courselist-1 .courselist-li").height();
-			
-		
-		
+		</script>
 	</body>
 </html>

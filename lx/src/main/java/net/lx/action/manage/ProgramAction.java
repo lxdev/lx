@@ -110,7 +110,7 @@ public class ProgramAction extends BaseAction {
 		//total_record
 		//setPrograms(programBiz.findAll());
 		if(message != null && !message.equals("")){
-			message = StringEncode.ToUTF8(message, false);
+			//message = StringEncode.ToUTF8(message, false);
 		}
 		return SUCCESS;
 	}

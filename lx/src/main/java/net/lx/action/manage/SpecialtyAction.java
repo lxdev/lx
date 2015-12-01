@@ -45,7 +45,7 @@ public class SpecialtyAction extends BaseAction {
 	public String Guides() throws Exception {
 		specialtys = specialtyBiz.findAll();
 		if(message != null && !message.equals("")){
-			message = StringEncode.ToUTF8(message, false);
+			//message = StringEncode.ToUTF8(message, false);
 		}
 		return "success";
 	}

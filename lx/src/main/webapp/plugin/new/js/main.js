@@ -406,6 +406,13 @@ var search_data_p = function(is_not_check){
 }
 /* 点击搜索出的院校，展开其下课程 */
 function show_courses(type){
+
+	var topareaHeight = $(".toparea").height();
+	var searchareaHeight = $(".searcharea").height();
+	var accuratesearchHeight = $(".accuratesearch").height();
+	var titleHeight = $(".reslut-2 .title").height();
+	var courselistliHeight = $(".courselist-1 .courselist-li").height();
+
 	var arrowcurrent=".arrow_" + type;
     var univername=$(arrowcurrent).parent().parent().find(".universityname a").html();
     $(".courselist-li").each(function (i) {
