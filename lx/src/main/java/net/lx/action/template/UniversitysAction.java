@@ -83,12 +83,10 @@ public class UniversitysAction extends BaseAction {
 	private Boolean isFromFirst = false;
 	
 	@Action(value = "universitys", results = { 
-//			@Result(name="input", type="dispatcher", location = "programs.jsp"),
-//			@Result(name = "success", type = "dispatcher", params = {"contentType", "text/json" }, location="/WEB-INF/content/template/default/programs.jsp")
 			@Result(name = "success", type = "dispatcher", params = {
 					"contentType", "text/json",
 					"includeProperties",
-					"result.*, university_name, university_name_id, ranking, area, is_public_school, orderBy, isFromFirst, page, page_size, country_id"
+					"result.*, university_name, university_name_id, ranking, area, is_public_school, orderBy, isFromFirst, page, page_size, country_id, users"
 				}, location="/WEB-INF/content/template/default/universitys.jsp"
 			),
 			@Result(name = "success_one", type="redirect", location = "university?universityId=${university_name_id}")

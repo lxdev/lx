@@ -32,7 +32,7 @@ var common_collect = function(id, type){
 	 "json");
 };
 var collect = function(id){
-	var url = '<s:url value="/university/program_collect"/>';
+	var url = '../university/program_collect';
 	var option = {'follow.source_id': id, 'follow.follow_type': 3};
 
 	jQuery.post(url,option,
@@ -52,7 +52,24 @@ var collect = function(id){
 	    	},
 	 "json");
 };
+var follow_cancel = function(id){
+	if(window.confirm('你确定要取消此收藏吗？')){
+		//alert("确定");
+	}else{
+		//alert("取消");
+		return false;
+	}
+	var url = '../follow/follow_cancel';
+	var option = {'followId': id };
 
+	jQuery.post(url,option,
+	        function(data)
+	    	{
+				alert("取消收藏成功！")
+				window.location.reload();
+	    	},
+	 "json");
+};
 
 var login_box_show = function(){
 	$(".popbg").show();

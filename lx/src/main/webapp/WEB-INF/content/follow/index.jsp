@@ -34,48 +34,32 @@
 			<div class="template-page-wrapper">
     			<s:action namespace="/user" name="left" executeResult="true"/>
 
-      			<div class="cen_rnv">
-					<span class="mb">收藏</span>
-					<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F2F2F2" class="tb">
-					  <tr class="tytop">
-					    <td width="18%">学校</td>
-					    <td width="18%">课程</td>
-					    <td width="18%">收藏时间</td>
-					    <td width="18%">操作</td>
-					    </tr>
-					  <tr>
-					    <td class="tybx">XX学校</td>
-					    <td class="tybx">XX学校</td>
-					    <td class="tybx">2015</td>
-					    <td class="tybx"> 
-					      <input type="submit" name="Submit" value="我要申请"  class="tybot" /> <input type="submit" name="Submit" value="取消收藏" class="tywbot" />
-					    </td>
-					  </tr>
-					  <tr>
-					    <td class="tybx">&nbsp;</td>
-					    <td class="tybx">&nbsp;</td>
-					    <td class="tybx">&nbsp;</td>
-					    <td class="tybx">&nbsp;</td>
-					  </tr>
-					  <tr>
-					    <td class="tybx">&nbsp;</td>
-					    <td class="tybx">&nbsp;</td>
-					    <td class="tybx">&nbsp;</td>
-					    <td class="tybx">&nbsp;</td>
-					  </tr>
-					  <tr >
-					    <td class="tybx">&nbsp;</td>
-					    <td class="tybx">&nbsp;</td>
-					    <td class="tybx">&nbsp;</td>
-					    <td class="tybx">&nbsp;</td>
-					  </tr>
+					<div class="cen_rnv">
+						<span class="mb"><s:property value="followName"/>收藏</span>
+						<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F2F2F2" class="tb">
+                            <tr class="tytop">
+                                <td width="18%">学校</td>
+                                <td width="18%">课程</td>
+                                <td width="18%">收藏时间</td>
+                                <td width="18%">操作</td>
+                            </tr>
+                        <s:iterator value="followList">
+							<tr>
+								<td class="tybx"><s:property value="source_content"/></td>
+								<td class="tybx"><s:property value="source_title"/></td>
+								<td class="tybx"><s:property value="created_date"/></td>
+								<td class="tybx">
+									<input type="submit" name="cancel_follow" value="取消收藏" class="tywbot" onclick="follow_cancel(<s:property value="id"/>)" />
+								</td>
+							</tr>
+                        </s:iterator>
 					</table>
 				</div>
 				<div class="clear"></div>
 
 
       <!-- Modal -->
-      <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <!-- <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="z-index:1050;">
           <div class="modal-content">
             <div class="modal-header">
@@ -88,7 +72,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <footer class="templatemo-footer">
         <div class="templatemo-copyright">
           <p>Copyright &copy; 2015 留学芒果  <a href="http://www.lxmango.com/" title="留学芒果" target="_blank"></a></p>
@@ -96,7 +80,8 @@
       </footer>
     </div>
 		</div>
-	
+
+		<jc:plugin name="main_js" />
 		<script type="text/javascript">
 			// Line chart
 		    var randomScalingFactor = function(){ 

@@ -44,8 +44,7 @@ public class HomeAction extends BaseAction
 	
 	@Action(value="head", results = { @Result(name = "success", location = "/WEB-INF/content/user/user_head.jsp") })
 	public String head() throws Exception {
-		if(users != null){
-		}
+		setCurrentUsers();
 		
 		return SUCCESS;
 	}

@@ -230,7 +230,7 @@ public class BaseAction extends ActionSupport implements ServletRequestAware {
 	
 	/**
 	 * 创建cookie
-	 * @param cookieingUser
+	 * @param user
 	 */
 	protected void addCookie(User user) {  
     	try{

@@ -35,6 +35,10 @@ public class FollowDaoImpl extends BaseMDDaoImpl<Follow> implements IFollowDao {
 			sql += " AND A.created_user_id = ?";
 			list.add(condition.getCreated_user_id());
 		}
+		if(condition.getFollow_user_id() != null && condition.getFollow_user_id() > 0){
+			sql += " AND A.follow_user_id = ?";
+			list.add(condition.getFollow_user_id());
+		}
 		sql += " ORDER BY created_date desc ";
 		
 		return jt.queryForList(sql, list.toArray());

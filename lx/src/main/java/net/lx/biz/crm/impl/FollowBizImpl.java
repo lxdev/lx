@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import net.lx.biz.guide.IGuideBiz;
+import net.lx.biz.university.IProgramBiz;
+import net.lx.biz.user.IUserExtendConsultantBiz;
+import net.lx.biz.user.UserBiz;
+import net.lx.entity.user.User;
+import net.lx.entity.user.UserExtend;
+import net.lx.entity.user.UserExtendConsultant;
 import net.lx.model.page.PageParame;
 import net.lx.biz.ask.IAskBiz;
 import net.lx.biz.crm.IFollowBiz;
@@ -45,7 +52,13 @@ public class FollowBizImpl implements IFollowBiz {
 	@Autowired
 	private IAskBiz askBiz;
 	@Autowired
-	private UserDao userDao;
+	private IUniversityBiz universityBiz;
+	@Autowired
+	private IProgramBiz programBiz;
+	@Autowired
+	private IGuideBiz guideBiz;
+	@Autowired
+	private UserBiz userBiz;
 	@Autowired
 	private IUniversityStatisticBiz universityStatisticBiz;
 	/**
@@ -67,7 +80,18 @@ public class FollowBizImpl implements IFollowBiz {
 			f.setSource_user(ask.getAsk_user());
 			f.setSource_user2(ask.getReply_user());
 		}else if(f.getFollow_type() == Constants.FOLLOW_UNIVERSITY){
-			//...
+			University u = universityBiz.findUniversityById(f.getSource_id());
+			f.setSource_title(u.getName());
+		}else if(f.getFollow_type() == Constants.FOLLOW_PROGRAM){
+			Program p = programBiz.findProgramById(f.getSource_id());
+			f.setSource_title(p.getProgram_name());
+			f.setSource_content(p.getUniversity().getName());
+		}else if(f.getFollow_type() == Constants.FOLLOW_GUIDE){
+			Guide g = guideBiz.findById(f.getSource_id());
+			f.setSource_title(g.getGuide_name());
+		}else if(f.getFollow_type() == Constants.FOLLOW_CONSULTANT){
+			User u = userBiz.findUserById(f.getSource_id());
+			f.setSource_title(u.getFull_name());
 		}
 		
 		return f;
@@ -93,7 +117,7 @@ public class FollowBizImpl implements IFollowBiz {
 	/**
 	 * 添加Follow
 	 * 
-	 * @param User
+	 * @param g
 	 * @throws Exception
 	 */
 	public Integer createNew(Follow g) throws Exception 
@@ -115,7 +139,7 @@ public class FollowBizImpl implements IFollowBiz {
 	/**
 	 * 修改用户
 	 * 
-	 * @param User
+	 * @param g
 	 * @throws Exception
 	 */
 	public void modify(Follow g) throws Exception {
