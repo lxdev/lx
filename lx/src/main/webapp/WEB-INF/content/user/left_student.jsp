@@ -16,11 +16,13 @@
   <h2 class="l2"><a href="../follow/course">课程收藏</a></h2>
   <h2 class="l2"><a href="../follow/university">院校收藏</a></h2>
   <h2 class="l2"><a href="../follow/guide">攻略收藏</a></h2>
-  <h2 class="l2"><a href="../follow/consultant">顾问收藏</a></h2>
+  <!-- <h2 class="l2"><a href="../follow/consultant">顾问收藏</a></h2>
   <h1 class="l1 gjs5">我的点评</h1>
   <h2 class="l2"><a href="../university/evaluate">院校点评</a></h2>
-  <h2 class="l2"><a href="javascript:function();">顾问点评</a></h2>
-  <h2 class="l2"><a href="javascript:function();" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>注销</a></h2>
+  <h2 class="l2"><a href="javascript:function();">顾问点评</a></h2> -->
+  <h1 class="l1 gjs5">个人设置</h1>
+  <h2 class="l2"><a href="../user/set_pwd">修改密码</a></h2>
+  <h2 class="l2"><a href="javascript:function();" data-toggle="modal" data-target="#confirmModal" onclick="messageExit();"><i class="fa fa-sign-out"></i>注销</a></h2>
 </div>
 
 <!--

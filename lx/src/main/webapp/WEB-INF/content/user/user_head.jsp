@@ -6,6 +6,8 @@
 	String actionUrl = basePath + "/user/login";
 	String registerStudentActionUrl = basePath + "/user/register_student";
 	String registerTeacherActionUrl = basePath + "/user/register_teacher";
+	
+	//String error = request.getAttribute("error") == null ? request.getAttribute("error").toString() : "";
 %>
 
 
@@ -26,23 +28,46 @@
             </ul>
         </div>
         <div class="rarea">
+        	<h1 class="le">
+                <div class="topHeadeRight">
         	<s:if test="users!=null && users.user_id > 0">
         		<input type="hidden" id="current_user_id" value="<s:property value="users.user_id"/>"/>
-        		<ul>
+        		<!-- <ul>
 					<li>
 						<a href="../user/home">您好：<s:property value="users.user_name"/></a></li>
 					<li><a href="#" onclick="messageExit();">注销</a></li>
-				</ul>
+				</ul> -->
+				<ul class="thrUl">
+                    <li class="m06">
+                    	<a href="../user/home">
+                    		<s:if test="users.photo_url != null && users.photo_url != ''">
+                    			<img src="<s:property value="users.photo_url"/>" width="30" height="30">
+                    		</s:if>
+                    		<s:else>
+                    			<img src="../plugin/new/manage/images/user.jpg" width="30" height="30">
+                    		</s:else>
+                    	</a>
+                        <div class="son">
+                            <div id="sonA"><a href="../user/home"><s:property value="users.user_name"/></a></div>
+                            <ul>
+                                <li class="a1"><a href="../follow/course">我的收藏</a></li>
+
+                                <li class="a6"><a href="../user/set_pwd">账号设置</a></li>
+                                <li class="a7"><a href="#" onclick="messageExit();">退出</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
 			</s:if>
 			<s:else>
 				<input type="hidden" id="current_user_id" value=""/>
         		<ul>
-					<%--<li class="login"><a href="../user/login">登陆</a></li>
-      				<li class="register"><a href="../user/register_student">注册</a></li>--%>
       				<li class="login">登录</li>
       				<li class="register">注册</li>
         		</ul>
 			</s:else>
+				</div>
+			</h1>
         </div>
     </div>
 </div>
@@ -87,6 +112,12 @@
                 <td><input type="button" class="button-3" /></td><td align="right"><input type="button" class="button-4" /></td>
                 </tr>
                 </table>--%>
+                <s:if test="error != ''">
+		      		<span style=" color:red;"><s:property value="error"/></span>
+		      	</s:if>
+                <s:if test="message != ''">
+		      		<span style=" color:red;"><s:property value="message"/></span>
+		      	</s:if>
 			</div>
 			<div class="tab-pane" id="div_login_teacher">
 				<form id="formTeacher" name="formTeacher" method="post" action="<%=actionUrl %>" role="form">

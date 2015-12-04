@@ -895,6 +895,24 @@ function validateCollegeSearchForm(formName) {
 	return true;
 }
 
+function validatePwdForm(obj){
+	var form = $("#" + obj);
+	
+	if($.trim($("#pwdOld", form).val()) == ""){
+		alert("请输入旧密码");
+		return false;
+	}
+	if($.trim($("#pwdNew", form).val()) == "" || $.trim($("#pwdNew2", form).val()) == ""){
+		alert("请输入新密码");
+		return false;
+	}
+	if($("#pwdNew", form).val() != $("#pwdNew2", form).val()){
+		alert("两次输入密码不一致");
+		return false;
+	}
+	return true;
+}
+
 function getQueryString(name)
 {
 	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");

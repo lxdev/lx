@@ -47,24 +47,22 @@ public class LoginAction extends BaseAction
 		{
 			return INPUT;
 		} 
-		//if(checkrand.toLowerCase().equals(session.getAttribute("checkrand")))
-		//{
-			User user = null;
-			user = userBiz.findUserByUserName(username);
-			if(null==user)
-			{
-				user = userBiz.findUserByMobile(username);
+
+		User user = null;
+		user = userBiz.findUserByUserName(username);
+		if(null==user)
+		{
+			user = userBiz.findUserByMobile(username);
+			if(null == user){
+				user = userBiz.findUserByEmail(username);
 				if(null == user){
-					user = userBiz.findUserByEmail(username);
-					if(null == user){
-						returnError(LoginErrorEnum.NO_USER);
-						log.info("ip is '"+request.getRemoteAddr()+"',user name is '"+username+"' login error,message:"+" no user!");
-					}
+					returnError(LoginErrorEnum.NO_USER);
+					log.info("ip is '"+request.getRemoteAddr()+"',user name is '"+username+"' login error,message:"+" no user!");
 				}
 			}
-//			else if(password.equals(user.getPassword()))
+		}
+		if(null != user){
 			if(PwdCoder.getMD5(password).equals(user.getPassword()))
-			//else if(true)
 			{
 				if(UserEnum.StatusStop.value()==user.getStatus())
 				{
@@ -82,11 +80,8 @@ public class LoginAction extends BaseAction
 				returnError(LoginErrorEnum.PASSWORD_ERROR);
 				log.info("ip is '"+request.getRemoteAddr()+"',user name is '"+username+"' login error,message:"+" user password error!");
 			}
-//		}
-//		else {
-//			returnError(LoginErrorEnum.CHECK_RAND);
-//			log.info("ip is '"+request.getRemoteAddr()+"',user name is '"+username+"' login error,message:"+" verification code error!");
-//		}
+		}
+
 		return INPUT;
 	}
 	
