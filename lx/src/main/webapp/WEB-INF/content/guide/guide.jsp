@@ -138,9 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	</div>
     	</div>
     	
-	    <div class="bottom">
-	        &copy; 2014 young Ltd All rights reserved.
-	    </div>
+	    <s:action namespace="/user" name="foot" executeResult="true"/>
 	    <script type="text/javascript">
 	
 	        $(".stradetailcon .l li").mouseenter(function () {

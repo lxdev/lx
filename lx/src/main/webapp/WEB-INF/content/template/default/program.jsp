@@ -348,10 +348,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</table>
 			</div>
 		</div>
-	    <div class="bottom">
-	        &copy; 2014 young Ltd All rights reserved.
-	    </div>
-    
     
       	<!-- <div class="container-fluid well">
       		<div class="row">
@@ -394,17 +390,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       		</s:iterator>
       	</div> -->
       	
-		<jc:plugin name="main_js" />
-      	<script type="text/javascript">
-	       /*  $(".selres li").each(function (i) {
-	            $(this).click(function () {
-	                $(".selres li").removeClass("current");
-	                $(this).addClass("current");
-	                $(".reslut-2 .table-3").hide();
-	                $(".reslut-2 .table-3").eq(i).show();
-	            });
-	        }); */
-        </script>
+		<s:action namespace="/user" name="foot" executeResult="true"/>
       	
 	</body>
 </html>

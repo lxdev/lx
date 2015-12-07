@@ -112,14 +112,9 @@
 			    </div>
 			</div>
 		</div>
-		<div class="bottom-2">
-        	&copy; 2014 young Ltd All rights reserved.
-    	</div>
-		<p class="stick" style="display: block;" id="back-top">
-			<a href="#top"></a>
-		</p>
 		
-		<jc:plugin name="main_js" />
+		<s:action namespace="/user" name="foot" executeResult="true"/>
+		
 		<script type="text/javascript">
 		$(function($){
 			show_tab(1);

@@ -48,6 +48,13 @@ public class HomeAction extends BaseAction
 		
 		return SUCCESS;
 	}
+
+	@Action(value="foot", results = { @Result(name = "success", location = "/WEB-INF/content/user/user_foot.jsp") })
+	public String foot() throws Exception {
+		setCurrentUsers();
+		
+		return SUCCESS;
+	}
 	
 	@Action(value="left", results = {
 			@Result(name = "default_left", location = "/WEB-INF/content/user/left_student.jsp"),

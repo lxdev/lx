@@ -252,10 +252,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        </div>
 	    </div>
 	    </div>
-	    <div class="bottom">
-	        &copy; 2014 young Ltd All rights reserved.
-	    </div>
-		<jc:plugin name="main_js" />
+	    <s:action namespace="/user" name="foot" executeResult="true"/>
 	    <script type="text/javascript">
 	        $(".selres li").each(function (i) {
 	            $(this).click(function () {

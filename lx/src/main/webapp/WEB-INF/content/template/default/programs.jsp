@@ -403,12 +403,7 @@ border: 0;
 	            <div class="pagination pull-right" id="pager" data-type="p" ></div>
 	        </div>
 	    </div>
-	    <div class="bottom">
-	        &copy; 2014 young Ltd All rights reserved.
-	    </div>
-
-		
-		<jc:plugin name="main_js" />
+	    <s:action namespace="/user" name="foot" executeResult="true"/>
 		
 		<script type="text/javascript">
 		$(window).scroll(function(){

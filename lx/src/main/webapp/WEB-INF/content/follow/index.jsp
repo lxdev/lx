@@ -73,15 +73,12 @@
           </div>
         </div>
       </div> -->
-      <footer class="templatemo-footer">
-        <div class="templatemo-copyright">
-          <p>Copyright &copy; 2015 留学芒果  <a href="http://www.lxmango.com/" title="留学芒果" target="_blank"></a></p>
-        </div>
-      </footer>
+      
+		
     </div>
 		</div>
 
-		<jc:plugin name="main_js" />
+		<s:action namespace="/user" name="foot" executeResult="true"/>
 		<script type="text/javascript">
 			// Line chart
 		    var randomScalingFactor = function(){ 

@@ -83,10 +83,7 @@
         </div>
 	</div>
 	
-	<div class="bottom">
-        &copy; 2015 young Ltd All rights reserved.
-    </div>
-	
+	<s:action namespace="/user" name="foot" executeResult="true"/>
 	<script>
 			$(function () {
 				//$('#tabs a:first').tab('show');//初始化显示哪个tab 
