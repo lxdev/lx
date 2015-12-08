@@ -114,12 +114,6 @@
                 </tr>
                 </table>--%>
                 
-                <table cellpadding="0" cellspacing="0" class="table-12 margintop10 rarea">
-                <tr>
-                <td colspan="2"><span class="ftcol929292 ftsize12 register" style="cursor:pointer">注册</span></td>
-                </tr>
-                </table>
-                
                 <s:if test="error != ''">
 		      		<span style=" color:red;"><s:property value="error"/></span>
 		      	</s:if>
@@ -147,13 +141,13 @@
                     </table>
                 </form>
                 <div class="line-3"></div>
+			</div>
                 
                 <table cellpadding="0" cellspacing="0" class="table-12 margintop10 rarea">
                 <tr>
-                <td colspan="2"><span class="ftcol929292 ftsize12 login" style="cursor:pointer">登录</span></td>
+                <td colspan="2"><span class="ftcol929292 ftsize12 register" style="cursor:pointer">注册</span></td>
                 </tr>
                 </table>
-			</div>
         </div>
     </div>
 </div>
@@ -249,6 +243,12 @@
                 </form>
                 <div class="line-3"></div>
 			</div>
+                
+                <table cellpadding="0" cellspacing="0" class="table-12 margintop10 rarea">
+                <tr>
+                <td colspan="2"><span class="ftcol929292 ftsize12 login" style="cursor:pointer">登录</span></td>
+                </tr>
+                </table>
         </div>
     </div>
 </div>
@@ -272,10 +272,12 @@
    
    
        $(".rarea .login").click(function () {
+           $("#register_box").hide();
            $(".popbg").show();
            $("#login_box").show();
        })
        $(".rarea .register").click(function () {
+           $("#login_box").hide();
            $(".popbg").show();
            $("#register_box").show();
        })
