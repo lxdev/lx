@@ -226,13 +226,13 @@ public class ProgramsAction extends BaseAction {
 		}
 		if(is_public_school != null){
 			if(!is_public_school.equalsIgnoreCase("-1")){
-				cProgram.setIs_language_score(Integer.parseInt(is_public_school));
+				cProgram.setIs_public_school(Integer.parseInt(is_public_school));
 			}
 		}
 		cProgram.setScore_totef(-1);
 		if(totef != null){
 			if(!totef.equalsIgnoreCase("-1")){
-				String[] totefs = totef.split("~");
+				String[] totefs = totef.split(",");
 				cProgram.setScore_totef(Integer.parseInt(totefs[0]));
 				if(totefs.length >= 2)
 					cProgram.setTotefEnd(Integer.parseInt(totefs[1]));
@@ -241,7 +241,7 @@ public class ProgramsAction extends BaseAction {
 		cProgram.setScore_ietls(-1);
 		if(ietls != null){
 			if(!ietls.equalsIgnoreCase("-1")){
-				String[] ietlss = ietls.split("~");
+				String[] ietlss = ietls.split(",");
 				cProgram.setScore_ietls(Float.parseFloat(ietlss[0]));
 				if(ietlss.length >= 2)
 					cProgram.setIetlsEnd(Float.parseFloat(ietlss[1]));
@@ -250,7 +250,7 @@ public class ProgramsAction extends BaseAction {
 		cProgram.setScore_gre(-1);
 		if(gre != null){
 			if(!gre.equalsIgnoreCase("-1")){
-				String[] gres = gre.split("~");
+				String[] gres = gre.split(",");
 				cProgram.setScore_gre(Integer.parseInt(gres[0]));
 				if(gres.length >= 2)
 					cProgram.setGreEnd(Integer.parseInt(gres[1]));
@@ -259,7 +259,7 @@ public class ProgramsAction extends BaseAction {
 		cProgram.setScore_gmat(-1);
 		if(gmat != null){
 			if(!gmat.equalsIgnoreCase("-1")){
-				String[] gmats = gmat.split("~");
+				String[] gmats = gmat.split(",");
 				cProgram.setScore_gmat(Integer.parseInt(gmats[0]));
 				if(gmats.length >= 2)
 					cProgram.setGmatEnd(Integer.parseInt(gmats[1]));

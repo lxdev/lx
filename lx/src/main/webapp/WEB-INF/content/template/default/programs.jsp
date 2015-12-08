@@ -193,7 +193,7 @@ border: 0;
 								<s:iterator value="scoreList">
 									<s:if test="categoryType==1">
 										<label class="checkbox-inline" style="padding-top:8px">
-											<s:if test="totef==((scopeLowerInt == null ? -1 : scopeLowerInt)+'-'+(scopeHigherInt == null ? -1 : scopeHigherInt))">
+											<s:if test="totef==(scope_lower_int+','+scope_higher_int)">
 												<input type="radio" name="totef" value="${scope_lower_int},${scope_higher_int}" checked onchange="choose_submit('totef', this);"/> 
 											</s:if>
 											<s:else>
@@ -252,7 +252,7 @@ border: 0;
 								<s:iterator value="scoreList">
 									<s:if test="categoryType==3">
 										<label class="checkbox-inline" style="padding-top:8px">
-											<s:if test="scope_lower_int+','+scope_higher_int">
+											<s:if test="gre==(scope_lower_int+','+scope_higher_int)">
 												<input type="radio" name="gre" value="${scope_lower_int},${scope_higher_int}" checked onchange="choose_submit('gre', this);"/> 
 											</s:if>
 											<s:else>
@@ -281,7 +281,7 @@ border: 0;
 								<s:iterator value="scoreList">
 									<s:if test="categoryType==4">
 										<label class="checkbox-inline" style="padding-top:8px">
-											<s:if test="gmat==(scope_lower_int+'-'+scope_higher_int)">
+											<s:if test="gmat==(scope_lower_int+','+scope_higher_int)">
 												<input type="radio" name="gmat" value="${scope_lower_int},${scope_higher_int}" checked onchange="choose_submit('gmat', this);"/> 
 											</s:if>
 											<s:else>
