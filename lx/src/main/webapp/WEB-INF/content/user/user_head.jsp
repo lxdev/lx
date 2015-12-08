@@ -13,6 +13,7 @@
 
 <div class="toparea">
 	<input type="hidden" id="show_login" value="<s:property value="show_login"/>"/>
+	<input type="hidden" id="show_register" value="<s:property value="show_register"/>"/>
     <div class="content">
         <div class="logo">
         	<a class="navbar-brand" href="../template/first">
@@ -112,6 +113,13 @@
                 <td><input type="button" class="button-3" /></td><td align="right"><input type="button" class="button-4" /></td>
                 </tr>
                 </table>--%>
+                
+                <table cellpadding="0" cellspacing="0" class="table-12 margintop10 rarea">
+                <tr>
+                <td colspan="2"><span class="ftcol929292 ftsize12 register" style="cursor:pointer">注册</span></td>
+                </tr>
+                </table>
+                
                 <s:if test="error != ''">
 		      		<span style=" color:red;"><s:property value="error"/></span>
 		      	</s:if>
@@ -139,6 +147,12 @@
                     </table>
                 </form>
                 <div class="line-3"></div>
+                
+                <table cellpadding="0" cellspacing="0" class="table-12 margintop10 rarea">
+                <tr>
+                <td colspan="2"><span class="ftcol929292 ftsize12 login" style="cursor:pointer">登录</span></td>
+                </tr>
+                </table>
 			</div>
         </div>
     </div>
@@ -312,6 +326,8 @@
 
 		   if($("#show_login").val() == "1"){		//session超时后，点击“重新登录”，则触发此
 			   $(".rarea .login").click();
+		   }else if($("#show_register").val() == "1"){		//session超时后，点击“重新登录”，则触发此
+			   $(".rarea .register").click();
 		   }
 	   });
 	   

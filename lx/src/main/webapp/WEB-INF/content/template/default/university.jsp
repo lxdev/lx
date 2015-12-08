@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                                </div>
 	                                <div class="text-center sc">
 	                                    <img src="../plugin/new/images/sc2.png" onclick="common_collect('<s:property value="university.id"/>', '2')"/>&nbsp;&nbsp;
-	                                    <a href="<s:property value="university.website"/>"><img src="../plugin/new/images/gwkc.png" /></a>
+	                                    <a href="<s:property value="university.website"/>" target="_blank"><img src="../plugin/new/images/gwkc.png" /></a>
 	                                </div>
 	                            </td>
 	                        </tr>
@@ -135,7 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<h3 class="ftsize14 ftcolfff paddingtop15">网站：</h3>
 					</td>
 					<td>
-					<h3 class="ftsize14 ftcolfff paddingtop15"><span class="ftcol49b2a4"><a href="<s:property value="university.website.toLowerCase()"/>" class="ftcol49b2a4" target="_blank"><s:property value="university.website.toLowerCase()"/></a></span></h3>
+					<h3 class="ftsize14 ftcolfff paddingtop15"><span class="ftcol49b2a4"><a href="<s:property value="university.website.toLowerCase()"/>" class="ftcol49b2a4" target="_blank">官网</a></span></h3>
 					</td>
 					</tr>
 					</table>
@@ -196,10 +196,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        <input type="hidden" id="program_specialty_id" name="program_specialty_id"/>
                 </div>
                 <div class="condit-2">
+                	<input type="hidden" id="countryId" name="countryId" value="${university.country_id}"/>
                 	<input type="hidden" id="university_name_id" name="university_name_id" value="${university.id}"/>
-					<input type="hidden" id="page_size" name="condition.page_size" value="10"/>
-					<input type="hidden" id="page" name="condition.page" value="${condition.page}"/>
-					<input type="hidden" id="sort_by" name="condition.orderBy" value="D.total_browse DESC"/>
+					<input type="hidden" id="page_size" name="page_size" value="10"/>
+					<input type="hidden" id="page" name="page" value="${condition.page}"/>
+					<input type="hidden" id="orderBy" name="orderBy" value="D.total_browse DESC"/>
 					<input type="hidden" id="record_total" value="1"/>
 					<input type="hidden" name="defaultval" value="输入专业名称* " id="defaultval" />
                     <input class="button-1" type="button" value="搜索" onclick="search_data_p();"/>

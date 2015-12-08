@@ -41,10 +41,10 @@ public class UniversityDaoImpl extends BaseMDDaoImpl<University> implements IUni
 			list.add(condition.getId());
 		}
 		else if(condition.getUniversity_name() != null && !condition.getUniversity_name().equals("")){
-			sql += " AND (A.university_name like ? OR A.english_name like ? OR abbr = ?)";
+			sql += " AND (A.university_name like ? OR A.english_name like ? OR abbr like ?)";
 			list.add("%"+condition.getUniversity_name()+"%");
 			list.add("%"+condition.getUniversity_name()+"%");
-			list.add(condition.getUniversity_name());
+			list.add("%"+condition.getUniversity_name()+"%");
 		}
 		if(condition.getRankingBegin() != null && condition.getRankingBegin() != 0){
 			sql += " AND A.ranking_comprehensive >= ?";

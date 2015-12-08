@@ -333,7 +333,11 @@ border: 0;
 		                            <td valign="top">
 		                                <div class="universityname">
 		                                	<a href="university?universityId=<s:property value="id"/>" target="_blank"><s:property value="university_name"/>/<s:property value="english_name"/></a>
-		                                	<span class="ranking"><span>综合排名 <s:property value="ranking_comprehensive"/></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                	<span class="ranking">
+		                                		<span>综合排名 
+		                                			<s:if test="ranking_comprehensive == 9999">无排名</s:if>
+		                                			<s:else><s:property value="ranking_comprehensive"/></s:else>
+		                                		</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<s:if test="resultSpecialtyRank.contains(#outer.id)">
                                                 <s:iterator value="resultSpecialtyRank" id="spe_rank">
                                                     <s:if test="#spe_rank.university_id==#outer.id">

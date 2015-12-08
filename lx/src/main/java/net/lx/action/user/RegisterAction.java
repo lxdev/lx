@@ -49,9 +49,12 @@ public class RegisterAction extends BaseAction
 	private int userId = 0;		//注册成功后的用户Id
 	
 	@Action(value = "register_student", results = {
-			@Result(name = "input", location = "/WEB-INF/content/user/register.jsp"),
+			//@Result(name = "input", location = "/WEB-INF/content/user/register.jsp"),
+			@Result(name = "input", location = "/template/first?show_register=1", type = "redirect"),
 			@Result(name = "success", location = "register_next?userId=${userId}", params = { "encode", "true" }, type = "redirect"),
-			@Result(name = "error", location = "/WEB-INF/content/user/register.jsp", type = "dispatcher")})
+			//@Result(name = "error", location = "/WEB-INF/content/user/register.jsp", type = "dispatcher")
+			@Result(name = "error", location = "/template/first?show_register=1", type = "redirect")
+	})
 	@Override
 	public String execute() throws Exception 
 	{

@@ -66,6 +66,7 @@ public class FirstAction extends BaseAction {
 	private int studyLevelId;
 
 	private int show_login;
+	private int show_register;
 	
 	@Action(value = "first")
 	public String first() throws Exception{
@@ -304,6 +305,14 @@ public class FirstAction extends BaseAction {
 
 	public void setShow_login(int show_login) {
 		this.show_login = show_login;
+	}
+
+	public int getShow_register() {
+		return show_register;
+	}
+
+	public void setShow_register(int show_register) {
+		this.show_register = show_register;
 	}
 
 //	public String getJsonResult() {

@@ -168,7 +168,8 @@ var set_sort_p = function(obj, sort_type){
 		else if(sort_type == 'remark')	//点评
 			order = " C.evaluate_number DESC ";
 	}
-	$("#sort_by", parent).val(order);
+	$("#orderBy", parent).val(order);
+	$("#page").val(1);
 	
 	search_data_p(true);
 }
@@ -189,9 +190,36 @@ var set_sort_u = function(obj, sort_type){
 		else if(sort_type == 'remark')	//点评
 			order = " C.evaluate_number DESC ";
 	}
-	$("#sort_by").val(order);
+	$("#orderBy").val(order);
+	$("#page").val(1);
 	
 	search_data_u();
+}
+var set_sort_choose = function(){
+	var sort_value = $("#orderBy").val();
+	if(sort_value != null && sort_value != ""){
+		$("#sort_ul li").each(function (i, el) {
+			$(el).removeClass("current")
+			switch(el.innerHTML){
+			case "热度":
+				if(sort_value.indexOf("browse") > 0){
+					$(el).addClass("current")
+				}
+				break;
+			case "排名":
+				if(sort_value.indexOf("ranking") > 0){
+					$(el).addClass("current")
+				}
+				break;
+			case "点评":
+				if(sort_value.indexOf("evaluate") > 0){
+					$(el).addClass("current")
+				}
+				break;
+				
+			}
+	    });
+	}
 }
 
 var set_program_search_options = function(){
@@ -345,13 +373,15 @@ var search_data_p = function(is_not_check){
             , 'condition.greEnd': scoreValueArray[2].high
             , 'condition.gmatEnd': scoreValueArray[3].high
 			, 'condition.time_of_enrollment': tempTimeOfEnrollment == '全部' ? '' : tempTimeOfEnrollment
-			, 'condition.orderBy': $("#sort_by", parent).val()
+			, 'condition.orderBy': $("#orderBy", parent).val()
 	};
 
 	//2015-11-22 将查询提交方式改为页面刷新
 
-	$("#form_programs_search").submit();
-	return ;
+	if($("#form_programs_search").length == 1){
+		$("#form_programs_search").submit();
+		return ;
+	}
 
 	jQuery.post(url, option,
 	        function(data)
@@ -596,7 +626,7 @@ var search_data_u = function(type){
 			, 'condition.rankingEnd': rankingEnd
 			//, 'condition.areaName': (tempAreaName == '全部' ? '' : tempAreaName)
 			, 'condition.is_public_school': tempIsPublic
-			, 'condition.orderBy': $("#sort_by").val()
+			, 'condition.orderBy': $("#orderBy").val()
 	};
 
 	//2015-11-22 将查询提交方式改为页面刷新
@@ -673,26 +703,6 @@ var clear_university = function(){
 		$("#university_name_id").attr("data-id", "");
 	}
 }
-
-//更多选项
-$(".moresearch").click(function(){
-    if($(".moresearch .smore").hasClass("close")){
-        $(".moresearch .smore").removeClass("close");
-        $(".table-accuratesearch tr").each(function(i){
-            if(i>3 && $(this).attr("data-choosed") != "true"){
-                $(this).hide();
-            }
-        });
-    }
-    else{
-        $(".moresearch .smore").addClass("close");
-        $(".table-accuratesearch tr").each(function(i){
-            if(i>2 && $(this).attr("data-choosed") != "true"){
-                $(this).show();
-            }
-        });
-    }
-})
 
 //选项选中效果
 var choose_cancel = function(obj){
@@ -831,18 +841,7 @@ $(document).ready(function () {
 		cookie_name = "universitys";
 	}
 
-
-
-	//var url = window.location.href;
-	//if(url.indexOf("template/" + cookie_name + "?") >= 0){
-	//	var num = getCookie(cookie_name) || 0;
-	//	var current = window.history.length;
-	//	if(current < parseInt(num)) {
-	//		setCookie(cookie_name, current);
-	//		window.location.href = window.location.href;
-	//	}
-	//}else{
-	//}
+	set_sort_choose();
 });
 
 /* 验证 首页 课程 输入 */

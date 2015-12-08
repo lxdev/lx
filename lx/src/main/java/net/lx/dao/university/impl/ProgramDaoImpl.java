@@ -26,6 +26,7 @@ public class ProgramDaoImpl extends BaseMDDaoImpl<Program> implements IProgramDa
 			+ " LEFT JOIN tb_e_university_statistic D ON D.university_id = B.id "
 			+ " WHERE A.status = 1 ";
 		String sql_part2 = " GROUP BY B.id "
+			+ (program.getOrderBy() != null && !program.getOrderBy().equalsIgnoreCase("") ? " ORDER BY " + program.getOrderBy() : " ORDER BY A.ID DESC ")
 			+ " LIMIT " + program.getPage_size() + " OFFSET " + (program.getPage() >= 1 ? (program.getPage()-1)*program.getPage_size() : 0) 
 			+ " ) T INNER JOIN tb_e_program A ON A.university_id = T.id INNER JOIN tb_e_university B ON B.id = A.university_id LEFT JOIN tb_d_area E ON E.id = B.area_id "
 			//+ " LEFT JOIN (SELECT university_id, count(*) evaluate_number FROM tb_e_evaluate_university GROUP BY university_id) C ON C.university_id = B.id "

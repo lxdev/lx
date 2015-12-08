@@ -44,6 +44,9 @@ public class UniversityBizImpl implements IUniversityBiz {
 
 		entity.setCountry(countryDao.findById(entity.getCountry_id()));
 		entity.setArea(areaDao.findById(entity.getArea_id()));
+		if(entity.getWebsite() != null && !entity.getWebsite().toLowerCase().startsWith("http://")){
+			entity.setWebsite("http://" + entity.getWebsite().toLowerCase());
+		}
 		
 		Evaluate evaluateCon = new Evaluate();
 		evaluateCon.setEvaluate_type(Constants.EVALUATE_TYPE_UNIVERSITY);
