@@ -24,8 +24,8 @@
 			<div class="mainarea">
 				<div class="title">
     				<ul id="cond_tabs">
-    					<li class="current linebg"><span class="course" onclick="show_tab(1);">课程</span></li>
-    					<li><div class="linebg"></div><span class="university" onclick="show_tab(2);">院校</span></li>
+    					<li class="current linebg" style="margin-left:54px"><span class="course" onclick="show_tab(1);">课程</span></li>
+    					<li><span class="university" onclick="show_tab(2);">院校</span></li>
     					<li class="linebg"><span class="strategy" onclick="show_tab(3);">攻略</span></li>
     				</ul>
     			</div>
@@ -56,7 +56,7 @@
 							    	</td>
 							    </tr>
 							    <tr>
-							    	<td align="right"><input class="button-1" type="submit" value="搜索" onclick="return validateCourseSearchForm('homecoursesearch')" /></td>
+							    	<td align="center"><input class="button-1" type="submit" value="搜索" onclick="return validateCourseSearchForm('homecoursesearch')" /></td>
 							    </tr>
 						    </table>
 						</form>
@@ -78,11 +78,9 @@
 				                        <input type="hidden" id="university_name_id" name="university_name_id"/>
 									</td>
 								</tr>
-								<tr>
-							    	<td></td>
-							    </tr>
+								
 							    <tr>
-							    	<td align="right"><input class="button-1" type="submit" value="搜索" onclick="return validateCollegeSearchForm('homecollegesearch')" /></td>
+							    	<td align="center"><input class="button-1" type="submit" value="搜索" onclick="return validateCollegeSearchForm('homecollegesearch')" /></td>
 							    </tr>
 							</table>
 						</form>
@@ -104,7 +102,7 @@
 							    	</td>
 							    </tr>
 								<tr>
-							    	<td align="right"><input class="button-1" type="submit" value="搜索" /></td>
+							    	<td align="center"><input class="button-1" type="submit" value="搜索" /></td>
 							    </tr>
 							</table>
 						</form>
