@@ -51,7 +51,14 @@ h4 {
             width: 160px;
             float: left;
             display: inline;
+            margin:0px;
             margin-top: 6px;
+            
+        }
+        .toparea .content .logo a{
+        height:auto;
+        padding:0px;
+        line-height:auto;
         }
 
         .toparea .content .nav {
@@ -70,12 +77,17 @@ h4 {
 
                 .toparea .content .nav li a {
                     color: White;
+                    font-size:18px;
+                    text-decoration:none
                 }
 
         .toparea .content .rarea {
             width: 160px;
             float: right;
             color: #fff;
+        }
+        .toparea .content .rarea h1{
+        margin-top:9px;
         }
 
             .toparea .content .rarea li {
@@ -1183,6 +1195,18 @@ border-radius: 7px;
             }
 /** 弹出窗口 end **/
 
+
+.registertype{width:100%}
+.registertype td{padding:10px 10px;}
+.w937 .active a{background:#fdad00}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+color: #555;
+cursor: default;
+background-color: #fdad00;
+border: 1px solid #ddd;
+border-bottom-color: transparent;
+}
+
 .bottom {
     width: 100%;
     height: 71px;
@@ -1828,3 +1852,65 @@ i, cite, em, var, address, dfn {
     font-style: normal;
 }
 /* end 课程搜索，类似于京东那样的效果 */
+
+
+/* 注册 */
+
+.w936{margin:2px 0;clear:both;width:100%;/*滑动门的宽度*/}
+/* TAB 切换效果 */
+.tb_{ background-repeat: repeat-x;}
+.tb_ ul{height:24px;}
+.tb_ li{float:left;height: 49px;width: 100px;cursor:pointer; line-height:50px; padding-right:28px; }
+/* 控制显示与隐藏css类 */
+.normaltab   { color:#333333 ;}
+.hovertab    {  color:#febd01; font-weight:bold; border-bottom:2px solid #febd01; }
+.dis{display:block;}
+.undis{display:none;}
+/* 注册最后一步 */
+.zctit{ width:760px; margin:60px auto 0 auto; }
+.zctit h1{ width:100%; text-align:center; font-size:28px; margin:30px; color:#666  }
+.zctit .kj{ width:100%; border-radius: 8px;
+-webkit-box-shadow: #e3e3e3 0px 0px 10px;
+-moz-box-shadow: #e3e3e3 0px 0px 10px;
+box-shadow: #e3e3e3 0px 0px 10px;background:#fff; padding-bottom:10px; }
+.zctit .me{ background:#f7f7f7; height:145px; text-align:center;border-radius:5px 5px 0 0;
+}
+.zctit .me img{ border:2px; border-radius:35px; width:72px; height:72px; margin:30px 0 10px 0;  }
+
+
+.w937{margin:20px 20px;clear:both;width:100%;/*滑动门的宽度*/}
+/* TAB 切换效果 */
+.tb2_{ background-repeat: repeat-x;}
+.tb2_ ul{height:24px;}
+.tb2_ li{float:left;height: 49px;width: 100px;cursor:pointer; line-height:50px; margin-right:25px; }
+/* 控制显示与隐藏css类 */
+.normaltab2   { color:#333333 ;}
+.hovertab2    {  color:#febd01; font-weight:bold;background:#fdad00;border-radius:5px; text-align:center; color:#fff  }
+.dis2{display:block; margin-top:50px}
+.undis2{display:none; margin-top:50px}
+/*用户*/
+.topHeadeRight{float:right;margin:-10px -15px 0 0; }
+.thrUl a{ text-decoration:none;margin-left:1px;font-size:12px;}
+.m06 > a{display:inline-block;height:42px;padding:9px 10px 0 10px; text-align:center;}
+.m06:hover > a{background:#505559; }
+.son{position:absolute; background:#505559;left:1px;top:49px; display:none;font-size:14px;z-index:1000;}
+.son li{line-height:32px;border-bottom:1px solid #505559; cursor:default;color:#fff;}
+.son li:hover{ background:#505559;}
+.son li a{display:block;color:#fff;padding:0 10px;}
+.son li a:hover{ text-decoration:none;}
+.rNum{float:right; cursor:pointer;}
+.son li.a1 a{background:url(../images/st.png) no-repeat 15px -1px;padding-left:40px;font-size:12px;color:#fff;}
+.son li.a2 a{background:url(../images/st.png) no-repeat 15px -33px;padding-left:40px;font-size:12px;color:#fff;}
+.son li.a3 a{background:url(../images/st.png) no-repeat 15px -65px;padding-left:40px;font-size:12px;color:#fff;}
+.son li.a4 a{background:url(../images/st.png) no-repeat 15px -97px;padding-left:40px;font-size:12px;color:#fff;}
+.son li.a5 a{background:url(../images/st.png) no-repeat 15px -129px;padding-left:40px;font-size:12px;color:#fff;}
+.son li.a6 a{background:url(../images/st.png) no-repeat 15px -160px;padding-left:40px;font-size:12px;color:#fff;}
+.son li.a7 a{background:url(../images/st.png) no-repeat 15px -193px;padding-left:40px;font-size:12px;color:#fff;}
+.fonts{position:absolute; background:#2d2d2d;right:0;top:43px; display:none;}
+.m01:hover .son{width:100px; display:block;}
+.m03:hover .son{width:120px; display:block;}
+.m05:hover .son{width:100px; display:block;}
+.m06:hover .son{width:130px; display:block;right:0;left:auto;}
+#sonA{text-align:center;padding:0 10px;border-bottom:1px solid #505559;widht:106px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#fff;}
+#sonA a{color:#fff;font-size:14px;line-height:42px;}
+#sonA a:hover{color:#fff;}

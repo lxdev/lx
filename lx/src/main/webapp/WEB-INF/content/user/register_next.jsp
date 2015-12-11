@@ -86,6 +86,13 @@
 		<style>
 			.control-wrapper { padding-left: 64px; }
 			.center-block { display:block; margin-left: auto; margin-right: auto; }
+			.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+color: #555;
+cursor: default;
+background-color: #fdad00;
+border: 1px solid #ddd;
+border-bottom-color: transparent;
+}
 		</style>
 	</head>
 	<body>
@@ -93,12 +100,16 @@
     		<s:action namespace="/user" name="head" executeResult="true"/>
     	</div>
 		<div class="container">
-			<h3 class="text-center text-color:#FF6600">完成注册的最后一步</h3>
-			<div class="row">
-				<div class="col-lg-6 col-lg-offset-3">
+		<div class="zctit">
+		<h1>完成注册的最后一步</h1>
+		<div class="kj">
+		<div class="me"><img src="../plugin/new/images//img-3.jpg" /><br />我</div>
+		<div class="w937">
+<div class="row">
+				<div class="col-lg-10 col-lg-offset-1">
 					<div class="row">
-						<div class="col-lg-2 col-lg-offset-2 text-center">我是</div>
-						<div class="col-lg-8">
+						
+						<div class="col-lg-12">
 			<ul class="nav nav-tabs" role="tablist" id="tabs">
 		    	<li role="presentation" class="active"><a href="#div_senior">国内高中生</a></li>
 		        <li role="presentation"><a href="#div_undergraduate">国内本科生</a></li>
@@ -112,9 +123,7 @@
 				</div>
 				<div class="col-lg-3"></div>
 			</div>
-			
-			
-		    <div class="tab-content">
+			<div class="tab-content">
 		      <s:set var="mapType" value="#{2:'本科转学',1:'硕士',3:'博士'}"></s:set>
 		      <s:set var="mapType1" value="#{1:'硕士',3:'博士'}"></s:set>
 		      <s:set var="mapType2" value="#{2:'本科',1:'硕士',3:'博士'}"></s:set>
@@ -124,10 +133,28 @@
 		      		<input type="hidden" id="user_type" name="user_type" value="1"/>
 		      		<input type="hidden" id="userId" name="userId" value="<%=userId%>"/>
 				  <div class="form-group">
-				  	我要出国读 <span style=" border-style: dashed;">本科</span><br/>
-					高中毕业时间<s:select list="graduateDateList" listKey="id" listValue="name" headerKey="0" headerValue="--请选择--" theme="simple" name="graduate_date" id="graduate_date" cssClass="form-control"/>
+				  <table  class="registertype">
+				  <tr>
+				  <td  width="110">
+				  我要出国读 
+				  </td>
+				  <td>
+				  <span style="color:red">本科</span>
+				  </td>
+				  </tr>
+				  <tr>
+				  <td>
+				  高中毕业时间
+				  </td>
+				  <td>
+				  <s:select list="graduateDateList" listKey="id" listValue="name" headerKey="0" headerValue="--请选择--" theme="simple" name="graduate_date" id="graduate_date" cssClass="form-control"/>
+				  </td>
+				  </tr>
+				  </table>
+				  	
+					
 				  </div>
-				  <button type="submit" class="btn btn-default">完成</button>
+				  <div class="form-group" style="text-align:center"><button type="submit" class="btn btn-default" style="width:130px">完成</button></div>
 				</form>
 		      </div>
 		      <div class="tab-pane" id="div_undergraduate">
@@ -135,10 +162,28 @@
 		      		<input type="hidden" id="user_type" name="user_type" value="2"/>
 		      		<input type="hidden" id="userId" name="userId" value="<%=userId%>"/>
 				  <div class="form-group">
-				  	我要出国读 <s:select list="#mapType" headerKey="0" headerValue="--请选择--" theme="simple" name="study_level_id" id="study_level_id" cssClass="form-control"/>
-					大学毕业时间<s:select list="graduateDateList" listKey="id" listValue="name" headerKey="0" headerValue="--请选择--" theme="simple" name="graduate_date" id="graduate_date" cssClass="form-control"/>
+				  <table  class="registertype">
+				  <tr>
+				  <td  width="110">
+				  我要出国读
+				  </td>
+				  <td>
+				  <s:select list="#mapType" headerKey="0" headerValue="--请选择--" theme="simple" name="study_level_id" id="study_level_id" cssClass="form-control"/>
+				  </td>
+				  </tr>
+				  <tr>
+				  <td>
+				  大学毕业时间
+				  </td>
+				  <td>
+				  <s:select list="graduateDateList" listKey="id" listValue="name" headerKey="0" headerValue="--请选择--" theme="simple" name="graduate_date" id="graduate_date" cssClass="form-control"/>
+				  </td>
+				  </tr>
+				  </table>
+				  	 
+					
 				  </div>
-				  <button type="submit" class="btn btn-default">完成</button>
+				  <div class="form-group" style="text-align:center"><button type="submit" class="btn btn-default" style="width:130px">完成</button></div>
 				</form>
 		      </div>
 		      <div class="tab-pane" id="div_graduate">
@@ -146,10 +191,28 @@
 		      		<input type="hidden" id="user_type" name="user_type" value="3"/>
 		      		<input type="hidden" id="userId" name="userId" value="<%=userId%>"/>
 				  <div class="form-group">
-				  	我要出国读 <s:select list="#mapType1" headerKey="0" headerValue="--请选择--" theme="simple" name="study_level_id" id="study_level_id" cssClass="form-control"/>
-					硕士毕业时间<s:select list="graduateDateList" listKey="id" listValue="name" headerKey="0" headerValue="--请选择--" theme="simple" name="graduate_date" id="graduate_date" cssClass="form-control"/>
+				  <table  class="registertype">
+				  <tr>
+				  <td  width="110">
+				  我要出国读
+				  </td>
+				  <td>
+				  <s:select list="#mapType1" headerKey="0" headerValue="--请选择--" theme="simple" name="study_level_id" id="study_level_id" cssClass="form-control"/>
+				  </td>
+				  </tr>
+				  <tr>
+				  <td>
+				  硕士毕业时间
+				  </td>
+				  <td>
+				  <s:select list="graduateDateList" listKey="id" listValue="name" headerKey="0" headerValue="--请选择--" theme="simple" name="graduate_date" id="graduate_date" cssClass="form-control"/>
+				  </td>
+				  </tr>
+				  </table>
+				  	 
+					
 				  </div>
-				  <button type="submit" class="btn btn-default">完成</button>
+				  <div class="form-group" style="text-align:center"><button type="submit" class="btn btn-default" style="width:130px">完成</button></div>
 				</form>
 		      </div>
 		      <div class="tab-pane" id="div_job">
@@ -157,10 +220,28 @@
 		      		<input type="hidden" id="user_type" name="user_type" value="4"/>
 		      		<input type="hidden" id="userId" name="userId" value="<%=userId%>"/>
 				  <div class="form-group">
-		      		我要出国读 <s:select list="#mapType1" headerKey="0" headerValue="--请选择--" theme="simple" name="study_level_id" id="study_level_id" cssClass="form-control"/>
-		      		本科毕业时间<s:select list="graduateDateList" listKey="id" listValue="name" headerKey="0" headerValue="--请选择--" theme="simple" name="graduate_date" id="graduate_date" cssClass="form-control"/>
+				  <table  class="registertype">
+				  <tr>
+				  <td  width="110">
+				  我要出国读 
+				  </td>
+				  <td>
+				  <s:select list="#mapType1" headerKey="0" headerValue="--请选择--" theme="simple" name="study_level_id" id="study_level_id" cssClass="form-control"/>
+				  </td>
+				  </tr>
+				  <tr>
+				  <td>
+				  本科毕业时间
+				  </td>
+				  <td>
+				  <s:select list="graduateDateList" listKey="id" listValue="name" headerKey="0" headerValue="--请选择--" theme="simple" name="graduate_date" id="graduate_date" cssClass="form-control"/>
+				  </td>
+				  </tr>
+				  </table>
+		      		
+		      		
 		      		</div>
-				  	<button type="submit" class="btn btn-default">完成</button>
+				  	<div class="form-group" style="text-align:center"><button type="submit" class="btn btn-default" style="width:130px">完成</button></div>
 				</form>
 		      </div>
 		      <div class="tab-pane" id="div_parent">
@@ -168,10 +249,31 @@
 		      		<input type="hidden" id="user_type" name="user_type" value="5"/>
 		      		<input type="hidden" id="userId" name="userId" value="<%=userId%>"/>
 				  <div class="form-group">
-		      		孩子要出国读 <s:select list="#mapType2" headerKey="0" headerValue="--请选择--" theme="simple" name="study_level_id" id="study_level_id" cssClass="form-control"/>
-		      		本科毕业时间<s:select list="graduateDateList" listKey="id" listValue="name" headerKey="0" headerValue="--请选择--" theme="simple" name="graduate_date" id="graduate_date" cssClass="form-control"/>
+				  <table class="registertype">
+				  <tr>
+				  <td width="110">
+				  孩子要出国读
+				  </td>
+				  <td>
+				  <s:select list="#mapType2" headerKey="0" headerValue="--请选择--" theme="simple" name="study_level_id" id="study_level_id" cssClass="form-control"/>
+				  </td>
+				  </tr>
+				  <tr>
+				  <td>
+				  本科毕业时间
+				  </td>
+				  <td>
+				  <s:select list="graduateDateList" listKey="id" listValue="name" headerKey="0" headerValue="--请选择--" theme="simple" name="graduate_date" id="graduate_date" cssClass="form-control"/>
+				  </td>
+				  </tr>
+				  </table>
+		      		 
+		      		
 		      		</div>
-				  <button type="submit" class="btn btn-default">完成</button>
+				  
+				  <div class="form-group" style="text-align:center">
+				  <button type="submit" class="btn btn-default" style="width:130px">完成</button>
+				  </div>
 				</form>
 		      </div>
 		      <div class="tab-pane" id="div_abroad">
@@ -179,22 +281,75 @@
 		      		<input type="hidden" id="user_type" name="user_type" value="6"/>
 		      		<input type="hidden" id="userId" name="userId" value="<%=userId%>"/>
 				  <div class="form-group">
-			      	我在  <s:select list="countryList" listKey="id" listValue="name" headerKey="0" headerValue="--请选择--" theme="simple" name="country_id" id="country_id" cssClass="form-control" onchange="countryChange()"/>
-			      	读 <s:select list="#mapType3" headerKey="0" headerValue="--请选择--" theme="simple" name="study_level_id" id="study_level_id" cssClass="form-control"/>
-			      	毕业时间<s:select list="graduateDateList" listKey="id" listValue="name" headerKey="0" headerValue="--请选择--" theme="simple" name="graduate_date" id="graduate_date" cssClass="form-control"/>
-			      	学校 <select id="university_id" name="university_id" class="form-control">
-						<option value="0">---请选择学校---</option>
+				  <table  class="registertype">
+				  <tr>
+				  <td  width="110" align="right">
+				  我在 
+				  </td>
+				  <td>
+				  <s:select list="countryList" listKey="id" listValue="name" headerKey="0" headerValue="--请选择--" theme="simple" name="country_id" id="country_id" cssClass="form-control" onchange="countryChange()"/>
+				  </td>
+				  </tr>
+				  <tr>
+				  <td align="right">
+				  读 
+				  </td>
+				  <td>
+				  <s:select list="#mapType3" headerKey="0" headerValue="--请选择--" theme="simple" name="study_level_id" id="study_level_id" cssClass="form-control"/>
+				  </td>
+				  </tr>
+				  <tr>
+				  <td align="right">
+				  毕业时间
+				  </td>
+				  <td>
+				  <s:select list="graduateDateList" listKey="id" listValue="name" headerKey="0" headerValue="--请选择--" theme="simple" name="graduate_date" id="graduate_date" cssClass="form-control"/>
+				  </td>
+				  </tr>
+				  <tr>
+				  <td align="right">
+				  学校 
+				  </td>
+				  <td>
+				  <select id="university_id" name="university_id" class="form-control">
+				  <option value="0">---请选择学校---</option>
 					</select>
-			      	专业 
-			      	<select id="specialty_id" name="specialty_id" class="form-control">
+				  </td>
+				  </tr>
+				  <tr>
+				  <td align="right">
+				  专业 
+				  </td>
+				  <td>
+				  <select id="specialty_id" name="specialty_id" class="form-control">
 						<option value="0">---请选择专业---</option>
 					</select>
+				  </td>
+				  </tr>
+				  </table>
+			      	 
+			      	
+			      	
+			      	
+						
+			      	
+			      	
 				  </div>
-				  <button type="submit" class="btn btn-default">完成</button>
+				  <div class="form-group" style="text-align:center"><button type="submit" class="btn btn-default" style="width:130px">完成</button></div>
 				</form>
 		      </div>
 		      
 		</div>
+ 
+<!---->
+</div>
+		</div>
+		</div>
+			
+			
+			
+			
+		    
 		
 	</body>
 </html>

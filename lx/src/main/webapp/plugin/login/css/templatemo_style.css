@@ -72,7 +72,7 @@ h2 {
 }
 .templatemo-container {
 	background-color: rgba(255,255,255,0.8);
-	border: 1px solid #dedede;
+	
 	border-radius: 8px;
 	margin: 0 auto;
 	padding: 30px;
@@ -110,7 +110,7 @@ h2 {
 /*-------------------------------------
 2. login-form-1
 ---------------------------------------*/
-.templatemo-login-form-1 { max-width: 500px; }
+.templatemo-login-form-1 { max-width: 632px; }
 .templatemo-login-form-1 a { color: gray; }
 .templatemo-login-form-1 a:hover {
 	color: black;
