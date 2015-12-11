@@ -1,4 +1,4 @@
-Ôªøbody{background:#F6F6F6; padding:0; margin:0;font-family:"Microsoft YaHei", Simsun, Verdana, Tahoma, Arial, sans-serif;font-weight: normal;font-size:12px; color:333;}
+body{background:#F6F6F6; padding:0; margin:0;font-family:"Microsoft YaHei", Simsun, Verdana, Tahoma, Arial, sans-serif;font-weight: normal;font-size:12px; color:333;}
 body,h1,h2,h3,h4,h5,h6,div,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0}
 a{color:#436d99;text-decoration:none;font-size:12px;}
 ul,li{list-style:none;}
@@ -18,14 +18,14 @@ a:hover{color:#474747;text-decoration:none;}
 input{border:none;background:none}
 .clear{clear:both}
 input,button,select,textarea{outline:none}
-/** È¶ñÈ°µ **/
-.toparea{width:100%;height:66px;background:#8CD84A;}
+/**  ◊“≥ **/
+.toparea{width:100%;height:66px;background:#2c3135;}
 .toparea .my_header{width:1055px;margin:0px auto}
 .my_header .logo{float:left}
 .toparea h1{font:200 23px/1.2 "microsoft yahei", Tahoma, arial, sans-serif;float: right;color:#ffffff;padding:8px 15px 0 0;display: block;}
 .toparea h1 a:link,.toparea h1  a:visited{color:#fff;font-size:24px;}
 .toparea h1 a:hover{color:#333;font-size:24px;}
-/** ÂàÜÁ±ª **/
+/** ∑÷¿‡ **/
 .dbk{ width:1055px; margin:0 auto 0 auto; }
 address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;height:300px;border:1px solid #ccc;}
 #demo dl.tips{margin:2px;padding:8px;background:#f2f2f2;line-height:24px}
@@ -59,7 +59,7 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 .jsSelect ul .s:hover{background:#EDEEEE url(../images/icon.png)no-repeat 6px -22px;}
 .jsSelect ul li{width:167px;cursor:pointer;height:28px;font-size:14px;padding: 8px 0 0 18px;display:block;}
 .jsSelect ul li a{background:#EDEEEE ;color:#000;}
-/** Á±ªË°® **/
+/** ¿‡±Ì **/
 .snv{ width:100%; float:left;margin:80px 0 0 0;}
 .snv ul{ margin:0; padding:0}
 .snv li{ width:246px; float:left; border:2px solid #fff; margin:0 13px 48px 0;}
@@ -69,7 +69,7 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 .wrap div span {position:relative;width: 100%;background:#fff;	display: block; }
 .wrap div h1{font-size:22px;color:#666;text-align:left;padding:6px 0 0 5px;margin:0;font:200 16px/1.2 "microsoft yahei", Tahoma, arial, sans-serif;	}
 .wrap div p { color:#D1D1D1; height:320px;padding:6px 0 0 20px;font: 12px/1.2 "microsoft yahei", Tahoma, arial, sans-serif;background: url(../images/icon.png) 3px -76px; margin-top:6px}
-/** È°µËÑö **/
+/** “≥Ω≈ **/
 .botm{width:100%;height: 100px;float:left;margin-top:30px;}
 .botmbk{width:1055px;margin:0 auto 0 auto;font-size: 12px;padding-top:20px;line-height: 22px;color: #FFFFFF;}
 .botmbk a:link,.botmbk  a:visited{color:#fff;}
@@ -77,26 +77,26 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 .logbotmbk{width:1055px;margin:0 auto 0 auto;font-size: 12px;padding-top:120px;line-height: 22px;color: #333; text-align:center}
 .logbotmbk a:link,.botmbk  a:visited{color:#333;}
 .logbotmbk a:hover{color:#666;}
-/** ËØ¶ÊÉÖÈ°µ **/
+/** œÍ«È“≥ **/
 .topareax{width:100%;height:55px;background:#fff;overflow: visible;position:fixed;top:0px;z-index:1000;box-shadow: 2px 2px 5px #f2f2f2;}
 .topareax .my_header{width:1200px;margin:0px auto; position:relative;}
 .my_headerx .logo{float:left}
 .topareax h1{font:200 23px/1.2 "microsoft yahei", Tahoma, arial, sans-serif;float: right;color:#ffffff;padding:10px 15px 0 0;display: block;}
 .topareax h1 a:link,.topareax h1  a:visited{color:#fff;font-size:24px;}
 .topareax h1 a:hover{color:#FFF48C;font-size:24px;}
-/** ÂÜÖÂÆπ **/
+/** ƒ⁄»› **/
 .stlm{width:80px;font-size: 14px;margin-top: 70px;line-height: 28px;color: #FFFFFF;background-color: #8AC766;display: block;height: 30px;text-align: center;}
 .stlm a{color: #FFFFFF;}
 .stnv{width:1025px;font-size: 12px;line-height: 21px;background-color: #FFFFFF;margin:0 auto 0 auto;padding: 15px;}
 .stnv h1{font:200 23px/1.2 "microsoft yahei", Tahoma, arial, sans-serif;color:#3A3A3A;padding:0 0 8px 0;display: block;}
-/*ÂπªÁÅØcss*/
+/*ª√µ∆css*/
 .uycom { width: 538px; height: 440px;  position: relative; overflow:hidden; float:left}
 .uycom img { width: 538px; height: 440px;  }
-/*Êï∞Â≠óÊåâÈíÆÊ†∑Âºè*/
+/* ˝◊÷∞¥≈•—˘ Ω*/
 .uycom .num { overflow:hidden; height: 25px; position: absolute; bottom:12px; left: 15px; zoom:1; z-index:3 }
-.uycom .num li { width: 25px; height: 25px; line-height: 25px; text-align: center; font-weight: 400; font-family: "ÂæÆËΩØÈõÖÈªë", Arial; color: #FFFFFF; background: #444444; margin-right: 10px; border-radius:50%; cursor:pointer; float: left; }
-.uycom .num li.on { background: #FF7700; } /*ÂΩìÂâçÈ°π*/
-/*‰∏ä‰∏Ä‰∏™  ‰∏ã‰∏Ä‰∏™*/
+.uycom .num li { width: 25px; height: 25px; line-height: 25px; text-align: center; font-weight: 400; font-family: "Œ¢»Ì—≈∫⁄", Arial; color: #FFFFFF; background: #444444; margin-right: 10px; border-radius:50%; cursor:pointer; float: left; }
+.uycom .num li.on { background: #FF7700; } /*µ±«∞œÓ*/
+/*…œ“ª∏ˆ  œ¬“ª∏ˆ*/
 .uycom .prev,
 .uycom .next { display: none; width: 40px; height: 100px; background: url(../images/btn.png) no-repeat; position: absolute; top: 160px;}
 .uycom .prev { left: 0; }
@@ -114,7 +114,7 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 .stbxr h3{width:226px;height:70px;float:left;margin:0 0 10px 0;font-size: 25px;line-height: 70px;color: #ff6600;text-align: center;font-weight: bold;}
 .stbxrsc{background: url(../images/icon.png) 2px -227px;display: block;height: 26px;width:15x;float:left;padding-left:18px;margin-left:10px;}
 .zw{width:100%; float:left;}
-/*ÊªëÂä®Èó®*/
+/*ª¨∂Ø√≈*/
 .tab{ padding:15px 0 0 0; width:695px;  overflow:hidden; float: left}
 .tab_b{ overflow:hidden; margin:5px; }
 .menu{overflow:hidden; }
@@ -123,7 +123,7 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 .menu_d{border-bottom:1px #FFFFFF solid;background-color:#FFFFFF; }
 .tab ul li.aaa{border-bottom:3px #f3f3f3 solid;line-height:42px;}
 .tab ul li.aaa a{font-weight: bold;}
-/*Âè≥‰æßÂàóË°®*/
+/*”“≤‡¡–±Ì*/
 .rtlist{ width:325px;float:right;  padding:15px 0 0 0;}
 .rtlist h1{ width:317px;float:right; background:#;font-size: 18px;  padding:14px 0 14px 14px; }
 .rtlist ul{ margin:0; padding:0}
@@ -133,7 +133,7 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 .rtlist li h3{color: #616161;font:200 14px/1.2 "microsoft yahei", Tahoma, arial, sans-serif; float:left; }
 .rtlist li h2 {color: #D2D2D2;font:200 12px/1.2 "microsoft yahei", Tahoma, arial, sans-serif;float:left; margin-top:10px;}
 
-/*Áî®Êà∑*/
+/*”√ªß*/
 .topHeadeRight{float:right;margin:-10px -15px 0 0; }
 .thrUl a{ text-decoration:none;margin-left:1px;font-size:12px;}
 .m06 > a{display:inline-block;height:42px;padding:9px 10px 0 10px; text-align:center;}
@@ -161,7 +161,7 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 #sonA a:hover{color:#333;}
 
 
-/**ÂàÜÈ°µ**/
+/**∑÷“≥**/
 #pagination-digg{ width:1055px;background:#FFFFFF;margin:0 auto 0 auto; padding:20px 0 20px 0; height:30px; float:left }
 #pagination-digg ul{ margin: 0 auto 0 15px;}
 #pagination-digg li { border:0; padding:0; font-size:11px; list-style:none; /* savers */ width: auto; height:40px; float:left}
@@ -169,7 +169,7 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 #pagination-digg .active { background:#8AC766; color:#FFFFFF;  display:block; float:left;  /* savers */ margin-right:2px; width:60px; height:37px; text-align:center; line-height:34px}
 #pagination-digg a:link,#pagination-digg a:visited { color:#666; display:block; float:left; padding:10px 16px; text-decoration:none; }
 #pagination-digg a:hover {  background:#8AC766; color:#fff }
-/**‰∏™‰∫∫‰∏≠ÂøÉ**/
+/**∏ˆ»À÷––ƒ**/
 
 .centx{   float: left; margin-right:5px }
 .centx a{ color:#616161 }
@@ -183,9 +183,9 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 .cen_b span .kz{}
 .cen_b h3{ top:135px;right:5px;position:absolute;font:200 12px/1.6 "microsoft yahei", Tahoma, arial, sans-serif; color:#818181}
 .cen_nv{width:1200px;font-size: 12px;line-height: 21px;margin:0 auto 0 auto;padding:80px 0 0 0;}
-/* Ê†ëÂΩ¢ËèúÂçïÂºÄÂßã */
+/*  ˜–Œ≤Àµ•ø™ º */
 
-.smenu { width:175px; overflow-x:hidden; margin-bottom:10px; color:#818181;float: left;background:#fff;-moz-border-radius: 10px;      /* Gecko browsers */-webkit-border-radius: 10px;   /* Webkit browsers */ border-radius:10px;            /* W3C syntax */ padding:10px;}
+.smenu { width:175px;margin-left:20px; overflow-x:hidden; margin-bottom:10px; color:#818181;float: left;background:#fff;-moz-border-radius: 10px;      /* Gecko browsers */-webkit-border-radius: 10px;   /* Webkit browsers */ border-radius:10px;            /* W3C syntax */ padding:10px;}
 .l1 {  font-size:14px; height:20px; padding:0 0 0 25px; margin-bottom:5px; cursor:pointer;font-weight: normal; margin:20px 0 10px 20px;font-size:18px;color:#333;}
 
 
@@ -205,7 +205,7 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 .sslist { background:#156890; width:235px; overflow:hidden; margin:0 0 5px 35px; display:none;}
 .l3 a { padding:6px 0 0 5px; width:230px; height:20px; display:block;} 
 .currentl3 a,.l3 a:hover { color:#fff; }
-/* ÊªëÂä® */
+/* ª¨∂Ø */
 .cen_rnv{ width:994px; float:left; background:#fff; margin-left:10px;-moz-border-radius: 10px;      /* Gecko browsers */-webkit-border-radius: 10px;   /* Webkit browsers */ border-radius:10px;            /* W3C syntax */ }
 .cen_rnv .mb{width:100%; border-bottom: 1px solid #f2f2f2; font-size:20px; float:left; padding:10px 0 10px 0; margin:12px 0 10px 0;	text-indent: 20px;}
 .cen_rnv .tb{width:96%; margin:10px 0 10px 20px}
@@ -218,7 +218,7 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 .cen_menu_d{ }
 .cen_tab ul li.aaa{background: #FFFFFF;background: url(../images/icon.png)no-repeat 0px -754px; color:#fff}
 .cen_tab ul li.aaa a{color:#fff}
-/* ÊªëÂä®1 */
+/* ª¨∂Ø1 */
 .cen_nva{ width:100%}
 .cen_nva ul{ margin:0; padding:0}
 .cen_nva li{width:1020px; height:138px; float:left; border-bottom:#F0F0F0 1px dashed ; position:relative; padding:5px 0 0px 0; margin-bottom:15px}
@@ -237,7 +237,7 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 .cen_nvh10:hover{background:#7CB1BC;}
 .progressbarbg{width:400px;height:6px;font-size:0;background:#f1f1ed; margin:108px 0 0 150px}
 .progressbarbg .progressbar{width:40%;height:6px;font-size:0;background:#8AC766; display:block}
-/* ËÆæËÆ°ËØæÁ®ãÂíåËé∑Ëµ†ËØæÁ®ã */
+/* …Ëº∆øŒ≥Ã∫ÕªÒ‘˘øŒ≥Ã */
 .cen_nva2{ width:100%}
 .cen_nva2 ul{ margin:0; padding:0}
 .cen_nva2 li{width:1020px; float:left; border-bottom:#F0F0F0 1px dashed ; position:relative; padding:5px 0 5px 0; margin-bottom:15px}
@@ -259,7 +259,7 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 .cen_ss input{ border:1px #B4BBBF solid;width:240px; height:30px;color:#BCBCBC; padding:0 0 0 4px;font:200 12px/1 "microsoft yahei", Tahoma, arial, sans-serif; position:absolute;}
 .cen_ss .button{ border:0;width:60px; height:32px; background:#8AC766; font-size:14px; color:#fff; position:absolute;left:250px;cursor:pointer;}
 
-/* ÊªëÂä®1 */
+/* ª¨∂Ø1 */
 .cen_dna{ width:100%}
 .cen_dna .tx{ width:840px; height:25px; background:#FEFDED; border:1px solid #F9F2A7;display:block; line-height:28px; padding:0 0 0 6px;  margin-bottom:3px; float:left}
 .cen_dna .dss{ width:100%; height:30px;background:#F6F6F6; display:block;margin-bottom:1px; padding:0 0 0 0; float:left}
@@ -287,7 +287,7 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 .cen_dna li h8{font:200 12px/1 "microsoft yahei", Tahoma, arial, sans-serif; color:#666666; position:absolute; top:30px; left:560px; width:404px}
 .cen_dna li h9{font:200 14px/1 "microsoft yahei", Tahoma, arial, sans-serif; color:#fff; position:absolute; top:50px; right:180px; width:70px; height:25px; background:#8FC4CB; text-align:center; line-height:22px;cursor:pointer;}
 .cen_dna li h9:hover{ background:#77B3BB;}
-/* ÊàëÁöÑÊî∂Ëóè */
+/* Œ“µƒ ’≤ÿ */
 .cen_bq{ width:100%;display:block;   float:left}
 .cen_bq ul{ margin:0; padding:0}
 .cen_bq li{  float:left; margin:15px 0 5px 5px; padding:6px; position:relative; font-size:14px}
@@ -312,7 +312,7 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 .cen_sc li h2{font:200 12px/1 "microsoft yahei", Tahoma, arial, sans-serif; color:#666666; position:absolute; top:195px; width:195px; text-align:center;}
 .cen_sch3{font:200 12px/1 "microsoft yahei", Tahoma, arial, sans-serif; color:#999; position:absolute; top:220px; left:0px; width:195px; text-align:center; display:none}
 .cen_sch4{font:200 12px/1 "microsoft yahei", Tahoma, arial, sans-serif; color:#999; position:absolute; top:16px; left:20px; display:none}
-/* ÈÄöÁî® */
+/* Õ®”√ */
 .tytop{ background:#F6F6F6; padding:10px 0 10px 0 ; text-align:center; line-height:23px; height:30px; font-size:14px}
 .tytbj{ background:#F6F6F6; margin-top:10px}
 .tyxx{ border-bottom:#F0F0F0 1px dashed ;text-align:center; padding:10px 0 10px 0 ;line-height:23px; background:#fff }
@@ -324,7 +324,7 @@ address,cite,dfn,em,var{font-style:normal}#demo{position:relative;width:500px;he
 .tybot:hover{ background:#F6A800;}
 .tywbot{ background:#fff; padding:6px 15px 6px 15px; color:#333; cursor:pointer}
 .tywbot:hover{ background:#fff;}
-/* ‰ø°Áî® */
+/* –≈”√ */
 .xy_hp{ background: url(../images/icon.png)no-repeat 0px -840px; display:block; width:80px; margin:0 auto }
 .xy_zp{ background: url(../images/icon.png)no-repeat 0px -862px; display:block; width:80px; margin:0 auto }
 .xy_cp{ background: url(../images/icon.png)no-repeat 0px -884px; display:block; width:80px; margin:0 auto }

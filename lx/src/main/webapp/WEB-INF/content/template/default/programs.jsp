@@ -417,6 +417,7 @@ border: 0;
 				$(".searcharea .result").hide();
 				$(".searcharea .content").css({"width":"100%","height":"81px","position":"fixed","top":"0px","z-index":"1000"});
 				$(".searcharea .content").addClass("fixedcontent");
+				$(".ui-autocomplete").css({"top":$(window).scrollTop()+61,"z-index":"1001"})
 			}
 			else{
 			$(".searcharea .conditions").css({"width":"100%","margin":"0px auto"});
@@ -424,6 +425,7 @@ border: 0;
 				$(".searcharea .result").show();
 				$(".searcharea .content").css({"width":"965px","height":"auto","position":"inherit","top":"inherit","z-index":"inherit"});
 				$(".searcharea .content").removeClass("fixedcontent");
+				$(".ui-autocomplete").css("top","238px")
 			}
 		})
 		</script>

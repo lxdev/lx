@@ -96,6 +96,9 @@ h4 {
                 cursor: pointer;
                 font-size:16px;
             }
+            .toparea .content .rarea li.m06{
+            margin-top:5px
+            }
 
             .toparea .content .rarea .login {
                 margin-right: 20px;
@@ -252,6 +255,7 @@ h4 {
     color: #616161;
     font-size: 16px;
     padding-bottom: 14px;
+    line-height:30px;
 }
 
     .reslut-2 .content .info span {

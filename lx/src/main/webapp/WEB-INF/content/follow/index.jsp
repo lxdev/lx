@@ -30,7 +30,7 @@
 		<div class="container-fluid">
     		<s:action namespace="/user" name="head" executeResult="true"/>
     	</div>
-		<div class="container-fluid">
+		<div class="container-fluid" style="margin-top:20px;min-height:500px;">
 			<div class="template-page-wrapper">
     			<s:action namespace="/user" name="left" executeResult="true"/>
 
