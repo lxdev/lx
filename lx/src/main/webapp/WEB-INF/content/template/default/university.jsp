@@ -45,7 +45,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                            </td>
 	                            <td valign="top" class="text-center">
 	                                <div class="ranking ftcolff6600">
-	                                    <span>综合排名<s:property value="university.ranking_comprehensive" /></span>  
+	                                    <span>综合排名:
+	                                     <s:if test="university.ranking_comprehensive==9999"> 无排名</s:if>
+	                                     <s:else>
+	                                     <s:property value="university.ranking_comprehensive" />
+	                                     </s:else>
+	                                    </span>
 	                                </div>
 	                                <div class="text-center sc">
 	                                    <img src="../plugin/new/images/sc2.png" onclick="common_collect('<s:property value="university.id"/>', '2')"/>&nbsp;&nbsp;
