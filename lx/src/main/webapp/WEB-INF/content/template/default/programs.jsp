@@ -338,15 +338,12 @@ border: 0;
 		                                			<s:if test="ranking_comprehensive == 9999">无排名</s:if>
 		                                			<s:else><s:property value="ranking_comprehensive"/></s:else>
 		                                		</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											<s:if test="resultSpecialtyRank.contains(#outer.id)">
+											<s:if test="resultSpecialtyRankUniID.contains(id)">
                                                 <s:iterator value="resultSpecialtyRank" id="spe_rank">
                                                     <s:if test="#spe_rank.university_id==#outer.id">
                                                         <span>专业排名：<s:property value="#spe_rank.rank"/></span>
-                                                    </s:if>
+                                                    </s:if>                                          
                                                 </s:iterator>
-											</s:if>
-											<s:if test="program_specialty == null">
-
 											</s:if>
 											<s:else>
 												<span>专业排名：无排名</span>

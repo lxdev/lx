@@ -74,6 +74,8 @@ public class ProgramsAction extends BaseAction {
 	private List<University> resultUniversity = new ArrayList<University>();
 	
 	private List<SpecialtyRank> resultSpecialtyRank = new ArrayList<SpecialtyRank>();
+	
+	private List<Integer> resultSpecialtyRankUniID= new ArrayList<Integer>();
 
 	@Autowired
 	private ICountryBiz countryBiz;// country业务接口
@@ -174,6 +176,10 @@ public class ProgramsAction extends BaseAction {
 				SpecialtyRank con = new SpecialtyRank();
 				con.setRankclass_id(rankclass_id);
 				resultSpecialtyRank = specialtyRankBiz.searchSpecialtyRanksByCondition(con);
+				
+				for(SpecialtyRank item : resultSpecialtyRank){
+					resultSpecialtyRankUniID.add(item.getUniversity_id());
+				}
 			}
 		}
 		
@@ -355,6 +361,10 @@ public class ProgramsAction extends BaseAction {
 				SpecialtyRank con = new SpecialtyRank();
 				con.setRankclass_id(rankclass_id);
 				resultSpecialtyRank = specialtyRankBiz.searchSpecialtyRanksByCondition(con);
+				
+				for(SpecialtyRank item : resultSpecialtyRank){
+					resultSpecialtyRankUniID.add(item.getUniversity_id());
+				}
 			}
 		}
 		
@@ -591,6 +601,14 @@ public class ProgramsAction extends BaseAction {
 
 	public void setResultSpecialtyRank(List<SpecialtyRank> resultSpecialtyRank) {
 		this.resultSpecialtyRank = resultSpecialtyRank;
+	}
+	
+	public List<Integer> getResultSpecialtyRankUniID() {
+		return resultSpecialtyRankUniID;
+	}
+
+	public void setResultSpecialtyRankUniID(List<Integer> resultSpecialtyRankUniID) {
+		this.resultSpecialtyRankUniID = resultSpecialtyRankUniID;
 	}
 
 	public String getIs_public_school() {
