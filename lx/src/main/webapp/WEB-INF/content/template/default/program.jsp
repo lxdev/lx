@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                                <div class="text-center sc" style="margin-top:24px;text-align:left">
                                         <a style="float:left;margin-right:17px" href="<s:property value="resultProgram.specialty_link"/>" target="_blank"><img src="../plugin/new/images/gwkc.png" /></a>
                                         <s:if test="resultProgram.course_setting != null">
-                                            <s:if test="resultProgram.course_setting.contains('http://')">
+                                            <s:if test="resultProgram.course_setting.contains('http://')||resultProgram.course_setting.contains('https://')">
                                                 <a style="width: 93px;height: 34px;background: #ffcc00;text-align: center;display: inline-block;line-height: 34px;color: #fff;" href="<s:property value="resultProgram.course_setting"/>" target="_blank">课程设置</a>
                                             </s:if>
                                         </s:if>
