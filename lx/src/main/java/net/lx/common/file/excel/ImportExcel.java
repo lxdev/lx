@@ -190,6 +190,18 @@ public class ImportExcel<T> {
 													cell.setCellType(HSSFCell.CELL_TYPE_NUMERIC);
 													setMethod.invoke(tObject, (int)cell.getNumericCellValue());
 												}
+												if (titleString.equals("托福总分")) {
+													cell.setCellType(HSSFCell.CELL_TYPE_NUMERIC);
+													setMethod.invoke(tObject, (int)cell.getNumericCellValue());
+												}
+												if (titleString.equals("GRE总分")) {
+													cell.setCellType(HSSFCell.CELL_TYPE_NUMERIC);
+													setMethod.invoke(tObject, (int)cell.getNumericCellValue());
+												}
+												if (titleString.equals("GMAT总分")) {
+													cell.setCellType(HSSFCell.CELL_TYPE_NUMERIC);
+													setMethod.invoke(tObject, (int)cell.getNumericCellValue());
+												}
 												cell.setCellType(HSSFCell.CELL_TYPE_STRING);
 												if (titleString.equals("是否提供语言课程")) {
 													if ("是".equals(cell.getStringCellValue()) || "1".equals(cell.getStringCellValue())) {
@@ -213,25 +225,17 @@ public class ImportExcel<T> {
 														setMethod.invoke(tObject, 0);
 												}
 												
+												
 											}else if("class java.lang.Float".equals(xclass) || "float".equals(xclass)) {
 												cell.setCellType(HSSFCell.CELL_TYPE_STRING);
-												if (titleString.equals("托福总分")) {
-													setMethod.invoke(tObject, Float.parseFloat(cell.getStringCellValue()));
-												}
+												
 												if (titleString.equals("雅思总分")) {
-													setMethod.invoke(tObject, Float.parseFloat(cell.getStringCellValue()));
-												}
-												if (titleString.equals("GRE总分")) {
-													setMethod.invoke(tObject, Float.parseFloat(cell.getStringCellValue()));
-												}
-												if (titleString.equals("GMAT总分")) {
 													setMethod.invoke(tObject, Float.parseFloat(cell.getStringCellValue()));
 												}
 												if (titleString.equals("GPA要求")) {
 													setMethod.invoke(tObject, Float.parseFloat(cell.getStringCellValue()));
 												}
 												
-
 											} else if ("class java.lang.Long".equals(xclass)) {
 												setMethod.invoke(tObject, new Long(cell.getStringCellValue()));
 											} else {
