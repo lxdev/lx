@@ -871,7 +871,7 @@ function validateSpecialtyForm(formName) {
 	}
 	//$("#guide_specialty_id", form).val( $("#guide_specialty_id", form).val() || $("#guide_specialty_id", form).attr("data-id") );
 	var guideId = $("#guide_specialty_id", form).val() || $("#guide_specialty_id", form).attr("data-id");
-	if(guideId != "" && guideId != "0" && guideId != 0){
+	if(guideId != undefined && guideId != "" && guideId != "0" && guideId != 0){
 		//alert("请选择一个专业");
 		window.open("guide?guide_id=" + guideId);
 		return false;
@@ -887,7 +887,7 @@ function validateCollegeSearchForm(formName) {
 	}
 	//$("#university_name_id", form).val( $("#university_name_id", form).val() || $("#university_name_id", form).attr("data-id") );
 	var universityId = $("#university_name_id", form).val() || $("#university_name_id", form).attr("data-id");
-	if(universityId != "" && universityId != "0" && universityId != 0){
+	if(universityId != undefined && universityId != "" && universityId != "0" && universityId != 0){
 		window.open("university?universityId=" + universityId);
 		return false;
 	}
