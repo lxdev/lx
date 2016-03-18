@@ -293,7 +293,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<th valign="top">GRE</th>
 									<td valign="top">
                                         <s:if test="resultProgram.score_gre==0">GRE总分：无最低要求</s:if>
-                                            <s:elseif test="resultProgram.score_re==-1">不接受GRE成绩</s:elseif>
+                                            <s:elseif test="resultProgram.score_gre==-1">不接受GRE成绩</s:elseif>
                                             <s:elseif test="resultProgram.score_gre==-2">无需提供GRE成绩</s:elseif>
                                             <s:else>GRE总分：<s:property value="resultProgram.score_gre"/></s:else>
                                         <br><s:if test="resultProgram.gre_single != null && resultProgram.gre_single != '' && resultProgram.score_gre != -1">

@@ -328,6 +328,8 @@ public class ProgramAction extends BaseAction {
 				condition.setStudy_level_id(program.getStudy_level_id());
 				condition.setProgram_name(item.getProgram_name());
 				condition.setUniversity_id(item.getUniversity_id());
+				condition.setPage(1);
+				condition.setPage_size(10);
 				List<Program> resultList = programBiz.searchProgramsByCondition(condition);
 				if(resultList.size() >= 1){
 					programId = resultList.get(0).getId();
