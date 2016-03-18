@@ -51,7 +51,7 @@
 							    </tr>
 							    <tr>
 							    	<td>
-							    		<input id="university_name" name="university_name" class="ui-autocomplete-input txt-5" placeholder="请输入学校名称（选填）" data-url="<s:url value="/template/university_search"/>"/>
+							    		<input type="hidden" id="university_name" name="university_name" class="ui-autocomplete-input txt-5" placeholder="请输入学校名称（选填）" data-url="<s:url value="/template/university_search"/>"/>
 				                        <input type="hidden" id="university_name_id" name="university_name_id"/>
 							    	</td>
 							    </tr>

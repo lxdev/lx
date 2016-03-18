@@ -67,7 +67,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                            </td>
 	                            <td valign="top" class="text-center" style="width:217px">
 	                                <div class="ranking ftcolff6600" style="padding-bottom:0px;font-size:20px">
-	                                    <span>综合排名 <s:property value="resultProgram.university.ranking_comprehensive"/></span>
+	                                    <span>综合排名:	                                     
+	                                     <s:if test="resultProgram.university.ranking_comprehensive==9999"> 无排名</s:if>
+	                                     <s:else>
+	                                     <s:property value="resultProgram.university.ranking_comprehensive" />
+	                                     </s:else>
+	                                     </span>
 									</div>
 	                                <div class="text-center sc" style="margin-top:24px;text-align:left">
                                         <a style="float:left;margin-right:17px" href="<s:property value="resultProgram.specialty_link"/>" target="_blank"><img src="../plugin/new/images/gwkc.png" /></a>
