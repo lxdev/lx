@@ -21,8 +21,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<div class="strategydetail">
         	<div class="title">
         		<h3 class=" ftsize18"><span class="ftcolfe8332">5300</span>人想申请</h3>
-        		<span class=" ftsize33 ftcol4190bc paddingl20">${guideResult.country.name}</span>
-        		<span class="ftcol999999 ftsize25 paddingl20">${guideResult.guide_name}</span>
+        		<span class=" ftcol4190bc ftsize33 ">${guideResult.guide_name}</span>
+				<span class=" ftsize25 ftcol999999 paddingl20">${guideResult.country.name}</span>
+        		
         	</div>
     		<div class="reslut-2">
 	    		<div class="title-2">
@@ -106,8 +107,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											<s:if test="#inner2.parent_id==#outer2.id">
 												<s:iterator value="guideResult.optionContents" id="oc">
 													<s:if test="#oc.option_id==#inner2.id">
-														<div id="content_${outer2.id}_${inner2.id}">
-															<span>${ inner2.option_name }</span>
+														<div class="colborder" id="content_${outer2.id}_${inner2.id}">
+															<span class="colname"><span class="blueline"></span>${ inner2.option_name }</span>
 															<s:if test="#oc.option_content != ''">
                                                                 <p>${oc.option_content }</p>
 															</s:if>
@@ -137,24 +138,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        	<div class="clear"></div>
 	    	</div>
     	</div>
-    	
+    	<div class='totop'></div>
 	    <s:action namespace="/user" name="foot" executeResult="true"/>
 	    <script type="text/javascript">
-	
+			$(window).scroll(function(){
+				
+				var _scrollTop=$("body").scrollTop();
+				console.log(_scrollTop);
+				if(_scrollTop>700){
+					$(".totop").show();
+				}
+				else{
+					$(".totop").hide();
+				}
+			})
+			$(".totop").click(function(){
+				$("body").scrollTop(170);
+			})
 	        $(".stradetailcon .l li").mouseenter(function () {
 	            $(".stradetailcon .l li").removeClass("current");
 	            $(this).addClass("current");
 	        })
-	        $("#myTab li").each(function (i) {
-	            $(this).click(function () {
-	                $("#myTab li").removeClass("current");
-	                $("#myTab li .sublink").hide();
-	                $(this).find(".sublink").show();
-	                $(this).addClass("current");
-	                $(".r .option_item").hide();
-	                $(".r .option_item").eq(i).show();
-	            });
-	        });
+	        // $("#myTab li").each(function (i) {
+	            // $(this).click(function () {
+	                // $("#myTab li").removeClass("current");
+	                // $("#myTab li .sublink").hide();
+	                // $(this).find(".sublink").show();
+	                // $(this).addClass("current");
+	                // $(".r .option_item").hide();
+	                // $(".r .option_item").eq(i).show();
+	            // });
+	        // });
 		</script>
     
 	</body>
