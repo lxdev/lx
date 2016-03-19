@@ -80,7 +80,7 @@ border: 0;
 						</s:else>
 				        <input type="hidden" id="program_specialty_id" name="program_specialty_id" value="${program_specialty_id}"/>
 	                </div>
-	                <div class="condit-1">
+	                <div class="condit-1" style="display:none">
 						<input id="university_name" name="university_name" class="ui-autocomplete-input txt-1" placeholder="请输入学校名称（选填）" data-url="<s:url value="/template/university_search"/>" value="${university_name}"/>
 				        <input type="hidden" id="university_name_id" name="university_name_id"/>
 	                </div>
