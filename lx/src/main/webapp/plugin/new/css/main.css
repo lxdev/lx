@@ -6,6 +6,7 @@ body, p, td, div, span, h1, h2, h3, h4, ul, li, span {
 
 body {
     background: #f5f5f5;
+	position:relative
 }
 
 ul, li {
@@ -14,6 +15,7 @@ ul, li {
 
 a {
     text-decoration: none;
+	color:#000
 }
 
 h1 {
@@ -117,6 +119,7 @@ h4 {
     .searcharea .content {
         width: 965px;
         margin: 0px auto;
+		text-align:center;
     }
 	.searcharea .fixedcontent{
 	background:url(../images/bgtm.png) repeat;
@@ -136,7 +139,7 @@ h4 {
     .searcharea .condit-1 {
         width: 252px;
         height: 40px;
-        float: left;
+        display:inline-block;
         padding-top: 30px;
         margin-right: 6px;
     }
@@ -156,7 +159,7 @@ h4 {
 
     .searcharea .condit-2 {
         width: 90px;
-        float: left;
+        
         display: inline;
         padding-top: 30px;
     }
@@ -310,9 +313,16 @@ h4 {
     font-size: 12px;
     margin-top: 21px;
     padding-left: 27px;
-    color:#ff6600;
+    color:#000;
 }
-
+.reslut-2 .content .stradetailcon .ranking{
+	font-size:18px;
+	padding-left:50px;
+	margin-top:0px;
+}
+.reslut-2 .content .stradetailcon li a{
+	color:#747474
+}
     .reslut-2 .content .ranking span {
         background: url(../images/pm.png) left 1px no-repeat;
         padding-left: 22px;
@@ -423,12 +433,13 @@ h4 {
     }
 
         .reslut-2 .title-2 li {
-            width: 100px;
-            float: left;
-            padding: 17px 20px;
-            text-align: center;
-            cursor: pointer;
-            border-right: 1px solid #ddd;
+           font-size: 18px;
+width: 100px;
+float: left;
+padding: 12px 20px;
+text-align: center;
+cursor: pointer;
+border-right: 1px solid #ddd;
         }
 
             .reslut-2 .title-2 li.current {
@@ -1018,21 +1029,23 @@ border-radius: 7px;
         right: 0px;
         top: 0px;
         width: 150px;
-        height: 62px;
+        height: 48px;
+		line-height:48px;
         background: #4190bc;
+		font-size:16px;
     }
 
         .strategydetail .collect span {
             width: 100%;
             height: 100%;
-            line-height: 62px;
+            
             float: left;
             text-align: center;
             color: #fff;
             padding-left: 16px;
             display: inline-block;
             cursor: pointer;
-            background: url(../images/icon-22.png) 39px 18px no-repeat;
+            background: url(../images/icon-22.png) 48px 12px no-repeat;
         }
 
     .strategydetail .con-1 {
@@ -1042,8 +1055,10 @@ border-radius: 7px;
         .strategydetail .con-1 .l {
             float: left;
             display: inline;
-            width: 168px;
+            width: 242px;
             border-right: 1px solid #e6e6e6;
+			height:600px;
+			overflow-y:auto;
         }
 
             .strategydetail .con-1 .l li {
@@ -1100,8 +1115,21 @@ border-radius: 7px;
         .strategydetail .con-1 .r {
             float: left;
             display: inline;
-            width: 989px;
+            width: 900px;
         }
+		.strategydetail .con-1 .r .option_item{
+			padding: 0px 60px;
+		}
+		.strategydetail .con-1 .colborder{
+			border-bottom: 1px solid #ddd;
+padding: 15px 0px;
+		}
+		.strategydetail .con-1 .colname{
+			font-size: 16px;
+font-weight: bolder;
+padding: 20px 0 1px 0;
+display: inline-block;
+		}
 
             .strategydetail .con-1 .r h2 {
                 padding: 30px 40px 10px;
@@ -1109,7 +1137,7 @@ border-radius: 7px;
             }
 
             .strategydetail .con-1 .r p {
-                padding: 10px 40px;
+                padding: 10px 0px;
                 line-height: 25px;
                 font-size: 15px;
                 color: #747474;
@@ -1918,3 +1946,90 @@ box-shadow: #e3e3e3 0px 0px 10px;background:#fff; padding-bottom:10px; }
 #sonA{text-align:center;padding:0 10px;border-bottom:1px solid #505559;widht:106px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#fff;}
 #sonA a{color:#fff;font-size:14px;line-height:42px;}
 #sonA a:hover{color:#fff;}
+
+/* 攻略样式 */
+
+.gl-search-bg {
+background:url(../images/gl-7.jpg) no-repeat;
+}
+.gl-kh{
+	padding: 30px 0px 10px 0;
+width: 1180px;
+margin: 0px auto;
+font-size: 18pt;
+}
+.gl-banner {
+margin:0px auto;width:1180px;
+}
+.row_1 .l, .row_1 .r, .row_2 .l, .row_2 .r td {
+position:relative;
+}
+.row_1 .l .name, .row_1 .r .name, .row_2 .l .name, .row_2 .r td .name {
+        position: absolute;
+    bottom: 14px;
+    left: 36px;
+    font-size: 20pt;
+    color: white;
+}
+.row_1 .l {
+    width:769px;float:left;display:inline
+}
+.row_1 .r {
+    width:389px;float:left;display:inline;margin-left:5px;
+}
+.row_2 .l {
+    width:384px;float:left;display:inline;margin-top:5px;
+}
+.row_2 .r {
+    width:774px;float:left;display:inline;margin-left: 2px;
+}
+.gl-container {
+width:1180px;margin:0px auto;
+}
+.gl-container .country{
+    font-size:18pt  
+}
+.gl-container .header {
+padding:50px 0px 30px
+}
+.gl-container .gradation {
+font-size:14pt;margin-left:20px;cursor:pointer;
+}
+.gl-container .header .selected {
+background:#1fbfa0;border-radius:5px;padding:3px 5px;color:#fff;
+}
+.gl-container .professionname {
+color:#1fbfa0;font-size:16pt;padding:10px 0px;
+}
+.gl-gray {
+    color:#6e6e6e;font-size:14px;font-weight:bolder
+}
+.gl-light-gray{
+    color:#8c8c8c;font-size:12px;
+}
+.professionlist {
+width:1180px;margin:0px auto;
+}
+.professionlist td{
+    padding:5px 0px
+}
+.clear {
+clear:both
+}
+.blueline{
+	background: url(../images/lbg.gif) repeat-y;
+width: 3px;
+height: 22px;
+display: inline-block;
+float: left;
+margin-right: 8px;
+}
+.totop{
+	position:fixed;
+	right:30px;
+	top:500px;
+	width:45px;
+	height:45px;
+	background:url(../images/topicon.png) no-repeat;
+	cursor:pointer;
+}

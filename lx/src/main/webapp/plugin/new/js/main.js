@@ -920,3 +920,10 @@ function getQueryString(name)
 		return  unescape(r[2]);
 	return null;
 }
+
+var screenHeight= document.body.clientHeight;
+console.log(screenHeight);
+var _toprareaHeigth=52;
+var _bottomHeight=71;
+var _contentHeight=screenHeight-_toprareaHeigth-_bottomHeight;
+$(".mainwrap").css({"min-height":_contentHeight});
