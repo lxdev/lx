@@ -1180,12 +1180,14 @@ display: inline-block;
 
 .popbox {
     width: 440px;
-    height: 491px;
+    height: 380px;
     background: #fff;
     position: fixed;
     top: 100px;
     left: 200px;
     z-index: 10;
+	border:1px solid #ddd;
+	border-radius: 3px;
 }
 
     .popbox .header {
