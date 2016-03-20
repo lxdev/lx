@@ -24,7 +24,7 @@
             <ul>
             	<li><a href="../template/programs">课程</a></li>
                 <li><a href="../template/universitys">院校</a></li>
-                <!-- <li><a href="../template/guides">攻略</a></li> -->
+                <li><a href="../template/guides">攻略</a></li>
                 <!-- <li><a href="../template/consultants">留学顾问</a></li> -->
             </ul>
         </div>
