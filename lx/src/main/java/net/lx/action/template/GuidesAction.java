@@ -17,7 +17,6 @@ import net.lx.entity.guide.Guide;
 import net.lx.entity.guide.GuideSpecialty;
 import net.lx.entity.university.Specialty;
 
-
 public class GuidesAction extends BaseAction {
 
 	/**
@@ -39,37 +38,43 @@ public class GuidesAction extends BaseAction {
 	private String guide_specialty;
 	private int guide_specialty_id;
 	private List<Specialty> specialtyCategorys = new ArrayList<Specialty>();
-	
+
 	private List<Guide> resultGuide = new ArrayList<Guide>();
+
+	private String term = "";
+	private Specialty specialty = new Specialty();
+	private List<Specialty> specialtyList = new ArrayList<Specialty>();
 	
-	@Action(value = "guides", results = { 
-			@Result(name="input", type="dispatcher", location = "guide/guides.jsp"),
-			@Result(name = "success", type = "dispatcher", params = {"contentType", "text/json" }, location="/WEB-INF/content/guide/guides.jsp"),
-			@Result(name = "success_one", type="redirect", location = "guide?guide_id=${guide_specialty_id}")
-	})
-	public String execute() throws Exception{
-		if(guide_specialty_id > 0)
+	private List<Guide> guideList = new ArrayList<Guide>();
+
+	@Action(value = "guides", results = {
+			@Result(name = "input", type = "dispatcher", location = "guide/guides.jsp"),
+			@Result(name = "success", type = "dispatcher", params = {
+					"contentType", "text/json" }, location = "/WEB-INF/content/guide/guides.jsp"),
+			@Result(name = "success_one", type = "redirect", location = "guide?guide_id=${guide_specialty_id}") })
+	public String execute() throws Exception {
+		if (guide_specialty_id > 0)
 			return "success_one";
-		
+
 		countrys = this.countryBiz.findAll();
 		specialtyCategorys = this.specialtyBiz.findAllRoot();
 		guideSpecialtys = this.guideSpecialtyBiz.findAll();
-		if(guide_specialty == null || guide_specialty.equals(""))
+		if (guide_specialty == null || guide_specialty.equals(""))
 			specialtys = this.specialtyBiz.findAll();
-		else{
+		else {
 			Specialty condition = new Specialty();
 			condition.setSpecialty_name(guide_specialty);
-			specialtys = this.specialtyBiz.searchSpecialtysByCondition(condition);
+			specialtys = this.specialtyBiz
+					.searchSpecialtysByCondition(condition);
 		}
-		
+
 		List<Guide> allGuides = guideBiz.findAll();
-		if(guide_specialty != null && !guide_specialty.equals("")){
-			if(specialtys.size() > 0){
-				for(Specialty s : specialtys){
-					for(Guide item : allGuides){
-						if(item.getIs_self_specialty() == 0){
-							if(item.getSpecialty_id() == s.getId())
-							{
+		if (guide_specialty != null && !guide_specialty.equals("")) {
+			if (specialtys.size() > 0) {
+				for (Specialty s : specialtys) {
+					for (Guide item : allGuides) {
+						if (item.getIs_self_specialty() == 0) {
+							if (item.getSpecialty_id() == s.getId()) {
 								resultGuide.add(item);
 								break;
 							}
@@ -77,14 +82,41 @@ public class GuidesAction extends BaseAction {
 					}
 				}
 			}
-		}else
+		} else
 			setResultGuide(allGuides);
-		
+
 		return SUCCESS;
 	}
-	
-	//-------------------------
-	
+
+	@Action(value = "guide_specialty_search", results = { @Result(name = "success", type = "json", params = {
+			"contentType", "text/json", "includeProperties", "specialtyList.*" }) })
+	public String guide_specialty_search() throws Exception {
+		if (!getTerm().equals("")) {
+			// setTerm(new String(getTerm().getBytes("iso8859-1"),"utf-8"));
+			specialty.setSpecialty_name(getTerm());
+
+			guideList = guideBiz.findAll();
+			List<Specialty> tempSpecialtys = specialtyBiz
+					.searchSpecialtysByCondition(specialty);
+			for (Guide g : guideList) {
+				if (g.getIs_self_specialty() == 1)
+					continue;
+				for (Specialty s : tempSpecialtys) {
+					if (g.getSpecialty_id().equals(s.getId())) {
+						specialtyList.add(s);
+						break;
+					}
+				}
+			}
+
+			// jsonResult = JsonUtil.array2Json(specialtyList);
+		}
+
+		return SUCCESS;
+	}
+
+	// -------------------------
+
 	public List<Country> getCountrys() {
 		return countrys;
 	}
@@ -92,7 +124,7 @@ public class GuidesAction extends BaseAction {
 	public void setCountrys(List<Country> countrys) {
 		this.countrys = countrys;
 	}
-	
+
 	public List<Specialty> getSpecialtys() {
 		return specialtys;
 	}
@@ -100,6 +132,7 @@ public class GuidesAction extends BaseAction {
 	public void setSpecialtys(List<Specialty> specialtys) {
 		this.specialtys = specialtys;
 	}
+
 	public List<GuideSpecialty> getGuideSpecialtys() {
 		return guideSpecialtys;
 	}
@@ -138,5 +171,30 @@ public class GuidesAction extends BaseAction {
 
 	public void setSpecialtyCategorys(List<Specialty> specialtyCategorys) {
 		this.specialtyCategorys = specialtyCategorys;
+	}
+
+	public String getTerm() {
+		return term;
+	}
+
+	public void setTerm(String term) {
+		this.term = term;
+	}
+
+	// specialty
+	public Specialty getSpecialty() {
+		return specialty;
+	}
+
+	public void setSpecialty(Specialty specialty) {
+		this.specialty = specialty;
+	}
+
+	public List<Specialty> getSpecialtyList() {
+		return specialtyList;
+	}
+
+	public void setSpecialtyList(List<Specialty> specialtyList) {
+		this.specialtyList = specialtyList;
 	}
 }

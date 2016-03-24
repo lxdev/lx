@@ -148,7 +148,10 @@ h4 {
     padding-top:17px
     }
     
-
+.searcharea .width-200 {
+        width: 200px;
+    }
+    
     .searcharea .width-176 {
         width: 176px;
     }
