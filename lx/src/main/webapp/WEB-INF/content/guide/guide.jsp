@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<body>
 		<s:action namespace="/user" name="head" executeResult="true"/>
     
-    	<div class="daohang"><a href="">首页</a><span>></span><a href="">院校库</a><span>></span><a href="../template/guides">${guideResult.country.name}</a></div>
+    	<div class="daohang"><a href="../template/first">首页</a><span>></span><a href="../template/guides">攻略</a><span>></span><a href="#">${guideResult.guide_name}（${guideResult.country.name}）</a></div>
     	<div class="clear"></div>
     	<div class="strategydetail">
         	<div class="title">
@@ -30,9 +30,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            <ul class="selres">
 		            	<li class="current">申请指南</li>
 		            	<li><a href="../template/universitys">院校推荐</a></li>
-		            	<li><a href="../template/programs">课程搜索</a></li>
-		            	<li><a href="../template/consultants">留学顾问</a></li>
-		            	<li><a href="../template/asks">专家问答</a></li>
+		            	<li><a href="../template/programs?program_specialty_id=69">课程搜索</a></li>
+		            	<!-- <li><a href="../template/consultants">留学顾问</a></li>
+		            	<li><a href="../template/asks">专家问答</a></li> -->
 		            </ul>
 		            <div class="collect"><span onclick="common_collect('<s:property value="guideResult.id"/>', '4')">收藏</span></div>
 		            <div class="clear">
