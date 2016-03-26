@@ -88,7 +88,7 @@ public class GuidesAction extends BaseAction {
 		return SUCCESS;
 	}
 
-	@Action(value = "guide_specialty_search", results = { @Result(name = "success", type = "json", params = {
+	/*@Action(value = "guide_specialty_search", results = { @Result(name = "success", type = "json", params = {
 			"contentType", "text/json", "includeProperties", "specialtyList.*" }) })
 	public String guide_specialty_search() throws Exception {
 		if (!getTerm().equals("")) {
@@ -114,7 +114,7 @@ public class GuidesAction extends BaseAction {
 
 		return SUCCESS;
 	}
-
+*/
 	// -------------------------
 
 	public List<Country> getCountrys() {
