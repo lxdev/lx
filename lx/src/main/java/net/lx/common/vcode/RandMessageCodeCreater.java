@@ -32,7 +32,7 @@ import java.util.Random;
 public class RandMessageCodeCreater {
 
 	private static String apikey = "6bae3c7baf10febcccc49002dbc040ba";
-	private static String company = "芒果留学";
+	private static String company = "留学芒果";
 	// 查账户信息的http地址
     private static String URI_GET_USER_INFO = "http://yunpian.com/v1/user/get.json";
 
