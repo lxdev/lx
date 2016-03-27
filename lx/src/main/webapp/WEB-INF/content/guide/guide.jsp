@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            <ul class="selres">
 		            	<li class="current">申请指南</li>
 		            	<li><a href="../template/universitys">院校推荐</a></li>
-		            	<li><a href="../template/programs?program_specialty_id=69">课程搜索</a></li>
+		            	<li><a href='../template/programs?program_specialty_id=<s:property value="guideResult.specialty_id"/>'>课程搜索</a></li>
 		            	<!-- <li><a href="../template/consultants">留学顾问</a></li>
 		            	<li><a href="../template/asks">专家问答</a></li> -->
 		            </ul>
