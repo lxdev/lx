@@ -62,7 +62,7 @@ border: 0;
 		<div class="searcharea">
 			<div class="content">
 	            <div class="result">
-					共 <span class="ftcolffbc00" id="universityNum"><s:property value="universityNum"/></span> 所学校，提供 <span class="ftcolffbc00" id="programNum"><s:property value="programNum"/></span>个课程
+					共 <span class="ftcolffbc00" id="universityNum"><s:property value="universityNum"/></span> 所学校，提供 <span class="ftcolffbc00" id="programNum"><s:property value="programNum"/></span>个留学项目
 	            </div>
 	            <div class="conditions">
 	                <div class="condit-1 width-176">

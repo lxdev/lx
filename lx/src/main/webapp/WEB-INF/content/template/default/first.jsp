@@ -24,8 +24,8 @@
 			<div class="mainarea">
 				<div class="title">
     				<ul id="cond_tabs">
-    					<li class="current linebg" style="margin-left:54px"><span class="course" onclick="show_tab(1);">课程</span></li>
-    					<li><span class="university" onclick="show_tab(2);">院校</span></li>
+    					<li class="current linebg" style="margin-left:54px"><span class="course" onclick="show_tab(1);">选校</span></li>
+    					<li><span class="university" onclick="show_tab(2);">概况</span></li>
     					<li class="linebg"><span class="strategy" onclick="show_tab(3);">攻略</span></li>
     				</ul>
     			</div>
