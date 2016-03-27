@@ -340,6 +340,7 @@
 				alert("请输入手机号！");
 				return;
 			}
+					
 			
 			var url = '<s:url value="../user/vcode"/>';
 			var option = { mobile: mobile };

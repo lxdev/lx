@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            	<!-- <li><a href="../template/consultants">留学顾问</a></li>
 		            	<li><a href="../template/asks">专家问答</a></li> -->
 		            </ul>
-		            <div class="collect"><span onclick="common_collect('<s:property value="guideResult.id"/>', '4')">收藏</span></div>
+		            <div class="collect"><span onclick="common_collect('<s:property value="guideResult.guide_id"/>', '4')">收藏</span></div>
 		            <div class="clear">
 		            </div>
 		        </div>
