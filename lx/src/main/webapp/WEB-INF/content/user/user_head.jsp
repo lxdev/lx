@@ -354,7 +354,7 @@
 						}
 			    		$("#create_code", parentForm).hide();
 			    		$("#rest_second", parentForm).show();
-			    		setTimeGo();
+			    		setTimeGo(userType);
 			    	},
 			 "json");
 		}
@@ -370,6 +370,7 @@
 					clearInterval(timeOut);
 					timeOut = null;
 					$("#create_code", parentForm).show();
+					$("#rest_second", parentForm).html(60);
 		    		$("#rest_second", parentForm).hide();
 				}
 			}, 1000);
