@@ -90,6 +90,12 @@ public class FirstAction extends BaseAction {
 			studyLevelList = this.studyLevelBiz.findAll();
 			
 			specialtyList = this.specialtyBiz.findAll();
+			
+			Object err = request.getSession(false).getAttribute("loginError");
+			if(err != null){
+				request.setAttribute("error", (String)err);
+				request.getSession(false).setAttribute("loginError", null);
+			}
 			//return INPUT;
 			return "default_index";
 		}

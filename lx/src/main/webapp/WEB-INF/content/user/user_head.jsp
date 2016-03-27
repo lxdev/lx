@@ -7,7 +7,10 @@
 	String registerStudentActionUrl = basePath + "/user/register_student";
 	String registerTeacherActionUrl = basePath + "/user/register_teacher";
 	
-	//String error = request.getAttribute("error") == null ? request.getAttribute("error").toString() : "";
+	String error = request.getAttribute("error") == null ? "" : request.getAttribute("error").toString();
+	if(error != ""){
+		
+	}
 %>
 
 
@@ -113,13 +116,15 @@
                 <td><input type="button" class="button-3" /></td><td align="right"><input type="button" class="button-4" /></td>
                 </tr>
                 </table>--%>
-                
-                <s:if test="error != ''">
-		      		<span style=" color:red;"><s:property value="error"/></span>
-		      	</s:if>
-                <s:if test="message != ''">
-		      		<span style=" color:red;"><s:property value="message"/></span>
-		      	</s:if>
+                <div style="text-align:center">
+                	<s:if test="error != ''">
+		      			<span style=" color:red;"><s:property value="error"/></span>
+		      		</s:if>
+                	<s:if test="message != ''">
+		      			<span style=" color:red;"><s:property value="message"/></span>
+		      		</s:if>
+		      		<span style="color:red"><%=error %></span>
+		      	</div>
 			</div>
 			<div class="tab-pane" id="div_login_teacher">
 				<form id="formTeacher" name="formTeacher" method="post" action="<%=actionUrl %>" role="form">

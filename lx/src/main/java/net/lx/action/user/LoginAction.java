@@ -60,8 +60,7 @@ public class LoginAction extends BaseAction
 					log.info("ip is '"+request.getRemoteAddr()+"',user name is '"+username+"' login error,message:"+" no user!");
 				}
 			}
-		}
-		if(null != user){
+		} else {
 			if(PwdCoder.getMD5(password).equals(user.getPassword()))
 			{
 				if(UserEnum.StatusStop.value()==user.getStatus())
@@ -91,22 +90,25 @@ public class LoginAction extends BaseAction
 	 */
 	private void returnError(LoginErrorEnum loginErrorEnum)
 	{
+		Object _error = null;
 		switch(loginErrorEnum)
 		{
 			case CHECK_RAND:
-				request.setAttribute("error",getText("msg.error.login.checkrand"));
+				_error = getText("msg.error.login.checkrand");
 				break;			
 			case NO_USER:
-				request.setAttribute("error",getText("msg.error.login.username"));
+				_error = getText("msg.error.login.username");
 				break;
 			case PASSWORD_ERROR:
-				request.setAttribute("error",getText("msg.error.login.password"));
+				_error = getText("msg.error.login.password");
 				break;
 			case LOCKED:
-				request.setAttribute("error",getText("msg.error.login.state"));
+				_error = getText("msg.error.login.state");
 				break;
 			default:break;
 		}
+		request.setAttribute("error", _error);
+		request.getSession(false).setAttribute("loginError", _error);
 	}
 	
 	
