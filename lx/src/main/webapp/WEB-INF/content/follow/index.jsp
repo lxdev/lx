@@ -37,22 +37,68 @@
 					<div class="cen_rnv">
 						<span class="mb"><s:property value="followName"/>收藏</span>
 						<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F2F2F2" class="tb">
-                            <tr class="tytop">
-                                <td width="18%">学校</td>
-                                <td width="18%">课程</td>
-                                <td width="18%">收藏时间</td>
-                                <td width="18%">操作</td>
-                            </tr>
-                        <s:iterator value="followList">
-							<tr>
-								<td class="tybx"><s:property value="source_content"/></td>
-								<td class="tybx"><s:property value="source_title"/></td>
-								<td class="tybx"><s:property value="created_date"/></td>
-								<td class="tybx">
-									<input type="submit" name="cancel_follow" value="取消收藏" class="tywbot" onclick="follow_cancel(<s:property value="id"/>)" />
-								</td>
-							</tr>
-                        </s:iterator>
+                           <s:if test="followName=='课程'"> 
+	                            <tr class="tytop">
+	                                <td width="18%">院校名称</td>
+	                                <td width="18%">留学项目</td>
+	                                <td width="18%">收藏时间</td>
+	                                <td width="18%">操作</td>
+	                            </tr>                        
+		                        <s:iterator value="followList">		                        
+									<tr>									    
+										<td class="tybx"><s:property value="source_content"/></td>
+										<td class="tybx">
+											<a href='../template/program?programId=<s:property value="source_id"/>'>
+												<s:property value="source_title"/>
+											</a>
+										</td>
+										<td class="tybx"><s:property value="created_date"/></td>										
+										<td class="tybx">
+											<input type="submit" name="cancel_follow" value="取消收藏" class="tywbot" onclick="follow_cancel(<s:property value="id"/>)" />
+										</td>										
+									</tr>									
+		                        </s:iterator>
+                        	</s:if>
+                        	<s:if test="followName=='院校'"> 
+	                            <tr class="tytop">
+	                                <td width="18%">院校名称</td>
+	                                <td width="18%">收藏时间</td>
+	                                <td width="18%">操作</td>
+	                            </tr>                        
+		                        <s:iterator value="followList">
+									<tr>										
+										<td class="tybx">
+											<a href='../template/university?universityId=<s:property value="source_id"/>'>
+												<s:property value="source_title"/>
+											</a>
+										</td>
+										<td class="tybx"><s:property value="created_date"/></td>
+										<td class="tybx">
+											<input type="submit" name="cancel_follow" value="取消收藏" class="tywbot" onclick="follow_cancel(<s:property value="id"/>)" />
+										</td>
+									</tr>
+		                        </s:iterator>
+                        	</s:if>
+                        	<s:if test="followName=='攻略'"> 
+	                            <tr class="tytop">	                                
+	                                <td width="18%">攻略名称</td>
+	                                <td width="18%">收藏时间</td>
+	                                <td width="18%">操作</td>
+	                            </tr>                        
+		                        <s:iterator value="followList">
+									<tr>										
+										<td class="tybx">
+											<a href='../template/guide?guide_id=<s:property value="source_id"/>'>
+											<s:property value="source_title"/>
+										</a>
+										</td>
+										<td class="tybx"><s:property value="created_date"/></td>
+										<td class="tybx">
+											<input type="submit" name="cancel_follow" value="取消收藏" class="tywbot" onclick="follow_cancel(<s:property value="id"/>)" />
+										</td>
+									</tr>
+		                        </s:iterator>
+                        	</s:if>
 					</table>
 				</div>
 				<div class="clear"></div>
