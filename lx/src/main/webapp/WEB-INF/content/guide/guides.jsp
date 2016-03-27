@@ -105,7 +105,7 @@
 			    <s:if test="#inner1.parent_id == #inner0.id">
 					<s:iterator value="resultGuide" id="guideItem">
 						<s:if test="#guideItem.specialty_id == #inner1.id && #guideItem.is_self_specialty == 0">																		
-								<s:if test="#indexColumn%4==0">  
+								<s:if test="#indexColumn%3==0">  
 				                    <tr>  
 				                </s:if>  						
 									<td style="width:25%">
@@ -114,7 +114,7 @@
 											<span class="gl-light-gray">（${inner1.specialty_english_name}）</span>
 										</a>
 									</td>
-								<s:if test="#indexColumn%4==3"> 
+								<s:if test="#indexColumn%3==2"> 
 								</tr>	
 								</s:if>	
 								<s:set var="indexColumn" value="#indexColumn+1"/> 					
