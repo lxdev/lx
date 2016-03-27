@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<div class="clear"></div>
     	<div class="strategydetail">
         	<div class="title">
-        		<h3 class=" ftsize18"><span class="ftcolfe8332">5300</span>人想申请</h3>
+        		<h3 class=" ftsize18" style="display: none;"><span class="ftcolfe8332">5300</span>人想申请</h3>
         		<span class=" ftcol4190bc ftsize33 ">${guideResult.guide_name}</span>
 				<span class=" ftsize25 ftcol999999 paddingl20">${guideResult.country.name}</span>
         		
