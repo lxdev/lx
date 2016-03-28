@@ -921,7 +921,7 @@ function getQueryString(name)
 	return null;
 }
 
-var screenHeight= document.body.clientHeight;
+var screenHeight= $(window).height();
 console.log(screenHeight);
 var _toprareaHeigth=52;
 var _bottomHeight=71;
