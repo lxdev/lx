@@ -83,10 +83,13 @@ public class RegisterAction extends BaseAction
 	private String checkAndSubmit() throws Exception{
 		if("mobile".equals(getRegisterType()) && ("".equals(mobile) || "".equals(code) || "".equals(username) || "".equals(password))){
 			message = "用户信息不完整，请检查输入后再尝试！";
-			return ERROR;
 		}
 		if("email".equals(getRegisterType()) && ("".equals(email) || "".equals(code) || "".equals(username) || "".equals(password))){
 			message = "用户信息不完整，请检查输入后再尝试！";
+		}
+		if(!message.equalsIgnoreCase("")){
+			request.getSession(false).setAttribute("loginError", message);
+			return ERROR;
 		}
 		
 		if("mobile".equals(getRegisterType())){
@@ -128,7 +131,6 @@ public class RegisterAction extends BaseAction
 			userId = userBiz.findUserByMobile(mobile).getUser_id();
 		}
 		if("email".equals(getRegisterType())){
-
 			userId = userBiz.findUserByEmail(email).getUser_id();
 		}
 		
