@@ -206,9 +206,12 @@
                     </table>
                 </form>
                 <div class="line-3"></div>
-                <s:if test="message != ''">
-		      		<span style=" color:red;"><s:property value="message"/></span>
-		      	</s:if>
+				<div style="text-align:center">
+                    <s:if test="message != ''">
+                        <span style=" color:red;"><s:property value="message"/></span>
+                    </s:if>
+					<span style="color:red"><%=error %></span>
+				</div>
 			</div>
 			<div class="tab-pane" id="div_register_teacher">
 				<form id="formRegisterTeacher" name="formRegisterTeacher" method="post" action="<%=registerTeacherActionUrl %>" role="form">

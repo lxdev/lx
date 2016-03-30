@@ -107,7 +107,7 @@ public class RegisterAction extends BaseAction
 			}
 
 			if(!message.equalsIgnoreCase("")){
-				request.setAttribute("error", message);
+				request.getSession(false).setAttribute("loginError", message);
 				return ERROR;
 			}
 
