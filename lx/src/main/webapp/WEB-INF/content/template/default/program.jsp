@@ -264,7 +264,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td valign="top">
                                         <s:if test="resultProgram.score_ietls==0">雅思总分：无最低要求</s:if>
                                             <s:elseif test="resultProgram.score_ietls==-1">不接受雅思成绩</s:elseif>
-                                            <s:elseif test="resultProgram.score_itels==-2">无需提供雅思成绩</s:elseif>
+                                            <s:elseif test="resultProgram.score_ietls==-2.">无需提供雅思成绩</s:elseif>
                                             <s:else>雅思总分：<s:property value="resultProgram.score_ietls"/></s:else>
                                         <br><s:if test="resultProgram.ietls_single != null && resultProgram.ietls_single != '' && resultProgram.score_ietls != -1">
                                            <s:if test="resultProgram.ietls_single == 0">
@@ -275,7 +275,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             </s:else>
                                         </s:if>
 										<br><s:if test="resultProgram.ietls_desc != null && resultProgram.ietls_desc != ''">
-											<br><s:property value="resultProgram.ietls_desc"/>
+											<s:property value="resultProgram.ietls_desc"/>
 										</s:if>
 									</td>
 								</tr>
