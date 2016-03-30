@@ -62,7 +62,9 @@ public class RegisterAction extends BaseAction
 		{
 			return INPUT;
 		} 
-		return checkAndSubmit();
+		String result = checkAndSubmit();
+
+		return result;
 	}
 	@Action(value = "register_teacher", results = {
 			@Result(name = "input", location = "/WEB-INF/content/user/register_teacher.jsp"),
@@ -74,7 +76,8 @@ public class RegisterAction extends BaseAction
 		{
 			return INPUT;
 		} 
-		return checkAndSubmit();
+		String result = checkAndSubmit();
+		return result;
 	}
 	
 	private String checkAndSubmit() throws Exception{
@@ -84,7 +87,6 @@ public class RegisterAction extends BaseAction
 		}
 		if("email".equals(getRegisterType()) && ("".equals(email) || "".equals(code) || "".equals(username) || "".equals(password))){
 			message = "用户信息不完整，请检查输入后再尝试！";
-			return ERROR;
 		}
 		
 		if("mobile".equals(getRegisterType())){
@@ -92,20 +94,23 @@ public class RegisterAction extends BaseAction
 			String systemCode = (String)request.getSession().getAttribute(CookieConstants.SESSION_MOBILE_CODE + mobile);
 			if(!systemCode.equals(code)){
 				message = "输入动态密码不正确！";
-				return ERROR;
 			}
 			//1.2  验证手机号在平台是否存在
 			User userTemp = userBiz.findUserByMobile(mobile);
 			if(userTemp != null){
 				message = "输入手机号已存在！";
-				return ERROR;
 			}
 			//1.3  验证用户名在平台是否存在
 			userTemp = userBiz.findUserByUserName(username);
 			if(userTemp != null){
 				message = "输入用户名已存在！";
+			}
+
+			if(!message.equalsIgnoreCase("")){
+				request.setAttribute("error", message);
 				return ERROR;
 			}
+
 			//1.4  生成用户
 			User user = new User();
 			user.setUser_name(username);
