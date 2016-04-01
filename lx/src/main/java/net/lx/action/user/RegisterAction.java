@@ -67,9 +67,12 @@ public class RegisterAction extends BaseAction
 		return result;
 	}
 	@Action(value = "register_teacher", results = {
-			@Result(name = "input", location = "/WEB-INF/content/user/register_teacher.jsp"),
+			//@Result(name = "input", location = "/WEB-INF/content/user/register_teacher.jsp"),
+			@Result(name = "input", location = "/template/first?show_register=2", type = "redirect"),
 			@Result(name = "success", location = "login", type = "redirect"),
-			@Result(name = "error", location = "/WEB-INF/content/user/register_teacher.jsp", type = "dispatcher")})
+			//@Result(name = "error", location = "/WEB-INF/content/user/register_teacher.jsp", type = "dispatcher")
+			@Result(name = "error", location = "/template/first?show_register=2", type = "redirect")
+	})
 	public String execute2() throws Exception 
 	{
 		if (isGetRequest()) 
@@ -87,7 +90,7 @@ public class RegisterAction extends BaseAction
 		if("email".equals(getRegisterType()) && ("".equals(email) || "".equals(code) || "".equals(username) || "".equals(password))){
 			message = "用户信息不完整，请检查输入后再尝试！";
 		}
-		if(!message.equalsIgnoreCase("")){
+		if(message != null && !message.equalsIgnoreCase("")){
 			request.getSession(false).setAttribute("loginError", message);
 			return ERROR;
 		}
@@ -95,7 +98,7 @@ public class RegisterAction extends BaseAction
 		if("mobile".equals(getRegisterType())){
 			//1.1  验证 手机号和 验证码是否一致
 			String systemCode = (String)request.getSession().getAttribute(CookieConstants.SESSION_MOBILE_CODE + mobile);
-			if(!systemCode.equals(code)){
+			if(systemCode == null || !systemCode.equals(code)){
 				message = "输入动态密码不正确！";
 			}
 			//1.2  验证手机号在平台是否存在
@@ -109,7 +112,7 @@ public class RegisterAction extends BaseAction
 				message = "输入用户名已存在！";
 			}
 
-			if(!message.equalsIgnoreCase("")){
+			if(message != null && !message.equalsIgnoreCase("")){
 				request.getSession(false).setAttribute("loginError", message);
 				return ERROR;
 			}
