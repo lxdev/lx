@@ -28,6 +28,7 @@
             	<li><a href="../template/programs">选校神器</a></li>
                 <li><a href="../template/universitys">院校概况</a></li>
                 <li><a href="../template/guides">留学攻略</a></li>
+                <li><a href="../template/proevaluate">专家评估</a></li>
                 <!-- <li><a href="../template/consultants">留学顾问</a></li> -->
             </ul>
         </div>

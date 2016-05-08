@@ -64,7 +64,7 @@ h4 {
         }
 
         .toparea .content .nav {
-            width: 429px;
+            width: 500px;
             float: left;
             display: inline;
             margin-left: 40px;
@@ -2037,4 +2037,138 @@ margin-right: 8px;
 	height:45px;
 	background:url(../images/topicon.png) no-repeat;
 	cursor:pointer;
+}
+
+/* 专家评估样式 */
+.banner-1 {
+width:100%;height:520px;
+background:url(../images/banner-1.png) no-repeat top center;
+
+}
+.evaluateregister {
+    width:1000px;margin:0px auto;margin-top:200px;float:left;
+}
+.apply {
+width:400px;float:right;height:90px;margin-top:200px;color:#fff;font-size:16pt;
+}
+.btn-1 {
+background:#04a24d;color:#fff;font-size:20pt;border:0px;padding:10px 20px;margin-left:20px;cursor:pointer;text-decoration:none;
+}
+.banner-2 {
+width:1090px;margin:0px auto;text-align:center;font-size:20pt;overflow:hidden;padding-bottom:100px;padding-top:30px;color:#1fb564
+}
+    .banner-2 h2 {
+    width:100%;padding:50px 0px;color:#666666;text-align:center;font-size:27pt;padding-bottom:100px;
+    }
+    .banner-2 .c-1 img, .banner-2 .c-2 img, .banner-2 .c-3  img{
+    margin-bottom:20px;
+    }
+    .banner-2 .c-1 {
+    width:225px;float:left;margin-left:30px;
+    }
+    .banner-2 .c-2 {
+    width:225px;float:left;
+    margin-left:180px;
+    }
+    .banner-2 .c-3 {
+    width:225px;float:left;margin-left:180px;
+    }
+    .banner-3 {
+width:100%;margin:0px auto;text-align:center;font-size:26pt;background:#62dea8;clear:both;color:#fff;padding-bottom:50px;
+}
+        .banner-3 .p-1 {
+        font-size:14pt;margin-top:30px;line-height:35px;text-align:left
+        }
+    .banner-3 h2 {
+    width:100%;padding:50px 0px;color:#fff;text-align:center;font-size:27pt;padding-bottom:100px;padding-top:80px;
+    }
+        .banner-3 .content {
+        width:1200px;margin:0px auto;
+        }
+    .banner-3 .c-1 img, .banner-3 .c-2 img, .banner-3 .c-3  img{
+    margin-bottom:20px;height:100px;
+    }
+    .banner-3 .c-1 {
+    width:330px;float:left;margin-left:30px;
+    }
+    .banner-3 .c-2 {
+    width:330px;float:left;
+    margin-left:40px;
+    }
+    .banner-3 .c-3 {
+    width:330px;float:left;margin-left:40px;
+    }
+.banner-4 h2 {
+    width:100%;padding:50px 0px;color:#28b2bb;text-align:center;font-size:27pt;padding-bottom:40px;padding-top:80px;
+    }
+.banner-4{
+    color:#28b2bb;font-size:24pt;width:1200px;margin:0px auto;position:relative;padding-bottom:90px;
+}
+.banner-4 .content {
+width:1200px;margin:0px auto;
+}
+    .banner-4 td {
+    padding:30px 0px;padding-left:30px;
+    }
+    .banner-4 .people-l {
+    width: 132px;
+    height: 215px;
+    position: absolute;
+    left: -211px;
+    top: 161px;
+    background: url(../images/banner-3-1.png) no-repeat;
+    }
+    
+@media screen and (min-width: 1380px) {
+    .banner-4 .people-r {
+    width: 132px;
+    height: 215px;
+    position: absolute;
+    right: -211px;
+    top: 161px;
+    background: url(../images/banner-3-1.png) no-repeat;
+    }
+}
+.banner-5 .content {
+width:1200px;margin:0px auto;
+}
+.banner-5 h2 {
+    width:100%;padding:50px 0px;color:#fff;text-align:center;font-size:27pt;padding-bottom:40px;padding-top:80px;
+    }
+.banner-5{
+    color:#fff;font-size:20pt;width:100%;margin:0px auto;background:#6fcdeb
+}
+    .banner-5 td {
+    padding:30px 0px;padding-left:30px;line-height:60px;
+    }
+
+    .banner-6 h2 {
+    width:100%;padding:50px 0px;color:#28b2bb;text-align:center;font-size:27pt;padding-bottom:40px;color:#636363;
+    }
+.banner-6{
+    color:#7c7c7c;font-size:24pt;width:1200px;margin:0px auto;position:relative;padding-bottom:90px;
+}
+.banner-6 .content {
+width:1200px;margin:0px auto;
+}
+.banner-6 .td-bg {
+    background:url(../images/line.jpg) repeat-y 57px 0px
+    }
+.banner-6 .tbl-1{
+        border-collapse: collapse;
+}
+    .banner-6 td {
+    padding:0px;padding-left:30px;text-align:left;
+    }
+        .banner-6 td h2 {
+        text-align:left;padding-top:0px;padding-bottom:30px;
+        }
+        .banner-6 td p {
+        font-size:20pt;line-height:40px;padding-bottom:50px;
+        }
+.signup {
+text-align:center;padding-top:90px;
+}
+.clear {
+clear:both;
 }
