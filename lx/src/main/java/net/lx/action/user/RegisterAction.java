@@ -62,50 +62,61 @@ public class RegisterAction extends BaseAction
 		{
 			return INPUT;
 		} 
-		return checkAndSubmit();
+		String result = checkAndSubmit();
+
+		return result;
 	}
 	@Action(value = "register_teacher", results = {
-			@Result(name = "input", location = "/WEB-INF/content/user/register_teacher.jsp"),
+			//@Result(name = "input", location = "/WEB-INF/content/user/register_teacher.jsp"),
+			@Result(name = "input", location = "/template/first?show_register=2", type = "redirect"),
 			@Result(name = "success", location = "login", type = "redirect"),
-			@Result(name = "error", location = "/WEB-INF/content/user/register_teacher.jsp", type = "dispatcher")})
+			//@Result(name = "error", location = "/WEB-INF/content/user/register_teacher.jsp", type = "dispatcher")
+			@Result(name = "error", location = "/template/first?show_register=2", type = "redirect")
+	})
 	public String execute2() throws Exception 
 	{
 		if (isGetRequest()) 
 		{
 			return INPUT;
 		} 
-		return checkAndSubmit();
+		String result = checkAndSubmit();
+		return result;
 	}
 	
 	private String checkAndSubmit() throws Exception{
 		if("mobile".equals(getRegisterType()) && ("".equals(mobile) || "".equals(code) || "".equals(username) || "".equals(password))){
 			message = "用户信息不完整，请检查输入后再尝试！";
-			return ERROR;
 		}
 		if("email".equals(getRegisterType()) && ("".equals(email) || "".equals(code) || "".equals(username) || "".equals(password))){
 			message = "用户信息不完整，请检查输入后再尝试！";
+		}
+		if(message != null && !message.equalsIgnoreCase("")){
+			request.getSession(false).setAttribute("loginError", message);
 			return ERROR;
 		}
 		
 		if("mobile".equals(getRegisterType())){
 			//1.1  验证 手机号和 验证码是否一致
 			String systemCode = (String)request.getSession().getAttribute(CookieConstants.SESSION_MOBILE_CODE + mobile);
-			if(!systemCode.equals(code)){
+			if(systemCode == null || !systemCode.equals(code)){
 				message = "输入动态密码不正确！";
-				return ERROR;
 			}
 			//1.2  验证手机号在平台是否存在
 			User userTemp = userBiz.findUserByMobile(mobile);
 			if(userTemp != null){
 				message = "输入手机号已存在！";
-				return ERROR;
 			}
 			//1.3  验证用户名在平台是否存在
 			userTemp = userBiz.findUserByUserName(username);
 			if(userTemp != null){
 				message = "输入用户名已存在！";
+			}
+
+			if(message != null && !message.equalsIgnoreCase("")){
+				request.getSession(false).setAttribute("loginError", message);
 				return ERROR;
 			}
+
 			//1.4  生成用户
 			User user = new User();
 			user.setUser_name(username);
@@ -123,7 +134,6 @@ public class RegisterAction extends BaseAction
 			userId = userBiz.findUserByMobile(mobile).getUser_id();
 		}
 		if("email".equals(getRegisterType())){
-
 			userId = userBiz.findUserByEmail(email).getUser_id();
 		}
 		

@@ -75,11 +75,15 @@ public class LoginAction extends BaseAction
 					returnError(LoginErrorEnum.LOCKED);
 					log.info("ip is '"+request.getRemoteAddr()+"',user name is '"+username+"' login error,message:"+" user locked!");
 				}
-				else
+				else if(user.getUser_type() == 3)
 				{
 					createSession(user);
 					//TODO 初始化权限
 					return SUCCESS;
+				}else {
+
+					returnError(LoginErrorEnum.NOT_MANAGER);
+					log.info("ip is '"+request.getRemoteAddr()+"',user name is '"+username+"' login error,message:"+" user not manager!");
 				}
 			}
 			else {
@@ -114,6 +118,8 @@ public class LoginAction extends BaseAction
 			case LOCKED:
 				request.setAttribute("error",getText("msg.error.login.state"));
 				break;
+			case NOT_MANAGER:
+				request.setAttribute("error",getText("msg.error.login.not.manager"));
 			default:break;
 		}
 	}
